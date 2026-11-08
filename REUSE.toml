@@ -8,6 +8,7 @@ path = [
   "firmware/**",
   "hardware/cad/*.py",
   ".github/**",
+  "site/**",
   ".gitignore",
   ".gitattributes",
   "REUSE.toml",
@@ -20,6 +21,7 @@ SPDX-License-Identifier = "MIT"
 path = [
   "hardware/stl/**",
   "hardware/3mf/**",
+  "hardware/assembly/**",
   "hardware/cad/*.json",
 ]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
@@ -32,6 +34,7 @@ path = [
   "*.md",
   "hardware/README.md",
   "firmware/README.md",
+  "site/index.html",
   "LICENSE",
 ]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
@@ -45,3 +48,9 @@ SPDX-FileCopyrightText = [
   "Contributor Covenant contributors <https://www.contributor-covenant.org>",
 ]
 SPDX-License-Identifier = "CC-BY-4.0"
+
+# three.js 0.160.1 (npm package "three"), vendored for the website so it loads no third-party CDN
+[[annotations]]
+path = "site/vendor/three/**"
+SPDX-FileCopyrightText = "2010-2023 three.js authors"
+SPDX-License-Identifier = "MIT"

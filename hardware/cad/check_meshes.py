@@ -3,8 +3,8 @@
 Check that every mesh under a hardware folder is watertight with a positive volume.
 
 Usage:  python hardware/cad/check_meshes.py [HARDWARE_DIR]
-HARDWARE_DIR defaults to the folder above this script. It scans stl/*.stl, 3mf/*.3mf and
-cad/build/*.stl (the build folder exists after running the generator scripts).
+HARDWARE_DIR defaults to the folder above this script. It scans stl/*.stl, 3mf/*.3mf,
+assembly/*.stl and cad/build/*.stl (the build folder exists after running the generator scripts).
 Exit code 1 if any mesh fails or none is found.
 """
 import sys
@@ -12,7 +12,8 @@ from pathlib import Path
 import trimesh
 
 root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent
-files = sorted([*root.glob('stl/*.stl'), *root.glob('3mf/*.3mf'), *root.glob('cad/build/*.stl')])
+files = sorted([*root.glob('stl/*.stl'), *root.glob('3mf/*.3mf'), *root.glob('assembly/*.stl'),
+                *root.glob('cad/build/*.stl')])
 if not files:
     sys.exit(f'no meshes found under {root}')
 failed = []

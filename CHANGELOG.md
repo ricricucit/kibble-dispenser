@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- 2026-11-08: Project website with a live 3D model of the assembly (orbit, full screen, section, exploded view, servo angle, part isolation), published to GitHub Pages.
+  - `site/`: static page, CSS and JavaScript modules, with three.js 0.160.1 bundled in `site/vendor/three/`; `site/build.py` builds it from the repository.
+  - `hardware/cad/build_assembly.py` and `hardware/assembly/`: assembly-frame meshes and `assembly.json` for the viewer.
+  - `.github/workflows/pages.yml`, plus a site build check in CI. `check_meshes.py` also checks the assembly meshes.
 - 2026-11-08: Initial import of prototype 1.
   - Drivetrain parts: rotating disc (disco_v3), shaft and hub (albero_mozzo), sealed bushing (passante_stagno), spline fit test (test_scanalato), with the `build_drivetrain.py` generator, `layout_v3.json` and `drivetrain.json`.
   - Chute (scivolo_v1) with the `build_disc_v2_chute.py` generator.

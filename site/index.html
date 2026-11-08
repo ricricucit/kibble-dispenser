@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Kibble Dispenser</title>
+  <meta name="description" content="An open-source, weatherproof cat-kibble dispenser you can 3D print and build yourself. Explore the live 3D assembly, the printed parts and the build files.">
+  <meta name="theme-color" content="#e1e6e5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121a1f" media="(prefers-color-scheme: dark)">
+  <meta property="og:title" content="Kibble Dispenser">
+  <meta property="og:description" content="Open-source cat-kibble dispenser: one servo turns one disc, and one portion drops out.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ee6a1f'/%3E%3Cpath d='M13.5 13h5l3.5 15h-12z' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='%2326282c'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="modulepreload" href="vendor/three/three.module.min.js">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three/three.module.min.js",
+        "three/addons/": "./vendor/three/addons/"
+      }
+    }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#pitch">Skip the 3D model</a>
+
+  <header class="masthead">
+    <h1 class="wordmark"><a href="#model">Kibble Dispenser</a></h1>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#parts">Parts</a></li>
+        <li><a href="#photos">Photos</a></li>
+        <li><a href="#build">Build</a></li>
+        <li><a href="#licence">Licence</a></li>
+        <li><a href="#contribute">Contribute</a></li>
+        <li class="nav-repo"><a href="https://github.com/ricricucit/kibble-dispenser">Source on GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="model" aria-label="Live 3D model of the assembly">
+      <div class="stage" id="stage" tabindex="0" aria-describedby="stage-help">
+        <div class="canvas-wrap">
+          <canvas id="view" aria-label="3D model of the kibble dispenser. Drag to orbit, scroll or pinch to zoom."></canvas>
+          <div class="callouts" id="callouts"></div>
+          <div class="tip" id="tip" hidden></div>
+          <div class="loading" id="loading" role="status">
+            <span class="loading-label">Loading parts</span>
+            <span class="loading-bar"><span id="loading-fill"></span></span>
+          </div>
+          <div class="fallback" id="fallback" hidden>
+            <p id="fallback-text"></p>
+            <p><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/stl">Open the STL files on GitHub</a> to view each part in 3D there.</p>
+          </div>
+          <p class="sheet-label" aria-hidden="true">Prototype 1 assembly, mm</p>
+          <p class="hint" id="stage-help"><span class="hint-mouse">Drag to orbit, scroll to zoom, right-drag to pan. Click a part to isolate it.</span><span class="hint-touch">Drag to orbit, pinch to zoom, two fingers to pan. Tap a part to isolate it.</span></p>
+        </div>
+
+        <div class="toolbar" role="toolbar" aria-label="View">
+          <button type="button" id="btn-fullscreen" aria-pressed="false">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8V3h5M12 3h5v5M17 12v5h-5M8 17H3v-5"/></svg>
+            <span class="t">Full screen</span><kbd>F</kbd>
+          </button>
+          <button type="button" id="btn-section" aria-pressed="false">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v16M4 6h3M4 10h3M4 14h3"/><path d="M13 5l4 4M13 9l4 4M13 13l3 3" class="thin"/></svg>
+            <span class="t">Section</span><kbd>S</kbd>
+          </button>
+          <button type="button" id="btn-explode" aria-pressed="false">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 3h12M4 8.5h12M4 11.5h12M4 17h12"/><path d="M10 5.5v-1M10 15.5v-1" class="thin"/></svg>
+            <span class="t">Explode</span><kbd>X</kbd>
+          </button>
+          <button type="button" id="btn-labels" aria-pressed="true">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="13" cy="7" r="4"/><path d="M10.2 9.8 4 16"/></svg>
+            <span class="t">Labels</span><kbd>L</kbd>
+          </button>
+          <button type="button" id="btn-reset">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 9a6 6 0 1 1 1.6 5"/><path d="M4 4v5h5"/></svg>
+            <span class="t">Reset</span><kbd>R</kbd>
+          </button>
+        </div>
+
+        <div class="panel controls" data-inset="right">
+          <div class="control">
+            <div class="control-head">
+              <label for="servo">Servo</label>
+              <output for="servo" id="servo-out">0°, closed</output>
+            </div>
+            <input type="range" id="servo" min="0" max="180" step="1" value="0" aria-describedby="servo-note">
+            <div class="scale" aria-hidden="true"><span>0°</span><span>90°</span><span>180°</span></div>
+            <p class="note" id="servo-note">At 180° the disc opening faces the chute.</p>
+            <button type="button" class="btn-primary" id="btn-dispense">Drop a portion</button>
+          </div>
+          <div class="control">
+            <div class="control-head">
+              <label for="explode">Exploded view</label>
+              <output for="explode" id="explode-out">0 %</output>
+            </div>
+            <input type="range" id="explode" min="0" max="100" step="1" value="0">
+          </div>
+        </div>
+
+        <details class="panel parts-panel" id="parts-panel" data-inset="left" open>
+          <summary><span>Parts</span> <span class="count" id="parts-count"></span></summary>
+          <ol class="parts-list" id="parts-list"></ol>
+        </details>
+
+        <aside class="panel infocard" id="info" data-inset="top" hidden aria-live="polite">
+          <div class="info-head">
+            <span class="balloon static" id="info-bom" aria-hidden="true"></span>
+            <h2 id="info-name"></h2>
+          </div>
+          <p class="info-meta" id="info-meta"></p>
+          <p class="info-desc" id="info-desc"></p>
+          <p class="info-actions">
+            <a id="info-file" hidden>STL for printing</a>
+            <button type="button" id="info-all">Show all parts</button>
+          </p>
+        </aside>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="pitch" id="pitch">
+      <p class="pitch-line">A weatherproof cat-kibble dispenser you can print and build yourself: one servo turns one disc, and one portion drops out.</p>
+      <div class="status">
+        <p class="stamp">Prototype 1, work in progress</p>
+        <dl class="status-list">
+          <div><dt>Designed and exported</dt><dd>Rotating disc, shaft and hub, sealed shaft bushing, spline fit test, chute</dd></div>
+          <div><dt>Bought or reused</dt><dd>Waterproof box (265 × 185 mm), 25 kg·cm servo with a 25-tooth spline, bowl</dd></div>
+          <div><dt>Still to design</dt><dd>Servo cradle, hopper and shelf, container</dd></div>
+          <div><dt>Firmware</dt><dd>First ESPHome draft. It passes the config check but has not run on hardware yet.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="band" id="how" aria-labelledby="how-title">
+      <div class="band-head">
+        <h2 id="how-title">How it works</h2>
+        <p>Kibble falls from top to bottom. Only the disc moves, and everything electrical stays inside a sealed box.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>A container holds the kibble</h3>
+          <p>Any container will do. It sits above the hopper.</p>
+          <button type="button" class="show" data-show="container">Show in model</button>
+        </li>
+        <li>
+          <h3>A hopper funnels it into the bowl</h3>
+          <p>The hopper and its shelf rest on the bowl rim. They are not designed yet.</p>
+          <button type="button" class="show" data-show="hopper">Show in model</button>
+        </li>
+        <li>
+          <h3>A disc in the bowl turns 180°</h3>
+          <p>The disc has a trapezoid opening. When the servo turns it half a revolution, the opening lines up with the spout and one portion drops through.</p>
+          <button type="button" class="show" data-action="dispense">Drop a portion in the model</button>
+        </li>
+        <li>
+          <h3>The chute carries it out</h3>
+          <p>The portion slides from the bowl spout down the printed chute and into the cat's bowl.</p>
+          <button type="button" class="show" data-show="scivolo_v1">Show in model</button>
+        </li>
+        <li>
+          <h3>The servo hangs from the lid</h3>
+          <p>A 25 kg·cm servo under the box lid drives a printed shaft. The shaft passes through the lid in a sealed bushing with O-rings, so water and crumbs stay out of the box.</p>
+          <button type="button" class="show" data-show="passante_stagno albero_mozzo servo" data-section="on">Show the seal in section</button>
+        </li>
+        <li>
+          <h3>An ESP32-S3 runs it on 12 V</h3>
+          <p>The board runs ESPHome, so the feeder shows up in Home Assistant. Power comes from an external 12 V adapter; the box only ever sees low voltage.</p>
+          <button type="button" class="show" data-show="esp32">Show in model</button>
+        </li>
+      </ol>
+    </section>
+
+    <section class="band" id="parts" aria-labelledby="parts-title">
+      <div class="band-head">
+        <h2 id="parts-title">Printed parts</h2>
+        <p>All printed in PETG from three spools. Print the spline test first: it tells you how tightly the shaft will fit your servo.</p>
+        <p><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/hardware/README.md">Print orientation and settings for each part</a></p>
+      </div>
+      <!-- @parts -->
+    </section>
+
+    <section class="band" id="photos" aria-labelledby="photos-title">
+      <div class="band-head">
+        <h2 id="photos-title">On the bench</h2>
+        <p>Prototype 1 from the first servo tests to the bowl and box. Select a photo to see it larger.</p>
+      </div>
+      <!-- @photos -->
+    </section>
+
+    <section class="band" id="build" aria-labelledby="build-title">
+      <div class="band-head">
+        <h2 id="build-title">Build it</h2>
+        <p>Everything lives in the repository. The step-by-step build guide is still a placeholder; these pages cover the build until it is written.</p>
+      </div>
+      <ul class="links">
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/docs/BUILD_GUIDE.md">Build guide</a><span>Step-by-step assembly, exported from the living build guide; a placeholder for now</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/hardware/README.md">Print notes</a><span>Material, spool and orientation for every part, plus the bought hardware</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/stl">Print-ready STLs</a><span>Already oriented for the bed</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/3mf">3MF files</a><span>The same parts at their assembled height</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/cad">CAD scripts</a><span>Python generators for every part; change these, not the meshes</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/firmware/README.md">Wiring and flashing</a><span>ESPHome configuration, wiring summary and servo calibration</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/docs/research/elettronica-e-tenuta.it.md">Power, servo and sealing notes</a><span>Design background, in Italian</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/assembly">Assembly data</a><span>The meshes and layout behind the model on this page</span></li>
+      </ul>
+    </section>
+
+    <section class="band" id="licence" aria-labelledby="licence-title">
+      <div class="band-head">
+        <h2 id="licence-title">Licence</h2>
+        <p class="plain">Anyone can use, change, build and sell this dispenser, including as a product. Keep the copyright and licence notices with it, and credit the project when you reuse the docs or photos.</p>
+      </div>
+      <ul class="licences">
+        <li>
+          <h3>Software</h3>
+          <p>Firmware, CAD scripts, CI and the code of this website.</p>
+          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/LICENSES/MIT.txt">MIT</a>
+        </li>
+        <li>
+          <h3>Hardware design files</h3>
+          <p>STL and 3MF parts, assembly meshes and design data.</p>
+          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/LICENSES/CERN-OHL-P-2.0.txt">CERN-OHL-P-2.0</a>
+        </li>
+        <li>
+          <h3>Docs and photos</h3>
+          <p>Build guide, research notes, photos and the text on this page.</p>
+          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/LICENSES/CC-BY-4.0.txt">CC BY 4.0</a>
+        </li>
+      </ul>
+      <p class="aside">The 3D view uses <a href="https://threejs.org">three.js</a> (MIT), bundled with the site, so the page loads no third-party scripts or fonts and sets no cookies. <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/REUSE.toml">REUSE.toml</a> lists the licence of every file.</p>
+    </section>
+
+    <section class="band" id="contribute" aria-labelledby="contribute-title">
+      <div class="band-head">
+        <h2 id="contribute-title">Contribute</h2>
+        <p>This is a prototype, so short issues and small pull requests work best.</p>
+      </div>
+      <ul class="contrib">
+        <li>
+          <h3>Built one, or part of one?</h3>
+          <p>Open a build report with photos. Remove location data from them first.</p>
+          <a href="https://github.com/ricricucit/kibble-dispenser/issues/new/choose">Open an issue</a>
+        </li>
+        <li>
+          <h3>Changing a part</h3>
+          <p>Edit the generator script in <code>hardware/cad/</code>, regenerate, and commit the new meshes with it. CI rebuilds the parts, checks every mesh is watertight and runs <code>reuse lint</code>.</p>
+          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/CONTRIBUTING.md">Read the contributing guide</a>
+        </li>
+        <li>
+          <h3>Pull requests</h3>
+          <p>One topic each. Say what you actually tested: printed, flashed or only regenerated. Add a line to the changelog.</p>
+          <a href="https://github.com/ricricucit/kibble-dispenser/pulls">See open pull requests</a>
+        </li>
+        <li>
+          <h3>Security</h3>
+          <p>Report firmware security problems privately, not in a public issue.</p>
+          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/SECURITY.md">How to report</a>
+        </li>
+      </ul>
+      <p class="aside">Everyone taking part follows the <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.</p>
+    </section>
+  </main>
+
+  <footer class="titleblock" aria-label="Project details">
+    <dl>
+      <div class="tb-title"><dt>Title</dt><dd>Kibble Dispenser, assembly</dd></div>
+      <div><dt>Revision</dt><dd>Prototype 1</dd></div>
+      <div><dt>Units</dt><dd>mm</dd></div>
+      <div><dt>Frame</dt><dd>Z up, Z 0 at the lid top</dd></div>
+      <div class="tb-wide"><dt>Licences</dt><dd>MIT, CERN-OHL-P-2.0, CC BY 4.0</dd></div>
+      <div class="tb-wide"><dt>Copyright</dt><dd>2026 Enrico Icardi and contributors</dd></div>
+      <div class="tb-wide"><dt>Source</dt><dd><a href="https://github.com/ricricucit/kibble-dispenser">github.com/ricricucit/kibble-dispenser</a></dd></div>
+    </dl>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Photo">
+    <figure>
+      <img id="lightbox-img" alt="">
+      <figcaption id="lightbox-cap"></figcaption>
+    </figure>
+    <form method="dialog"><button type="submit" class="lightbox-close">Close</button></form>
+  </dialog>
+</body>
+</html>

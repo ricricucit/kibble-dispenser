@@ -16,6 +16,14 @@ Prototype 1, work in progress.
 - Still to design: servo cradle, hopper and shelf, container
 - Firmware: first ESPHome draft; it passes the config check but has not been tested on hardware yet
 
+## Live model
+
+The project site shows the assembly as a 3D model you can orbit, cut in section, explode and run: <https://ricricucit.github.io/kibble-dispenser/>
+
+- The site lives in `site/` (plain HTML, CSS and JavaScript, with three.js bundled in `site/vendor/three/`, so it loads no third-party scripts or fonts).
+- `python site/build.py` copies the assembly meshes from `hardware/assembly/` and the process photos into `site/_build/`, so the site always matches the repository. Preview it locally with `python -m http.server -d site/_build`.
+- `.github/workflows/pages.yml` builds and publishes it on every push to `main`. GitHub Pages has to be enabled once by the owner: Settings > Pages > Source: GitHub Actions. A Pages site is always public, and Pages on a private repository needs a paid GitHub plan.
+
 ## How it works
 
 1. A container holds the kibble.
@@ -27,9 +35,10 @@ Prototype 1, work in progress.
 
 ## Repository map
 
-- `hardware/`: CAD generator scripts, print-ready STLs, 3MF files and per-part print notes ([hardware/README.md](hardware/README.md))
+- `hardware/`: CAD generator scripts, print-ready STLs, 3MF files, assembly meshes for the 3D viewer and per-part print notes ([hardware/README.md](hardware/README.md))
 - `firmware/`: ESPHome configuration, wiring summary and flashing steps ([firmware/README.md](firmware/README.md))
 - `docs/`: build guide, research notes and process photos ([docs/README.md](docs/README.md))
+- `site/`: the project website with the live 3D model, and its build script
 - `LICENSES/` and `REUSE.toml`: licence texts and which licence covers which file
 - `.github/`: CI workflow, issue and pull request templates
 
@@ -49,8 +58,8 @@ Issues, build reports and pull requests are welcome. See [CONTRIBUTING.md](CONTR
 
 This project is open source with permissive licences: anyone, the author included, may build, modify, fork and sell it.
 
-- Software (the firmware, the CAD scripts in `hardware/cad/*.py`, CI and config files): [MIT](LICENSES/MIT.txt)
-- Hardware design files (`hardware/stl/`, `hardware/3mf/`, the JSON design data in `hardware/cad/`): [CERN-OHL-P-2.0](LICENSES/CERN-OHL-P-2.0.txt)
-- Documentation and photos (`docs/`, the README files and other prose): [CC BY 4.0](LICENSES/CC-BY-4.0.txt)
+- Software (the firmware, the CAD scripts in `hardware/cad/*.py`, the website code in `site/`, CI and config files): [MIT](LICENSES/MIT.txt). The bundled three.js library is MIT too.
+- Hardware design files (`hardware/stl/`, `hardware/3mf/`, `hardware/assembly/`, the JSON design data in `hardware/cad/`): [CERN-OHL-P-2.0](LICENSES/CERN-OHL-P-2.0.txt)
+- Documentation and photos (`docs/`, the README files, the website text in `site/index.html` and other prose): [CC BY 4.0](LICENSES/CC-BY-4.0.txt)
 
 The project follows the [REUSE](https://reuse.software) specification. `REUSE.toml` lists the licence and copyright for every path, and [LICENSE](LICENSE) explains the split in plain words.

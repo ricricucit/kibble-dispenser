@@ -27,10 +27,24 @@ jobs:
           cp -r hardware "$tmp/"
           python "$tmp/hardware/cad/build_drivetrain.py"
           python "$tmp/hardware/cad/build_disc_v2_chute.py"
+          python "$tmp/hardware/cad/build_assembly.py"
           echo "HW_TMP=$tmp/hardware" >> "$GITHUB_ENV"
 
       - name: Check every mesh is watertight
         run: python hardware/cad/check_meshes.py "$HW_TMP"
+
+  site:
+    name: Build the website
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build the site from the repository
+        run: python site/build.py
 
   reuse:
     name: REUSE compliance

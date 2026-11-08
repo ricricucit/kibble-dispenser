@@ -10,17 +10,21 @@ documentation and photos, credit is given).
 1. Software: MIT License (LICENSES/MIT.txt)
    - firmware/ (ESPHome configuration and any future firmware code)
    - hardware/cad/*.py (CAD generator and check scripts)
+   - site/ (website code), except site/index.html (see 3); the bundled three.js library in
+     site/vendor/three/ is MIT too, copyright 2010-2023 three.js authors
    - CI, templates and configuration files (.github/, .gitignore, .gitattributes, REUSE.toml)
 
 2. Hardware design files: CERN Open Hardware Licence Version 2 - Permissive
    (LICENSES/CERN-OHL-P-2.0.txt)
    - hardware/stl/ and hardware/3mf/ (part geometry)
+   - hardware/assembly/ (assembly-frame meshes and data for the 3D viewer)
    - hardware/cad/*.json (layout and drivetrain design data)
 
 3. Documentation and photos: Creative Commons Attribution 4.0 International
    (LICENSES/CC-BY-4.0.txt)
    - docs/ (build guide, research notes, photos)
    - README.md files and other Markdown prose
+   - site/index.html (the text of the website)
    - CODE_OF_CONDUCT.md is adapted from the Contributor Covenant 2.1, also under CC BY 4.0
 
 The exact licence and copyright of every path are listed in REUSE.toml, following the
