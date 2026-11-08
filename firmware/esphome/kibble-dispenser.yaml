@@ -1,6 +1,10 @@
-# Kibble dispenser - first ESPHome draft (prototype 1)
+# Kibble dispenser - ESPHome, ALTERNATIVE firmware: unflashed draft, not the baseline (prototype 1)
 #
-# Target: Freenove ESP32-S3 WROOM CAM (ESP32-S3, USB-C via USB-UART bridge, DC jack, OV2640-type camera).
+# The baseline firmware is the owner's MicroPython in ../micropython/. This draft is kept for Home Assistant
+# and OTA later. It has no physical buttons, LED or sound yet, so it is not a drop-in replacement.
+#
+# Target: classic ESP32 on the Freenove ESP32-WROVER board, as documented in the owner's PROJECT.md
+# (to be verified on the device). An earlier version of this file wrongly targeted an ESP32-S3.
 # Status: draft. Passes `esphome config`; not yet compiled, flashed or tested on the real hardware.
 # Wiring, pin choice and flashing steps: ../README.md
 #
@@ -9,20 +13,19 @@
 #   2. Calibrate servo_min_level / servo_max_level with the disc removed.
 #
 # Other boards (change the esp32 block and the two pins, keep the rest):
-#   - classic ESP32:  board: esp32dev, variant: esp32; e.g. servo GPIO18, power GPIO19.
-#                     Avoid strapping pins 0, 2, 12, 15.
-#   - ESP32-C3:       board: esp32-c3-devkitm-1, variant: esp32c3; e.g. servo GPIO4, power GPIO5.
-#                     Avoid strapping pins 2, 8, 9 and the USB pins 18, 19.
-#   - other ESP32-S3: board: esp32-s3-devkitc-1 as below; avoid 0, 3, 45, 46 (strapping) and 19, 20 (USB).
+#   - ESP32-S3:  board: esp32-s3-devkitc-1, variant: esp32s3; avoid 0, 3, 45, 46 (strapping) and 19, 20 (USB).
+#   - ESP32-C3:  board: esp32-c3-devkitm-1, variant: esp32c3; e.g. servo GPIO4, power GPIO5.
+#                Avoid strapping pins 2, 8, 9 and the USB pins 18, 19.
 
 substitutions:
   name: kibble-dispenser
   friendly_name: Kibble Dispenser
 
-  # GPIOs on the Freenove ESP32-S3 WROOM CAM: not used by the camera (4-13, 15-18), SD card (38-40),
-  # USB (19, 20), UART0 bridge (43, 44), flash/PSRAM (26-37) or strapping (0, 3, 45, 46).
-  servo_pin: GPIO14         # servo signal (LEDC PWM)
-  servo_power_pin: GPIO21   # servo regulator EN, through an N-MOSFET
+  # Classic ESP32 GPIOs that are not strapping pins (0, 2, 5, 12, 15), flash (6-11), WROVER PSRAM (16, 17)
+  # or input-only (34-39). They also stay clear of the camera on the WROVER CAM board (4, 5, 18, 19,
+  # 21-23, 25-27, 34-36, 39) and of the MicroPython wiring (LED 2, buttons 13 and 27, speaker 26).
+  servo_pin: GPIO14         # servo signal (LEDC PWM), same pin as the MicroPython dev source
+  servo_power_pin: GPIO32   # servo regulator EN, through an N-MOSFET
 
   # Pulse width as a share of the 20 ms period at 50 Hz: 5% = 1000 us, 7.5% = 1500 us, 10% = 2000 us.
   # Start narrow, then widen in small steps until the disc reaches 0 and 180 deg with 2-3 deg margin
@@ -44,19 +47,20 @@ esphome:
   comment: "DIY cat-kibble dispenser, prototype 1"
 
 esp32:
-  board: esp32-s3-devkitc-1
-  variant: esp32s3
-  flash_size: 8MB           # Freenove N8R8 module; a larger flash also works with this setting
+  board: esp32dev           # classic ESP32; the ESP32-WROVER module works with this board definition
+  variant: esp32
+  flash_size: 4MB           # ESP32-WROVER modules have 4 MB or more; check the module label
   framework:
     type: esp-idf
-  # The camera is not used yet. If it is added later, enable the octal PSRAM:
-  # psram:
-  #   mode: octal
-  #   speed: 80MHz
+
+# The WROVER module has PSRAM (MicroPython reported "Generic ESP32 module with SPIRAM"). This config does
+# not need it. If the camera is added later, enable it:
+# psram:
+#   mode: quad
+#   speed: 80MHz
 
 logger:
-  # The board's USB-C port goes through a USB-UART bridge (CH343) to UART0.
-  # If no logs appear on the USB port, try USB_SERIAL_JTAG.
+  # The board's USB-C port goes through a USB-UART bridge to UART0.
   hardware_uart: UART0
 
 # EN 18031-1 (RED delegated act 2022/30): every credential comes from secrets.yaml, nothing has a

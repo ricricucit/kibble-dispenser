@@ -46,6 +46,25 @@ jobs:
       - name: Build the site from the repository
         run: python site/build.py
 
+  firmware:
+    name: Lint the MicroPython firmware
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ruff
+        run: pip install ruff
+
+      # Uses firmware/micropython/ruff.toml. The imported code is kept byte-for-byte as it came from
+      # the owner's dev folder; its import order (I001) and the imports after BOOT_DELAY_S in main.py
+      # (E402) are ignored here until a separate clean-up commit.
+      - name: ruff check
+        run: ruff check firmware/micropython/src --ignore I001,E402
+
   reuse:
     name: REUSE compliance
     runs-on: ubuntu-latest

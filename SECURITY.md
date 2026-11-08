@@ -14,11 +14,12 @@ You will get an answer as soon as possible. This is a hobby project, so please a
 
 ## Scope
 
-- The ESPHome configuration in `firmware/`: Wi-Fi, API encryption, OTA updates, the fallback hotspot and the handling of secrets
+- The MicroPython firmware in `firmware/micropython/` (it has no network code yet)
+- The ESPHome configuration in `firmware/esphome/`: Wi-Fi, API encryption, OTA updates, the fallback hotspot and the handling of secrets
 - Any future firmware or software in this repository
 - Documentation that could lead builders into an unsafe setup (for example default passwords, or mains voltage inside the box)
 
-Out of scope: vulnerabilities in ESPHome, Home Assistant or ESP-IDF themselves. Report those to the projects concerned.
+Out of scope: vulnerabilities in MicroPython, ESPHome, Home Assistant or ESP-IDF themselves. Report those to the projects concerned.
 
 ## Supported versions
 

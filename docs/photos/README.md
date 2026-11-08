@@ -16,7 +16,7 @@ Photos of prototype 1. Location and camera metadata were removed, and the images
 - `bowl-upside-down-with-spout-side-view.jpg`: the bowl upside down on the bench with its curved spout, side view
 - `bowl-upside-down-with-spout-on-plywood.jpg`: the same set-up on a plywood board, three-quarter view
 - `bowl-upside-down-top-view-on-plywood.jpg`: the same from above, with the centre hole for the shaft
-- `esp32-s3-cam-board-breadboard-wiring.jpg`: the Freenove ESP32-S3 WROOM CAM board on a breadboard for the first wiring tests
+- `freenove-esp32-cam-board-breadboard-wiring.jpg`: the Freenove ESP32 camera board on a breadboard for the first wiring tests. The silkscreen reads "FREENOVE ESP… R" (partly hidden by the USB-C port), which fits the ESP32-WROVER CAM board documented in the owner's PROJECT.md; still to be verified on the device. This photo was first captioned, wrongly, as an ESP32-S3 WROOM CAM
 - `early-servo-bracket-inside-box.jpg`: an early servo bracket test fitted to the box wall, under the lid (this bracket is not part of the repository)
 - `servo-in-early-bracket-inside-box.jpg`: the servo in that early bracket inside the box, lid lifted
 - `servo-and-round-horn-on-plywood.jpg`: the servo with a round horn, next to the bowl on the plywood board

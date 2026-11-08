@@ -23,3 +23,9 @@ For previously discussed GPIO map, mechanics and evidence qualifications, see `.
 5. Do not overwrite an original file with the unflashed ESPHome draft or vice versa.
 
 Historical note: work used an ESP32 Freenove WROVER and Thonny; later repository CAD photos show an ESP32-S3 CAM board. Verify **which is installed now**.
+
+## Update 2026-11-08
+
+- The owner's MicroPython source arrived as a **dev folder snapshot** ("feedr-outdoor" 0.1.0 plus uncommitted edits of 2026-03-24) and is in [`../../firmware/micropython/`](../../firmware/micropython/README.md). It is not an on-device readback, so this directory still waits for the files read from the board.
+- Read-only alternative to Thonny, from `firmware/micropython/`: `make ls`, then `make backup` (it copies only `CatFeeder.py`, `main.py` and `boot.py`), then `mpremote cp :<file> <local path>` for every other file listed. Do not run `make deploy` or erase the board before this copy is saved here.
+- Board: documented as Freenove ESP32-WROVER in the owner's `PROJECT.md`; to be verified on the device. The repository photo first captioned as an ESP32-S3 was mislabelled (see `docs/photos/README.md`).

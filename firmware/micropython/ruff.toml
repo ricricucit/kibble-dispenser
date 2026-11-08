@@ -1,0 +1,14 @@
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = ["E", "F", "W", "I"]
+# MicroPython modules aren't installable on host
+ignore = ["F401"]
+
+[lint.per-file-ignores]
+# Allow unused imports in hardware.py (they're re-exported)
+"src/hardware.py" = ["F811"]
+
+[format]
+quote-style = "double"

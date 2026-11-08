@@ -191,7 +191,7 @@
   },
   {
    "id": "esp32",
-   "name": "ESP32-S3 board and 12 V input",
+   "name": "ESP32 board and 12 V input",
    "kind": "board",
    "status": "bought",
    "colour": "#1f4d3a",
@@ -201,7 +201,7 @@
     0,
     -150
    ],
-   "description": "ESP32-S3 running ESPHome drives the servo. Power comes from an external 12 V adapter through a cable gland. Position in the box is indicative.",
+   "description": "ESP32 board (Freenove ESP32-WROVER as documented; to be verified on the device) running the MicroPython firmware drives the servo. The planned design takes power from an external 12 V adapter through a cable gland; prototype 1 runs on a 5 V bench supply. Position in the box is indicative.",
    "bom": 9
   },
   {

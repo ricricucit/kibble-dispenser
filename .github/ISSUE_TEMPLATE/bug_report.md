@@ -20,7 +20,7 @@ labels: bug
 ## Area
 
 - [ ] Printed part or CAD script (which one?)
-- [ ] Firmware / ESPHome
+- [ ] Firmware (MicroPython or ESPHome)
 - [ ] Wiring or electronics
 - [ ] Documentation
 
@@ -28,7 +28,7 @@ labels: bug
 
 - Commit or date of the files you used:
 - Printer, slicer and filament (for print problems):
-- Board and ESPHome version (for firmware problems):
+- Board, firmware (MicroPython or ESPHome) and its version (for firmware problems):
 - Logs, photos or screenshots:
 
 <!-- Security problem in the firmware? Do not open a public issue: see SECURITY.md. -->

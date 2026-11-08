@@ -32,7 +32,7 @@ PHOTOS = [
     '2026-07-04-servo-25kg-three-quarter.jpg',
     '2026-07-04-aluminium-25t-clamp-horn.jpg',
     '2026-07-04-disc-v1-mockup-with-star-horn.jpg',
-    'esp32-s3-cam-board-breadboard-wiring.jpg',
+    'freenove-esp32-cam-board-breadboard-wiring.jpg',
     'bowl-upside-down-with-spout-on-plywood.jpg',
     '2026-10-04-bowl-with-spout-cover-removed.jpg',
     '2026-10-04-bowl-top-view-spout-opened.jpg',

@@ -34,11 +34,19 @@ path = [
   "*.md",
   "hardware/README.md",
   "firmware/README.md",
+  "import/**/*.md",
   "site/index.html",
   "LICENSE",
 ]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CC-BY-4.0"
+
+# MicroPython firmware imported from the owner's "feedr-outdoor" project: MIT as a whole,
+# including its own Markdown files (README.md, PROJECT.md, CLAUDE.md)
+[[annotations]]
+path = "firmware/micropython/**"
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "MIT"
 
 # Code of Conduct: adapted from the Contributor Covenant 2.1
 [[annotations]]

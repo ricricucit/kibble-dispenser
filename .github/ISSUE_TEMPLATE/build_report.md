@@ -23,7 +23,7 @@ labels: build-report
 - Board:
 - Servo:
 - Power supply and regulators:
-- Firmware (ESPHome version, changes to the YAML):
+- Firmware (MicroPython or ESPHome, version, your changes):
 
 ## How it went
 

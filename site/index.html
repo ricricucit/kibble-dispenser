@@ -132,7 +132,7 @@
           <div><dt>Designed and exported</dt><dd>Rotating disc, shaft and hub, sealed shaft bushing, spline fit test, chute</dd></div>
           <div><dt>Bought or reused</dt><dd>Waterproof box (265 × 185 mm), 25 kg·cm servo with a 25-tooth spline, bowl</dd></div>
           <div><dt>Still to design</dt><dd>Servo cradle, hopper and shelf, container</dd></div>
-          <div><dt>Firmware</dt><dd>First ESPHome draft. It passes the config check but has not run on hardware yet.</dd></div>
+          <div><dt>Firmware</dt><dd>The owner's MicroPython firmware is the baseline: power button with a status LED, dispense button, a sound with every portion. An ESPHome draft for Home Assistant passes the config check but has not run on hardware yet.</dd></div>
         </dl>
       </div>
     </section>
@@ -169,8 +169,8 @@
           <button type="button" class="show" data-show="passante_stagno albero_mozzo servo" data-section="on">Show the seal in section</button>
         </li>
         <li>
-          <h3>An ESP32-S3 runs it on 12 V</h3>
-          <p>The board runs ESPHome, so the feeder shows up in Home Assistant. Power comes from an external 12 V adapter; the box only ever sees low voltage.</p>
+          <h3>An ESP32 runs it on low voltage</h3>
+          <p>A Freenove ESP32-WROVER board runs MicroPython firmware: a power button with a status LED, a dispense button and a short fanfare with every portion. ESPHome, for Home Assistant, is the alternative for later. Prototype 1 runs on a 5 V bench supply; the planned outdoor build takes an external 12 V adapter, so the box only ever sees low voltage.</p>
           <button type="button" class="show" data-show="esp32">Show in model</button>
         </li>
       </ol>
@@ -204,7 +204,7 @@
         <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/stl">Print-ready STLs</a><span>Already oriented for the bed</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/3mf">3MF files</a><span>The same parts at their assembled height</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/cad">CAD scripts</a><span>Python generators for every part; change these, not the meshes</span></li>
-        <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/firmware/README.md">Wiring and flashing</a><span>ESPHome configuration, wiring summary and servo calibration</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/firmware/README.md">Wiring and flashing</a><span>MicroPython firmware (baseline) and ESPHome alternative, wiring summary and servo calibration</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/docs/research/elettronica-e-tenuta.it.md">Power, servo and sealing notes</a><span>Design background, in Italian</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/assembly">Assembly data</a><span>The meshes and layout behind the model on this page</span></li>
       </ul>

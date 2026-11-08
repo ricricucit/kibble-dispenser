@@ -71,10 +71,12 @@ CONTEXT = [
          colour='#b3302a', opacity=1, explode=[0, 0, -100],
          description='Digital servo with a 25-tooth spline (DS3218 / DS3225 class). It hangs from '
                      'the underside of the lid and turns the shaft.'),
-    dict(id='esp32', name='ESP32-S3 board and 12 V input', kind='board', status='bought',
+    dict(id='esp32', name='ESP32 board and 12 V input', kind='board', status='bought',
          colour='#1f4d3a', opacity=1, explode=[0, 0, -150],
-         description='ESP32-S3 running ESPHome drives the servo. Power comes from an external 12 V '
-                     'adapter through a cable gland. Position in the box is indicative.'),
+         description='ESP32 board (Freenove ESP32-WROVER as documented; to be verified on the '
+                     'device) running the MicroPython firmware drives the servo. The planned design '
+                     'takes power from an external 12 V adapter through a cable gland; prototype 1 '
+                     'runs on a 5 V bench supply. Position in the box is indicative.'),
     dict(id='box', name='Waterproof box', kind='box', status='bought',
          colour='#1f2124', opacity=0.14, explode=[0, 0, -150],
          description='265 x 185 mm sealed box. The lid is the reference plane (Z = 0); in the '

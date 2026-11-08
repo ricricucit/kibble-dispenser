@@ -12,7 +12,13 @@ Thanks for helping. This is a prototype, so short issues and small pull requests
 
 - Keep each pull request to one topic and describe what you actually tested (printed, flashed, or only regenerated).
 - Add a line to `CHANGELOG.md` under "Unreleased".
-- CI regenerates the parts, checks that every mesh is watertight and runs `reuse lint`.
+- CI regenerates the parts, checks that every mesh is watertight, builds the site, lints the MicroPython firmware with ruff and runs `reuse lint`.
+
+## Commits, branches and releases
+
+- Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, `build:`, with an optional scope, for example `feat(firmware): ...`.
+- `main` is always deployable. Work on a short-lived feature branch (`feature/<topic>`) and merge it through a pull request.
+- Releases are tagged with [Semantic Versioning](https://semver.org/) (`vMAJOR.MINOR.PATCH`). On each release, update `CHANGELOG.md`, and `firmware/micropython/VERSION` when the firmware changed.
 
 ## How parts are regenerated
 
@@ -33,6 +39,7 @@ The website in `site/` is plain HTML, CSS and JavaScript. Preview it with `pytho
 ## Conventions
 
 - Units: millimetres.
+- MicroPython firmware: pins and calibration values live only in `firmware/micropython/src/config.py`; keep `ruff check` clean for new code (see [firmware/micropython/README.md](firmware/micropython/README.md)).
 - Frame: Z-up, with Z=0 at the top face of the box lid. X runs along the long side of the box and Y along the short side (see `hardware/cad/layout_v3.json`).
 - Drivetrain parts are modelled at their assembled height, with X=Y=0 on the shaft axis.
 - Part names are Italian and kept as they are, for example `disco` (disc), `albero_mozzo` (shaft and hub), `passante_stagno` (sealed bushing), `scivolo` (chute) and `test_scanalato` (spline test).

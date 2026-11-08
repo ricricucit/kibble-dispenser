@@ -14,6 +14,13 @@ site/_build/
 secrets.yaml
 .esphome/
 
+# MicroPython firmware: board backups from `make backup`, local secrets, downloaded firmware images
+firmware/micropython/backups/
+firmware/micropython/src/secrets.py
+firmware/micropython/src/config_local.py
+*.bin
+*.elf
+
 # Slicer output and temporary files
 *.gcode
 *.bgcode
