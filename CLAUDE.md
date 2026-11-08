@@ -24,7 +24,7 @@ This repo currently holds a newly imported CAD package and an **unflashed ESPHom
 
 ## Physical mechanical work not yet captured by current CAD
 
-The owner developed and mounted a **wall/side servo bracket** from ChatGPT attachment(s) `RC_Servo_Mounts.3mf` / `RC_Servo_Mounts(1).3mf`. The last discussion requests a **shape-preserving offset spacer**, **no lateral shift**, nominal **3mm provisional** (4–5mm questioned), to align servo horn with a hole in the plastic. These 3MF attachments are not in this repo. The current new CAD claims a **lid-mounted integrated servo cradle** as a future solution, but do **not** imply that the existing physical bracket has been replaced. Collect the original bracket files and alignment measurement before finalizing mount design.
+The owner developed and mounted a **wall/side servo bracket** from ChatGPT attachment(s) `RC_Servo_Mounts.3mf` / `RC_Servo_Mounts(1).3mf`. The last discussion requests a **shape-preserving offset spacer**, **no lateral shift**, nominal **3mm provisional** (4–5mm questioned), to align servo horn with a hole in the plastic. These 3MF attachments are not in this repo. The current new CAD claims a **lid-mounted integrated servo cradle** as a future solution, but do **not** imply that the existing physical bracket has been replaced. *(2026-11-08: the cradle is now designed as `passante_culla`, drivetrain v3: designed, not printed or mounted.)* Collect the original bracket files and alignment measurement before finalizing mount design.
 
 ## Order of work
 

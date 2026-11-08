@@ -4,7 +4,36 @@
     -100.0,
     -60.0
   ],
+  "axis_from_box_outer_edges_mm": {
+    "-X (short side)": 32.5,
+    "-Y (long side)": 32.5
+  },
   "parameters": {
+    "AX_X": -100.0,
+    "AX_Y": -60.0,
+    "WALL_X": -29.0,
+    "WALL_Y": -29.0,
+    "WALL_MIN_GAP": 2.0,
+    "LID_T": 3.5,
+    "FLOOR_Z0": 0,
+    "FLOOR_Z1": 3,
+    "FLOOR_HOLE_D": 22.5,
+    "SERVO_L": 40,
+    "SERVO_W": 20,
+    "SERVO_H": 40.5,
+    "SERVO_CX": 10,
+    "SERVO_TOP": -20.0,
+    "SERVO_BOT": -60.5,
+    "TAB_Z0": -34.5,
+    "TAB_T": 2.5,
+    "TAB_Z1": -32.0,
+    "TAB_L": 54,
+    "TAB_W": 20,
+    "TAB_HOLE_DX": 24.75,
+    "TAB_HOLE_DY": 5.0,
+    "TAB_HOLE_D": 4.5,
+    "SERVO_SPLINE_D": 6.0,
+    "SPLINE_TIP_Z": -14.0,
     "DISC_D": 103.0,
     "DISC_Z0": 32.0,
     "DISC_Z1": 36.0,
@@ -22,9 +51,17 @@
     "BORE_D": 3.4,
     "CBORE_D": 6.2,
     "CBORE_DEPTH": 3.2,
-    "HUB_D": 24.0,
+    "SLEEVE_BORE_D": 12.4,
+    "SLEEVE_CH": 0.6,
+    "CAP_GAP_R": 1.25,
+    "CAP_GAP_Z": 1.0,
+    "CAP_SKIRT_T": 1.6,
+    "CAP_FLOOR_GAP": 0.5,
+    "CAP_OVERLAP_MIN": 1.5,
+    "CAP_WALL_MIN": 1.6,
+    "HUB_D": 22.0,
     "HUB_Z0": -18.5,
-    "HUB_Z1": -8.5,
+    "HUB_Z1": -13.0,
     "SPL_TEETH": 25,
     "SPL_TIP_D": 5.9,
     "SPL_ROOT_D": 5.3,
@@ -36,37 +73,79 @@
     "HEX_AF": 8.0,
     "HEX_LEN": 5.5,
     "HEX_CHAMFER": 0.5,
-    "OR_GROOVE_D": 9.4,
-    "OR_GROOVE_W": 2.7,
+    "OR_SIZE": [
+      9.0,
+      2.0
+    ],
+    "OR_GROOVE_D": 9.0,
+    "OR_GROOVE_W": 1.9,
     "OR_GROOVE_Z": [
       -4.5,
       0.5
     ],
-    "FL_D": 50.0,
+    "FL_D": 53.0,
     "FL_Z0": -7.5,
     "FL_Z1": -3.5,
     "COLLAR_D": 21.5,
-    "COLLAR_Z1": 4.0,
+    "COLLAR_Z1_SPEC": 4.0,
     "BUSH_BORE_D": 12.4,
-    "BUSH_BORE_CH_BOT": 1.0,
     "BUSH_BORE_CH_TOP": 0.4,
     "FACE_OR_SIZE": [
-      40.0,
+      45.0,
       2.0
     ],
-    "FACE_OR_ID": 40.4,
-    "FACE_OR_OD": 45.6,
+    "FACE_OR_OD": 48.8,
+    "FACE_OR_W": 2.7,
     "FACE_OR_DEPTH": 1.5,
-    "INS_D": 4.0,
-    "INS_R": 15.5,
-    "MIN_WALL_INS": 2.5,
-    "MIN_WALL_EDGE": 2.0,
-    "INS_DEPTH": 4.0,
-    "INS_ANGLES": [
+    "FACE_OR_ID": 43.4,
+    "LID_SCREW_R": 17.5,
+    "LID_SCREW_ANG": [
       90.0,
       210.0,
       330.0
     ],
+    "LID_SCREW_HOLE_D": 3.4,
+    "LID_CSK_D": 6.5,
+    "LID_HOLE_D": 22.5,
+    "INS_D": 4.0,
+    "INS_L": 5.7,
+    "INS_SINK": 0.2,
+    "LID_INS_DEPTH": 7.5,
+    "LID_ENG_MIN": 4.0,
+    "LID_SCREW_STD": [
+      8,
+      10,
+      12,
+      14,
+      16
+    ],
+    "MIN_WALL_INS": 2.0,
+    "MIN_WALL_EDGE": 2.0,
+    "HUB_CLR_R": 1.5,
+    "HUB_CLR_AX": 1.0,
+    "HUB_CLR_CONE": 1.5,
+    "HUB_CAV_R": 12.5,
+    "SERVO_CLR_END": 0.5,
+    "SERVO_CLR_TOP": 0.5,
+    "CAGE_IN_HALF_Y": 12.75,
+    "CAGE_SIDE_T": 2.5,
+    "PAD_WALL": 2.25,
+    "CAGE_TOP": -4.0,
+    "HIP_Z_MAX": -8.0,
+    "SERVO_INS_DEPTH": 8.0,
+    "SERVO_SCREW_STD": [
+      6,
+      8,
+      10
+    ],
+    "WASHER_T": 0.5,
+    "FIN_X": [
+      -5.0,
+      9.0
+    ],
+    "FIN_T": 2.4,
+    "FIN_TOP_Z": -12.0,
+    "FIN_FOOT": 3.0,
     "SCREW_STD": [
       50,
       45,
@@ -75,7 +154,6 @@
     ],
     "SCREW_HEAD_D": 5.5,
     "SCREW_HEAD_H": 3.0,
-    "SPLINE_TIP_Z": -14.0,
     "TIP_BELOW": [
       3.0,
       6.0
@@ -92,51 +170,244 @@
     "NOTCH_W": 1.2,
     "NOTCH_DEPTH": 1.0,
     "NOTCH_STEP": 22.0,
+    "CAP_Z0": 3.5,
+    "COLLAR_Z1": 5.0,
+    "CAP_RI": 12.0,
+    "CAP_RO": 13.6,
+    "CAP_CEIL": 6.0,
+    "CAP_ZS": 6.7,
+    "CAP_ZF": 12.3,
+    "HUB_CONE_Z1": -8.0,
+    "CAV_C0": -13.0,
+    "BORE_START_Z": -6.7,
+    "SERVO_ZONE_TOP": -19.5,
+    "CAGE_Z0": -32.0,
+    "CAGE_X_IN0": -10.5,
+    "CAGE_X_IN1": 30.5,
+    "CAGE_X_OUT0": -19.0,
+    "CAGE_X_OUT1": 39.0,
+    "CAGE_OUT_HALF_Y": 15.25,
+    "HIP_RIDGE_Z": -6.75,
+    "BELL_R_BOT": 2.0,
+    "LID_INS_BOT": -11.0,
+    "SERVO_INS_TOP": -24.0,
     "CBORE_BOT": 32.8,
     "POCKET_TOP": 30.0,
     "SCREW_LEN": 50,
     "SCREW_TIP_Z": -17.2,
+    "CLAMP": 6.5,
+    "LID_SCREW_LEN": 12,
+    "LID_SCREW_ENG": 5.3,
+    "LID_SCREW_TIP_Z": -9.0,
+    "SERVO_SCREW_LEN": 8,
+    "SERVO_SCREW_ENG": 4.8,
+    "SERVO_SCREW_TIP_Z": -27.0,
     "HEX_Z1": 29.5,
-    "FACE_SQUEEZE": 0.2462,
-    "FACE_FILL": 0.7975,
-    "WALL_INS_COLLAR": 2.75,
-    "WALL_INS_GROOVE": 2.7,
-    "WALL_GROOVE_EDGE": 2.2
+    "SH_GLAND": 1.7,
+    "SH_SQUEEZE": 0.15,
+    "SH_FILL": 0.6749,
+    "SH_STRETCH": 0.0,
+    "SH_FILL_RECT": 0.5133,
+    "FACE_OD_COMP": 0.0041,
+    "FACE_SQUEEZE": 0.25,
+    "FACE_FILL": 0.7757,
+    "WALL_INS_GROOVE": 2.2,
+    "WALL_GROOVE_EDGE": 2.1,
+    "WALL_INS_CAV": 3.0,
+    "WALL_LIDHOLE": 4.55
+  },
+  "z_stack": {
+    "servo_body": [
+      -60.5,
+      -20.0
+    ],
+    "servo_tabs": [
+      -34.5,
+      -32.0
+    ],
+    "spline_tip": -14.0,
+    "hub_cyl": [
+      -18.5,
+      -13.0
+    ],
+    "hub_cone_to_shaft": [
+      -13.0,
+      -8.0
+    ],
+    "cradle_pads_bottom": -32.0,
+    "hub_cavity": [
+      -19.5,
+      -13.0
+    ],
+    "bore": [
+      -6.7,
+      5.0
+    ],
+    "flange_disc": [
+      -7.5,
+      -3.5
+    ],
+    "lid": [
+      -3.5,
+      0
+    ],
+    "bowl_floor": [
+      0,
+      3
+    ],
+    "collar_top": 5.0,
+    "cap_skirt_bottom": 3.5,
+    "cap_ceiling": 6.0,
+    "shaft_shoulder_disc_seat": 24.0,
+    "disc": [
+      32.0,
+      36.0
+    ],
+    "note": "servo, spline, disc and main screw z unchanged; only the hub top and collar top moved"
   },
   "screw": {
-    "spec": "M3x50 DIN912",
+    "spec": "M3x50 DIN912 (ISO 4762)",
     "head_z": [
       32.8,
       35.8
     ],
     "tip_z": -17.2,
     "tip_below_spline_tip_mm": 3.2,
+    "solid_under_head_mm": 2.8,
     "pocket_depth": 6.0,
-    "hex_len": 5.5,
-    "solid_above_pocket_mm": 2.8
+    "hex_len": 5.5
   },
   "hardware": [
-    "1x M3x50 DIN912",
-    "2x O-ring NBR 10x2 (shaft)",
-    "1x O-ring NBR 40x2 (face seal, outside the screws)",
-    "3x M3 heat-set insert, short (<=4 mm long, hole 4.0)",
-    "3x M3 screw from above through bowl floor + lid (M3x10 with a 3 mm insert); inside the sealed zone, no washers needed"
-  ],
-  "face_seal": {
-    "oring": "40x2 NBR",
-    "groove_id": 40.4,
-    "groove_od": 45.6,
-    "groove_width": 2.6,
-    "groove_depth": 1.5,
-    "stretch_pct": 1.0,
-    "squeeze_pct": 24.6,
-    "fill_pct": 79.8,
-    "insert_r": 15.5,
-    "walls_mm": {
-      "insert_to_collar": 2.75,
-      "insert_to_groove": 2.7,
-      "groove_to_flange_edge": 2.2
+    {
+      "qty": 1,
+      "item": "M3x50 DIN912 / ISO 4762 socket head, A2",
+      "use": "disc + shaft into the servo spline thread"
+    },
+    {
+      "qty": 3,
+      "item": "M3x12 ISO 10642 (DIN 7991) countersunk socket, A2",
+      "use": "from above through bowl floor (countersunk) + lid into blind inserts; engagement 5.3 mm"
+    },
+    {
+      "qty": 4,
+      "item": "M3x8 DIN912 / ISO 4762 socket head, A2",
+      "use": "servo tabs, from below"
+    },
+    {
+      "qty": 4,
+      "item": "M3 washer DIN 125-A / ISO 7089 (3.2 x 7 x 0.5), A2",
+      "use": "under the servo screw heads"
+    },
+    {
+      "qty": 7,
+      "item": "M3 brass heat-set insert, L 5.7 mm, for \u00d84.0 hole (e.g. Ruthex RX-M3x5.7)",
+      "use": "3 lid (blind, 7.5 deep from the seal face) + 4 servo pads (blind, 8.0 deep from below)"
+    },
+    {
+      "qty": 1,
+      "item": "O-ring NBR70 9x2 (ID 9, CS 2)",
+      "use": "shaft, lower groove (+1 optional for the upper groove)"
+    },
+    {
+      "qty": 1,
+      "item": "O-ring NBR70 45x2 (ID 45, CS 2)",
+      "use": "face seal flange <-> lid underside"
+    },
+    {
+      "qty": 1,
+      "item": "food-grade silicone grease NSF H1 (e.g. Molykote 111), ~0.2 g",
+      "use": "thin film on shaft O-ring and bore; light film on the face O-ring"
     }
+  ],
+  "lid_drilling": {
+    "frame": "axis frame: X along the long side, Y along the short side, origin on the shaft axis",
+    "axis_position": "32.5 mm from the -X outer edge and 32.5 mm from the -Y outer edge (29 + 3.5 wall); world [-100.0, -60.0]",
+    "centre_hole_d": 22.5,
+    "screw_holes": {
+      "qty": 3,
+      "d": 3.4,
+      "r": 17.5,
+      "angles_deg": [
+        90.0,
+        210.0,
+        330.0
+      ],
+      "xy_axis_frame": [
+        [
+          0.0,
+          17.5
+        ],
+        [
+          -15.155,
+          -8.75
+        ],
+        [
+          15.155,
+          -8.75
+        ]
+      ],
+      "xy_world": [
+        [
+          -100.0,
+          -42.5
+        ],
+        [
+          -115.155,
+          -68.75
+        ],
+        [
+          -84.845,
+          -68.75
+        ]
+      ]
+    },
+    "bowl_floor_same_pattern": "3x \u00d83.4 at the same r/angles with 90 deg countersink \u00d86.5 from the top (heads flush); centre hole: layout \u00d822.5 works, \u00d822.5 proposed",
+    "seal_zone": "flange face O-ring groove ID 43.4 / OD 48.8 encloses the centre hole and the 3 screw holes; keep the lid underside flat and rib-free inside \u00d853.0"
+  },
+  "face_seal": {
+    "oring": "45x2 NBR70",
+    "groove_id": 43.4,
+    "groove_od": 48.8,
+    "groove_width": 2.7,
+    "groove_depth": 1.5,
+    "seat": "O-ring OD on the groove OD (0.4% compression), no stretch",
+    "squeeze_pct": 25.0,
+    "fill_pct": 77.6,
+    "walls_mm": {
+      "insert_hole_to_groove": 2.2,
+      "groove_to_flange_edge": 2.1,
+      "insert_hole_to_hub_cavity": 3.0
+    }
+  },
+  "shaft_seal": {
+    "oring": "9x2 NBR70",
+    "groove_bottom_d": 9.0,
+    "groove_flat_w": 1.9,
+    "upper_flank": "45 deg to the shaft OD (support-free)",
+    "groove_centres_z": [
+      -4.5,
+      0.5
+    ],
+    "bore_d": 12.4,
+    "squeeze_pct": 15.0,
+    "fill_pct": 67.5,
+    "fill_pct_rectangular_equiv": 51.3,
+    "stretch_pct": 0.0
+  },
+  "labyrinth_cap": {
+    "skirt_inner_r": 12.0,
+    "skirt_outer_r": 13.6,
+    "radial_gap_to_collar": 1.25,
+    "skirt_bottom_z": 3.5,
+    "gap_to_bowl_floor": 0.5,
+    "overlap_below_collar_top": 1.5,
+    "cap_ceiling_z": 6.0,
+    "flare_z": [
+      6.7,
+      12.3
+    ],
+    "sleeve_bore_d": 12.4,
+    "sleeve_od": 16.0
   },
   "files_note": "paths relative to hardware/: stl/ = print-ready, 3mf/ = assembled height",
   "parts": {
@@ -145,35 +416,39 @@
         "stl/disco_v3.stl",
         "3mf/disco_v3.3mf"
       ],
-      "color": "#E9E5DC",
-      "print": "top face on bed (boss up), PETG food-contact",
-      "volume_cm3": 30.869
+      "filament": "PETG orange",
+      "print": "flipped: disc TOP face on the bed, sleeve + cap pointing up (45 deg flare)",
+      "supports": "none",
+      "volume_cm3": 33.866
     },
     "albero_mozzo": {
       "files": [
         "stl/albero_mozzo.stl",
         "3mf/albero_mozzo.3mf"
       ],
-      "color": "#E8792B",
-      "print": "hub on bed, 100% infill / >=6 walls (core \u00d89.4 at grooves)",
-      "volume_cm3": 7.688
+      "filament": "PETG black",
+      "print": "as assembled: hub (spline socket) on the bed, hex up; 100% infill or >=6 walls",
+      "supports": "none (\u00d86 socket ceiling bridges)",
+      "volume_cm3": 6.396
     },
-    "passante_stagno": {
+    "passante_culla": {
       "files": [
-        "stl/passante_stagno.stl",
-        "3mf/passante_stagno.3mf"
+        "stl/passante_culla.stl",
+        "3mf/passante_culla.3mf"
       ],
-      "color": "#3A6EA5",
-      "print": "flange on bed",
-      "volume_cm3": 8.484
+      "filament": "PETG black",
+      "print": "as assembled: servo-pad face (z=-32) on the bed, collar up; seal face + O-ring groove print as top surfaces",
+      "supports": "none: hip-roof and hub-cavity ceilings are 45 deg; only bridges are a 2.5 mm strip at z=-8 and the 4 servo-insert hole ceilings",
+      "volume_cm3": 37.572
     },
     "test_scanalato": {
       "files": [
         "stl/test_scanalato.stl",
         "3mf/test_scanalato.3mf"
       ],
-      "color": "#9AA0A6",
-      "print": "as is, socket on bed",
+      "filament": "PETG black",
+      "print": "as is, socket on the bed",
+      "supports": "none",
       "coupons": {
         "1 notch(es)": 0.05,
         "2 notch(es)": 0.1,
@@ -181,33 +456,137 @@
       }
     }
   },
+  "assembly": [
+    "press 3 inserts into the flange face and 4 into the pad faces of passante_culla",
+    "grease, fit 9x2 O-ring(s) on albero_mozzo, push it up from below through the cradle into the bore",
+    "push the servo up from below (spline into the hub socket), 4x M3x8 + washers into the pads",
+    "face O-ring 45x2 in the groove; offer the sub-assembly to the lid from below, bowl on top, 3x M3x12 countersunk from above",
+    "slide disco_v3 sleeve over the shaft from above (hex into pocket), M3x50 from the disc top into the spline"
+  ],
   "checks": {
     "watertight": {
       "disco_v3": true,
       "albero_mozzo": true,
-      "passante_stagno": true,
+      "passante_culla": true,
       "test_scanalato": true
     },
+    "intersection_mm3_max": 0.0,
     "intersection_mm3": {
       "disco_v3|albero_mozzo": 0.0,
-      "albero_mozzo|passante_stagno": 0.0,
-      "disco_v3|passante_stagno": 0.0
+      "disco_v3|passante_culla": 0.0,
+      "disco_v3|servo": 0.0,
+      "disco_v3|lid_plate": 0.0,
+      "disco_v3|bowl_floor": 0.0,
+      "disco_v3|wall_-X": 0.0,
+      "disco_v3|wall_-Y": 0.0,
+      "disco_v3|screw_M3x50": 0.0,
+      "disco_v3|lid_screws": 0.0,
+      "disco_v3|servo_screws": 0.0,
+      "albero_mozzo|passante_culla": 0.0,
+      "albero_mozzo|servo": 0.0,
+      "albero_mozzo|lid_plate": 0.0,
+      "albero_mozzo|bowl_floor": 0.0,
+      "albero_mozzo|wall_-X": 0.0,
+      "albero_mozzo|wall_-Y": 0.0,
+      "albero_mozzo|screw_M3x50": 0.0,
+      "albero_mozzo|lid_screws": 0.0,
+      "albero_mozzo|servo_screws": 0.0,
+      "passante_culla|servo": 0.0,
+      "passante_culla|lid_plate": 0.0,
+      "passante_culla|bowl_floor": 0.0,
+      "passante_culla|wall_-X": 0.0,
+      "passante_culla|wall_-Y": 0.0,
+      "passante_culla|screw_M3x50": 0.0,
+      "passante_culla|lid_screws": 0.0,
+      "passante_culla|servo_screws": 0.0,
+      "servo|lid_plate": 0.0,
+      "servo|bowl_floor": 0.0,
+      "servo|wall_-X": 0.0,
+      "servo|wall_-Y": 0.0,
+      "servo|screw_M3x50": 0.0,
+      "servo|lid_screws": 0.0,
+      "servo|servo_screws": 0.0,
+      "lid_plate|screw_M3x50": 0.0,
+      "lid_plate|lid_screws": 0.0,
+      "lid_plate|servo_screws": 0.0,
+      "bowl_floor|screw_M3x50": 0.0,
+      "bowl_floor|lid_screws": 0.0,
+      "bowl_floor|servo_screws": 0.0,
+      "wall_-X|screw_M3x50": 0.0,
+      "wall_-X|lid_screws": 0.0,
+      "wall_-X|servo_screws": 0.0,
+      "wall_-Y|screw_M3x50": 0.0,
+      "wall_-Y|lid_screws": 0.0,
+      "wall_-Y|servo_screws": 0.0,
+      "screw_M3x50|lid_screws": 0.0,
+      "screw_M3x50|servo_screws": 0.0,
+      "lid_screws|servo_screws": 0.0
+    },
+    "wall_distance_mm": {
+      "albero_mozzo": {
+        "-X": 18.0,
+        "-Y": 18.0
+      },
+      "passante_culla": {
+        "-X": 2.5,
+        "-Y": 2.5
+      },
+      "servo": {
+        "-X": 12.0,
+        "-Y": 19.0
+      },
+      "servo_screws": {
+        "-X": 10.75,
+        "-Y": 20.5
+      }
+    },
+    "hub_clearance": {
+      "radial_to_cavity": 1.5,
+      "cone_to_cavity_cone_axial_and_radial": 1.5,
+      "bottom_to_servo_top": 1.5,
+      "bottom_to_-X_ledge": 1.0,
+      "envelope_intersection_mm3": {
+        "culla": 0.0,
+        "servo_body": 0.0
+      }
+    },
+    "solid_under_lid_inserts_mm": {
+      "90": 3.44,
+      "210": 13.0,
+      "330": 2.45
+    },
+    "print_downfacing_area_flatter_than_45deg_mm2": {
+      "disco_v3": 21.1,
+      "albero_mozzo": 20.2,
+      "passante_culla": 81.0,
+      "test_scanalato": 61.4
+    },
+    "torque_path": {
+      "stall_Nm": 2.5,
+      "tab_screw_force_N": 25.3,
+      "lid_screw_shear_N": 47.6,
+      "shaft_core_shear_MPa_at_groove": 17.8
     }
   },
-  "spec_changes": {
-    "OR_GROOVE_D": "spec 10.2 -> 9.4: with bore 12.4 the 10.2 groove gives 45% squeeze and 106% gland fill; 9.4 gives 25% / 78%",
-    "FACE_SEAL": "rev2 (coordinator): flange 44 -> 50, inserts r 17 -> 15.5, face seal moved outside the screws: O-ring 40x2, groove ID 40.4 / OD 45.6 / depth 1.5",
-    "INS_DEPTH": "spec 6 deep -> 4 through: flange is 4 thick and must print flange-down; use short M3 inserts",
-    "CBORE_DEPTH": "3.2 (head 0.2 below face) so the M3x50 tip is 3.2 mm (not exactly 3.0) into the spline thread",
-    "added": "bore lead-in chamfers on bushing (1.0 bottom for O-rings, 0.4 top)"
+  "proposed_layout_v3_changes": {
+    "bushing.flange_d": "44 -> 53.0 (face O-ring 45x2 outside the screws; r 26.5 = 2.5 mm from the walls)",
+    "bushing.collar_top_z": "4 -> 5.0 (E needs skirt bottom 3.5 AND >=1.5 overlap below the collar top; 4 gives 0.5)",
+    "bushing.cradle": "integrated servo cradle, pads z=-32.0, footprint x -19.0..39.0, y +-15.25 (+fins to y +-18.25)",
+    "hub": "d 24 -> 22.0; z [-18.5,-8.5] -> cylinder [-18.5,-13.0] + 45 deg cone to \u00d812.0 at -8.0",
+    "shaft.round_z": "[-8.5, 24] -> [-8.0, 24.0]",
+    "disc_v3": "add sleeve \u00d816.0/bore \u00d812.4 from z=24 down to the cap; cap skirt r 12.0..13.6, z 3.5..6.7, flare to z 12.3",
+    "lid": "centre hole \u00d822.5 + 3x \u00d83.4 at r 17.5, [90.0, 210.0, 330.0] deg; flat inside \u00d853.0",
+    "camera.floor": "3x \u00d83.4 countersunk \u00d86.5 at the same pattern; floor_hole_d 22 -> 22.5 (optional)",
+    "servo.mounting": "4x M3x8 DIN912 + washers from below into heat-set inserts in the cradle pads"
   },
-  "notes": [
-    "SPL_CLEAR is radial (tip and root radii both +c); print test_scanalato first and set SPL_CLEAR."
+  "superseded_files": [
+    "passante_stagno.* (now passante_culla)",
+    "wall-mounted servo brackets (never in this repository): replaced by the cradle in the design; the as-built prototype still uses a third-party CC BY-NC-SA wall bracket"
   ],
-  "lid_skirt_distance_mm": {
-    "-Y": 29.0,
-    "+Y": 149.0,
-    "-X": 29.0,
-    "+X": 229.0
-  }
+  "notes": [
+    "SPL_CLEAR is radial (tip and root radii both +c); print test_scanalato first and set SPL_CLEAR.",
+    "Shaft core at the grooves is \u00d89.0 with the \u00d83.4 bore: ~17.8 MPa shear at 2.5 N.m stall -> print albero_mozzo 100% infill.",
+    "Shaft O-ring 9x2 on a \u00d89.0 groove has 0% stretch (as specified); a ring at the low end of the ID tolerance will be slightly loose but cannot fall out in the bore.",
+    "Servo solid is simplified (no output boss on the case top): hub bottom is 1.5 above the case top; check the real servo for a raised boss."
+  ]
 }

@@ -90,7 +90,7 @@ Questi sono **artefatti digitali presenti**, non automaticamente pezzi già stam
 
 - `hardware/3mf/disco_v3.3mf` / `hardware/stl/disco_v3.stl`: disco **Ø103 × 4 mm**, apertura trapezoidale, progetto fino a **180°**.
 - `albero_mozzo`: albero Ø12 mm, esagono 8 mm, innesto servo 25T, scanalature O-ring.
-- `passante_stagno`: boccola di tenuta con flangia, O-ring frontale 40×2.
+- `passante_stagno`: boccola di tenuta con flangia, O-ring frontale 40×2. *(2026-11-08: sostituito da `passante_culla`, vedi §9.)*
 - `test_scanalato`: prove di tolleranza dell'innesto 25T.
 - `scivolo_v1`: condotto per far uscire una porzione.
 - `hardware/cad/build_drivetrain.py`, `build_disc_v2_chute.py`, file JSON dimensioni e check.
@@ -150,3 +150,9 @@ Questa pagina e `CLAUDE.md` sono il passaggio di consegne. L'altra sessione deve
 - `RC_Servo_Mounts.3mf` è "Standard Servo Mounts - Horizontal and Vertical" di **Tonym** su MakerWorld (design id US15638e882ab9f8), licenza **CC BY-NC-SA** (non commerciale).
 - **Non aggiungere al repository** il 3MF né derivati, compreso il distanziale che ne ricalca la sagoma: qui vanno solo attribuzione, foto e misure. I file restano privati all'autore.
 - Il supporto vale **solo per il prototipo**: un prodotto commerciale non può usarlo. È uno dei motivi per cui il progetto disegna una propria culla sotto il coperchio, integrata nel passante (passante_culla).
+
+## 9. Aggiornamento 2026-11-08: meccanica v3 progettata, non stampata
+
+- Nel repository c'è la trasmissione v3: `disco_v3` con manicotto e cappellotto a labirinto, `albero_mozzo` con mozzo Ø22 e cono, `passante_culla` (passante stagno e culla del servo in **un solo pezzo**, sostituisce `passante_stagno`), `test_scanalato`. Distinta, foratura del coperchio e ordine di montaggio sono in `hardware/README.md`.
+- Sono pezzi **progettati**: non ancora stampati, montati né provati.
+- Il prototipo costruito usa ancora il supporto a parete di terzi (CC BY-NC-SA, §8), che resta fuori dal repository.

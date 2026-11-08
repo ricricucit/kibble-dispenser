@@ -42,7 +42,7 @@ The website in `site/` is plain HTML, CSS and JavaScript. Preview it with `pytho
 - MicroPython firmware: pins and calibration values live only in `firmware/micropython/src/config.py`; keep `ruff check` clean for new code (see [firmware/micropython/README.md](firmware/micropython/README.md)).
 - Frame: Z-up, with Z=0 at the top face of the box lid. X runs along the long side of the box and Y along the short side (see `hardware/cad/layout_v3.json`).
 - Drivetrain parts are modelled at their assembled height, with X=Y=0 on the shaft axis.
-- Part names are Italian and kept as they are, for example `disco` (disc), `albero_mozzo` (shaft and hub), `passante_stagno` (sealed bushing), `scivolo` (chute) and `test_scanalato` (spline test).
+- Part names are Italian and kept as they are, for example `disco` (disc), `albero_mozzo` (shaft and hub), `passante_culla` (sealed bushing and servo cradle), `scivolo` (chute) and `test_scanalato` (spline test).
 
 ## Licensing of contributions
 

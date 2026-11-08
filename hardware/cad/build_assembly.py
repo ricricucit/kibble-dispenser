@@ -17,8 +17,7 @@ Frames: Z-up, mm, Z=0 = top face of the box lid.
   "world": already placed in the assembly frame.
 These are not print files: use ../stl/ for printing.
 
-A servo cradle is added automatically once a 3MF named *culla* or *cradle* exists in ../3mf/
-(modelled like the drivetrain parts, at assembled height on the shaft axis).
+The servo cradle is part of passante_culla (bushing and cradle in one print).
 Third-party-derived parts (servo mounts, spacers) are never included.
 """
 from pathlib import Path
@@ -31,7 +30,6 @@ MF_DIR, OUT = HERE.parent / '3mf', HERE.parent / 'assembly'
 OUT.mkdir(parents=True, exist_ok=True)
 L = json.loads((HERE / 'layout_v3.json').read_text())
 SX, SY = L['shaft_axis_xy']
-EXCLUDE = ('mount', 'distanziale', 'spacer')
 
 BLACK, ORANGE, GREEN = '#26282c', '#ee6a1f', '#2f9550'
 
@@ -40,15 +38,19 @@ PARTS = [
     dict(id='disco_v3', name='Rotating disc', frame='axis', spins=True, colour=ORANGE,
          material='PETG', spool='orange', status='designed', explode=[0, 0, 70],
          description='103 mm disc in the bowl with a trapezoid opening. Turning it 180° '
-                     'lets one portion drop. It sits on the shaft hex and is clamped by an M3x50 screw.'),
+                     'lets one portion drop. A sleeve under it ends in a labyrinth cap over the '
+                     'bushing collar. It sits on the shaft hex and is clamped by an M3x50 screw.'),
     dict(id='albero_mozzo', name='Shaft and hub', frame='axis', spins=True, colour=BLACK,
          material='PETG', spool='black', status='designed', explode=[0, 0, -66],
-         description='25-tooth socket for the servo spline at the bottom, a 12 mm shaft with two '
-                     'O-ring grooves, and an 8 mm hex at the top that drives the disc.'),
-    dict(id='passante_stagno', name='Sealed bushing', frame='axis', spins=False, colour=BLACK,
-         material='PETG', spool='black', status='designed', explode=[0, 0, -22],
-         description='Carries the shaft through the lid. A face O-ring under the lid and two '
-                     'O-rings on the shaft keep water and crumbs out of the box.'),
+         description='22 mm hub with the 25-tooth socket for the servo spline and a 45° top cone, '
+                     'a 12 mm shaft with grooves for 9x2 O-rings, and an 8 mm hex at the top that '
+                     'drives the disc. Print at 100 % infill.'),
+    dict(id='passante_culla', name='Sealed bushing and servo cradle', frame='axis', spins=False,
+         colour=BLACK, material='PETG', spool='black', status='designed', explode=[0, 0, -22],
+         description='One part. It carries the shaft through the lid, sealed by a 45x2 face O-ring '
+                     'under the lid and a 9x2 O-ring on the shaft, and hangs the servo from the lid '
+                     'on four pads with heat-set inserts. Designed, not printed or mounted yet: the '
+                     'prototype still uses a wall bracket.'),
     dict(id='scivolo_v1', name='Chute', frame='world', spins=False, colour=GREEN,
          material='PETG', spool='green', status='designed', explode=[-36, -46, 34],
          description='Curved hollow duct bolted to the bowl spout. It carries the portion out '
@@ -69,8 +71,9 @@ CONTEXT = [
                      'turns inside it and the chute bolts to the spout.'),
     dict(id='servo', name='Servo, 25 kg·cm', kind='servo', status='bought',
          colour='#b3302a', opacity=1, explode=[0, 0, -100],
-         description='Digital servo with a 25-tooth spline (DS3218 / DS3225 class). It hangs from '
-                     'the underside of the lid and turns the shaft.'),
+         description='Digital servo with a 25-tooth spline (DS3218 / DS3225 class). In the design it '
+                     'hangs from the lid in the cradle of passante_culla and turns the shaft; the '
+                     'prototype still holds it in a wall bracket.'),
     dict(id='esp32', name='ESP32 board and 12 V input', kind='board', status='bought',
          colour='#1f4d3a', opacity=1, explode=[0, 0, -150],
          description='ESP32 board (Freenove ESP32-WROVER as documented; to be verified on the '
@@ -84,16 +87,14 @@ CONTEXT = [
 ]
 
 # Item numbers (BOM balloons on the site), top to bottom as assembled.
-BOM_ORDER = ['container', 'hopper', 'disco_v3', 'bowl', 'scivolo_v1', 'passante_stagno',
-             'albero_mozzo', 'culla_servo', 'servo', 'esp32', 'box']
+BOM_ORDER = ['container', 'hopper', 'disco_v3', 'bowl', 'scivolo_v1', 'passante_culla',
+             'albero_mozzo', 'servo', 'esp32', 'box']
 
 NOT_SHOWN = [
     dict(id='test_scanalato', name='Spline fit test', material='PETG', spool='black',
          status='designed',
          description='Three short coupons with the 25-tooth socket at 0.05, 0.10 and 0.20 mm '
                      'clearance. Print these first and try them on the servo.'),
-    dict(id='culla_servo', name='Servo cradle', material='PETG', spool='black', status='to design',
-         description='Hangs the servo from the lid, built into the bushing. Not in the repository yet.'),
 ]
 
 
@@ -130,22 +131,9 @@ for p in PARTS:
     p['bounds'] = np.round(m.bounds, 1).tolist()
     parts.append(p)
 
-for f in sorted(MF_DIR.glob('*.3mf')):
-    n = f.stem.lower()
-    if ('culla' in n or 'cradle' in n) and not any(x in n for x in EXCLUDE):
-        m = load(f.stem)
-        m.export(OUT / f'{f.stem}.stl')
-        parts.append(dict(id=f.stem, name='Servo cradle', file=f'{f.stem}.stl', frame='axis',
-                          spins=False, colour=BLACK, material='PETG', spool='black',
-                          status='designed', explode=[0, 0, -80],
-                          description='Hangs the servo from the lid, built into the bushing.',
-                          bounds=np.round(m.bounds, 1).tolist()))
-        NOT_SHOWN[:] = [q for q in NOT_SHOWN if q['id'] != 'culla_servo']
-
 order = {k: i for i, k in enumerate(BOM_ORDER)}
 def bom_key(q):
-    is_cradle = 'culla' in q['id'].lower() or 'cradle' in q['id'].lower()
-    return order.get('culla_servo' if is_cradle else q['id'], len(order))
+    return order.get(q['id'], len(order))
 
 
 everything = sorted(parts + CONTEXT, key=bom_key)

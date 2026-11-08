@@ -19,9 +19,9 @@ Update 2026-11-08: the owner's development source ("feedr-outdoor" 0.1.0 plus un
 
 Prototype 1, work in progress.
 
-- Designed and exported: rotating disc, shaft and hub, sealed shaft bushing, spline fit test, chute
+- Designed and exported (not printed or mounted yet): drivetrain v3 with the rotating disc and its labyrinth cap, shaft and hub, sealed bushing with built-in servo cradle (`passante_culla`), spline fit test; chute
 - Bought or reused: waterproof box (265 x 185 mm), 25 kg·cm servo with a 25-tooth spline, bowl
-- Still to design: servo cradle, hopper and shelf, container
+- Still to design: hopper and shelf, container
 - Firmware: physical prototype runs MicroPython (source recovery pending); a separate ESPHome draft passes config checks but has not been tested on hardware yet
   - MicroPython (baseline): dev folder snapshot in `firmware/micropython/`; the on-device readback is still pending
   - ESPHome (alternative): unflashed draft, now aimed at the classic ESP32 of the documented board
@@ -40,7 +40,7 @@ The project site shows the assembly as a 3D model you can orbit, cut in section,
 2. A hopper funnels it into the bowl.
 3. In the bowl, a disc with a trapezoid opening rotates 180° to let one portion through.
 4. The portion leaves through the chute.
-5. **Planned sealed design:** servo hangs from the underside of the box lid, driving a printed shaft through a sealed bushing (O-rings). The earlier physically mounted side/wall servo support and spacer must be reconciled first.
+5. **Planned sealed design:** servo hangs from the underside of the box lid, driving a printed shaft through a sealed bushing (O-rings). The earlier physically mounted side/wall servo support and spacer must be reconciled first. The design now has the cradle built into the bushing (`passante_culla`, drivetrain v3); it is designed, not printed or mounted, and the prototype still uses the third-party wall bracket, which stays out of the repository (CC BY-NC-SA).
 6. **Planned outdoor electrical design:** an ESP32 drives the servo from a separately regulated branch of an external 12 V supply, so the enclosure sees low voltage. This does not imply the current wired prototype already uses these parts. The owner's `firmware/micropython/PROJECT.md` documents a 5 V bench supply for the prototype.
 
 ## Repository map

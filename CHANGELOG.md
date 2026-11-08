@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- 2026-11-08: Drivetrain v3 with a lid-mounted servo cradle and a labyrinth cap (designed; not printed or mounted yet).
+  - `passante_culla`: sealed bushing and servo cradle in one part, replacing `passante_stagno`: 53 mm flange with a 45x2 face O-ring around the collar and the three lid screws, collar up to z = 5, four servo pads with heat-set inserts, at least 2 mm inside the box walls.
+  - `disco_v3`: sleeve around the shaft ending in a labyrinth cap over the collar. `albero_mozzo`: 22 mm hub with a 45° top cone, grooves for 9x2 O-rings (15 % squeeze); print at 100 % infill.
+  - Single parametric `build_drivetrain.py` (paths relative to the repository), regenerated STL, 3MF, assembly meshes, `drivetrain.json` (z-stack, hardware list, lid drilling, checks) and the updated `layout_v3.json` (flange 53, collar top 5, hub 22, disc `hole_r`).
+  - `hardware/README.md`: hardware list, lid drilling pattern and assembly order. The site, README and as-built notes say the parts are designed only and the prototype still uses the third-party wall bracket.
 - 2026-11-08: MicroPython firmware, the baseline firmware for prototype 1, in `firmware/micropython/`.
   - Imported byte-for-byte from a snapshot of the owner's development folder for "feedr-outdoor": version 0.1.0 plus the uncommitted edits of 2026-03-24 (see Changed). Not an on-device readback; that readback is still pending for `import/previous-chat/`.
   - Modular `src/` (config, hardware, servo, speaker, buttons, dispenser, main), the original single-file prototype as `legacy/CatFeeder.py`, `PROJECT.md`, `CLAUDE.md`, `Makefile` (mpremote), `ruff.toml`, `requirements.txt`, `VERSION`.
@@ -30,6 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- 2026-11-08: `build_assembly.py` lists `passante_culla` instead of `passante_stagno` and no longer adds a separate cradle part; the servo cradle placeholder is gone from `assembly.json`.
 - 2026-11-08: Board corrected to the Freenove ESP32-WROVER (classic ESP32), as documented in the owner's `PROJECT.md` and still to be verified on the device. Earlier text said Freenove ESP32-S3 WROOM CAM.
   - ESPHome draft: `board: esp32dev`, 4 MB flash, servo on GPIO14 (as in the MicroPython source) and regulator enable on GPIO32 (was GPIO21, a camera pin on the WROVER CAM board). Labelled as the alternative firmware and an unflashed draft, not the baseline.
   - `firmware/README.md`: two firmwares, MicroPython first; classic ESP32 pin rules; the optional 12 V monitor moves to GPIO33.

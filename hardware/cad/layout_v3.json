@@ -49,7 +49,7 @@
    0,
    3
   ],
-  "floor_hole_d": 22,
+  "floor_hole_d": 22.5,
   "inner_r": 53.5,
   "outer_r": 56.5,
   "rim_top_z": 42,
@@ -65,30 +65,32 @@
    24,
    32
   ],
-  "open_dir_deg": 180
+  "open_dir_deg": 180,
+  "hole_r": 26
  },
  "bushing": {
   "flange_z": [
    -7.5,
    -3.5
   ],
-  "flange_d": 44,
+  "flange_d": 53.0,
   "collar_d": 21.5,
-  "collar_top_z": 4,
-  "bore_d": 12.4
+  "collar_top_z": 5.0,
+  "bore_d": 12.4,
+  "cradle": "integrata (passante_culla)"
  },
  "hub": {
   "z": [
    -18.5,
-   -8.5
+   -8.0
   ],
-  "d": 24
+  "d": 22.0
  },
  "shaft": {
   "d": 12,
   "round_z": [
-   -8.5,
-   24
+   -8.0,
+   24.0
   ],
   "hex_af": 8
  },

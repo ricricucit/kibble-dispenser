@@ -129,9 +129,10 @@
       <div class="status">
         <p class="stamp">Prototype 1, work in progress</p>
         <dl class="status-list">
-          <div><dt>Designed and exported</dt><dd>Rotating disc, shaft and hub, sealed shaft bushing, spline fit test, chute</dd></div>
+          <div><dt>Designed and exported</dt><dd>Drivetrain v3: rotating disc with labyrinth cap, shaft and hub, sealed bushing with built-in servo cradle, spline fit test; chute. Not printed or mounted yet.</dd></div>
           <div><dt>Bought or reused</dt><dd>Waterproof box (265 × 185 mm), 25 kg·cm servo with a 25-tooth spline, bowl</dd></div>
-          <div><dt>Still to design</dt><dd>Servo cradle, hopper and shelf, container</dd></div>
+          <div><dt>Still to design</dt><dd>Hopper and shelf, container</dd></div>
+          <div><dt>On the prototype</dt><dd>The servo still sits in a third-party wall bracket (non-commercial licence, not in this repository).</dd></div>
           <div><dt>Firmware</dt><dd>The owner's MicroPython firmware is the baseline: power button with a status LED, dispense button, a sound with every portion. An ESPHome draft for Home Assistant passes the config check but has not run on hardware yet.</dd></div>
         </dl>
       </div>
@@ -165,8 +166,8 @@
         </li>
         <li>
           <h3>The servo hangs from the lid</h3>
-          <p>A 25 kg·cm servo under the box lid drives a printed shaft. The shaft passes through the lid in a sealed bushing with O-rings, so water and crumbs stay out of the box.</p>
-          <button type="button" class="show" data-show="passante_stagno albero_mozzo servo" data-section="on">Show the seal in section</button>
+          <p>In the design, a 25 kg·cm servo hangs under the box lid in a cradle printed in one piece with the sealed bushing. The shaft passes through the lid with an O-ring, a face O-ring seals the bushing to the lid, and a labyrinth cap on the disc keeps crumbs off the seal.</p>
+          <button type="button" class="show" data-show="passante_culla albero_mozzo servo" data-section="on">Show the seal in section</button>
         </li>
         <li>
           <h3>An ESP32 runs it on low voltage</h3>
