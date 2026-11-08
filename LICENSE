@@ -1,0 +1,28 @@
+Kibble Dispenser - licensing
+
+Copyright 2026 Enrico Icardi and contributors
+
+This project uses three permissive licences, one for each kind of file. Together they allow
+anyone, the author included, to build, modify, fork and sell the dispenser or products
+derived from it, as long as the copyright and licence notices are kept (and, for the
+documentation and photos, credit is given).
+
+1. Software: MIT License (LICENSES/MIT.txt)
+   - firmware/ (ESPHome configuration and any future firmware code)
+   - hardware/cad/*.py (CAD generator and check scripts)
+   - CI, templates and configuration files (.github/, .gitignore, .gitattributes, REUSE.toml)
+
+2. Hardware design files: CERN Open Hardware Licence Version 2 - Permissive
+   (LICENSES/CERN-OHL-P-2.0.txt)
+   - hardware/stl/ and hardware/3mf/ (part geometry)
+   - hardware/cad/*.json (layout and drivetrain design data)
+
+3. Documentation and photos: Creative Commons Attribution 4.0 International
+   (LICENSES/CC-BY-4.0.txt)
+   - docs/ (build guide, research notes, photos)
+   - README.md files and other Markdown prose
+   - CODE_OF_CONDUCT.md is adapted from the Contributor Covenant 2.1, also under CC BY 4.0
+
+The exact licence and copyright of every path are listed in REUSE.toml, following the
+REUSE specification (https://reuse.software). If REUSE.toml and this summary ever
+disagree, REUSE.toml is authoritative.

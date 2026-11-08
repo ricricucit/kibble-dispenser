@@ -1,0 +1,200 @@
+# Kibble dispenser - first ESPHome draft (prototype 1)
+#
+# Target: Freenove ESP32-S3 WROOM CAM (ESP32-S3, USB-C via USB-UART bridge, DC jack, OV2640-type camera).
+# Status: draft. Passes `esphome config`; not yet compiled, flashed or tested on the real hardware.
+# Wiring, pin choice and flashing steps: ../README.md
+#
+# Before the first flash:
+#   1. cp secrets.example.yaml secrets.yaml and fill in unique values (no default or shared passwords).
+#   2. Calibrate servo_min_level / servo_max_level with the disc removed.
+#
+# Other boards (change the esp32 block and the two pins, keep the rest):
+#   - classic ESP32:  board: esp32dev, variant: esp32; e.g. servo GPIO18, power GPIO19.
+#                     Avoid strapping pins 0, 2, 12, 15.
+#   - ESP32-C3:       board: esp32-c3-devkitm-1, variant: esp32c3; e.g. servo GPIO4, power GPIO5.
+#                     Avoid strapping pins 2, 8, 9 and the USB pins 18, 19.
+#   - other ESP32-S3: board: esp32-s3-devkitc-1 as below; avoid 0, 3, 45, 46 (strapping) and 19, 20 (USB).
+
+substitutions:
+  name: kibble-dispenser
+  friendly_name: Kibble Dispenser
+
+  # GPIOs on the Freenove ESP32-S3 WROOM CAM: not used by the camera (4-13, 15-18), SD card (38-40),
+  # USB (19, 20), UART0 bridge (43, 44), flash/PSRAM (26-37) or strapping (0, 3, 45, 46).
+  servo_pin: GPIO14         # servo signal (LEDC PWM)
+  servo_power_pin: GPIO21   # servo regulator EN, through an N-MOSFET
+
+  # Pulse width as a share of the 20 ms period at 50 Hz: 5% = 1000 us, 7.5% = 1500 us, 10% = 2000 us.
+  # Start narrow, then widen in small steps until the disc reaches 0 and 180 deg with 2-3 deg margin
+  # from the mechanical stops (DS3218-class servos accept roughly 2.5%..12.5% = 500..2500 us).
+  servo_min_level: "5%"
+  servo_max_level: "10%"
+
+  # Positions on the servo scale: -1.0 = min_level, +1.0 = max_level (180 deg once calibrated).
+  # If the disc opens the wrong way, swap the two values.
+  closed_position: "-1.0"
+  open_position: "1.0"
+
+  servo_transition: 1.5s    # ramp time for a full -1 -> +1 sweep
+  servo_detach: 0.5s        # stop the pulses this long after reaching the target
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  comment: "DIY cat-kibble dispenser, prototype 1"
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  flash_size: 8MB           # Freenove N8R8 module; a larger flash also works with this setting
+  framework:
+    type: esp-idf
+  # The camera is not used yet. If it is added later, enable the octal PSRAM:
+  # psram:
+  #   mode: octal
+  #   speed: 80MHz
+
+logger:
+  # The board's USB-C port goes through a USB-UART bridge (CH343) to UART0.
+  # If no logs appear on the USB port, try USB_SERIAL_JTAG.
+  hardware_uart: UART0
+
+# EN 18031-1 (RED delegated act 2022/30): every credential comes from secrets.yaml, nothing has a
+# default value, the API is encrypted and OTA needs a password. No web server is enabled.
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "${friendly_name} Setup"
+    password: !secret fallback_ap_password
+
+captive_portal:
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+    # ESPHome 2026.x warns that an OTA password costs flash and RAM and recommends an encrypted
+    # OTA channel instead (same Noise scheme as the API). To switch, replace `password` with:
+    # encryption:
+    #   key: !secret ota_encryption_key
+
+globals:
+  # Last position sent to the servo, kept across reboots: after power-up the first pulses go to
+  # where the disc really is, so the servo does not jump.
+  - id: last_position
+    type: float
+    restore_value: true
+    initial_value: "${closed_position}"
+
+output:
+  - platform: ledc
+    id: servo_pwm
+    pin: ${servo_pin}
+    frequency: 50 Hz
+
+servo:
+  - id: disc_servo
+    output: servo_pwm
+    min_level: ${servo_min_level}
+    idle_level: 7.5%
+    max_level: ${servo_max_level}
+    restore: false            # the position is restored by the dispense script, not at boot
+    transition_length: ${servo_transition}
+    auto_detach_time: ${servo_detach}
+
+switch:
+  # Servo regulator enable (Pololu D36V50F6 EN pin, which has an internal pull-up to its input).
+  # GPIO high -> 2N7002 conducts -> EN pulled low -> regulator OFF, so the pin is inverted:
+  # switch ON = GPIO low = servo powered. A 10 k pull-up from the MOSFET gate to 3.3 V keeps the
+  # regulator off while the ESP32 boots. With a P-MOSFET high-side switch, remove `inverted`.
+  - platform: gpio
+    id: servo_power
+    name: "Servo power"
+    internal: true
+    pin:
+      number: ${servo_power_pin}
+      inverted: true
+    restore_mode: ALWAYS_OFF
+
+number:
+  - platform: template
+    id: portions
+    name: "Portions"
+    min_value: 1
+    max_value: 10
+    step: 1
+    initial_value: 1
+    optimistic: true
+    restore_value: true
+    mode: box
+
+  - platform: template
+    id: dwell_time
+    name: "Dwell time"
+    unit_of_measurement: s
+    min_value: 0.2
+    max_value: 10
+    step: 0.1
+    initial_value: 1.5
+    optimistic: true
+    restore_value: true
+    mode: box
+    entity_category: config
+
+button:
+  - platform: template
+    name: "Dispense"
+    on_press:
+      - script.execute: dispense
+
+script:
+  - id: dispense
+    mode: single              # a second press while dispensing is ignored
+    then:
+      - logger.log:
+          format: "Dispense: %d portion(s), dwell %.1f s"
+          args: ["(int) id(portions).state", "id(dwell_time).state"]
+      # 1. Power the servo regulator and let it settle.
+      - switch.turn_on: servo_power
+      - delay: 80ms
+      # 2. First pulses at the stored last position, without a ramp: the servo holds still.
+      - lambda: |-
+          id(disc_servo).internal_write(id(last_position));
+      - delay: 20ms
+      # 3. Ramp to the closed position (no movement if it is already closed).
+      - lambda: |-
+          id(disc_servo).write(${closed_position});
+          id(last_position) = ${closed_position};
+      - wait_until:
+          condition:
+            lambda: "return id(disc_servo).has_reached_target();"
+          timeout: 3s
+      # 4. One open / dwell / close cycle per portion.
+      - repeat:
+          count: !lambda "return (uint32_t) id(portions).state;"
+          then:
+            - lambda: |-
+                id(disc_servo).write(${open_position});
+                id(last_position) = ${open_position};
+            - wait_until:
+                condition:
+                  lambda: "return id(disc_servo).has_reached_target();"
+                timeout: 3s
+            - delay: !lambda "return (uint32_t) (id(dwell_time).state * 1000.0f);"
+            - lambda: |-
+                id(disc_servo).write(${closed_position});
+                id(last_position) = ${closed_position};
+            - wait_until:
+                condition:
+                  lambda: "return id(disc_servo).has_reached_target();"
+                timeout: 3s
+      # 5. Hold briefly, stop the pulses, then cut the servo power
+      #    (in this order, so the servo is never fed through its signal wire).
+      - delay: ${servo_detach}
+      - servo.detach: disc_servo
+      - delay: 20ms
+      - switch.turn_off: servo_power

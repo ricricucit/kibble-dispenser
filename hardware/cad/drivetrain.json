@@ -1,0 +1,213 @@
+{
+  "frame": "Z-up mm, Z=0 = lid top face, X=Y=0 = shaft axis; main files at assembled height",
+  "shaft_axis_world_xy": [
+    -100.0,
+    -60.0
+  ],
+  "parameters": {
+    "DISC_D": 103.0,
+    "DISC_Z0": 32.0,
+    "DISC_Z1": 36.0,
+    "TRAP_Y_IN": 9.0,
+    "TRAP_W_IN": 16.0,
+    "TRAP_Y_OUT": 43.0,
+    "TRAP_W_OUT": 35.0,
+    "TRAP_R": 3.0,
+    "TRAP_CH_TOP": 1.5,
+    "TRAP_CH_BOT": 0.7,
+    "BOSS_D": 16.0,
+    "BOSS_Z0": 24.0,
+    "POCKET_AF": 8.2,
+    "POCKET_DEPTH": 6.0,
+    "BORE_D": 3.4,
+    "CBORE_D": 6.2,
+    "CBORE_DEPTH": 3.2,
+    "HUB_D": 24.0,
+    "HUB_Z0": -18.5,
+    "HUB_Z1": -8.5,
+    "SPL_TEETH": 25,
+    "SPL_TIP_D": 5.9,
+    "SPL_ROOT_D": 5.3,
+    "SPL_CLEAR": 0.1,
+    "SPL_DEPTH": 4.5,
+    "SPL_CHAMFER": 0.4,
+    "SHAFT_D": 12.0,
+    "SHAFT_Z1": 24.0,
+    "HEX_AF": 8.0,
+    "HEX_LEN": 5.5,
+    "HEX_CHAMFER": 0.5,
+    "OR_GROOVE_D": 9.4,
+    "OR_GROOVE_W": 2.7,
+    "OR_GROOVE_Z": [
+      -4.5,
+      0.5
+    ],
+    "FL_D": 50.0,
+    "FL_Z0": -7.5,
+    "FL_Z1": -3.5,
+    "COLLAR_D": 21.5,
+    "COLLAR_Z1": 4.0,
+    "BUSH_BORE_D": 12.4,
+    "BUSH_BORE_CH_BOT": 1.0,
+    "BUSH_BORE_CH_TOP": 0.4,
+    "FACE_OR_SIZE": [
+      40.0,
+      2.0
+    ],
+    "FACE_OR_ID": 40.4,
+    "FACE_OR_OD": 45.6,
+    "FACE_OR_DEPTH": 1.5,
+    "INS_D": 4.0,
+    "INS_R": 15.5,
+    "MIN_WALL_INS": 2.5,
+    "MIN_WALL_EDGE": 2.0,
+    "INS_DEPTH": 4.0,
+    "INS_ANGLES": [
+      90.0,
+      210.0,
+      330.0
+    ],
+    "SCREW_STD": [
+      50,
+      45,
+      55,
+      60
+    ],
+    "SCREW_HEAD_D": 5.5,
+    "SCREW_HEAD_H": 3.0,
+    "SPLINE_TIP_Z": -14.0,
+    "TIP_BELOW": [
+      3.0,
+      6.0
+    ],
+    "MIN_SOLID": 2.5,
+    "CP_D": 14.0,
+    "CP_H": 6.0,
+    "CP_CLEARS": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "CP_PITCH": 18.0,
+    "NOTCH_W": 1.2,
+    "NOTCH_DEPTH": 1.0,
+    "NOTCH_STEP": 22.0,
+    "CBORE_BOT": 32.8,
+    "POCKET_TOP": 30.0,
+    "SCREW_LEN": 50,
+    "SCREW_TIP_Z": -17.2,
+    "HEX_Z1": 29.5,
+    "FACE_SQUEEZE": 0.2462,
+    "FACE_FILL": 0.7975,
+    "WALL_INS_COLLAR": 2.75,
+    "WALL_INS_GROOVE": 2.7,
+    "WALL_GROOVE_EDGE": 2.2
+  },
+  "screw": {
+    "spec": "M3x50 DIN912",
+    "head_z": [
+      32.8,
+      35.8
+    ],
+    "tip_z": -17.2,
+    "tip_below_spline_tip_mm": 3.2,
+    "pocket_depth": 6.0,
+    "hex_len": 5.5,
+    "solid_above_pocket_mm": 2.8
+  },
+  "hardware": [
+    "1x M3x50 DIN912",
+    "2x O-ring NBR 10x2 (shaft)",
+    "1x O-ring NBR 40x2 (face seal, outside the screws)",
+    "3x M3 heat-set insert, short (<=4 mm long, hole 4.0)",
+    "3x M3 screw from above through bowl floor + lid (M3x10 with a 3 mm insert); inside the sealed zone, no washers needed"
+  ],
+  "face_seal": {
+    "oring": "40x2 NBR",
+    "groove_id": 40.4,
+    "groove_od": 45.6,
+    "groove_width": 2.6,
+    "groove_depth": 1.5,
+    "stretch_pct": 1.0,
+    "squeeze_pct": 24.6,
+    "fill_pct": 79.8,
+    "insert_r": 15.5,
+    "walls_mm": {
+      "insert_to_collar": 2.75,
+      "insert_to_groove": 2.7,
+      "groove_to_flange_edge": 2.2
+    }
+  },
+  "files_note": "paths relative to hardware/: stl/ = print-ready, 3mf/ = assembled height",
+  "parts": {
+    "disco_v3": {
+      "files": [
+        "stl/disco_v3.stl",
+        "3mf/disco_v3.3mf"
+      ],
+      "color": "#E9E5DC",
+      "print": "top face on bed (boss up), PETG food-contact",
+      "volume_cm3": 30.869
+    },
+    "albero_mozzo": {
+      "files": [
+        "stl/albero_mozzo.stl",
+        "3mf/albero_mozzo.3mf"
+      ],
+      "color": "#E8792B",
+      "print": "hub on bed, 100% infill / >=6 walls (core \u00d89.4 at grooves)",
+      "volume_cm3": 7.688
+    },
+    "passante_stagno": {
+      "files": [
+        "stl/passante_stagno.stl",
+        "3mf/passante_stagno.3mf"
+      ],
+      "color": "#3A6EA5",
+      "print": "flange on bed",
+      "volume_cm3": 8.484
+    },
+    "test_scanalato": {
+      "files": [
+        "stl/test_scanalato.stl",
+        "3mf/test_scanalato.3mf"
+      ],
+      "color": "#9AA0A6",
+      "print": "as is, socket on bed",
+      "coupons": {
+        "1 notch(es)": 0.05,
+        "2 notch(es)": 0.1,
+        "3 notch(es)": 0.2
+      }
+    }
+  },
+  "checks": {
+    "watertight": {
+      "disco_v3": true,
+      "albero_mozzo": true,
+      "passante_stagno": true,
+      "test_scanalato": true
+    },
+    "intersection_mm3": {
+      "disco_v3|albero_mozzo": 0.0,
+      "albero_mozzo|passante_stagno": 0.0,
+      "disco_v3|passante_stagno": 0.0
+    }
+  },
+  "spec_changes": {
+    "OR_GROOVE_D": "spec 10.2 -> 9.4: with bore 12.4 the 10.2 groove gives 45% squeeze and 106% gland fill; 9.4 gives 25% / 78%",
+    "FACE_SEAL": "rev2 (coordinator): flange 44 -> 50, inserts r 17 -> 15.5, face seal moved outside the screws: O-ring 40x2, groove ID 40.4 / OD 45.6 / depth 1.5",
+    "INS_DEPTH": "spec 6 deep -> 4 through: flange is 4 thick and must print flange-down; use short M3 inserts",
+    "CBORE_DEPTH": "3.2 (head 0.2 below face) so the M3x50 tip is 3.2 mm (not exactly 3.0) into the spline thread",
+    "added": "bore lead-in chamfers on bushing (1.0 bottom for O-rings, 0.4 top)"
+  },
+  "notes": [
+    "SPL_CLEAR is radial (tip and root radii both +c); print test_scanalato first and set SPL_CLEAR."
+  ],
+  "lid_skirt_distance_mm": {
+    "-Y": 29.0,
+    "+Y": 149.0,
+    "-X": 29.0,
+    "+X": 229.0
+  }
+}

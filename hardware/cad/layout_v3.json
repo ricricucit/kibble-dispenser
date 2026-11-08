@@ -1,0 +1,108 @@
+{
+ "_frame": "Z-up, millimetri. Z=0 = faccia superiore del coperchio. X lungo il lato lungo della scatola, Y lungo il lato corto.",
+ "box": {
+  "L": 265,
+  "W": 185,
+  "wall": 3.5,
+  "lid_skirt": 25,
+  "base_h": 90,
+  "lid_plate_t": 3.5,
+  "outer_x": [
+   -132.5,
+   132.5
+  ],
+  "outer_y": [
+   -92.5,
+   92.5
+  ],
+  "outer_z": [
+   -115,
+   0
+  ]
+ },
+ "shaft_axis_xy": [
+  -100.0,
+  -60.0
+ ],
+ "servo": {
+  "body_xyz": [
+   40,
+   20,
+   40.5
+  ],
+  "center_xy": [
+   -90.0,
+   -60.0
+  ],
+  "body_bottom_z": -60.5,
+  "body_top_z": -20.0,
+  "tab_underside_z": -34.5,
+  "tab_len_x": 54,
+  "spline_tip_z": -14.0,
+  "spline": "25T, punta \u00d85.9, filetto centrale M3",
+  "shaft_offset_x_from_center": -10,
+  "tab_to_spline_tip": 20.5,
+  "mounting": "appeso al coperchio tramite culla integrata nel passante (niente mount a parete)"
+ },
+ "camera": {
+  "floor_z": [
+   0,
+   3
+  ],
+  "floor_hole_d": 22,
+  "inner_r": 53.5,
+  "outer_r": 56.5,
+  "rim_top_z": 42,
+  "ears_r": 62,
+  "ears_n": 6
+ },
+ "disc_v3": {
+  "bottom_z": 32,
+  "top_z": 36,
+  "d": 103,
+  "boss_d": 16,
+  "boss_z": [
+   24,
+   32
+  ],
+  "open_dir_deg": 180
+ },
+ "bushing": {
+  "flange_z": [
+   -7.5,
+   -3.5
+  ],
+  "flange_d": 44,
+  "collar_d": 21.5,
+  "collar_top_z": 4,
+  "bore_d": 12.4
+ },
+ "hub": {
+  "z": [
+   -18.5,
+   -8.5
+  ],
+  "d": 24
+ },
+ "shaft": {
+  "d": 12,
+  "round_z": [
+   -8.5,
+   24
+  ],
+  "hex_af": 8
+ },
+ "chute": {
+  "inlet_center": [
+   -168.5,
+   -60.0,
+   13.4
+  ],
+  "heading": "-Y",
+  "inner_bottom_z": 3,
+  "mouth_dir_deg": 180
+ },
+ "ripiano": {
+  "seat_z": 42
+ }
+}

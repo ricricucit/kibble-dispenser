@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  cad:
+    name: Regenerate parts and check meshes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install CAD dependencies
+        run: pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib
+
+      - name: Build the parts in a temporary copy of hardware/
+        run: |
+          tmp="$(mktemp -d)"
+          cp -r hardware "$tmp/"
+          python "$tmp/hardware/cad/build_drivetrain.py"
+          python "$tmp/hardware/cad/build_disc_v2_chute.py"
+          echo "HW_TMP=$tmp/hardware" >> "$GITHUB_ENV"
+
+      - name: Check every mesh is watertight
+        run: python hardware/cad/check_meshes.py "$HW_TMP"
+
+  reuse:
+    name: REUSE compliance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install reuse
+        run: pip install reuse
+
+      - name: reuse lint
+        run: reuse lint

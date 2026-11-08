@@ -1,0 +1,47 @@
+version = 1
+
+# When several annotations match a path, the last one wins: keep general blocks first.
+
+# Software: firmware, scripts, CI, templates and configuration
+[[annotations]]
+path = [
+  "firmware/**",
+  "hardware/cad/*.py",
+  ".github/**",
+  ".gitignore",
+  ".gitattributes",
+  "REUSE.toml",
+]
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "MIT"
+
+# Hardware design files: part geometry and design data
+[[annotations]]
+path = [
+  "hardware/stl/**",
+  "hardware/3mf/**",
+  "hardware/cad/*.json",
+]
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CERN-OHL-P-2.0"
+
+# Documentation, prose and photos
+[[annotations]]
+path = [
+  "docs/**",
+  "*.md",
+  "hardware/README.md",
+  "firmware/README.md",
+  "LICENSE",
+]
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+# Code of Conduct: adapted from the Contributor Covenant 2.1
+[[annotations]]
+path = "CODE_OF_CONDUCT.md"
+SPDX-FileCopyrightText = [
+  "2026 Enrico Icardi and contributors",
+  "Contributor Covenant contributors <https://www.contributor-covenant.org>",
+]
+SPDX-License-Identifier = "CC-BY-4.0"
