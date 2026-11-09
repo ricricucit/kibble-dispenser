@@ -1,6 +1,6 @@
 name: Pages
 
-# Builds site/ with the current hardware/assembly data and photos, and publishes it to GitHub Pages.
+# Builds site/ with the current hardware/assembly data, the v6 pages (hardware/v6) and photos, and publishes it to GitHub Pages.
 # One-time setup by the repository owner: Settings > Pages > Source: GitHub Actions.
 
 on:
@@ -28,8 +28,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Pillow (smaller photo previews)
-        run: pip install pillow
+      - name: Install Pillow (smaller photo previews), numpy and fast_simplification (v6 3D page)
+        run: pip install pillow numpy fast_simplification
 
       - name: Build
         run: python site/build.py site/_build

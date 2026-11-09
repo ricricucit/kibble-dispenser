@@ -67,6 +67,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install the v6 3D page dependencies
+        run: pip install numpy fast_simplification
+
       - name: Build the site from the repository
         run: python site/build.py
 

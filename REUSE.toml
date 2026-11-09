@@ -69,3 +69,10 @@ SPDX-License-Identifier = "CC-BY-4.0"
 path = "site/vendor/three/**"
 SPDX-FileCopyrightText = "2010-2023 three.js authors"
 SPDX-License-Identifier = "MIT"
+
+# three.js r128 (npm package "three" 0.128.0, UMD build three.min.js), vendored for the v6 3D page
+# (site/viewer/template.html uses the r128 API)
+[[annotations]]
+path = "site/vendor/three-r128/**"
+SPDX-FileCopyrightText = "2010-2021 three.js authors"
+SPDX-License-Identifier = "MIT"

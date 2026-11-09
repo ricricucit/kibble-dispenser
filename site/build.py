@@ -10,7 +10,10 @@ OUTPUT_DIR defaults to site/_build (not committed). The script:
     previews in <out>/photos/thumb/ when Pillow is installed (the originals otherwise)
   - fills the printed-parts list and the photo strip in index.html from assembly.json
     and the captions in docs/photos/README.md
-Only the Python standard library is required.
+  - design v6: writes the full-screen 3D page <out>/v6/3d/ with site/viewer/make_viewer.py from
+    hardware/v6/assembly/ (decimated meshes as separate STL files, three.js r128 from site/vendor/three-r128/)
+The v6 3D page needs numpy, and fast_simplification to decimate the meshes (without it the full
+meshes are used): pip install numpy fast_simplification. Everything else is standard library.
 """
 import html
 import json
@@ -115,10 +118,33 @@ def parts_html(data):
     return '<ol class="bom">\n' + '\n'.join(rows) + '\n</ol>'
 
 
+V6_LINKS = [
+    {'href': '../../', 'label': {'en': 'Project home', 'it': 'Pagina del progetto', 'de': 'Projektseite'}},
+    {'href': '../parts/', 'label': {'en': 'Bought parts', 'it': 'Pezzi extra', 'de': 'Zukaufteile'}},
+    {'href': f'{REPO}/tree/main/hardware/v6', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
+]
+
+
+def v6_pages():
+    """Full-screen 3D page of design v6."""
+    sys.path.insert(0, str(SITE / 'viewer'))
+    try:
+        import make_viewer
+    except ImportError as e:
+        sys.exit(f'the v6 3D page needs numpy ({e}): pip install numpy fast_simplification')
+    if make_viewer.fast_simplification is None:
+        print('fast_simplification not installed: the v6 3D page uses the full meshes')
+    page = OUT / 'v6/3d'
+    page.mkdir(parents=True)
+    print(make_viewer.build(str(ROOT / 'hardware/v6/assembly/v6_viewer.json'), str(page / 'index.html'),
+                            mesh_dir=str(page / 'meshes'), mesh_url='meshes/',
+                            three_src='../../vendor/three-r128/three.min.js', extra={'links': V6_LINKS}))
+
+
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
-    skip = {'build.py', '_build', '__pycache__', OUT.name}
+    skip = {'build.py', 'viewer', '_build', '__pycache__', OUT.name}
     shutil.copytree(SITE, OUT, ignore=lambda d, names: [n for n in names if n in skip or n.endswith('.pyc')])
     shutil.copytree(ROOT / 'hardware/assembly', OUT / 'assembly')
     data = json.loads((OUT / 'assembly/assembly.json').read_text(encoding='utf-8'))
@@ -133,6 +159,7 @@ def main():
             sys.exit(f'{token} not found in site/index.html')
         s = s.replace(token, content)
     page.write_text(s, encoding='utf-8')
+    v6_pages()
     n = sum(1 for f in OUT.rglob('*') if f.is_file())
     print(f'site built in {OUT} ({n} files)')
 
