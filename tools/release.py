@@ -7,10 +7,12 @@ Tag and publish the three version lines of the project (see VERSIONS.md).
     product   product/product.json   tag product-v<version>  lock file plus the pinned hardware and firmware zips
 
 For each line whose tag does not exist yet, the script creates an annotated tag and a GitHub Release with
-its assets; the notes come from the CHANGELOG.md section "## [<tag>]". A new tag points at the last commit
-that changed the line's files (the version file itself excluded), so a version file added later still tags
-the commit that holds the released content. A product release only goes out when product.json names a
-version, and only if the pinned hardware and firmware tags exist and the hardware status is allowed.
+its assets; the notes come from the CHANGELOG.md section "## [<tag>]". A new tag points at the commit being
+released (HEAD: on CI, the head of the push that brought the new version to main). The notes and the tag
+message also name the last commit that changed the line's files, when that is an earlier one. Tags on older
+commits are not possible from the workflow: GitHub refuses to let its token create a ref on a commit whose
+workflow files differ. A product release only goes out when product.json names a version, and only if the
+pinned hardware and firmware tags exist and the hardware status is allowed.
 When the hardware status rises for an existing tag (designed, printed, tested, field-proven), the title of
 its release is updated.
 
@@ -114,7 +116,8 @@ def hardware_line():
     major = version.split('.')[0]
     if not design.endswith(f'v{major}'):
         print(f'note: hardware {version} with design folder {design}')
-    target = last_commit(['hardware'], ['hardware/VERSION'])
+    content = last_commit(['hardware'], ['hardware/VERSION'])
+    target = git('rev-parse', 'HEAD')
 
     def assets(out, when):
         at = rel['target']
@@ -129,7 +132,7 @@ def hardware_line():
         return [write_zip(out / f'kibble-dispenser-{safe_name(tag)}.zip', f'kibble-dispenser-{safe_name(tag)}', files,
                           {'VERSION.txt': manifest}, when, at)]
 
-    rel = dict(line='hardware', tag=f'hw-v{version}', version=version, status=status, target=target,
+    rel = dict(line='hardware', tag=f'hw-v{version}', version=version, status=status, target=target, content=content, paths='hardware/ (VERSION aside)',
                 title=f'Hardware {version} · {status}', prerelease=status in ('designed', 'printed'),
                 intro=(f'Hardware line, design `{design}`. Status: **{status}**'
                        + (' (designed and checked in CAD, not yet printed or tested).' if status == 'designed' else '.')),
@@ -145,7 +148,8 @@ def firmware_line():
     upstream = (ROOT / source / 'VERSION').read_text(encoding='utf-8').strip()
     if version.split('+')[0].split('-')[0] != upstream or v.get('upstream_version') != upstream:
         sys.exit(f'firmware/VERSION {version!r} does not match {source}/VERSION {upstream!r}')
-    target = last_commit([source], [])
+    content = last_commit([source], [])
+    target = git('rev-parse', 'HEAD')
 
     def assets(out, when):
         at = rel['target']
@@ -165,7 +169,7 @@ def firmware_line():
                           {'VERSION.txt': manifest, 'firmware/VERSION': (ROOT / 'firmware/VERSION').read_text(encoding='utf-8')},
                           when, at)]
 
-    rel = dict(line='firmware', tag=f'fw-v{version}', version=version, status=None, target=target,
+    rel = dict(line='firmware', tag=f'fw-v{version}', version=version, status=None, target=target, content=content, paths=f'{source}/',
                 title=f'Firmware {version}', prerelease=version.startswith('0.') or '-' in version or '+' in version,
                 intro=(f'MicroPython firmware from `{source}`. {v.get("note", "").capitalize()}.'
                        ' The firmware actually flashed on the bench board may differ.'),
@@ -199,7 +203,7 @@ def product_line(tags, hw):
                 print(f'note: could not download the assets of {t}: {r.stderr.strip()}')
         return res + [f for f in out.glob('kibble-dispenser-*-v*.zip') if f not in res]
 
-    return dict(line='product', tag=f'product-v{version}', version=version, status=None, target=target,
+    return dict(line='product', tag=f'product-v{version}', version=version, status=None, target=target, content=target, paths='product/',
                 title=f'{p["name"]} {version}', prerelease=False,
                 intro=f'Product release: hardware `{hw_tag}`, firmware `{fw_tag}`, manual {p["manual"].get("version") or "none"}.',
                 assets=assets)
@@ -212,9 +216,16 @@ def gh_status(tag):
 
 
 # ---------------------------------------------------------------- main
+def provenance(rel):
+    same = rel['content'] == rel['target']
+    return (f'Tagged commit: {rel["target"][:7]}.' if same else
+            f'Tagged commit: {rel["target"][:7]}; the files in {rel["paths"]} last changed in {rel["content"][:7]} '
+            f'and are the same in both.')
+
+
 def notes_for(rel):
     body = changelog_section(rel['tag']) or f'No CHANGELOG section for {rel["tag"]} yet; see {REPO}/blob/main/CHANGELOG.md.'
-    return (f'{rel["intro"]}\n\nTagged commit: {rel["target"][:7]}. Version lines and compatibility: '
+    return (f'{rel["intro"]}\n\n{provenance(rel)} Version lines and compatibility: '
             f'{REPO}/blob/main/VERSIONS.md\n\n{body}\n')
 
 
@@ -258,6 +269,8 @@ def main():
         assets = rel['assets'](out, when)
         notes = notes_for(rel)
         print(f'{tag}: {"tag exists, release MISSING" if has_tag else "NEW"} on {target[:7]} ({git("log", "-1", "--format=%s", target)})')
+        if rel['content'] != target:
+            print(f'  content last changed in {rel["content"][:7]} ({git("log", "-1", "--format=%s", rel["content"])})')
         print(f'  title: {rel["title"]}{"  [pre-release]" if rel["prerelease"] else ""}')
         for f in assets:
             with zipfile.ZipFile(f) as z:
@@ -266,7 +279,7 @@ def main():
         if not publish:
             continue
         if not has_tag:
-            msg = f'{rel["title"]}\n\n{rel["intro"]}\n'
+            msg = f'{rel["title"]}\n\n{rel["intro"]}\n\n{provenance(rel)}\n'
             git('tag', '-a', tag, target, '-m', msg)
             git('push', 'origin', f'refs/tags/{tag}')
         nf = out / 'NOTES.md'
