@@ -28,6 +28,10 @@
     document.querySelectorAll('[data-set-lang]').forEach((b) => {
       b.setAttribute('aria-pressed', String(b.dataset.setLang === lang));
     });
+    // images carry their alt text per language in data-alt-<lang>
+    document.querySelectorAll('[data-alt-' + lang + ']').forEach((img) => {
+      img.alt = img.getAttribute('data-alt-' + lang);
+    });
     // carry the language to the other multilingual pages
     document.querySelectorAll('a[data-keep-lang]').forEach((a) => {
       try { const u = new URL(a.getAttribute('href'), location.href); u.searchParams.set('lang', lang); a.href = u.href; } catch (_) { /* keep href */ }

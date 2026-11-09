@@ -20,6 +20,6 @@ Photos of prototype 1. Location and camera metadata were removed, and the images
 - `early-servo-bracket-inside-box.jpg`: an early servo bracket test fitted to the box wall, under the lid (this bracket is not part of the repository)
 - `servo-in-early-bracket-inside-box.jpg`: the servo in that early bracket inside the box, lid lifted
 - `servo-and-round-horn-on-plywood.jpg`: the servo with a round horn, next to the bowl on the plywood board
-- `2026-11-08-wrover-e-extension-board-breadboard.jpg` — ESP32-WROVER-E (Freenove, with camera) on the Freenove GPIO extension board, plugged into the breadboard. Prototype wiring, pins not yet verified.
-- `2026-11-08-breadboard-servo-speaker-buttons.jpg` — Breadboard with the two tactile buttons, 8 Ω speaker and the 25 kg servo on its lead.
-- `2026-11-08-bench-wrover-breadboard-servo-overview.jpg` — Bench overview of the prototype electronics (breadboard phase).
+- `2026-11-08-wrover-e-extension-board-breadboard.jpg`: ESP32-WROVER-E (Freenove, with camera) on the Freenove GPIO extension board, plugged into the breadboard. Prototype wiring, pins not yet verified.
+- `2026-11-08-breadboard-servo-speaker-buttons.jpg`: breadboard with the two tactile buttons, 8 Ω speaker and the 25 kg servo on its lead.
+- `2026-11-08-bench-wrover-breadboard-servo-overview.jpg`: bench overview of the prototype electronics (breadboard phase).

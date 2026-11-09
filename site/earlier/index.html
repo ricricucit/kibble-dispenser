@@ -3,45 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Kibble Dispenser</title>
-  <meta name="description" content="An open-source, weatherproof cat-kibble dispenser you can 3D print and build yourself. Explore the live 3D assembly, the printed parts and the build files.">
+  <title>Earlier versions · Kibble Dispenser</title>
+  <meta name="description" content="Earlier versions of the Kibble Dispenser: prototype 1 and drivetrain v3, with their live 3D assembly, printed parts and bench photos. The current design is v6.">
   <meta name="theme-color" content="#e1e6e5" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#121a1f" media="(prefers-color-scheme: dark)">
-  <meta property="og:title" content="Kibble Dispenser">
+  <meta property="og:title" content="Kibble Dispenser: earlier versions">
   <meta property="og:description" content="Open-source cat-kibble dispenser: one servo turns one disc, and one portion drops out.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23ee6a1f'/%3E%3Cpath d='M13.5 13h5l3.5 15h-12z' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='%2326282c'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/site.css">
-  <link rel="modulepreload" href="vendor/three/three.module.min.js">
+  <link rel="stylesheet" href="../css/site.css">
+  <link rel="modulepreload" href="../vendor/three/three.module.min.js">
   <script type="importmap">
     {
       "imports": {
-        "three": "./vendor/three/three.module.min.js",
-        "three/addons/": "./vendor/three/addons/"
+        "three": "../vendor/three/three.module.min.js",
+        "three/addons/": "../vendor/three/addons/"
       }
     }
   </script>
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="../js/main.js"></script>
 </head>
 <body>
   <a class="skip" href="#pitch">Skip the 3D model</a>
 
   <header class="masthead">
-    <h1 class="wordmark"><a href="#model">Kibble Dispenser</a></h1>
+    <p class="wordmark"><a href="../">Kibble Dispenser</a></p>
     <nav aria-label="Sections">
       <ul>
-        <li><a href="#v6">Design v6</a></li>
+        <li><a href="../">Current design: v6</a></li>
         <li><a href="#how">How it works</a></li>
         <li><a href="#parts">Parts</a></li>
         <li><a href="#photos">Photos</a></li>
         <li><a href="#build">Build</a></li>
-        <li><a href="#licence">Licence</a></li>
-        <li><a href="#contribute">Contribute</a></li>
         <li class="nav-repo"><a href="https://github.com/ricricucit/kibble-dispenser">Source on GitHub</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
+    <section class="earlier-note" aria-labelledby="earlier-title">
+      <h1 id="earlier-title">Earlier versions: prototype 1 and drivetrain v3</h1>
+      <p>This page is kept for the record. The current design is <a href="../">v6, the one-twist unit</a>, with its own <a href="../v6/3d/">3D model</a>, <a href="../v6/print/">print files</a> and <a href="../v6/parts/">bought parts</a>. The parts below were designed before v6 and were never printed or mounted as a set.</p>
+    </section>
+
     <section class="hero" id="model" aria-label="Live 3D model of the assembly">
       <div class="stage" id="stage" tabindex="0" aria-describedby="stage-help">
         <div class="canvas-wrap">
@@ -126,7 +129,7 @@
     </section>
 
     <section class="pitch" id="pitch">
-      <p class="pitch-line">A weatherproof cat-kibble dispenser you can print and build yourself: one servo turns one disc, and one portion drops out.</p>
+      <p class="pitch-line">Prototype 1: one servo turns one disc in a bowl on a waterproof box, and one portion drops out.</p>
       <div class="status">
         <p class="stamp">Prototype 1, work in progress</p>
         <dl class="status-list">
@@ -134,25 +137,10 @@
           <div><dt>Bought or reused</dt><dd>Waterproof box (265 × 185 mm), 25 kg·cm servo with a 25-tooth spline, bowl</dd></div>
           <div><dt>Still to design</dt><dd>Hopper and shelf, container</dd></div>
           <div><dt>On the prototype</dt><dd>The servo still sits in a third-party wall bracket (non-commercial licence, not in this repository).</dd></div>
-          <div><dt>Next design: v6</dt><dd>A one-twist unit: everything under the shelf comes off with one quarter-turn. Designed and checked in CAD, not printed or tested yet. <a href="v6/3d/">3D model</a> · <a href="v6/parts/">Bought parts</a></dd></div>
+          <div><dt>Superseded by v6</dt><dd>The one-twist unit: everything under the shelf comes off with one twist. Designed and checked in CAD, not printed or tested yet. <a href="../">Project home</a> · <a href="../v6/3d/">3D model</a> · <a href="../v6/print/">Print files</a></dd></div>
           <div><dt>Firmware</dt><dd>The owner's MicroPython firmware is the baseline: power button with a status LED, dispense button, a sound with every portion. An ESPHome draft for Home Assistant passes the config check but has not run on hardware yet.</dd></div>
         </dl>
       </div>
-    </section>
-
-    <section class="band" id="v6" aria-labelledby="v6-title">
-      <div class="band-head">
-        <h2 id="v6-title">Design v6</h2>
-        <p>The next design, and the one the kit will follow. Everything under the shelf (bowl with the dosing disc, chute, sealed tower and shaft, electronics box with the servo) comes off with one quarter-turn of the bowl; only the shelf flange stays. Designed and checked in CAD, <strong>not yet printed or tested</strong>.</p>
-      </div>
-      <ul class="links">
-        <li><a href="v6/3d/">3D model, full screen</a><span>Workshop and woodland modes, exploded view, disc, section and transparency, every part listed. In English, Italian and German.</span></li>
-        <li><a href="v6/parts/">Bought parts</a><span>Screws, inserts, seals, the electronics module, the optional pipe and the tools, in English, Italian and German</span></li>
-        <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/v6">v6 files</a><span>CAD scripts, print-ready STL and 3MF, design data and checks</span></li>
-        <li><span class="soon">Print plates for Bambu Lab</span><span>Coming soon</span></li>
-        <li><span class="soon">Assembly wizard</span><span>Coming soon, in English, Italian and German</span></li>
-        <li><span class="soon">Pocket manual (A6 PDF)</span><span>Coming soon</span></li>
-      </ul>
     </section>
 
     <section class="band" id="how" aria-labelledby="how-title">
@@ -217,7 +205,7 @@
         <p>Everything lives in the repository. The step-by-step build guide is still a placeholder; these pages cover the build until it is written.</p>
       </div>
       <ul class="links">
-        <li><a href="v6/parts/">Bought parts for v6</a><span>What to buy besides the printed parts, in English, Italian and German</span></li>
+        <li><a href="../v6/parts/">Bought parts for v6</a><span>What to buy besides the printed parts, in English, Italian and German</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/hardware/v6/README.md">v6 print notes</a><span>Material, colour and orientation for every v6 part; v6 is designed, not yet printed or tested</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/docs/BUILD_GUIDE.md">Build guide</a><span>Step-by-step assembly, exported from the living build guide; a placeholder for now</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/hardware/README.md">Print notes</a><span>Material, spool and orientation for every part, plus the bought hardware</span></li>
@@ -230,65 +218,11 @@
       </ul>
     </section>
 
-    <section class="band" id="licence" aria-labelledby="licence-title">
-      <div class="band-head">
-        <h2 id="licence-title">Licence</h2>
-        <p class="plain">Anyone can use, change, build and sell this dispenser, including as a product. Keep the copyright and licence notices with it, and credit the project when you reuse the docs or photos.</p>
-      </div>
-      <ul class="licences">
-        <li>
-          <h3>Software</h3>
-          <p>Firmware, CAD scripts, CI and the code of this website.</p>
-          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/LICENSES/MIT.txt">MIT</a>
-        </li>
-        <li>
-          <h3>Hardware design files</h3>
-          <p>STL and 3MF parts, assembly meshes and design data.</p>
-          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/LICENSES/CERN-OHL-P-2.0.txt">CERN-OHL-P-2.0</a>
-        </li>
-        <li>
-          <h3>Docs and photos</h3>
-          <p>Build guide, research notes, photos and the text on this page.</p>
-          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/LICENSES/CC-BY-4.0.txt">CC BY 4.0</a>
-        </li>
-      </ul>
-      <p class="aside">The 3D view uses <a href="https://threejs.org">three.js</a> (MIT), bundled with the site, so the page loads no third-party scripts or fonts and sets no cookies. <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/REUSE.toml">REUSE.toml</a> lists the licence of every file.</p>
-    </section>
-
-    <section class="band" id="contribute" aria-labelledby="contribute-title">
-      <div class="band-head">
-        <h2 id="contribute-title">Contribute</h2>
-        <p>This is a prototype, so short issues and small pull requests work best.</p>
-      </div>
-      <ul class="contrib">
-        <li>
-          <h3>Built one, or part of one?</h3>
-          <p>Open a build report with photos. Remove location data from them first.</p>
-          <a href="https://github.com/ricricucit/kibble-dispenser/issues/new/choose">Open an issue</a>
-        </li>
-        <li>
-          <h3>Changing a part</h3>
-          <p>Edit the generator script in <code>hardware/cad/</code>, regenerate, and commit the new meshes with it. CI rebuilds the parts, checks every mesh is watertight and runs <code>reuse lint</code>.</p>
-          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/CONTRIBUTING.md">Read the contributing guide</a>
-        </li>
-        <li>
-          <h3>Pull requests</h3>
-          <p>One topic each. Say what you actually tested: printed, flashed or only regenerated. Add a line to the changelog.</p>
-          <a href="https://github.com/ricricucit/kibble-dispenser/pulls">See open pull requests</a>
-        </li>
-        <li>
-          <h3>Security</h3>
-          <p>Report firmware security problems privately, not in a public issue.</p>
-          <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/SECURITY.md">How to report</a>
-        </li>
-      </ul>
-      <p class="aside">Everyone taking part follows the <a href="https://github.com/ricricucit/kibble-dispenser/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.</p>
-    </section>
   </main>
 
   <footer class="titleblock" aria-label="Project details">
     <dl>
-      <div class="tb-title"><dt>Title</dt><dd>Kibble Dispenser, assembly</dd></div>
+      <div class="tb-title"><dt>Title</dt><dd>Kibble Dispenser, earlier versions</dd></div>
       <div><dt>Revision</dt><dd>Prototype 1</dd></div>
       <div><dt>Units</dt><dd>mm</dd></div>
       <div><dt>Frame</dt><dd>Z up, Z 0 at the lid top</dd></div>

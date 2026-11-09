@@ -71,6 +71,21 @@ button { font: inherit; color: inherit; }
 .skip { position: absolute; left: 8px; top: -60px; z-index: 50; background: var(--ink); color: var(--vellum); padding: 8px 12px; }
 .skip:focus { top: 8px; }
 
+/* ---------- multilingual pages (home, print files, bought parts) ----------
+   Every text exists once per language; only the language in <html data-lang> is shown (English without JavaScript). */
+html:not([data-lang="it"]) [data-l="it"],
+html:not([data-lang="de"]) [data-l="de"],
+html[data-lang="it"] [data-l="en"],
+html[data-lang="de"] [data-l="en"] { display: none !important; }
+
+.lang-switch { display: inline-flex; border: 1.5px solid var(--ink); border-radius: 2px; }
+.lang-switch button {
+  min-width: 44px; min-height: 36px; padding: 6px 10px; border: 0; background: var(--sheet); color: var(--ink);
+  font: 600 0.88rem/1 var(--f-draw); cursor: pointer;
+}
+.lang-switch button + button { border-left: 1.5px solid var(--ink); }
+.lang-switch button[aria-pressed="true"] { background: var(--ink); color: var(--vellum); }
+
 /* ---------- masthead ---------- */
 .masthead {
   height: var(--mast-h);
@@ -306,6 +321,11 @@ input[type="range"]:focus-visible { outline-offset: 4px; }
 
 /* ---------- page sections ---------- */
 main > section:not(.hero) { padding: clamp(40px, 7vw, 88px) var(--gutter); max-width: 1240px; margin: 0 auto; }
+
+/* earlier-versions page: the note above the old 3D model */
+main > section.earlier-note { padding-top: clamp(20px, 4vw, 36px); padding-bottom: clamp(20px, 4vw, 36px); display: grid; gap: 10px; }
+.earlier-note h1 { font-size: var(--t-4); }
+.earlier-note p { max-width: 75ch; color: var(--ink-2); }
 
 .pitch { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
 .pitch-line { font: 600 clamp(1.6rem, 3.6vw, 2.6rem)/1.14 var(--f-draw); font-stretch: 87.5%; letter-spacing: -0.01em; max-width: 22ch; text-wrap: balance; }

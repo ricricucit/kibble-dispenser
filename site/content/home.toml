@@ -1,0 +1,462 @@
+# Home page text in English, Italian and German. Rendered by site/pages.py (python site/build.py).
+# Every text is a table with en, it and de. Grams, times and counts are filled in by pages.py from
+# hardware/v6/plates/summary.json and hardware/v6/cad/v6.json, so they are not written here.
+
+[meta.title]
+en = "Kibble Dispenser: an outdoor kibble dispenser you print yourself"
+it = "Kibble Dispenser: un distributore di crocchette per l'esterno da stampare da sé"
+de = "Kibble Dispenser: ein Futterspender für draußen zum Selberdrucken"
+
+[meta.description]
+en = "Open-source outdoor kibble dispenser for cats and dogs. It hangs under a shelf or a table, the container sits on top. 3D model, print files, parts list. Design v6: designed, not yet printed or tested."
+it = "Distributore di crocchette per l'esterno, open source, per gatti e cani. Si appende sotto un ripiano o un tavolo, il contenitore sta sopra. Modello 3D, file di stampa, elenco pezzi. Progetto v6: disegnato, non ancora stampato né provato."
+de = "Open-Source-Futterspender für draußen, für Katzen und Hunde. Er hängt unter einem Regalbrett oder Tisch, der Vorratsbehälter steht oben. 3D-Modell, Druckdateien, Teileliste. Entwurf v6: konstruiert, noch nicht gedruckt oder getestet."
+
+[nav]
+idea = { en = "Idea", it = "Idea", de = "Idee" }
+how = { en = "How it works", it = "Come funziona", de = "So funktioniert's" }
+build = { en = "Build", it = "Costruire", de = "Bauen" }
+next = { en = "v6.1", it = "v6.1", de = "v6.1" }
+status = { en = "Status", it = "Stato", de = "Stand" }
+open = { en = "Open source", it = "Open source", de = "Open Source" }
+
+# ------------------------------------------------------------------ hero
+[hero.kicker]
+en = "Open source · design v6 preview"
+it = "Open source · anteprima progetto v6"
+de = "Open Source · Vorschau Entwurf v6"
+
+[hero.title]
+en = "An outdoor kibble dispenser you print yourself"
+it = "Un distributore di crocchette per l'esterno, da stampare da sé"
+de = "Ein Futterspender für draußen, zum Selberdrucken"
+
+[hero.lead]
+en = "For cats and dogs. It hangs under a shelf or a table, the food container sits on top, and every half-turn of a disc drops one portion."
+it = "Per gatti e cani. Si appende sotto un ripiano o un tavolo, il contenitore del cibo sta sopra, e ogni mezzo giro di un disco fa cadere una porzione."
+de = "Für Katzen und Hunde. Er hängt unter einem Regalbrett oder Tisch, der Futterbehälter steht oben, und jede halbe Drehung einer Scheibe gibt eine Portion frei."
+
+[hero.status]
+en = "v6 is designed and checked in CAD, not yet printed or tested. v6.1 is in design."
+it = "La v6 è disegnata e verificata in CAD, non ancora stampata né provata. La v6.1 è in progettazione."
+de = "v6 ist konstruiert und im CAD geprüft, noch nicht gedruckt oder getestet. v6.1 ist in Arbeit."
+
+[hero.cta_3d]
+en = "Open the 3D model"
+it = "Apri il 3D"
+de = "3D-Modell öffnen"
+
+[hero.cta_print]
+en = "Print files"
+it = "File di stampa"
+de = "Druckdateien"
+
+[hero.cta_parts]
+en = "Parts to buy"
+it = "Pezzi da comprare"
+de = "Zukaufteile"
+
+[hero.img_alt]
+en = "The dispenser hanging under a wooden table in the woods, a blue 200 litre drum on the table above it and kibble falling from the green chute, rendered from the 3D model"
+it = "Il distributore appeso sotto un tavolo di legno nel bosco, con un fusto blu da 200 litri sul tavolo e le crocchette che cadono dallo scivolo verde, dal modello 3D"
+de = "Der Spender unter einem Holztisch im Wald, darüber ein blaues 200-Liter-Fass auf dem Tisch, Futter fällt aus der grünen Rutsche, gerendert aus dem 3D-Modell"
+
+[hero.img_note]
+en = "Rendered from the 3D model, mode “In the woods”."
+it = "Immagine dal modello 3D, modalità “Nel bosco”."
+de = "Gerendert aus dem 3D-Modell, Modus „Im Wald“."
+
+# ------------------------------------------------------------------ idea
+[idea.title]
+en = "The idea"
+it = "L'idea"
+de = "Die Idee"
+
+[idea.lead]
+en = "An outdoor kibble dispenser for cats and dogs that carries no weight. The container stands on a shelf or a table, up to a 200 litre drum. The dispenser hangs underneath, and the kibble reaches it through one Ø76 mm hole."
+it = "Un distributore di crocchette per l'esterno, per gatti e cani, che non porta pesi. Il contenitore sta su un ripiano o un tavolo, fino a un fusto da 200 litri. Il distributore è appeso sotto, e le crocchette gli arrivano da un solo foro Ø76 mm."
+de = "Ein Futterspender für draußen, für Katzen und Hunde, der kein Gewicht trägt. Der Behälter steht auf einem Regalbrett oder Tisch, bis hin zu einem 200-Liter-Fass. Der Spender hängt darunter, und das Futter kommt durch ein einziges Loch mit Ø76 mm."
+
+[[idea.points]]
+[idea.points.title]
+en = "The weight goes into the shelf"
+it = "Il peso va sul ripiano"
+de = "Das Gewicht trägt das Brett"
+[idea.points.body]
+en = "The container rests on the wood. Its weight never goes through the dispenser, so a small printed part can sit under a big supply."
+it = "Il contenitore appoggia sul legno. Il suo peso non passa mai dal distributore, così un pezzo stampato piccolo può stare sotto una grande scorta."
+de = "Der Behälter steht auf dem Holz. Sein Gewicht geht nie durch den Spender, deshalb kann ein kleines Druckteil unter einem großen Vorrat hängen."
+
+[[idea.points]]
+[idea.points.title]
+en = "Weather from above, animals from below"
+it = "Intemperie da sopra, animali da sotto"
+de = "Wetter von oben, Tiere von unten"
+[idea.points.body]
+en = "The shelf is the roof. Everything electrical sits in a sealed box under it, and every opening faces down."
+it = "Il ripiano fa da tetto. Tutta la parte elettrica sta in una scatola stagna sotto, e ogni apertura guarda in basso."
+de = "Das Brett ist das Dach. Alles Elektrische sitzt in einem dichten Gehäuse darunter, und jede Öffnung zeigt nach unten."
+
+[[idea.points]]
+[idea.points.title]
+en = "Built with a home printer"
+it = "Si fa con una stampante di casa"
+de = "Mit einem Drucker von zu Hause"
+[idea.points.body]
+en = "Every part fits a 256 mm bed. The rest is screws, O-rings and a small electronics module."
+it = "Ogni pezzo sta su un piano da 256 mm. Il resto sono viti, O-ring e un piccolo modulo elettronico."
+de = "Jedes Teil passt auf ein 256-mm-Druckbett. Der Rest sind Schrauben, O-Ringe und ein kleines Elektronikmodul."
+
+[idea.diagram]
+shelf = { en = "shelf or table", it = "ripiano o tavolo", de = "Regalbrett oder Tisch" }
+drum = { en = "container, up to 200 L", it = "contenitore, fino a 200 L", de = "Behälter, bis 200 L" }
+load = { en = "weight into the shelf", it = "peso sul ripiano", de = "Gewicht ins Brett" }
+unit = { en = "dispenser", it = "distributore", de = "Spender" }
+hole = { en = "Ø76 hole", it = "foro Ø76", de = "Loch Ø76" }
+food = { en = "food path", it = "percorso del cibo", de = "Futterweg" }
+bowl = { en = "bowl", it = "ciotola", de = "Napf" }
+
+# ------------------------------------------------------------------ how it works
+[how.title]
+en = "How it works"
+it = "Come funziona"
+de = "So funktioniert's"
+
+[how.lead]
+en = "One moving part touches the food. Follow the green line: it is the path of the kibble, printed in green on the real parts too."
+it = "Un solo pezzo in movimento tocca il cibo. Seguite la linea verde: è il percorso delle crocchette, stampato in verde anche sui pezzi veri."
+de = "Nur ein bewegtes Teil berührt das Futter. Folgt der grünen Linie: Sie ist der Weg des Futters, auch auf den echten Teilen grün gedruckt."
+
+[[how.steps]]
+key = "disc"
+[how.steps.title]
+en = "A disc with two pockets"
+it = "Un disco a due tasche"
+de = "Eine Scheibe mit zwei Taschen"
+[how.steps.body]
+en = "Each half-turn fills one pocket from above and empties the other into the chute: about 6.5 g per portion (5.4 to 7.4 g, depending on the kibble). At rest there is no straight path from outside to the container, so the disc is also a rotary airlock against insects, mice and damp."
+it = "A ogni mezzo giro una tasca si riempie da sopra e l'altra si svuota nello scivolo: circa 6,5 g a porzione (da 5,4 a 7,4 g, secondo le crocchette). A riposo non c'è una via diretta dall'esterno al contenitore, quindi il disco fa anche da chiusa rotante contro insetti, topi e umidità."
+de = "Bei jeder halben Drehung füllt sich eine Tasche von oben, die andere leert sich in die Rutsche: etwa 6,5 g pro Portion (5,4 bis 7,4 g, je nach Futter). In Ruhe gibt es keinen direkten Weg von außen zum Behälter, die Scheibe ist also auch eine Zellenradschleuse gegen Insekten, Mäuse und Feuchtigkeit."
+
+[[how.steps]]
+key = "drive"
+[how.steps.title]
+en = "A servo right under the disc, no gears"
+it = "Un servo proprio sotto il disco, senza ingranaggi"
+de = "Ein Servo direkt unter der Scheibe, ohne Getriebe"
+[how.steps.body]
+en = "Servo, hub, shaft and disc share one axis. The shaft passes into the dry box through two O-rings; the disc simply sits on its hex, with no screw."
+it = "Servo, mozzo, albero e disco stanno su un solo asse. L'albero entra nella scatola asciutta attraverso due O-ring; il disco si appoggia sul suo esagono, senza viti."
+de = "Servo, Nabe, Welle und Scheibe liegen auf einer Achse. Die Welle geht durch zwei O-Ringe in das trockene Gehäuse; die Scheibe sitzt einfach auf ihrem Sechskant, ohne Schraube."
+
+[[how.steps]]
+key = "twist"
+[how.steps.title]
+en = "The whole unit comes off with one twist"
+it = "L'unità intera si stacca con una rotazione"
+de = "Die ganze Einheit löst sich mit einer Drehung"
+[how.steps.body]
+en = "Press the orange latch, turn 30° and lower: bowl, disc, chute, tower, box, servo and electronics come down together for inspection. Only the flange stays on the shelf, and only the 12 V plug comes along."
+it = "Premete la linguetta arancione, girate di 30° e abbassate: vasca, disco, scivolo, torre, scatola, servo ed elettronica vengono giù insieme, pronti per l'ispezione. Sul ripiano resta solo la flangia, e si stacca solo la spina a 12 V."
+de = "Orange Lasche drücken, 30° drehen, absenken: Schale, Scheibe, Rutsche, Turm, Gehäuse, Servo und Elektronik kommen zur Kontrolle zusammen herunter. Nur der Flansch bleibt am Brett, nur der 12-V-Stecker wird getrennt."
+
+[[how.steps]]
+key = "seal"
+[how.steps.title]
+en = "Sealed the IP65 way"
+it = "Tenuta pensata per IP65"
+de = "Abgedichtet nach IP65-Prinzip"
+[how.steps.body]
+en = "Wet parts and dry parts are kept apart: every joint between them has an O-ring or a printed TPU seal, there are no windows, the only cable entry is a gland, and every opening faces down. It is a design approach, not a certification: the box still has to pass a hose test."
+it = "Le parti bagnate e quelle asciutte restano separate: ogni giunto tra loro ha un O-ring o una guarnizione stampata in TPU, non ci sono finestre, l'unico ingresso cavo è un pressacavo, e ogni apertura guarda in basso. È un criterio di progetto, non una certificazione: la scatola deve ancora superare la prova con la canna."
+de = "Nasse und trockene Teile bleiben getrennt: jede Fuge dazwischen hat einen O-Ring oder eine gedruckte TPU-Dichtung, es gibt keine Fenster, der einzige Kabeleingang ist eine Verschraubung, und jede Öffnung zeigt nach unten. Das ist ein Konstruktionsprinzip, keine Zertifizierung: der Schlauchtest steht noch aus."
+
+[[how.steps]]
+key = "outlet"
+[how.steps.title]
+en = "An open outlet with a hood and a drip edge"
+it = "Uscita aperta con cappuccio e gocciolatoio"
+de = "Offener Auslass mit Haube und Tropfkante"
+[how.steps.body]
+en = "The chute falls at 55° and ends in a cut that faces straight down, under a 32 mm hood. A drip ring sheds rain before it reaches the outlet. Nothing can clog behind a flap, because there is no flap."
+it = "Lo scivolo scende a 55° e finisce con un taglio rivolto verso il basso, sotto un cappuccio da 32 mm. Un anello gocciolatoio fa cadere la pioggia prima che arrivi all'uscita. Niente si incastra dietro uno sportello, perché lo sportello non c'è."
+de = "Die Rutsche fällt mit 55° und endet in einem Schnitt, der senkrecht nach unten zeigt, unter einer 32-mm-Haube. Ein Tropfring lässt Regen vor dem Auslass abtropfen. Hinter einer Klappe kann nichts klemmen, denn es gibt keine."
+
+[[how.steps]]
+key = "pipe"
+[how.steps.title]
+en = "Optional: a DN50 pipe down to the bowl"
+it = "Opzionale: un tubo DN50 fino alla ciotola"
+de = "Optional: ein DN50-Rohr bis zum Napf"
+[how.steps.body]
+en = "A standard 50 mm drain pipe slides over the chute spigot and carries the kibble to a bowl on the ground. Longer than about half a metre, give it its own support."
+it = "Un normale tubo di scarico da 50 mm si infila sul codolo dello scivolo e porta le crocchette a una ciotola a terra. Oltre circa mezzo metro va sostenuto a parte."
+de = "Ein normales 50-mm-Abflussrohr wird auf den Rutschenstutzen geschoben und führt das Futter zu einem Napf am Boden. Ab etwa einem halben Meter braucht es eine eigene Halterung."
+
+[how.img_section]
+en = "Section through the dispenser: bowl and disc on top, tower with the sealed shaft, box with the servo below"
+it = "Sezione del distributore: vasca e disco sopra, torre con l'albero a tenuta, scatola con il servo sotto"
+de = "Schnitt durch den Spender: Schale und Scheibe oben, Turm mit abgedichteter Welle, Gehäuse mit Servo darunter"
+
+[how.cap_section]
+en = "Section: food above, electronics below, two O-rings in between."
+it = "Sezione: cibo sopra, elettronica sotto, due O-ring in mezzo."
+de = "Schnitt: Futter oben, Elektronik unten, zwei O-Ringe dazwischen."
+
+# ------------------------------------------------------------------ materials
+[materials.title]
+en = "Materials and colour language"
+it = "Materiali e linguaggio dei colori"
+de = "Material und Farbsprache"
+
+[materials.lead]
+en = "Four filaments, and each colour means something, so the parts explain themselves. Grams are slicer estimates for one dispenser."
+it = "Quattro filamenti, e ogni colore ha un significato, così i pezzi si spiegano da soli. I grammi sono stime dello slicer per un distributore."
+de = "Vier Filamente, und jede Farbe bedeutet etwas, damit die Teile sich selbst erklären. Die Gramm sind Slicer-Schätzungen für einen Spender."
+
+[materials.black]
+name = { en = "Black PETG", it = "PETG nero", de = "PETG schwarz" }
+role = { en = "Structure: everything that carries", it = "Struttura: tutto ciò che porta", de = "Struktur: alles, was trägt" }
+
+[materials.orange]
+name = { en = "Orange PETG", it = "PETG arancione", de = "PETG orange" }
+role = { en = "Touch here: latch, buttons, the disc", it = "Toccate qui: linguetta, pulsanti, il disco", de = "Hier anfassen: Lasche, Knöpfe, Scheibe" }
+
+[materials.green]
+name = { en = "Green PETG", it = "PETG verde", de = "PETG grün" }
+role = { en = "Food path: collar, chute, plate bands", it = "Percorso del cibo: colletto, scivolo, bordi delle piastre", de = "Futterweg: Kragen, Rutsche, Plattenränder" }
+
+[materials.yellow]
+name = { en = "Yellow TPU 95A", it = "TPU 95A giallo", de = "TPU 95A gelb" }
+role = { en = "Seals and soft parts", it = "Guarnizioni e parti morbide", de = "Dichtungen und weiche Teile" }
+
+[materials.note]
+en = "PETG is used for every rigid part: it takes sun, rain and frost better than PLA. The buttons on this page are orange for the same reason as on the dispenser: that is where you act."
+it = "Il PETG serve per tutti i pezzi rigidi: regge sole, pioggia e gelo meglio del PLA. I pulsanti di questa pagina sono arancioni per lo stesso motivo del distributore: lì si agisce."
+de = "PETG für alle festen Teile: es verträgt Sonne, Regen und Frost besser als PLA. Die Knöpfe auf dieser Seite sind aus demselben Grund orange wie am Spender: dort handelt man."
+
+[materials.total]
+en = "Total"
+it = "Totale"
+de = "Gesamt"
+
+# ------------------------------------------------------------------ build it (cards)
+[build.title]
+en = "Build one"
+it = "Costruirne uno"
+de = "Einen bauen"
+
+[build.lead]
+en = "Everything you need is here, free. The step-by-step guides are on the way."
+it = "Qui c'è tutto quello che serve, gratis. Le guide passo per passo sono in arrivo."
+de = "Alles, was ihr braucht, ist hier, kostenlos. Die Schritt-für-Schritt-Anleitungen kommen."
+
+[build.print]
+title = { en = "Print files", it = "File di stampa", de = "Druckdateien" }
+body = { en = "Ready plates for a Bambu Lab A1 with AMS lite, plain 3MF for any slicer, every part as an STL.", it = "Piatti pronti per Bambu Lab A1 con AMS lite, 3MF semplici per qualsiasi slicer, ogni pezzo come STL.", de = "Fertige Platten für Bambu Lab A1 mit AMS lite, einfache 3MF für jeden Slicer, jedes Teil als STL." }
+cta = { en = "Plates and downloads", it = "Piatti e download", de = "Platten und Downloads" }
+plates = { en = "plates", it = "piatti", de = "Platten" }
+hours = { en = "printing", it = "di stampa", de = "Druckzeit" }
+grams = { en = "filament", it = "di filamento", de = "Filament" }
+
+[build.parts]
+title = { en = "Parts to buy", it = "Pezzi da comprare", de = "Zukaufteile" }
+body = { en = "Stainless M3 screws, brass heat-set inserts, three NBR O-rings, a cable gland, food-grade grease and the electronics module. Plus a Ø76 hole saw for the shelf.", it = "Viti M3 inox, inserti in ottone a caldo, tre O-ring in NBR, un pressacavo, grasso alimentare e il modulo elettronico. E una sega a tazza Ø76 per il ripiano.", de = "M3-Edelstahlschrauben, Messing-Gewindeeinsätze, drei NBR-O-Ringe, eine Kabelverschraubung, lebensmittelechtes Fett und das Elektronikmodul. Dazu eine Lochsäge Ø76 für das Brett." }
+cta = { en = "The full list", it = "L'elenco completo", de = "Die ganze Liste" }
+screws = { en = "screws", it = "viti", de = "Schrauben" }
+inserts = { en = "inserts", it = "inserti", de = "Einsätze" }
+orings = { en = "O-rings", it = "O-ring", de = "O-Ringe" }
+
+[build.wizard]
+title = { en = "Assembly wizard", it = "Montaggio passo per passo", de = "Montage Schritt für Schritt" }
+body = { en = "Step by step on your phone, with the 3D model at every step, in English, Italian and German.", it = "Passo per passo sul telefono, con il modello 3D a ogni passo, in italiano, inglese e tedesco.", de = "Schritt für Schritt auf dem Handy, mit dem 3D-Modell bei jedem Schritt, auf Deutsch, Englisch und Italienisch." }
+
+[build.manual]
+title = { en = "PDF manual", it = "Manuale PDF", de = "PDF-Anleitung" }
+body = { en = "A small A6 manual to print and keep in the workshop: assembly, installation and service.", it = "Un piccolo manuale A6 da stampare e tenere in officina: montaggio, installazione e manutenzione.", de = "Eine kleine A6-Anleitung zum Ausdrucken für die Werkstatt: Montage, Einbau und Wartung." }
+
+[build.soon]
+en = "Coming soon"
+it = "In arrivo"
+de = "Demnächst"
+
+[build.model]
+en = "Or explore every part in the 3D model first."
+it = "Oppure esplorate prima ogni pezzo nel modello 3D."
+de = "Oder schaut euch zuerst jedes Teil im 3D-Modell an."
+
+# ------------------------------------------------------------------ what's next: v6.1
+[next.title]
+en = "What's next: v6.1"
+it = "Cosa arriva: la v6.1"
+de = "Als Nächstes: v6.1"
+
+[next.badge]
+en = "In design"
+it = "In progettazione"
+de = "In Arbeit"
+
+[next.lead]
+en = "v6.1 keeps the v6 mechanism and reworks everything you see and touch, so it can stay outside for years with animals around."
+it = "La v6.1 tiene la meccanica della v6 e rifà tutto ciò che si vede e si tocca, per restare fuori per anni con gli animali intorno."
+de = "v6.1 behält die Mechanik von v6 und überarbeitet alles, was man sieht und anfasst, damit er jahrelang draußen zwischen Tieren bleiben kann."
+
+[next.warning]
+en = "The v6 files on this site are a preview. v6.1 will replace them: wait for it before you print the whole unit."
+it = "I file v6 di questo sito sono un'anteprima. La v6.1 li sostituirà: aspettatela prima di stampare l'unità intera."
+de = "Die v6-Dateien auf dieser Seite sind eine Vorschau. v6.1 wird sie ersetzen: wartet darauf, bevor ihr die ganze Einheit druckt."
+
+[[next.items]]
+key = "shell"
+[next.items.title]
+en = "A smooth shell"
+it = "Un guscio liscio"
+de = "Eine glatte Hülle"
+[next.items.body]
+en = "Claw-proof and bite-proof: no edge to hook a claw or a tooth on. The chute moves inside the shell."
+it = "A prova di unghie e di morsi: nessuno spigolo dove agganciare un artiglio o un dente. Lo scivolo va dentro il guscio."
+de = "Kratz- und bissfest: keine Kante, an der Krallen oder Zähne greifen. Die Rutsche wandert in die Hülle."
+
+[[next.items]]
+key = "flush"
+[next.items.title]
+en = "Flush latch and buttons"
+it = "Linguetta e pulsanti a filo"
+de = "Bündige Lasche und Knöpfe"
+[next.items.body]
+en = "Still orange, still easy to find, but level with the surface, so nothing sticks out to chew or pull."
+it = "Sempre arancioni e facili da trovare, ma a filo della superficie: niente che sporga da mordere o tirare."
+de = "Weiter orange und leicht zu finden, aber bündig mit der Oberfläche: nichts steht zum Kauen oder Ziehen ab."
+
+[[next.items]]
+key = "cable"
+[next.items.title]
+en = "Cable out at the top"
+it = "Cavo che esce in alto"
+de = "Kabel oben heraus"
+[next.items.body]
+en = "The 12 V cable leaves upwards, under the shelf, out of reach and out of the rain."
+it = "Il cavo a 12 V esce verso l'alto, sotto il ripiano, fuori portata e fuori dalla pioggia."
+de = "Das 12-V-Kabel geht nach oben unter das Brett, außer Reichweite und aus dem Regen."
+
+[[next.items]]
+key = "care"
+[next.items.title]
+en = "Zero maintenance"
+it = "Zero manutenzione"
+de = "Wartungsfrei"
+[next.items.body]
+en = "A self-cleaning disc, scissor edges against jams, no grease for you to apply, and a breather vent instead of silica gel."
+it = "Un disco autopulente, bordi a forbice contro gli inceppamenti, nessun grasso da mettere e uno sfiato al posto del silica gel."
+de = "Eine selbstreinigende Scheibe, Scherkanten gegen Verklemmen, kein Fett zum Nachschmieren und eine Entlüftung statt Silicagel."
+
+# ------------------------------------------------------------------ status
+[status.title]
+en = "Where the project stands"
+it = "A che punto è il progetto"
+de = "Wo das Projekt steht"
+
+[status.stamp]
+en = "v6: designed, not yet printed or tested"
+it = "v6: disegnata, non ancora stampata né provata"
+de = "v6: konstruiert, noch nicht gedruckt oder getestet"
+
+[status.v6]
+title = { en = "Design v6, in CAD", it = "Progetto v6, in CAD", de = "Entwurf v6, im CAD" }
+body = { en = "Every part is generated by Python scripts and checked automatically: closed meshes, no interference in 575 pairs of parts, slopes of at least 50° for the food, the bayonet sweep, clearances and room for the hex key. Nothing of v6 has been printed yet.", it = "Ogni pezzo è generato da script Python e verificato in automatico: mesh chiuse, nessuna interferenza in 575 coppie di pezzi, pendenze di almeno 50° per il cibo, il movimento della baionetta, giochi e spazio per la chiave a brugola. Della v6 non è ancora stato stampato nulla.", de = "Jedes Teil wird von Python-Skripten erzeugt und automatisch geprüft: geschlossene Netze, keine Überschneidung in 575 Teilepaaren, mindestens 50° Gefälle für das Futter, der Weg des Bajonetts, Spiel und Platz für den Inbusschlüssel. Von v6 ist noch nichts gedruckt." }
+
+[status.bench]
+title = { en = "The prototype on the bench", it = "Il prototipo sul banco", de = "Der Prototyp auf der Werkbank" }
+body = { en = "The electronics and the firmware already work: a Freenove ESP32-WROVER board running MicroPython, with an on/off button and LED, one portion when you switch it on and one per press, and a sound with every portion. It still drives an earlier mechanism, not v6.", it = "Elettronica e firmware funzionano già: una scheda Freenove ESP32-WROVER con MicroPython, pulsante di accensione con LED, una porzione all'accensione e una a ogni pressione, e un suono a ogni porzione. Muove ancora una meccanica precedente, non la v6.", de = "Elektronik und Firmware laufen schon: ein Freenove-ESP32-WROVER-Board mit MicroPython, Ein/Aus-Taste mit LED, eine Portion beim Einschalten und eine pro Tastendruck, und ein Ton bei jeder Portion. Es treibt noch eine frühere Mechanik an, nicht v6." }
+firmware = { en = "Firmware source", it = "Sorgente del firmware", de = "Firmware-Quellcode" }
+
+[status.photos]
+overview = { en = "The bench prototype: ESP32-WROVER on a breadboard, speaker and 25 kg servo", it = "Il prototipo sul banco: ESP32-WROVER su breadboard, altoparlante e servo da 25 kg", de = "Der Prototyp auf der Werkbank: ESP32-WROVER auf dem Steckbrett, Lautsprecher und 25-kg-Servo" }
+buttons = { en = "The two buttons, the speaker and the servo lead on the breadboard", it = "I due pulsanti, l'altoparlante e il cavo del servo sulla breadboard", de = "Die zwei Tasten, der Lautsprecher und das Servokabel auf dem Steckbrett" }
+disc = { en = "An early printed disc in the bowl of prototype 1", it = "Un primo disco stampato nella vasca del prototipo 1", de = "Eine frühe gedruckte Scheibe in der Schale von Prototyp 1" }
+
+[status.roadmap]
+title = { en = "Roadmap", it = "Prossimi passi", de = "Fahrplan" }
+now = { en = "now", it = "ora", de = "jetzt" }
+items = [
+  { en = "Design v6.1: the smooth, low-maintenance shell", it = "Progettare la v6.1: il guscio liscio e senza manutenzione", de = "v6.1 konstruieren: die glatte, wartungsarme Hülle" },
+  { en = "Print the test pieces: spline coupons and the TPU lip strip", it = "Stampare i pezzi di prova: provini dello scanalato e striscia del labbro in TPU", de = "Testteile drucken: Verzahnungsproben und TPU-Lippenstreifen" },
+  { en = "Print v6.1, assemble it, hose-test the closed box", it = "Stampare la v6.1, montarla, provare la scatola chiusa con la canna", de = "v6.1 drucken, montieren, das geschlossene Gehäuse mit dem Schlauch testen" },
+  { en = "Weigh real portions and calibrate the disc zero", it = "Pesare porzioni vere e tarare lo zero del disco", de = "Echte Portionen wiegen und den Nullpunkt der Scheibe einstellen" },
+  { en = "Move the MicroPython firmware from the bench to the new unit", it = "Portare il firmware MicroPython dal banco alla nuova unità", de = "Die MicroPython-Firmware von der Werkbank in die neue Einheit bringen" },
+  { en = "Assembly wizard and PDF manual", it = "Montaggio passo per passo e manuale PDF", de = "Montageanleitung Schritt für Schritt und PDF-Anleitung" },
+  { en = "A kit with the electronics pre-assembled", it = "Un kit con l'elettronica già montata", de = "Ein Bausatz mit vormontierter Elektronik" },
+]
+
+# ------------------------------------------------------------------ open source
+[open.title]
+en = "Open source"
+it = "Open source"
+de = "Open Source"
+
+[open.lead]
+en = "Anyone can build, change, share and sell this dispenser, including as a product. Keep the licence notices and credit the project."
+it = "Chiunque può costruire, modificare, condividere e vendere questo distributore, anche come prodotto. Basta mantenere le note di licenza e citare il progetto."
+de = "Jede und jeder darf diesen Spender bauen, ändern, teilen und verkaufen, auch als Produkt. Lizenzhinweise behalten und das Projekt nennen."
+
+[open.software]
+title = { en = "Software", it = "Software", de = "Software" }
+body = { en = "Firmware, CAD scripts and this website", it = "Firmware, script CAD e questo sito", de = "Firmware, CAD-Skripte und diese Website" }
+
+[open.hardware]
+title = { en = "Hardware", it = "Hardware", de = "Hardware" }
+body = { en = "STL and 3MF files, print plates, design data", it = "File STL e 3MF, piatti di stampa, dati di progetto", de = "STL- und 3MF-Dateien, Druckplatten, Konstruktionsdaten" }
+
+[open.docs]
+title = { en = "Docs and images", it = "Documenti e immagini", de = "Doku und Bilder" }
+body = { en = "Guides, texts, photos and renders", it = "Guide, testi, foto e immagini", de = "Anleitungen, Texte, Fotos und Renderings" }
+
+[open.contribute]
+title = { en = "Join in", it = "Partecipate", de = "Macht mit" }
+body = { en = "Built a part, or the whole thing? Open a build report with photos. Want to change a part? Edit its Python script, not the mesh: CI rebuilds and checks every part on each push.", it = "Avete costruito un pezzo, o tutto? Aprite un resoconto con le foto. Volete cambiare un pezzo? Modificate il suo script Python, non la mesh: la CI ricostruisce e verifica ogni pezzo a ogni push.", de = "Ein Teil oder alles gebaut? Eröffnet einen Baubericht mit Fotos. Ein Teil ändern? Bearbeitet sein Python-Skript, nicht das Netz: die CI baut und prüft jedes Teil bei jedem Push." }
+
+[open.github]
+en = "Source on GitHub"
+it = "Sorgenti su GitHub"
+de = "Quellen auf GitHub"
+
+[open.issue]
+en = "Send a build report"
+it = "Mandate un resoconto"
+de = "Baubericht schicken"
+
+[open.guide]
+en = "Contributing guide"
+it = "Guida per contribuire"
+de = "Mitmach-Anleitung"
+
+# ------------------------------------------------------------------ footer
+[footer.title]
+en = "Kibble Dispenser Outdoor"
+it = "Kibble Dispenser Outdoor"
+de = "Kibble Dispenser Outdoor"
+
+[footer.revision]
+en = "v6 preview · v6.1 in design"
+it = "anteprima v6 · v6.1 in progettazione"
+de = "Vorschau v6 · v6.1 in Arbeit"
+
+[footer.earlier]
+en = "Earlier versions"
+it = "Versioni precedenti"
+de = "Frühere Versionen"
+
+[footer.privacy]
+en = "No cookies, no trackers, no third-party scripts or fonts."
+it = "Niente cookie, niente tracciamento, niente script o font di terze parti."
+de = "Keine Cookies, kein Tracking, keine Skripte oder Schriften von Dritten."
+
+[footer.licence]
+en = "Text and images CC BY 4.0, design files CERN-OHL-P-2.0, code MIT."
+it = "Testi e immagini CC BY 4.0, file di progetto CERN-OHL-P-2.0, codice MIT."
+de = "Texte und Bilder CC BY 4.0, Konstruktionsdateien CERN-OHL-P-2.0, Code MIT."
+
+[footer.language]
+en = "Language"
+it = "Lingua"
+de = "Sprache"

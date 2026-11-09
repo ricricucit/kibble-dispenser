@@ -1,10 +1,4 @@
-/* Bought-parts page (v6/parts/): builds on site.css. Every text exists once per language;
-   only the language in <html data-lang> is shown (English without JavaScript). */
-
-html:not([data-lang="it"]) [data-l="it"],
-html:not([data-lang="de"]) [data-l="de"],
-html[data-lang="it"] [data-l="en"],
-html[data-lang="de"] [data-l="en"] { display: none !important; }
+/* Bought-parts page (v6/parts/): builds on site.css (which also holds the language rules and switch). */
 
 .masthead .nav-repo a { white-space: nowrap; }
 
@@ -15,14 +9,6 @@ main > section.parts-head { padding-bottom: clamp(24px, 4vw, 40px); display: gri
 .parts-head .lead { font: 500 var(--t-2)/1.35 var(--f-draw); max-width: 46ch; }
 .parts-head .stamp { margin: 4px 0 0; max-width: 60ch; line-height: 1.3; }
 .parts-head .source { color: var(--ink-2); max-width: 70ch; }
-
-.lang-switch { display: inline-flex; border: 1.5px solid var(--ink); border-radius: 2px; }
-.lang-switch button {
-  min-width: 44px; min-height: 36px; padding: 6px 10px; border: 0; background: var(--sheet); color: var(--ink);
-  font: 600 0.88rem/1 var(--f-draw); cursor: pointer;
-}
-.lang-switch button + button { border-left: 1.5px solid var(--ink); }
-.lang-switch button[aria-pressed="true"] { background: var(--ink); color: var(--vellum); }
 
 .kit { list-style: none; margin: 0; padding: 0; display: grid; }
 .kit li {

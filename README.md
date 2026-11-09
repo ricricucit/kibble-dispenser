@@ -39,16 +39,16 @@ Prototype 1, work in progress. The next design, v6, is designed and checked in C
 - 3D model, full screen, in English, Italian and German: <https://ricricucit.github.io/kibble-dispenser/v6/3d/>
 - Bought parts (screws, seals, electronics module, tools), in English, Italian and German: <https://ricricucit.github.io/kibble-dispenser/v6/parts/>, also in [docs/BOM.md](docs/BOM.md)
 - CAD scripts, print-ready STL and 3MF, design data and print notes: [hardware/v6/](hardware/v6/README.md)
-- Print plates for Bambu Lab printers: coming soon
+- Print plates for a Bambu Lab A1 with AMS lite (preview, v6.1 will replace them): <https://ricricucit.github.io/kibble-dispenser/v6/print/>, files in [hardware/v6/plates/](hardware/v6/plates/README.md)
 - Step-by-step assembly wizard (English, Italian, German): coming soon
 - Pocket manual, A6 PDF: coming soon
 
 ## Live model
 
-The project site shows the prototype 1 assembly as a 3D model you can orbit, cut in section, explode and run: <https://ricricucit.github.io/kibble-dispenser/>. Design v6 has its own full-screen 3D page, with a workshop view and a view in the woods: <https://ricricucit.github.io/kibble-dispenser/v6/3d/>.
+The project site presents design v6 in English, Italian and German: <https://ricricucit.github.io/kibble-dispenser/>. Design v6 has its own full-screen 3D page, with a workshop view and a view in the woods: <https://ricricucit.github.io/kibble-dispenser/v6/3d/>, and a print-files page: <https://ricricucit.github.io/kibble-dispenser/v6/print/>. The prototype 1 assembly, as a 3D model you can orbit, cut in section, explode and run, is on the earlier-versions page: <https://ricricucit.github.io/kibble-dispenser/earlier/>.
 
 - The site lives in `site/` (plain HTML, CSS and JavaScript, with three.js bundled in `site/vendor/three/`, so it loads no third-party scripts or fonts).
-- `python site/build.py` copies the assembly meshes from `hardware/assembly/` and the process photos into `site/_build/`, so the site always matches the repository. Preview it locally with `python -m http.server -d site/_build`.
+- `python site/build.py` writes the home page and the v6 print-files page with `site/pages.py` (texts in `site/content/*.toml`, numbers from `hardware/v6/plates/summary.json` and `hardware/v6/cad/v6.json`, downloads from `hardware/v6/plates/`), and copies the prototype 1 assembly meshes from `hardware/assembly/` and the process photos into `site/_build/`, so the site always matches the repository. Preview it locally with `python -m http.server -d site/_build`.
 - The same build writes the v6 pages: the 3D page from `hardware/v6/assembly/` with the generator in `site/viewer/` (meshes decimated into separate STL files, three.js r128 bundled in `site/vendor/three-r128/`), and the bought-parts page from `hardware/v6/bom.json` with `site/bom.py`. It needs `pip install numpy fast_simplification`. `python site/viewer/make_viewer.py MANIFEST OUT.html` also writes a single-file preview with the meshes embedded.
 - `.github/workflows/pages.yml` builds and publishes it on every push to `main`. GitHub Pages has to be enabled once by the owner: Settings > Pages > Source: GitHub Actions. A Pages site is always public, and Pages on a private repository needs a paid GitHub plan.
 

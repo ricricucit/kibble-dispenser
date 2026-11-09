@@ -4,12 +4,14 @@ Build the static site so it always reflects the repository.
 
 Run from anywhere:  python site/build.py [OUTPUT_DIR]
 OUTPUT_DIR defaults to site/_build (not committed). The script:
-  - copies site/ (pages, css, js, vendored three.js) into the output folder
-  - copies hardware/assembly/* (meshes and assembly.json) into <out>/assembly/
+  - copies site/ (css, js, img, vendored three.js, the earlier-versions page) into the output folder
+  - home page <out>/index.html and print-files page <out>/v6/print/ (with the downloads from
+    hardware/v6/plates/), in English, Italian and German: site/pages.py with the texts in site/content/
+  - earlier versions (prototype 1, drivetrain v3) at <out>/earlier/: copies hardware/assembly/* (meshes
+    and assembly.json) into <out>/earlier/assembly/ and fills the printed-parts list and the photo strip
+    of earlier/index.html from assembly.json and the captions in docs/photos/README.md
   - copies the selected process photos from docs/photos/ into <out>/photos/, with smaller
     previews in <out>/photos/thumb/ when Pillow is installed (the originals otherwise)
-  - fills the printed-parts list and the photo strip in index.html from assembly.json
-    and the captions in docs/photos/README.md
   - design v6: writes the full-screen 3D page <out>/v6/3d/ with site/viewer/make_viewer.py from
     hardware/v6/assembly/ (decimated meshes as separate STL files, three.js r128 from site/vendor/three-r128/),
     and the bought-parts page <out>/v6/parts/ from hardware/v6/bom.json (site/bom.py)
@@ -37,6 +39,8 @@ PHOTOS = [
     '2026-07-04-aluminium-25t-clamp-horn.jpg',
     '2026-07-04-disc-v1-mockup-with-star-horn.jpg',
     'freenove-esp32-cam-board-breadboard-wiring.jpg',
+    '2026-11-08-bench-wrover-breadboard-servo-overview.jpg',
+    '2026-11-08-breadboard-servo-speaker-buttons.jpg',
     'bowl-upside-down-with-spout-on-plywood.jpg',
     '2026-10-04-bowl-with-spout-cover-removed.jpg',
     '2026-10-04-bowl-top-view-spout-opened.jpg',
@@ -58,7 +62,7 @@ def captions():
     return out
 
 
-def photos_html():
+def photos_html(prefix=''):
     caps = captions()
     src, dst, thumbs = ROOT / 'docs/photos', OUT / 'photos', OUT / 'photos/thumb'
     thumbs.mkdir(parents=True, exist_ok=True)
@@ -85,8 +89,8 @@ def photos_html():
         cap = esc(caps.get(name, name))
         size = f' width="{w}" height="{h}"' if w else ''
         items.append(
-            f'<li><figure><a href="photos/{esc(name)}" data-lightbox>'
-            f'<img src="photos/thumb/{esc(name)}"{size} loading="lazy" decoding="async" alt="{cap}"></a>'
+            f'<li><figure><a href="{prefix}photos/{esc(name)}" data-lightbox>'
+            f'<img src="{prefix}photos/thumb/{esc(name)}"{size} loading="lazy" decoding="async" alt="{cap}"></a>'
             f'<figcaption>{cap}</figcaption></figure></li>')
     return '<ul class="photos">\n' + '\n'.join(items) + '\n</ul>'
 
@@ -121,6 +125,7 @@ def parts_html(data):
 
 V6_LINKS = [
     {'href': '../../', 'label': {'en': 'Project home', 'it': 'Pagina del progetto', 'de': 'Projektseite'}},
+    {'href': '../print/', 'label': {'en': 'Print files', 'it': 'File di stampa', 'de': 'Druckdateien'}},
     {'href': '../parts/', 'label': {'en': 'Bought parts', 'it': 'Pezzi extra', 'de': 'Zukaufteile'}},
     {'href': f'{REPO}/tree/main/hardware/v6', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
 ]
@@ -150,22 +155,26 @@ def v6_pages():
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
-    skip = {'build.py', 'bom.py', 'viewer', '_build', '__pycache__', OUT.name}
+    skip = {'build.py', 'bom.py', 'pages.py', 'content', 'viewer', '_build', '__pycache__', OUT.name}
     shutil.copytree(SITE, OUT, ignore=lambda d, names: [n for n in names if n in skip or n.endswith('.pyc')])
-    shutil.copytree(ROOT / 'hardware/assembly', OUT / 'assembly')
-    data = json.loads((OUT / 'assembly/assembly.json').read_text(encoding='utf-8'))
+    # earlier versions: prototype 1 assembly with its live 3D model
+    earlier = OUT / 'earlier'
+    shutil.copytree(ROOT / 'hardware/assembly', earlier / 'assembly')
+    data = json.loads((earlier / 'assembly/assembly.json').read_text(encoding='utf-8'))
     for p in data['parts']:
-        if not (OUT / 'assembly' / p['file']).exists():
+        if not (earlier / 'assembly' / p['file']).exists():
             sys.exit(f"missing mesh hardware/assembly/{p['file']}")
-    page = OUT / 'index.html'
+    page = earlier / 'index.html'
     s = page.read_text(encoding='utf-8')
-    for marker, content in (('parts', parts_html(data)), ('photos', photos_html())):
+    for marker, content in (('parts', parts_html(data)), ('photos', photos_html('../'))):
         token = f'<!-- @{marker} -->'
         if token not in s:
-            sys.exit(f'{token} not found in site/index.html')
+            sys.exit(f'{token} not found in site/earlier/index.html')
         s = s.replace(token, content)
     page.write_text(s, encoding='utf-8')
     v6_pages()
+    import pages
+    pages.build(OUT)
     n = sum(1 for f in OUT.rglob('*') if f.is_file())
     print(f'site built in {OUT} ({n} files)')
 

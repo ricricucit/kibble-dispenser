@@ -39,6 +39,7 @@ UI = {
                'de': 'Mengen und Angaben stammen aus den Konstruktionsdaten von v6. Keine Shop-Links: kauft, wo es euch passt.'},
     'printed': {'en': 'Printed parts and their files', 'it': 'Pezzi stampati e i loro file', 'de': 'Druckteile und ihre Dateien'},
     'model': {'en': '3D model v6', 'it': 'Modello 3D v6', 'de': '3D-Modell v6'},
+    'print': {'en': 'Print files', 'it': 'File di stampa', 'de': 'Druckdateien'},
     'home': {'en': 'Project home', 'it': 'Pagina del progetto', 'de': 'Projektseite'},
     'language': {'en': 'Language', 'it': 'Lingua', 'de': 'Sprache'},
     'licence': {'en': 'Text CC BY 4.0, design data CERN-OHL-P-2.0.',
@@ -152,7 +153,8 @@ def render_page(bom):
     <nav aria-label="Pages">
       <ul>
         <li><a href="../3d/" data-keep-lang>{_spans(UI['model'])}</a></li>
-        <li><a href="../../">{_spans(UI['home'])}</a></li>
+        <li><a href="../print/" data-keep-lang>{_spans(UI['print'])}</a></li>
+        <li><a href="../../" data-keep-lang>{_spans(UI['home'])}</a></li>
         <li class="nav-repo"><a href="{REPO}">GitHub</a></li>
       </ul>
     </nav>
@@ -167,7 +169,7 @@ def render_page(bom):
     </section>
     {''.join(blocks)}
     <section class="parts-foot">
-      <p><a href="{REPO}/blob/main/hardware/v6/README.md">{_spans(UI['printed'])}</a> · <a href="../3d/" data-keep-lang>{_spans(UI['model'])}</a></p>
+      <p><a href="../print/" data-keep-lang>{_spans(UI['printed'])}</a> · <a href="../3d/" data-keep-lang>{_spans(UI['model'])}</a></p>
       <p class="aside">{_spans(UI['licence'])} <a href="{REPO}/blob/main/hardware/v6/bom.json">bom.json</a></p>
     </section>
   </main>

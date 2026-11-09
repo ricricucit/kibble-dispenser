@@ -43,7 +43,9 @@ path = [
   "hardware/v6/cad/*.png",
   "firmware/README.md",
   "import/**/*.md",
-  "site/index.html",
+  "site/earlier/index.html",
+  "site/content/**",
+  "site/img/**",
   "LICENSE",
 ]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
