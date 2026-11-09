@@ -37,7 +37,7 @@ The release title shows the status (for example "Hardware 6.0.0 · designed"). R
 2. Push to `main`. The workflow [`release.yml`](.github/workflows/release.yml) runs [`tools/release.py`](tools/release.py): for each line whose tag does not exist yet it creates an annotated tag and a GitHub Release with the assets, and takes the notes from the matching CHANGELOG section.
 3. A new tag points at the commit that brings the new version to `main` (the head of the push), and the assets are read from that commit. The release notes also name the last commit that changed the line's files (`hardware/` or `firmware/micropython/`), when that is an earlier one. The workflow cannot tag older commits: GitHub refuses to let the workflow's token create a ref on a commit whose workflow files differ from `main`.
 
-   The first two tags were backfilled this way when the version lines were introduced: `hw-v6.0.0` and `fw-v0.1.0+dev.20260324` point at that commit, and their files are the same as in commit `58943c9` (design v6 with its print plates) and commit `b6b40bf` (the firmware import).
+   The first two tags were backfilled this way right after the version lines were introduced: `hw-v6.0.0` and `fw-v0.1.0+dev.20260324` point at commit `b74b26c`, and their files are the same as in commit `58943c9` (design v6 with its print plates) and commit `b6b40bf` (the firmware import).
 4. A product release only goes out when the pinned hardware and firmware tags exist and the hardware status is tested or field-proven.
 
 Run `python tools/release.py` (a dry run: it prints the plan and builds the assets in a temporary folder, without tagging) to check a release before you push. The workflow can also be started by hand from the Actions tab.
