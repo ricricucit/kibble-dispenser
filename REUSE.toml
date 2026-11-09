@@ -28,6 +28,7 @@ path = [
   "hardware/v6/3mf/**",
   "hardware/v6/assembly/**",
   "hardware/v6/cad/*.json",
+  "hardware/v6/bom.json",
 ]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CERN-OHL-P-2.0"

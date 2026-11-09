@@ -11,7 +11,8 @@ OUTPUT_DIR defaults to site/_build (not committed). The script:
   - fills the printed-parts list and the photo strip in index.html from assembly.json
     and the captions in docs/photos/README.md
   - design v6: writes the full-screen 3D page <out>/v6/3d/ with site/viewer/make_viewer.py from
-    hardware/v6/assembly/ (decimated meshes as separate STL files, three.js r128 from site/vendor/three-r128/)
+    hardware/v6/assembly/ (decimated meshes as separate STL files, three.js r128 from site/vendor/three-r128/),
+    and the bought-parts page <out>/v6/parts/ from hardware/v6/bom.json (site/bom.py)
 The v6 3D page needs numpy, and fast_simplification to decimate the meshes (without it the full
 meshes are used): pip install numpy fast_simplification. Everything else is standard library.
 """
@@ -126,12 +127,14 @@ V6_LINKS = [
 
 
 def v6_pages():
-    """Full-screen 3D page of design v6."""
+    """Full-screen 3D page and bought-parts page of design v6."""
     sys.path.insert(0, str(SITE / 'viewer'))
+    sys.path.insert(0, str(SITE))
     try:
         import make_viewer
     except ImportError as e:
         sys.exit(f'the v6 3D page needs numpy ({e}): pip install numpy fast_simplification')
+    import bom
     if make_viewer.fast_simplification is None:
         print('fast_simplification not installed: the v6 3D page uses the full meshes')
     page = OUT / 'v6/3d'
@@ -139,12 +142,15 @@ def v6_pages():
     print(make_viewer.build(str(ROOT / 'hardware/v6/assembly/v6_viewer.json'), str(page / 'index.html'),
                             mesh_dir=str(page / 'meshes'), mesh_url='meshes/',
                             three_src='../../vendor/three-r128/three.min.js', extra={'links': V6_LINKS}))
+    parts = OUT / 'v6/parts'
+    parts.mkdir(parents=True)
+    (parts / 'index.html').write_text(bom.render_page(bom.load()), encoding='utf-8')
 
 
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
-    skip = {'build.py', 'viewer', '_build', '__pycache__', OUT.name}
+    skip = {'build.py', 'bom.py', 'viewer', '_build', '__pycache__', OUT.name}
     shutil.copytree(SITE, OUT, ignore=lambda d, names: [n for n in names if n in skip or n.endswith('.pyc')])
     shutil.copytree(ROOT / 'hardware/assembly', OUT / 'assembly')
     data = json.loads((OUT / 'assembly/assembly.json').read_text(encoding='utf-8'))

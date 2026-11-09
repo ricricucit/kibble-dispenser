@@ -1,0 +1,48 @@
+/* Bought-parts page (v6/parts/): builds on site.css. Every text exists once per language;
+   only the language in <html data-lang> is shown (English without JavaScript). */
+
+html:not([data-lang="it"]) [data-l="it"],
+html:not([data-lang="de"]) [data-l="de"],
+html[data-lang="it"] [data-l="en"],
+html[data-lang="de"] [data-l="en"] { display: none !important; }
+
+.masthead .nav-repo a { white-space: nowrap; }
+
+.lang-block > section { padding: clamp(32px, 5vw, 64px) var(--gutter); max-width: 1240px; margin: 0 auto; }
+
+main > section.parts-head { padding-bottom: clamp(24px, 4vw, 40px); display: grid; gap: 14px; justify-items: start; }
+.parts-head h1 { font-size: var(--t-5); font-stretch: 87.5%; }
+.parts-head .lead { font: 500 var(--t-2)/1.35 var(--f-draw); max-width: 46ch; }
+.parts-head .stamp { margin: 4px 0 0; max-width: 60ch; line-height: 1.3; }
+.parts-head .source { color: var(--ink-2); max-width: 70ch; }
+
+.lang-switch { display: inline-flex; border: 1.5px solid var(--ink); border-radius: 2px; }
+.lang-switch button {
+  min-width: 44px; min-height: 36px; padding: 6px 10px; border: 0; background: var(--sheet); color: var(--ink);
+  font: 600 0.88rem/1 var(--f-draw); cursor: pointer;
+}
+.lang-switch button + button { border-left: 1.5px solid var(--ink); }
+.lang-switch button[aria-pressed="true"] { background: var(--ink); color: var(--vellum); }
+
+.kit { list-style: none; margin: 0; padding: 0; display: grid; }
+.kit li {
+  display: grid; grid-template-columns: 4.2rem minmax(0, 1fr); gap: 14px; align-items: start;
+  padding: 14px 0; border-bottom: 1px solid var(--rule);
+}
+.kit li:first-child { padding-top: 0; }
+.kit h3 { font-size: var(--t-2); font-stretch: 87.5%; overflow-wrap: anywhere; }
+.kit p { color: var(--ink-2); margin-top: 4px; max-width: 70ch; }
+.qty {
+  justify-self: start; min-width: 3.4rem; padding: 4px 8px; text-align: center;
+  border: 1.5px solid var(--ink); border-radius: 2px; background: var(--sheet);
+  font: 600 var(--t-1)/1.2 var(--f-draw); font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.qty.tick { min-width: 0; width: 18px; height: 18px; padding: 0; margin-top: 4px; }
+
+main > section.parts-foot { padding-top: 0; display: grid; gap: 10px; }
+.parts-foot a { font-family: var(--f-draw); font-weight: 600; }
+.parts-foot .aside { font-size: 0.9rem; color: var(--ink-2); }
+
+@media (max-width: 600px) {
+  .kit li { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}

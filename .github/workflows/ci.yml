@@ -73,6 +73,9 @@ jobs:
       - name: Build the site from the repository
         run: python site/build.py
 
+      - name: docs/BOM.md matches hardware/v6/bom.json and v6.json
+        run: python site/bom.py --check
+
   firmware:
     name: Lint the MicroPython firmware
     runs-on: ubuntu-latest
