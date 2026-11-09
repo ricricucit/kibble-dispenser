@@ -10,6 +10,10 @@ A DIY, weatherproof cat-kibble dispenser you can build from 3D-printed parts and
 
 The owner's MicroPython firmware is the baseline firmware for prototype 1, and ESPHome is the alternative for Home Assistant and OTA later. Its source, as a snapshot of the owner's development folder (not an on-device readback), is in [`firmware/micropython/`](firmware/micropython/README.md). The board is documented as a Freenove ESP32-WROVER (a classic ESP32) in the owner's `PROJECT.md`, to be verified on the device; earlier repository text that said ESP32-S3 was wrong.
 
+## Versions
+
+Hardware, firmware and the sellable product each have their own version line and tags (`hw-v6.0.0`, `fw-v0.1.0+dev.20260324`, `product-v…`), published as [GitHub Releases](https://github.com/ricricucit/kibble-dispenser/releases) by a workflow on every push to `main`. Design v6 is hardware 6.0.0, status designed; no product has been released yet. Bump rules, statuses and the compatibility table: [VERSIONS.md](VERSIONS.md).
+
 ## Physical prototype first: do not overwrite
 
 **The owner already has a working physical dispenser.** Its confirmed core interactions are: ON/OFF button + state LED; exactly one dispense when switched ON; exactly one dispense for each physical dispense-button press while ON; and a meow sound with each dispensing cycle. Before changing hardware, GPIO assignments or firmware, read [the as-built baseline](docs/AS_BUILT_BASELINE.it.md) and [the collaboration instructions](CLAUDE.md). The exact original MicroPython source still needs to be copied **non-destructively** from the ESP32 to [the import area](import/previous-chat/README.md). Historical pin values are provisional until compared against that code and physical wiring.

@@ -1,0 +1,9 @@
+# Firmware version line, released as the tag fw-v<version> (see VERSIONS.md).
+# Source: firmware/micropython/, a byte-for-byte snapshot of the owner's development folder for "feedr-outdoor"
+# (not edited here). Its own VERSION file says 0.1.0 (2026-03-24); the snapshot also holds uncommitted edits of
+# the same day, hence the build metadata +dev.20260324. The firmware actually flashed on the bench board has not
+# been read back yet and may differ. The ESPHome draft in firmware/esphome/ is not versioned: it stays "draft".
+version = "0.1.0+dev.20260324"
+source = "firmware/micropython"
+upstream_version = "0.1.0"
+note = "dev-folder snapshot; on-device readback pending"

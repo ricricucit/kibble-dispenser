@@ -1,0 +1,8 @@
+# Hardware version line, released as the tag hw-v<version> (see VERSIONS.md).
+# SemVer: MAJOR = new architecture, or parts no longer interchangeable; MINOR = compatible design change;
+# PATCH = a fix that does not change the fit.
+# status: designed, printed, tested or field-proven. It can rise for the same version; the release workflow
+# then updates the title of the existing GitHub Release instead of tagging again.
+version = "6.0.0"
+status = "designed"
+design = "hardware/v6"

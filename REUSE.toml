@@ -10,6 +10,7 @@ path = [
   "hardware/v6/cad/*.py",
   ".github/**",
   "site/**",
+  "tools/**",
   ".gitignore",
   ".gitattributes",
   "REUSE.toml",
@@ -29,6 +30,7 @@ path = [
   "hardware/v6/assembly/**",
   "hardware/v6/cad/*.json",
   "hardware/v6/bom.json",
+  "hardware/VERSION",
 ]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CERN-OHL-P-2.0"
@@ -44,6 +46,7 @@ path = [
   "firmware/README.md",
   "import/**/*.md",
   "site/earlier/index.html",
+  "product/**",
   "site/content/**",
   "site/img/**",
   "LICENSE",

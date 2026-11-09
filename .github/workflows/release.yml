@@ -1,0 +1,43 @@
+name: Release
+
+# Tags and publishes the version lines (see VERSIONS.md): for each of hardware/VERSION, firmware/VERSION and
+# product/product.json whose tag does not exist yet, tools/release.py creates an annotated tag and a GitHub
+# Release with its assets and the notes from the matching CHANGELOG.md section. Run it by hand to backfill.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Tag and publish new versions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Plan (dry run)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/release.py --dry-run
+
+      - name: Tag and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python tools/release.py --publish
