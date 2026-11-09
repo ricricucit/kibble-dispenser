@@ -20,6 +20,8 @@ import tomllib
 import zipfile
 from pathlib import Path
 
+import versions
+
 SITE = Path(__file__).resolve().parent
 ROOT = SITE.parent
 PLATES = ROOT / 'hardware/v6/plates'
@@ -161,6 +163,7 @@ def footer_html(root, H):
       <a href="{REPO}">GitHub</a>
     </p>
     <p class="foot-note">{L(f['licence'])} {L(f['privacy'])} © 2026 Enrico Icardi {L({'en': 'and contributors', 'it': 'e contributori', 'de': 'und Mitwirkende'})}</p>
+    {versions.html_line(VERSIONS)}
   </footer>'''
 
 
@@ -734,7 +737,12 @@ def print_page(out, summary):
     (page_dir / 'index.html').write_text(s, encoding='utf-8')
 
 
+VERSIONS = None
+
+
 def build(out):
+    global VERSIONS
+    VERSIONS = versions.load()
     out = Path(out)
     summary, counts, grams = load_data()
     for k in summary['plates']:

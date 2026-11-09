@@ -84,6 +84,9 @@
   .links a{color:var(--fg);text-decoration:none;background:var(--panel2);border:1px solid var(--line2);border-radius:9px;padding:7px 11px;font-size:13px;font-weight:500}
   .links a:hover{border-color:var(--accent)}
   .links a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .ver{margin:10px 0 0;font-size:11.5px;line-height:1.45;color:var(--muted)}
+  .ver a{color:var(--muted)}
+  .ver a:hover{color:var(--fg)}
 
   /* control panel */
   .panel{position:fixed;z-index:6;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
@@ -286,6 +289,7 @@
     <section class="sec" id="secLinks" hidden>
       <h2 data-i18n="links">Project</h2>
       <div class="links" id="links"></div>
+      <p class="ver" id="ver" hidden></p>
     </section>
   </div>
 </aside>
@@ -404,6 +408,10 @@ const DATA = /*__DATA__*/null;
   });
   function refreshRows(){parts.forEach((p,i)=>{if(rowEls[i])rowEls[i].classList.toggle('off',!S.groupsOn[p.group]);});}
   (Array.isArray(D.links)?D.links:[]).forEach(l=>{if(!l||!l.href)return;const a=el('a');a.href=l.href;a.dataset.k=JSON.stringify(l.label||l.href);$('links').append(a);$('secLinks').hidden=false;});
+  // versions of the hardware, firmware and product lines, and the build commit (site/versions.py)
+  if(D.version&&D.version.href){const p=$('ver'),a=el('a');a.href=D.version.href;a.dataset.k=JSON.stringify(D.version.label);p.append(a);
+    if(D.version.build){p.append(document.createTextNode(' · '));const c=el('a');c.href=D.version.commit||D.version.href;c.textContent=D.version.build;p.append(c);}
+    p.hidden=false;$('secLinks').hidden=false;}
 
   /* ---------- faders ---------- */
   function bindRange(id,fmt,on){
@@ -447,7 +455,7 @@ const DATA = /*__DATA__*/null;
     groupOrder.forEach(g=>{chipLbl[g].textContent=gLabel(g);if(grpH[g])grpH[g].textContent=gLabel(g);});
     parts.forEach((p,i)=>{const r=rowTxt[i];if(!r)return;r.nb.textContent=tr(p.name);r.ns.textContent=tr(p.material)+(p.qty>1?' · ×'+p.qty:'');
       r.pill.textContent=p.bought?t('pillBuy'):t('pillPrint');});
-    $('links').querySelectorAll('a').forEach(a=>{let v;try{v=JSON.parse(a.dataset.k);}catch(_){v=a.href;}a.textContent=tr(v);});
+    document.querySelectorAll('#links a,#ver a[data-k]').forEach(a=>{let v;try{v=JSON.parse(a.dataset.k);}catch(_){v=a.href;}a.textContent=tr(v);});
     rSun.upd(); syncFs(); setPeek(); onLang();
   }
   $('langSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.dataset.lang===lang)return;lang=b.dataset.lang;

@@ -12,6 +12,7 @@ OUTPUT_DIR defaults to site/_build (not committed). The script:
     of earlier/index.html from assembly.json and the captions in docs/photos/README.md
   - copies the selected process photos from docs/photos/ into <out>/photos/, with smaller
     previews in <out>/photos/thumb/ when Pillow is installed (the originals otherwise)
+  - every footer shows the hardware, firmware and product versions (site/versions.py) and the build commit
   - design v6: writes the full-screen 3D page <out>/v6/3d/ with site/viewer/make_viewer.py from
     hardware/v6/assembly/ (decimated meshes as separate STL files, three.js r128 from site/vendor/three-r128/),
     and the bought-parts page <out>/v6/parts/ from hardware/v6/bom.json (site/bom.py)
@@ -137,6 +138,7 @@ def v6_pages():
     sys.path.insert(0, str(SITE))
     try:
         import make_viewer
+        import versions
     except ImportError as e:
         sys.exit(f'the v6 3D page needs numpy ({e}): pip install numpy fast_simplification')
     import bom
@@ -146,16 +148,17 @@ def v6_pages():
     page.mkdir(parents=True)
     print(make_viewer.build(str(ROOT / 'hardware/v6/assembly/v6_viewer.json'), str(page / 'index.html'),
                             mesh_dir=str(page / 'meshes'), mesh_url='meshes/',
-                            three_src='../../vendor/three-r128/three.min.js', extra={'links': V6_LINKS}))
+                            three_src='../../vendor/three-r128/three.min.js',
+                            extra={'links': V6_LINKS, 'version': versions.viewer_data(versions.load())}))
     parts = OUT / 'v6/parts'
     parts.mkdir(parents=True)
-    (parts / 'index.html').write_text(bom.render_page(bom.load()), encoding='utf-8')
+    (parts / 'index.html').write_text(bom.render_page(bom.load(), versions.html_line(versions.load())), encoding='utf-8')
 
 
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
-    skip = {'build.py', 'bom.py', 'pages.py', 'content', 'viewer', '_build', '__pycache__', OUT.name}
+    skip = {'build.py', 'bom.py', 'pages.py', 'versions.py', 'content', 'viewer', '_build', '__pycache__', OUT.name}
     shutil.copytree(SITE, OUT, ignore=lambda d, names: [n for n in names if n in skip or n.endswith('.pyc')])
     # earlier versions: prototype 1 assembly with its live 3D model
     earlier = OUT / 'earlier'
@@ -166,7 +169,10 @@ def main():
             sys.exit(f"missing mesh hardware/assembly/{p['file']}")
     page = earlier / 'index.html'
     s = page.read_text(encoding='utf-8')
-    for marker, content in (('parts', parts_html(data)), ('photos', photos_html('../'))):
+    sys.path.insert(0, str(SITE))
+    import versions
+    for marker, content in (('parts', parts_html(data)), ('photos', photos_html('../')),
+                            ('versions', versions.html_line(versions.load(), 'en'))):
         token = f'<!-- @{marker} -->'
         if token not in s:
             sys.exit(f'{token} not found in site/earlier/index.html')

@@ -114,7 +114,7 @@ def _spans(texts, tag='span'):
     return ''.join(f'<{tag} data-l="{lang}" lang="{lang}">{html.escape(texts[lang])}</{tag}>' for lang in LANGS)
 
 
-def render_page(bom):
+def render_page(bom, versions_html=''):
     e = html.escape
     blocks = []
     for lang in LANGS:
@@ -171,6 +171,7 @@ def render_page(bom):
     <section class="parts-foot">
       <p><a href="../print/" data-keep-lang>{_spans(UI['printed'])}</a> · <a href="../3d/" data-keep-lang>{_spans(UI['model'])}</a></p>
       <p class="aside">{_spans(UI['licence'])} <a href="{REPO}/blob/main/hardware/v6/bom.json">bom.json</a></p>
+      {versions_html}
     </section>
   </main>
 </body>
