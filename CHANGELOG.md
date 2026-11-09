@@ -8,6 +8,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- 2026-11-09: Design v6, the one-twist unit, in `hardware/v6/` (designed and checked in CAD; not printed, assembled or tested yet).
+  - Everything under the shelf comes off with one quarter-turn of the bowl bayonet: dosing bowl `chiocciola_v6`, chute `scivolo_v6`, disc `disco_v6`, tower `colonna_v6` with the sealed shaft bushing, shaft `albero_v6` and hub `mozzo_v6` (coaxial, no gears), electronics box `scatola_v6` with the servo cradle in its roof, cover `fondello_v6` with a TPU lip seal and four printed quarter-turn buttons `nottolino_v6`; shelf flange `flangia_piano_v6` and funnel collar `colletto_v6`. Reuses the v4b gate and window plates, latch, bayonet gasket and lips, and the v5 shelf gasket.
+  - `cad/`: `build_v6.py` and `build_v6_checks.py`, with the scripts v6 imports (`build_dosing.py`, `build_v5.py`, `build_v5_checks.py`, `build_drivetrain.py` as drivetrain v4 library, `layout_v4.json`), paths made relative; `publish_v6.py` writes the repository files; `v6.json` (parts, hardware, assembly, sealing, checks, grams, print orientation) and `check_v6.png`. `python hardware/v6/cad/build_v6.py` regenerates everything in about 45 s and gives identical meshes; the sampled clearance checks are now seeded, so `v6.json` is reproducible.
+  - `stl/` (print-ready, plus one STL per colour), `3mf/` (print-ready, one object per colour), `assembly/` (assembled positions and placeholders of bought parts for the viewer, `v6_viewer.json` with names in English, Italian and German).
+  - `hardware/v6/README.md`: parts, print orientation, assembly order, sealing, checks, open points.
+- 2026-11-09: Full-screen 3D page for v6 on the site (`v6/3d/`), with the "Workshop" and "In the woods" modes, exploded view, disc, section, transparency and part list.
+  - Viewer generator moved into the repository as `site/viewer/make_viewer.py` and `template.html`. New: meshes decimated into separate binary STL files fetched by URL (the site; the single-file embedded mode stays for previews), a full-screen button (Fullscreen API, with a CSS fallback that hides the controls where the API is missing, as on iPhone Safari; key F), interface text in English, Italian and German (`?lang=`, last choice, browser language) and links back to the site.
+  - three.js r128 (`three.min.js` of npm three 0.128.0) bundled in `site/vendor/three-r128/` for it; the home page keeps three.js 0.160.1.
+- 2026-11-09: Bought parts of v6 ("Pezzi extra") in English, Italian and German: `hardware/v6/bom.json`, rendered by `site/bom.py` into the site page `v6/parts/` (language switch, default from the browser, `?lang=` override) and `docs/BOM.md`. Groups: fasteners and inserts, seals and grease, electronics module (pre-assembled in the kit, listed for DIY builders), optional DN50 pipe, tools. Quantities are checked against `v6.json`; no shop links.
+- 2026-11-09: Home page section "Design v6" with links to the 3D page, the bought parts and the files; print plates, assembly wizard and A6 manual marked as coming soon. README, `hardware/README.md` and `docs/README.md` point to v6 and mark the drivetrain v3 design as superseded.
+- 2026-11-09: CI job `cad-v6` regenerates v6 in a temporary copy and checks every mesh; the site job installs numpy and fast_simplification for the 3D page and checks that `docs/BOM.md` is up to date. The Pages workflow installs them too.
+
 - 2026-11-08: Drivetrain v3 with a lid-mounted servo cradle and a labyrinth cap (designed; not printed or mounted yet).
   - `passante_culla`: sealed bushing and servo cradle in one part, replacing `passante_stagno`: 53 mm flange with a 45x2 face O-ring around the collar and the three lid screws, collar up to z = 5, four servo pads with heat-set inserts, at least 2 mm inside the box walls.
   - `disco_v3`: sleeve around the shaft ending in a labyrinth cap over the collar. `albero_mozzo`: 22 mm hub with a 45° top cone, grooves for 9x2 O-rings (15 % squeeze); print at 100 % infill.
@@ -35,6 +47,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- 2026-11-09: `check_meshes.py` accepts a closed mesh whose bodies touch along an edge (every edge shared by an even number of faces, as with raised lettering on the reused v4b plates) and reports it; open edges or a non-positive volume still fail. It takes `hardware/v6` as its folder for design v6.
 - 2026-11-08: `build_assembly.py` lists `passante_culla` instead of `passante_stagno` and no longer adds a separate cradle part; the servo cradle placeholder is gone from `assembly.json`.
 - 2026-11-08: Board corrected to the Freenove ESP32-WROVER (classic ESP32), as documented in the owner's `PROJECT.md` and still to be verified on the device. Earlier text said Freenove ESP32-S3 WROOM CAM.
   - ESPHome draft: `board: esp32dev`, 4 MB flash, servo on GPIO14 (as in the MicroPython source) and regulator enable on GPIO32 (was GPIO21, a camera pin on the WROVER CAM board). Labelled as the alternative firmware and an unflashed draft, not the baseline.

@@ -4,6 +4,7 @@
 [![Hardware: CERN-OHL-P-2.0](https://img.shields.io/badge/hardware-CERN--OHL--P--2.0-blue)](LICENSES/CERN-OHL-P-2.0.txt)
 [![Docs: CC BY 4.0](https://img.shields.io/badge/docs-CC_BY_4.0-lightgrey)](LICENSES/CC-BY-4.0.txt)
 [![Status: prototype 1](https://img.shields.io/badge/status-prototype_1-orange)](#status)
+[![Design v6: CAD only](https://img.shields.io/badge/design_v6-CAD_only%2C_not_printed-lightgrey)](#design-v6)
 
 A DIY, weatherproof cat-kibble dispenser you can build from 3D-printed parts and off-the-shelf electronics. The kibble sits in a container above a bowl. A servo inside a sealed box turns a disc in the bowl to release one portion at a time, and a chute carries it out. The repository contains an ESPHome **draft** for future Home Assistant integration; it has **not been flashed or hardware-tested**. A separate **working ESP32/MicroPython physical prototype already exists**, including physical ON/OFF and dispense buttons, LED, and a meow sound. The proposed outdoor 12 V power architecture is not yet verified as installed.
 
@@ -17,21 +18,38 @@ Update 2026-11-08: the owner's development source ("feedr-outdoor" 0.1.0 plus un
 
 ## Status
 
-Prototype 1, work in progress.
+Prototype 1, work in progress. The next design, v6, is designed and checked in CAD, **not yet printed or tested** (see [Design v6](#design-v6)).
 
-- Designed and exported (not printed or mounted yet): drivetrain v3 with the rotating disc and its labyrinth cap, shaft and hub, sealed bushing with built-in servo cradle (`passante_culla`), spline fit test; chute
+- Design v6 (current design, CAD only): the one-twist unit in [`hardware/v6/`](hardware/v6/README.md)
+- Designed and exported, superseded as the design by v6 (not printed or mounted): drivetrain v3 with the rotating disc and its labyrinth cap, shaft and hub, sealed bushing with built-in servo cradle (`passante_culla`), spline fit test; chute
 - Bought or reused: waterproof box (265 x 185 mm), 25 kg·cm servo with a 25-tooth spline, bowl
 - Still to design: hopper and shelf, container
 - Firmware: physical prototype runs MicroPython (source recovery pending); a separate ESPHome draft passes config checks but has not been tested on hardware yet
   - MicroPython (baseline): dev folder snapshot in `firmware/micropython/`; the on-device readback is still pending
   - ESPHome (alternative): unflashed draft, now aimed at the classic ESP32 of the documented board
 
+## Design v6
+
+**Designed and checked in CAD only: not yet printed, assembled or tested.**
+
+1. A one-twist unit: the bowl with its rotary disc, the chute, the sealed tower and shaft, and the electronics box with the servo hang together and come off the shelf with one quarter-turn; only the shelf flange stays screwed on.
+2. Coaxial drive (servo, hub, shaft, disc), every wet/dry joint sealed with an O-ring or a TPU seal, one cable gland, and a box cover that closes with four printed quarter-turn buttons.
+3. 12 new printed parts plus 9 reused ones (about 610 g of PETG and TPU), 17 screws, 12 heat-set inserts and 3 O-rings; the kit ships the electronics box pre-assembled.
+
+- 3D model, full screen, in English, Italian and German: <https://ricricucit.github.io/kibble-dispenser/v6/3d/>
+- Bought parts (screws, seals, electronics module, tools), in English, Italian and German: <https://ricricucit.github.io/kibble-dispenser/v6/parts/>, also in [docs/BOM.md](docs/BOM.md)
+- CAD scripts, print-ready STL and 3MF, design data and print notes: [hardware/v6/](hardware/v6/README.md)
+- Print plates for Bambu Lab printers: coming soon
+- Step-by-step assembly wizard (English, Italian, German): coming soon
+- Pocket manual, A6 PDF: coming soon
+
 ## Live model
 
-The project site shows the assembly as a 3D model you can orbit, cut in section, explode and run: <https://ricricucit.github.io/kibble-dispenser/>
+The project site shows the prototype 1 assembly as a 3D model you can orbit, cut in section, explode and run: <https://ricricucit.github.io/kibble-dispenser/>. Design v6 has its own full-screen 3D page, with a workshop view and a view in the woods: <https://ricricucit.github.io/kibble-dispenser/v6/3d/>.
 
 - The site lives in `site/` (plain HTML, CSS and JavaScript, with three.js bundled in `site/vendor/three/`, so it loads no third-party scripts or fonts).
 - `python site/build.py` copies the assembly meshes from `hardware/assembly/` and the process photos into `site/_build/`, so the site always matches the repository. Preview it locally with `python -m http.server -d site/_build`.
+- The same build writes the v6 pages: the 3D page from `hardware/v6/assembly/` with the generator in `site/viewer/` (meshes decimated into separate STL files, three.js r128 bundled in `site/vendor/three-r128/`), and the bought-parts page from `hardware/v6/bom.json` with `site/bom.py`. It needs `pip install numpy fast_simplification`. `python site/viewer/make_viewer.py MANIFEST OUT.html` also writes a single-file preview with the meshes embedded.
 - `.github/workflows/pages.yml` builds and publishes it on every push to `main`. GitHub Pages has to be enabled once by the owner: Settings > Pages > Source: GitHub Actions. A Pages site is always public, and Pages on a private repository needs a paid GitHub plan.
 
 ## How it works
@@ -45,10 +63,10 @@ The project site shows the assembly as a 3D model you can orbit, cut in section,
 
 ## Repository map
 
-- `hardware/`: CAD generator scripts, print-ready STLs, 3MF files, assembly meshes for the 3D viewer and per-part print notes ([hardware/README.md](hardware/README.md))
+- `hardware/`: CAD generator scripts, print-ready STLs, 3MF files, assembly meshes for the 3D viewer and per-part print notes ([hardware/README.md](hardware/README.md)); design v6 in `hardware/v6/` ([README](hardware/v6/README.md))
 - `firmware/`: MicroPython firmware (baseline) in `firmware/micropython/`, ESPHome configuration (alternative) in `firmware/esphome/`, wiring summary and flashing steps ([firmware/README.md](firmware/README.md))
-- `docs/`: build guide, research notes and process photos ([docs/README.md](docs/README.md))
-- `site/`: the project website with the live 3D model, and its build script
+- `docs/`: build guide, bought parts of v6 ([BOM.md](docs/BOM.md)), research notes and process photos ([docs/README.md](docs/README.md))
+- `site/`: the project website with the live 3D models, the v6 viewer generator (`site/viewer/`), the bought-parts renderer (`site/bom.py`) and the build script
 - `LICENSES/` and `REUSE.toml`: licence texts and which licence covers which file
 - `.github/`: CI workflow, issue and pull request templates
 
@@ -61,7 +79,8 @@ The project site shows the assembly as a 3D model you can orbit, cut in section,
 - Build guide: [docs/BUILD_GUIDE.md](docs/BUILD_GUIDE.md) (exported from the living build guide; placeholder for now)
 - Power, servo and sealing research (Italian): [docs/research/elettronica-e-tenuta.it.md](docs/research/elettronica-e-tenuta.it.md)
 - Process photos: [docs/photos/](docs/photos/README.md)
-- Print notes: [hardware/README.md](hardware/README.md)
+- Print notes: [hardware/v6/README.md](hardware/v6/README.md) (v6), [hardware/README.md](hardware/README.md) (prototype 1)
+- Bought parts for v6: [docs/BOM.md](docs/BOM.md)
 - Wiring and flashing: [firmware/README.md](firmware/README.md)
 
 ## Contributing
@@ -72,8 +91,8 @@ Issues, build reports and pull requests are welcome. See [CONTRIBUTING.md](CONTR
 
 This project is open source with permissive licences: anyone, the author included, may build, modify, fork and sell it.
 
-- Software (the firmware, including all of `firmware/micropython/` with its Markdown files, the CAD scripts in `hardware/cad/*.py`, the website code in `site/`, CI and config files): [MIT](LICENSES/MIT.txt). The bundled three.js library is MIT too.
-- Hardware design files (`hardware/stl/`, `hardware/3mf/`, `hardware/assembly/`, the JSON design data in `hardware/cad/`): [CERN-OHL-P-2.0](LICENSES/CERN-OHL-P-2.0.txt)
-- Documentation and photos (`docs/`, the README files, the website text in `site/index.html` and other prose): [CC BY 4.0](LICENSES/CC-BY-4.0.txt)
+- Software (the firmware, including all of `firmware/micropython/` with its Markdown files, the CAD scripts in `hardware/cad/*.py` and `hardware/v6/cad/*.py`, the website code in `site/`, CI and config files): [MIT](LICENSES/MIT.txt). The bundled three.js libraries (0.160.1 and r128) are MIT too.
+- Hardware design files (`hardware/stl/`, `hardware/3mf/`, `hardware/assembly/`, the JSON design data in `hardware/cad/`, and the same folders plus `bom.json` in `hardware/v6/`): [CERN-OHL-P-2.0](LICENSES/CERN-OHL-P-2.0.txt)
+- Documentation and photos (`docs/`, the README files, the website text in `site/index.html`, the v6 check image `hardware/v6/cad/check_v6.png` and other prose): [CC BY 4.0](LICENSES/CC-BY-4.0.txt)
 
 The project follows the [REUSE](https://reuse.software) specification. `REUSE.toml` lists the licence and copyright for every path, and [LICENSE](LICENSE) explains the split in plain words.

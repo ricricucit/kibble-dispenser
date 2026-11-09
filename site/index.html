@@ -29,6 +29,7 @@
     <h1 class="wordmark"><a href="#model">Kibble Dispenser</a></h1>
     <nav aria-label="Sections">
       <ul>
+        <li><a href="#v6">Design v6</a></li>
         <li><a href="#how">How it works</a></li>
         <li><a href="#parts">Parts</a></li>
         <li><a href="#photos">Photos</a></li>
@@ -133,9 +134,25 @@
           <div><dt>Bought or reused</dt><dd>Waterproof box (265 × 185 mm), 25 kg·cm servo with a 25-tooth spline, bowl</dd></div>
           <div><dt>Still to design</dt><dd>Hopper and shelf, container</dd></div>
           <div><dt>On the prototype</dt><dd>The servo still sits in a third-party wall bracket (non-commercial licence, not in this repository).</dd></div>
+          <div><dt>Next design: v6</dt><dd>A one-twist unit: everything under the shelf comes off with one quarter-turn. Designed and checked in CAD, not printed or tested yet. <a href="v6/3d/">3D model</a> · <a href="v6/parts/">Bought parts</a></dd></div>
           <div><dt>Firmware</dt><dd>The owner's MicroPython firmware is the baseline: power button with a status LED, dispense button, a sound with every portion. An ESPHome draft for Home Assistant passes the config check but has not run on hardware yet.</dd></div>
         </dl>
       </div>
+    </section>
+
+    <section class="band" id="v6" aria-labelledby="v6-title">
+      <div class="band-head">
+        <h2 id="v6-title">Design v6</h2>
+        <p>The next design, and the one the kit will follow. Everything under the shelf (bowl with the dosing disc, chute, sealed tower and shaft, electronics box with the servo) comes off with one quarter-turn of the bowl; only the shelf flange stays. Designed and checked in CAD, <strong>not yet printed or tested</strong>.</p>
+      </div>
+      <ul class="links">
+        <li><a href="v6/3d/">3D model, full screen</a><span>Workshop and woodland modes, exploded view, disc, section and transparency, every part listed. In English, Italian and German.</span></li>
+        <li><a href="v6/parts/">Bought parts</a><span>Screws, inserts, seals, the electronics module, the optional pipe and the tools, in English, Italian and German</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/v6">v6 files</a><span>CAD scripts, print-ready STL and 3MF, design data and checks</span></li>
+        <li><span class="soon">Print plates for Bambu Lab</span><span>Coming soon</span></li>
+        <li><span class="soon">Assembly wizard</span><span>Coming soon, in English, Italian and German</span></li>
+        <li><span class="soon">Pocket manual (A6 PDF)</span><span>Coming soon</span></li>
+      </ul>
     </section>
 
     <section class="band" id="how" aria-labelledby="how-title">
@@ -200,6 +217,8 @@
         <p>Everything lives in the repository. The step-by-step build guide is still a placeholder; these pages cover the build until it is written.</p>
       </div>
       <ul class="links">
+        <li><a href="v6/parts/">Bought parts for v6</a><span>What to buy besides the printed parts, in English, Italian and German</span></li>
+        <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/hardware/v6/README.md">v6 print notes</a><span>Material, colour and orientation for every v6 part; v6 is designed, not yet printed or tested</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/docs/BUILD_GUIDE.md">Build guide</a><span>Step-by-step assembly, exported from the living build guide; a placeholder for now</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/blob/main/hardware/README.md">Print notes</a><span>Material, spool and orientation for every part, plus the bought hardware</span></li>
         <li><a href="https://github.com/ricricucit/kibble-dispenser/tree/main/hardware/stl">Print-ready STLs</a><span>Already oriented for the bed</span></li>
