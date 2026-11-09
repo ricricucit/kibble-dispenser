@@ -30,8 +30,32 @@ jobs:
           python "$tmp/hardware/cad/build_assembly.py"
           echo "HW_TMP=$tmp/hardware" >> "$GITHUB_ENV"
 
-      - name: Check every mesh is watertight
+      - name: Check every mesh is closed
         run: python hardware/cad/check_meshes.py "$HW_TMP"
+
+  cad-v6:
+    name: Regenerate design v6 and check meshes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install CAD dependencies
+        run: pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib
+
+      # build_v6.py also runs build_dosing.py and build_v5.py (reused parts) and publishes stl/, 3mf/, assembly/
+      - name: Build v6 in a temporary copy of hardware/v6
+        run: |
+          tmp="$(mktemp -d)"
+          cp -r hardware/v6 "$tmp/"
+          python "$tmp/v6/cad/build_v6.py"
+          echo "V6_TMP=$tmp/v6" >> "$GITHUB_ENV"
+
+      - name: Check every v6 mesh is closed
+        run: python hardware/cad/check_meshes.py "$V6_TMP"
 
   site:
     name: Build the website
