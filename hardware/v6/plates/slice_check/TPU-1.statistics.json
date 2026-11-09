@@ -1,0 +1,134 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 2676.372,
+  "prepare_time": 398.137,
+  "travel_time": 417.662,
+  "travel_distance": 23748.47,
+  "layer_count": 14,
+  "volume": 5416.178,
+  "weight": 6.7161,
+  "filament_cost": 0.13,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 2251.79,
+    "volume": 5416.178,
+    "weight": 6.7161,
+    "cost": 0.13,
+    "model": {
+     "volume": 5416.178,
+     "weight": 6.7161
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 667.543,
+    "volume": 1766.613,
+    "weight": 2.1906
+   },
+   "Outer wall": {
+    "time": 1040.3,
+    "volume": 2327.41,
+    "weight": 2.886
+   },
+   "Internal solid infill": {
+    "time": 105.691,
+    "volume": 335.662,
+    "weight": 0.4162
+   },
+   "Top surface": {
+    "time": 96.417,
+    "volume": 247.519,
+    "weight": 0.3069
+   },
+   "Bottom surface": {
+    "time": 24.978,
+    "volume": 31.014,
+    "weight": 0.0385
+   },
+   "Gap infill": {
+    "time": 207.624,
+    "volume": 655.664,
+    "weight": 0.813
+   },
+   "Custom": {
+    "time": 19.069,
+    "volume": 52.296,
+    "weight": 0.0648
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "guarnizione_baionetta",
+   "instance": 0,
+   "volume": 1736.624,
+   "weight": 2.1534,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "guarnizione_piano_v5",
+   "instance": 0,
+   "volume": 973.905,
+   "weight": 1.2076,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "guarnizione_fondello_v6",
+   "instance": 0,
+   "volume": 1657.712,
+   "weight": 2.0556,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "labbro_uscita_1",
+   "instance": 0,
+   "volume": 247.95,
+   "weight": 0.3075,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "labbro_uscita_2",
+   "instance": 0,
+   "volume": 247.95,
+   "weight": 0.3075,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "labbro_finestra_1",
+   "instance": 0,
+   "volume": 249.87,
+   "weight": 0.3098,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "labbro_finestra_2",
+   "instance": 0,
+   "volume": 249.87,
+   "weight": 0.3098,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

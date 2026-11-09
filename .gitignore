@@ -22,6 +22,10 @@ firmware/micropython/src/config_local.py
 *.bin
 *.elf
 
+# Bambu system profiles fetched by hardware/v6/plates/tools/fetch_bbl_profiles.py (BambuStudio, AGPL-3.0)
+hardware/v6/plates/tools/bbl_profiles_resolved.json
+hardware/v6/plates/tools/bbl_cache/
+
 # Slicer output and temporary files
 *.gcode
 *.bgcode

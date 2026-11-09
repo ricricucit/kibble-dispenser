@@ -1,0 +1,193 @@
+{
+ "stl": [
+  {
+   "id": "chiocciola_v6",
+   "files": [
+    "chiocciola_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "scatola_v6",
+   "files": [
+    "scatola_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "flangia_piano_v6",
+   "files": [
+    "flangia_piano_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "disco_v6",
+   "files": [
+    "disco_v6_print.stl",
+    "disco_v6_print_orange.stl",
+    "disco_v6_print_black.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "piastra_gate_v4b",
+   "files": [
+    "piastra_gate_v4b_print.stl",
+    "piastra_gate_v4b_print_black.stl",
+    "piastra_gate_v4b_print_green.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "piastra_finestra_v4b",
+   "files": [
+    "piastra_finestra_v4b_print.stl",
+    "piastra_finestra_v4b_print_black.stl",
+    "piastra_finestra_v4b_print_green.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "linguetta_sicura",
+   "files": [
+    "linguetta_sicura_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "fondello_v6",
+   "files": [
+    "fondello_v6_print.stl",
+    "fondello_v6_print_black.stl",
+    "fondello_v6_print_orange.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "colonna_v6",
+   "files": [
+    "colonna_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "albero_v6",
+   "files": [
+    "albero_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "mozzo_v6",
+   "files": [
+    "mozzo_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "scivolo_v6",
+   "files": [
+    "scivolo_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "colletto_v6",
+   "files": [
+    "colletto_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "nottolino_v6",
+   "files": [
+    "nottolino_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "guarnizione_baionetta",
+   "files": [
+    "guarnizione_baionetta_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "guarnizione_piano_v5",
+   "files": [
+    "guarnizione_piano_v5_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "guarnizione_fondello_v6",
+   "files": [
+    "guarnizione_fondello_v6_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "labbro_uscita_1",
+   "files": [
+    "labbro_uscita_1_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "labbro_uscita_2",
+   "files": [
+    "labbro_uscita_2_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "labbro_finestra_1",
+   "files": [
+    "labbro_finestra_1_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "labbro_finestra_2",
+   "files": [
+    "labbro_finestra_2_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "test_scanalato",
+   "files": [
+    "test_scanalato_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "test_groove_fondello",
+   "files": [
+    "test_groove_fondello_print.stl"
+   ],
+   "watertight": true
+  },
+  {
+   "id": "test_lip_strip",
+   "files": [
+    "test_lip_strip_print.stl"
+   ],
+   "watertight": true
+  }
+ ],
+ "plain": {
+  "PETG-0": "plates/PETG-0_spline__cover_groove.3mf",
+  "PETG-1": "plates/PETG-1_bowl__box__shaft__hub.3mf",
+  "PETG-2": "plates/PETG-2_flange__cover__tower.3mf",
+  "PETG-3": "plates/PETG-3_chute__collar__gate__window_plates.3mf",
+  "PETG-4": "plates/PETG-4_disc__latch__4_buttons.3mf",
+  "TPU-0": "plates/TPU-0_TPU_lip_seal_strip.3mf",
+  "TPU-1": "plates/TPU-1_all_seals.3mf"
+ },
+ "projects": {
+  "PETG": "Kibble_Dispenser_v6_PETG.bambu.3mf",
+  "TPU": "Kibble_Dispenser_v6_TPU.bambu.3mf"
+ }
+}

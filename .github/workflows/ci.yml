@@ -57,6 +57,9 @@ jobs:
       - name: Check every v6 mesh is closed
         run: python hardware/cad/check_meshes.py "$V6_TMP"
 
+      - name: Check every STL of the v6 print plates is closed
+        run: python hardware/cad/check_meshes.py hardware/v6/plates
+
   site:
     name: Build the website
     runs-on: ubuntu-latest

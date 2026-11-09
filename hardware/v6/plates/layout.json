@@ -1,0 +1,249 @@
+{
+ "PETG-0": {
+  "name": "00 TEST - spline + cover groove",
+  "tower_xy": null,
+  "min_gap_mm": 7.92,
+  "items": [
+   {
+    "name": "test_scanalato",
+    "part": "test_scanalato",
+    "x": 141.0,
+    "y": 130.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "test_groove_fondello",
+    "part": "test_groove_fondello",
+    "x": 117.0,
+    "y": 125.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-1": {
+  "name": "01 BLACK - bowl + box + shaft + hub",
+  "tower_xy": null,
+  "min_gap_mm": 7.36,
+  "items": [
+   {
+    "name": "chiocciola_v6",
+    "part": "chiocciola_v6",
+    "x": 178.0,
+    "y": 117.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "scatola_v6",
+    "part": "scatola_v6",
+    "x": 66.0,
+    "y": 130.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "albero_v6",
+    "part": "albero_v6",
+    "x": 140.0,
+    "y": 48.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "mozzo_v6",
+    "part": "mozzo_v6",
+    "x": 116.0,
+    "y": 53.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-2": {
+  "name": "02 BLACK+orange - flange + cover + tower",
+  "tower_xy": [
+   119.0,
+   185.0
+  ],
+  "min_gap_mm": 6.46,
+  "items": [
+   {
+    "name": "flangia_piano_v6",
+    "part": "flangia_piano_v6",
+    "x": 86.0,
+    "y": 107.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "fondello_v6",
+    "part": "fondello_v6",
+    "x": 202.0,
+    "y": 125.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "colonna_v6",
+    "part": "colonna_v6",
+    "x": 41.0,
+    "y": 195.0,
+    "rot_z_deg": 270.0
+   }
+  ]
+ },
+ "PETG-3": {
+  "name": "03 GREEN+black - chute + collar + gate + window plates",
+  "tower_xy": [
+   201.0,
+   202.0
+  ],
+  "min_gap_mm": 7.27,
+  "items": [
+   {
+    "name": "scivolo_v6",
+    "part": "scivolo_v6",
+    "x": 51.0,
+    "y": 175.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "colletto_v6",
+    "part": "colletto_v6",
+    "x": 165.0,
+    "y": 54.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "piastra_finestra_v4b",
+    "part": "piastra_finestra_v4b",
+    "x": 151.0,
+    "y": 153.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "piastra_gate_v4b",
+    "part": "piastra_gate_v4b",
+    "x": 69.0,
+    "y": 71.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-4": {
+  "name": "04 ORANGE+black - disc + latch + 4 buttons",
+  "tower_xy": [
+   165.0,
+   79.0
+  ],
+  "min_gap_mm": 6.96,
+  "items": [
+   {
+    "name": "disco_v6",
+    "part": "disco_v6",
+    "x": 101.0,
+    "y": 125.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "linguetta_sicura",
+    "part": "linguetta_sicura",
+    "x": 172.0,
+    "y": 155.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "nottolino_v6#1",
+    "part": "nottolino_v6",
+    "x": 153.0,
+    "y": 171.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "nottolino_v6#2",
+    "part": "nottolino_v6",
+    "x": 194.0,
+    "y": 132.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "nottolino_v6#3",
+    "part": "nottolino_v6",
+    "x": 191.0,
+    "y": 155.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "nottolino_v6#4",
+    "part": "nottolino_v6",
+    "x": 60.0,
+    "y": 180.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "TPU-0": {
+  "name": "00 TEST - TPU lip seal strip",
+  "tower_xy": null,
+  "min_gap_mm": Infinity,
+  "items": [
+   {
+    "name": "test_lip_strip",
+    "part": "test_lip_strip",
+    "x": 128.0,
+    "y": 130.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "TPU-1": {
+  "name": "01 TPU 95A - all seals",
+  "tower_xy": null,
+  "min_gap_mm": 5.91,
+  "items": [
+   {
+    "name": "guarnizione_baionetta",
+    "part": "guarnizione_baionetta",
+    "x": 162.0,
+    "y": 102.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "guarnizione_piano_v5",
+    "part": "guarnizione_piano_v5",
+    "x": 160.0,
+    "y": 94.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "guarnizione_fondello_v6",
+    "part": "guarnizione_fondello_v6",
+    "x": 65.0,
+    "y": 130.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "labbro_uscita_1",
+    "part": "labbro_uscita_1",
+    "x": 142.0,
+    "y": 77.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "labbro_uscita_2",
+    "part": "labbro_uscita_2",
+    "x": 158.0,
+    "y": 78.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "labbro_finestra_1",
+    "part": "labbro_finestra_1",
+    "x": 58.0,
+    "y": 68.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "labbro_finestra_2",
+    "part": "labbro_finestra_2",
+    "x": 70.0,
+    "y": 75.0,
+    "rot_z_deg": 90.0
+   }
+  ]
+ }
+}

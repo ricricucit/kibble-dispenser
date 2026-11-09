@@ -77,3 +77,21 @@ SPDX-License-Identifier = "MIT"
 path = "site/vendor/three-r128/**"
 SPDX-FileCopyrightText = "2010-2021 three.js authors"
 SPDX-License-Identifier = "MIT"
+
+# Print package of design v6: Bambu Studio projects, plate 3MFs, STL files, slicer data
+[[annotations]]
+path = "hardware/v6/plates/**"
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CERN-OHL-P-2.0"
+
+# ... its generator scripts (software)
+[[annotations]]
+path = "hardware/v6/plates/tools/**"
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "MIT"
+
+# ... and its print guide and plate preview images (documentation)
+[[annotations]]
+path = ["hardware/v6/plates/README.md", "hardware/v6/plates/preview/**"]
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CC-BY-4.0"

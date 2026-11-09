@@ -1,0 +1,109 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 1522.84,
+  "prepare_time": 380.667,
+  "travel_time": 484.195,
+  "travel_distance": 27188.8,
+  "layer_count": 42,
+  "volume": 4247.23,
+  "weight": 5.394,
+  "filament_cost": 0.16,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 1765.79,
+    "volume": 4247.23,
+    "weight": 5.394,
+    "cost": 0.16,
+    "model": {
+     "volume": 4247.23,
+     "weight": 5.394
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 420.284,
+    "volume": 1853.273,
+    "weight": 2.3537
+   },
+   "Outer wall": {
+    "time": 221.948,
+    "volume": 871.331,
+    "weight": 1.1066
+   },
+   "Overhang wall": {
+    "time": 2.013,
+    "volume": 6.019,
+    "weight": 0.0076
+   },
+   "Sparse infill": {
+    "time": 5.476,
+    "volume": 35.565,
+    "weight": 0.0452
+   },
+   "Internal solid infill": {
+    "time": 138.294,
+    "volume": 840.513,
+    "weight": 1.0675
+   },
+   "Top surface": {
+    "time": 47.97,
+    "volume": 208.724,
+    "weight": 0.2651
+   },
+   "Bottom surface": {
+    "time": 25.865,
+    "volume": 100.593,
+    "weight": 0.1278
+   },
+   "Internal Bridge": {
+    "time": 15.18,
+    "volume": 100.427,
+    "weight": 0.1275
+   },
+   "Gap infill": {
+    "time": 43.609,
+    "volume": 178.488,
+    "weight": 0.2267
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "test_scanalato",
+   "instance": 0,
+   "volume": 2019.212,
+   "weight": 2.5644,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "test_groove_fondello",
+   "instance": 0,
+   "volume": 2175.722,
+   "weight": 2.7632,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

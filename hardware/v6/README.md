@@ -21,6 +21,7 @@ All dimensions are in mm. Frame: Z up, shaft axis at x = y = 0, Z = 0 at the und
 - `stl/`: print-ready STLs, already oriented for the bed. Multi-colour parts also have one STL per filament colour (`<part>_<colour>.stl`).
 - `3mf/`: the same parts, print-ready, one object per filament colour, for multi-colour printing. Unlike prototype 1, these 3MF files are in print orientation; the assembled positions are in `assembly/`.
 - `assembly/`: meshes at the assembled position for the 3D viewer (colour bodies, reused parts, simple placeholders for the bought parts) and `v6_viewer.json`. Not for printing.
+- `plates/`: print plates for the Bambu Lab A1 with AMS lite (Bambu Studio projects, plate 3MFs, STL files in print orientation, previews, slicer statistics, the print guide and the generator scripts in `plates/tools/`)
 - `bom.json`: the bought parts in three languages, checked against `cad/v6.json` and rendered by `site/bom.py`.
 
 ## Printed parts
@@ -51,7 +52,7 @@ Reused unchanged from earlier iterations:
 - `labbro_uscita_1`, `labbro_uscita_2`, `labbro_finestra_1`, `labbro_finestra_2`, plate lips, TPU 95A: flat on the wide face
 - `guarnizione_piano_v5`, shelf gasket, TPU 95A: flat ring, 100 % infill
 
-Print plates for Bambu Lab printers are coming soon.
+Print plates for a Bambu Lab A1 with the AMS lite are in [`plates/`](plates/README.md): two Bambu Studio projects (PETG and TPU), a plain 3MF per plate, every part as an STL in print orientation, the AMS setup, settings and a check list, also on the site at <https://ricricucit.github.io/kibble-dispenser/v6/print/>. They are a preview: v6.1 is in design and will replace them.
 
 ## Bought parts
 

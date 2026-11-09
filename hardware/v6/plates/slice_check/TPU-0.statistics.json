@@ -1,0 +1,71 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 543.926,
+  "prepare_time": 397.922,
+  "travel_time": 357.741,
+  "travel_distance": 10103.0,
+  "layer_count": 14,
+  "volume": 198.454,
+  "weight": 0.2461,
+  "filament_cost": 0.0,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 82.51,
+    "volume": 198.454,
+    "weight": 0.2461,
+    "cost": 0.0,
+    "model": {
+     "volume": 198.454,
+     "weight": 0.2461
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 14.543,
+    "volume": 39.349,
+    "weight": 0.0488
+   },
+   "Outer wall": {
+    "time": 65.88,
+    "volume": 86.841,
+    "weight": 0.1077
+   },
+   "Gap infill": {
+    "time": 7.249,
+    "volume": 19.968,
+    "weight": 0.0248
+   },
+   "Custom": {
+    "time": 19.069,
+    "volume": 52.296,
+    "weight": 0.0648
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "test_lip_strip",
+   "instance": 0,
+   "volume": 146.158,
+   "weight": 0.1812,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

@@ -1,0 +1,145 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 46140.18,
+  "prepare_time": 380.585,
+  "travel_time": 5036.287,
+  "travel_distance": 984874.63,
+  "layer_count": 701,
+  "volume": 254703.311,
+  "weight": 323.4732,
+  "filament_cost": 9.7,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 105893.33,
+    "volume": 254703.311,
+    "weight": 323.4732,
+    "cost": 9.7,
+    "model": {
+     "volume": 245876.776,
+     "weight": 312.2635
+    },
+    "support": {
+     "volume": 8826.534,
+     "weight": 11.2097
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 14842.628,
+    "volume": 103051.164,
+    "weight": 130.875
+   },
+   "Outer wall": {
+    "time": 6466.875,
+    "volume": 44471.403,
+    "weight": 56.4787
+   },
+   "Overhang wall": {
+    "time": 244.218,
+    "volume": 795.615,
+    "weight": 1.0104
+   },
+   "Sparse infill": {
+    "time": 7201.15,
+    "volume": 50595.334,
+    "weight": 64.2561
+   },
+   "Internal solid infill": {
+    "time": 5591.871,
+    "volume": 29375.607,
+    "weight": 37.307
+   },
+   "Top surface": {
+    "time": 872.298,
+    "volume": 4129.78,
+    "weight": 5.2448
+   },
+   "Bottom surface": {
+    "time": 355.804,
+    "volume": 1855.477,
+    "weight": 2.3565
+   },
+   "Bridge": {
+    "time": 761.304,
+    "volume": 2244.303,
+    "weight": 2.8503
+   },
+   "Internal Bridge": {
+    "time": 974.089,
+    "volume": 6238.932,
+    "weight": 7.9234
+   },
+   "Gap infill": {
+    "time": 268.219,
+    "volume": 1196.859,
+    "weight": 1.52
+   },
+   "Brim": {
+    "time": 510.007,
+    "volume": 1869.99,
+    "weight": 2.3749
+   },
+   "Support": {
+    "time": 1479.459,
+    "volume": 6863.137,
+    "weight": 8.7162
+   },
+   "Support interface": {
+    "time": 424.617,
+    "volume": 1963.397,
+    "weight": 2.4935
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "chiocciola_v6",
+   "instance": 0,
+   "volume": 119711.599,
+   "weight": 152.0337,
+   "support_volume": 3786.483,
+   "support_weight": 4.8088
+  },
+  {
+   "name": "scatola_v6",
+   "instance": 0,
+   "volume": 113286.826,
+   "weight": 143.8743,
+   "support_volume": 5040.051,
+   "support_weight": 6.4009
+  },
+  {
+   "name": "albero_v6",
+   "instance": 0,
+   "volume": 5772.929,
+   "weight": 7.3316,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "mozzo_v6",
+   "instance": 0,
+   "volume": 5183.136,
+   "weight": 6.5826,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}
