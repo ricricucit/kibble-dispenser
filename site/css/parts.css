@@ -32,3 +32,4 @@ main > section.parts-foot { padding-top: 0; display: grid; gap: 10px; }
 @media (max-width: 600px) {
   .kit li { grid-template-columns: minmax(0, 1fr); gap: 8px; }
 }
+.stamp.archived { border-left: 5px solid var(--orange); padding-left: 10px; }

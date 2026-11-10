@@ -382,3 +382,24 @@ details[open] summary { border-bottom: 1px solid var(--rule); }
 @media (min-width: 900px) { .cklist { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; } }
 
 @media (prefers-reduced-motion: reduce) { .badge-live::before { animation: none; } }
+
+/* ---------- v6.2 additions: kit box, bought parts on the print page, IP66 grid, manual page ---------- */
+.kitbox { display: grid; gap: 12px 28px; padding: 18px; border: 1.5px dashed var(--ink); background: transparent; }
+.kitbox h3 { font-size: 1.2rem; }
+.kitbox p { color: var(--ink-2); margin-top: 6px; max-width: 70ch; }
+.kitbox ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; align-content: start; font-weight: 600; }
+@media (min-width: 900px) { .kitbox { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); } }
+@media (min-width: 900px) { .sgrid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.sblock ul.blist { list-style: none; padding-left: 0; }
+.blist li { display: grid; grid-template-columns: 3.2em minmax(0, 1fr); gap: 6px; align-items: baseline; }
+.blist .q { font: 700 0.92rem/1.2 var(--f-draw); font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.mans { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.man { display: grid; grid-template-columns: minmax(84px, 120px) minmax(0, 1fr); gap: 14px; align-items: start; padding: 14px; border: 1.5px solid var(--ink); background: var(--sheet); }
+.man-cover img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); background: #fff; }
+.man-body { display: grid; gap: 10px; min-width: 0; }
+.man-body h2 { font-size: 1.3rem; }
+.man .dl-list { grid-template-columns: minmax(0, 1fr); }
+.man .dl-list a { padding: 10px 12px; }
+.man .dl-s { overflow-wrap: anywhere; }
+@media (min-width: 1000px) { .mans { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.archive .links { margin-top: 4px; }

@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-Home page and print-files page of the website, in English, Italian and German.
+Home page, print-files pages, manual page and the v6 archive page of the website, in English, Italian and German.
 
 site/build.py calls build(out) after copying site/ to the output folder. It writes:
-  <out>/index.html            home page, texts from site/content/home.toml
-  <out>/v6/print/index.html   print files of design v6, texts from site/content/print.toml
-  <out>/v6/print/files/       the downloads (Bambu projects, plate 3MFs, STL files, one ZIP with everything)
-  <out>/v6/print/img/         plate previews, trimmed (WebP with Pillow, the original PNG otherwise)
-
-Grams, times, plates, parts and file names come from hardware/v6/plates/summary.json, the bought
-hardware counts from hardware/v6/cad/v6.json. Every text is written once per language; the language
-switch (js/lang.js) shows one of them. Standard library only; Pillow is optional.
+  <out>/index.html            home page (current design v6.2), texts from site/content/home.toml
+  <out>/print/                print files of the current design v6.2, texts from site/content/print.toml, with
+                              files/ (Bambu projects, plate 3MFs, STL files, one ZIP with everything) and img/ (previews)
+  <out>/manual/               the manuals (A6 booklet and A4 print version per language, docs/manual/) and the
+                              drilling template (hardware/v6.2/template/), texts from home.toml [manual]
+  <out>/v6/                   archive of design v6: index page, and v6/print/ from print_v6.toml and hardware/v6/plates
+The stable URLs 3d/, print/, parts/, assembly/ and manual/ always show the current design; earlier designs keep
+versioned pages (v6/...). Grams, times, plates, parts and file names come from the plates' summary.json, the bought
+part counts from hardware/v6.2/plates/summary.json. Every text is written once per language; the language switch
+(js/lang.js) shows one of them. Standard library only; Pillow is optional.
 """
 import html
 import json
@@ -24,10 +26,22 @@ import versions
 
 SITE = Path(__file__).resolve().parent
 ROOT = SITE.parent
-PLATES = ROOT / 'hardware/v6/plates'
+PLATES = ROOT / 'hardware/v6.2/plates'          # current design
 REPO = 'https://github.com/ricricucit/kibble-dispenser'
 LANGS = ('en', 'it', 'de')
-ZIP_NAME = 'Kibble_Dispenser_v6_print_files.zip'
+LANG_NAMES = {'en': 'English', 'it': 'Italiano', 'de': 'Deutsch'}
+MANUALS = ROOT / 'docs/manual'
+TEMPLATE_PDF = ROOT / 'hardware/v6.2/template/dima_foratura_v62.pdf'
+TEMPLATE_NAME = 'kibble-dispenser-drilling-template.pdf'
+
+# Print-files pages: the current design at the stable URL print/, earlier designs at versioned URLs.
+NAV_HOME = {'en': 'Project home', 'it': 'Pagina del progetto', 'de': 'Projektseite'}
+PRINT_PAGES = [
+    dict(label='v6.2', plates=ROOT / 'hardware/v6.2/plates', toml='print.toml', dir='print', root='../', gh='hardware/v6.2/plates',
+         nav=[('../', 'home'), ('../3d/', 'model'), ('../parts/', 'parts'), ('../assembly/', 'assembly')], parts='../parts/'),
+    dict(label='v6', plates=ROOT / 'hardware/v6/plates', toml='print_v6.toml', dir='v6/print', root='../../', gh='hardware/v6/plates',
+         nav=[('../../', 'home'), ('../3d/', 'model'), ('../parts/', 'parts')], parts='../parts/'),
+]
 COLOUR_VAR = {'black': 'var(--petg-black)', 'orange': 'var(--orange)', 'green': 'var(--green)', 'yellow': 'var(--tpu)'}
 # bench photos on the home page (docs/photos/, thumbnails made by build.py)
 BENCH = [('2026-11-08-bench-wrover-breadboard-servo-overview.jpg', 'overview'),
@@ -156,10 +170,12 @@ def footer_html(root, H):
       <div><dt>{L({'en': 'Source', 'it': 'Sorgenti', 'de': 'Quellen'})}</dt><dd><a href="{REPO}">github.com/ricricucit/kibble-dispenser</a></dd></div>
     </dl>
     <p class="foot-links">
+      <a href="{root}3d/" data-keep-lang>{L({'en': '3D model', 'it': 'Modello 3D', 'de': '3D-Modell'})}</a>
+      <a href="{root}print/" data-keep-lang>{L({'en': 'Print files', 'it': 'File di stampa', 'de': 'Druckdateien'})}</a>
+      <a href="{root}parts/" data-keep-lang>{L({'en': 'Bought parts', 'it': 'Pezzi da comprare', 'de': 'Zukaufteile'})}</a>
+      <a href="{root}assembly/">{L({'en': 'Assembly', 'it': 'Montaggio', 'de': 'Montage'})}</a>
+      <a href="{root}manual/" data-keep-lang>{L({'en': 'Manual', 'it': 'Manuale', 'de': 'Handbuch'})}</a>
       <a href="{root}earlier/">{L(f['earlier'])}</a>
-      <a href="{root}v6/3d/" data-keep-lang>{L({'en': '3D model', 'it': 'Modello 3D', 'de': '3D-Modell'})}</a>
-      <a href="{root}v6/print/" data-keep-lang>{L({'en': 'Print files', 'it': 'File di stampa', 'de': 'Druckdateien'})}</a>
-      <a href="{root}v6/parts/" data-keep-lang>{L({'en': 'Bought parts', 'it': 'Pezzi da comprare', 'de': 'Zukaufteile'})}</a>
       <a href="{REPO}">GitHub</a>
     </p>
     <p class="foot-note">{L(f['licence'])} {L(f['privacy'])} © 2026 Enrico Icardi {L({'en': 'and contributors', 'it': 'e contributori', 'de': 'und Mitwirkende'})}</p>
@@ -170,15 +186,14 @@ def footer_html(root, H):
 # ---------------------------------------------------------------- data
 def load_data():
     summary = json.loads((PLATES / 'summary.json').read_text(encoding='utf-8'))
-    v6 = json.loads((ROOT / 'hardware/v6/cad/v6.json').read_text(encoding='utf-8'))
     counts = {'screws': 0, 'inserts': 0, 'orings': 0}
-    for h in v6['hardware']:
+    for h in summary['bought_parts']:
         item = h['item'].lower()
         if 'o-ring' in item:
             counts['orings'] += int(h['qty'])
         elif 'insert' in item:
             counts['inserts'] += int(h['qty'])
-        elif 'screw' in item or item.startswith('m3x'):
+        elif 'screw' in item or item.startswith(('m3x', 'st2.9')):
             counts['screws'] += int(h['qty'])
     g = summary['totals']['grams_per_filament']
     grams = {'black': g['PETG black'], 'orange': g['PETG orange'], 'green': g['PETG green'], 'yellow': g['TPU yellow']}
@@ -193,9 +208,10 @@ def svg_text(x, y, texts, cls='lbl', anchor='start'):
 
 
 def idea_svg(d):
-    """Side view: container on a shelf, the dispenser underneath, the green food path to the bowl."""
+    """Side view of v6.2: container on a shelf, the flange with the orange ring and the closed pod underneath,
+    the green food path to the bowl, the cable channel under the shelf."""
     return f'''<svg class="idea-svg" viewBox="0 0 360 350" role="img" aria-labelledby="idea-svg-t">
-  <title id="idea-svg-t">{esc(d['drum']['en'])}, {esc(d['shelf']['en'])}, {esc(d['unit']['en'])}, {esc(d['food']['en'])}</title>
+  <title id="idea-svg-t">{esc(d['drum']['en'])}, {esc(d['shelf']['en'])}, {esc(d['unit']['en'])}, {esc(d['food']['en'])}, {esc(d['cable']['en'])}</title>
   <defs>
     <pattern id="wood" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v7" class="hatch"/></pattern>
     <marker id="ar" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 8 4 0 8z" class="ink-fill"/></marker>
@@ -215,24 +231,24 @@ def idea_svg(d):
   <path d="M4 336h352" class="ground"/>
   {svg_text(186, 139, d['shelf'])}
   <path d="M76 177 97 164" class="dimline"/>
-  {svg_text(74, 186, d['hole'], 'lbl dim', 'end')}
-  <!-- dispenser: flange, bowl with the orange disc, tower, box, TPU seal, green chute -->
-  <rect x="72" y="162" width="76" height="7" class="petg"/>
-  <path d="M76 169h68l-6 43H82z" class="petg"/>
-  <rect x="90" y="180" width="40" height="8" rx="2" class="touch"/>
-  <rect x="104" y="212" width="12" height="18" class="petg"/>
-  <rect x="84" y="230" width="52" height="50" rx="2" class="petg"/>
-  <rect x="82" y="280" width="56" height="5" class="tpu"/>
-  <path d="M82 196 46 248l12 8 30-42z" class="chute"/>
-  <path d="M141 252H182" class="dimline"/>
-  {svg_text(186, 256, d['unit'])}
-  <!-- food path -->
-  <path d="M110 40V184q-14 12-28 22L54 246q-4 8-4 16v50" class="food" marker-end="url(#arg)"/>
-  <path d="M58 300H182" class="foodline"/>
-  {svg_text(186, 304, d['food'], 'lbl food-t')}
+  {svg_text(64, 186, d['hole'], 'lbl dim', 'end')}
+  <!-- cable channel under the shelf, from the flange to the back edge -->
+  <rect x="158" y="162" width="172" height="6" class="petg"/>
+  {svg_text(214, 184, d['cable'], 'lbl dim')}
+  <!-- dispenser: two flange plates, the closed pod with the orange ring round its top, flat bottom with the outlet -->
+  <rect x="66" y="162" width="92" height="8" class="petg"/>
+  <path d="M74 170h76v92q0 12-12 12H86q-12 0-12-12z" class="petg"/>
+  <rect x="70" y="172" width="84" height="12" rx="2" class="touch"/>
+  <rect x="90" y="272" width="14" height="3" class="tpu"/>
+  <path d="M156 236H182" class="dimline"/>
+  {svg_text(186, 240, d['unit'])}
+  <!-- food path: through the hole and the gate, down inside the pod, out of the outlet -->
+  <path d="M110 40V212q0 8-6 12L97 230V308" class="food" marker-end="url(#arg)"/>
+  <path d="M100 296H182" class="foodline"/>
+  {svg_text(186, 300, d['food'], 'lbl food-t')}
   <!-- bowl -->
-  <path d="M26 322q24 13 48 0z" class="bowl"/>
-  {svg_text(82, 330, d['bowl'])}
+  <path d="M73 322q24 13 48 0z" class="bowl"/>
+  {svg_text(128, 331, d['bowl'])}
 </svg>'''
 
 
@@ -245,23 +261,20 @@ ICONS = {
     'drive': '<rect x="11" y="6" width="26" height="6" rx="1.5" class="i-touch"/><rect x="21" y="12" width="6" height="16" class="i-petg"/>'
              '<path d="M19 18h10M19 23h10" class="i-tpu-l"/><rect x="13" y="28" width="22" height="15" rx="1.5" class="i-servo"/>'
              '<path d="M24 2v44" class="i-axis"/>',
+    # shut-off gate: orange ring round a green sector blade, seen from below
+    'gate': '<circle cx="24" cy="24" r="19" class="i-touch"/><circle cx="24" cy="24" r="14.5" class="i-hole"/>'
+            '<path d="M24 24 24 9.5a14.5 14.5 0 0 1 12.6 21.7z" class="i-chute"/><circle cx="24" cy="24" r="2.2" class="i-ink-f"/>'
+            '<circle cx="24" cy="5" r="2.4" class="i-petg"/>',
     # twist and lower
     'twist': '<rect x="9" y="8" width="30" height="5" class="i-petg"/><path d="M13 13h22l-3 14H16z" class="i-petg"/>'
              '<rect x="20" y="17" width="8" height="4" rx="1" class="i-touch"/>'
              '<path d="M8 33a17 6 0 0 0 32 0" class="i-line" marker-end="url(#iar)"/><path d="M24 31v13" class="i-line" marker-end="url(#iar)"/>',
-    # rain drop kept out by a seal, openings facing down
-    'seal': '<path d="M24 4c5 7 8 11 8 15a8 8 0 0 1-16 0c0-4 3-8 8-15z" class="i-drop"/>'
-            '<path d="M8 30h32v12H8z" class="i-petg"/><path d="M8 30h32" class="i-tpu-l w"/><path d="M20 42v4M28 42v4" class="i-line"/>',
-    # chute with hood and drip ring
-    'outlet': '<path d="M10 6h14l14 24-8 5L18 14H10z" class="i-chute"/><path d="M26 32l12-7" class="i-line w"/>'
-              '<path d="M33 38v3M29 41v3" class="i-food"/>',
-    # optional pipe down to the bowl
-    'pipe': '<path d="M20 2h8v34h-8z" class="i-pipe"/><path d="M14 38q10 8 20 0z" class="i-bowl"/><path d="M24 30v4" class="i-food"/>',
-    # v6.1
-    'shell': '<path d="M10 14q14-10 28 0v20q-14 10-28 0z" class="i-petg"/><path d="M14 18q10-6 20 0" class="i-sheen"/>',
-    'flush': '<rect x="6" y="16" width="36" height="16" rx="8" class="i-petg"/><rect x="18" y="20" width="12" height="8" rx="4" class="i-touch"/>',
-    'cable': '<path d="M6 8h36" class="i-line w"/><rect x="14" y="22" width="20" height="16" rx="3" class="i-petg"/>'
-             '<path d="M24 22V8" class="i-cable"/>',
+    # closed smooth pod with the orange ring and a hidden chute
+    'shell': '<path d="M10 10h28v26q0 6-6 6H16q-6 0-6-6z" class="i-petg"/><rect x="9" y="12" width="30" height="5" rx="1" class="i-touch"/>'
+             '<path d="M14 21q10-5 20 0" class="i-sheen"/><path d="M21 42v4" class="i-food"/>',
+    # cable under the shelf
+    'cable': '<path d="M4 9h40" class="i-line w"/><rect x="10" y="11" width="16" height="22" rx="3" class="i-petg"/>'
+             '<path d="M26 14h16" class="i-cable"/>',
     'care': '<circle cx="24" cy="24" r="15" class="i-touch"/><path d="M24 24 15 15a12.7 12.7 0 0 1 18 0z" class="i-hole"/>'
             '<path d="M11 39 37 9" class="i-line"/><path d="M33 8l5 1-1 5" class="i-line"/>',
 }
@@ -286,12 +299,21 @@ def photo_img(out, name, alt):
             f'{alt_attrs(alt)}></a>')
 
 
+def img_size(path, default):
+    try:
+        from PIL import Image
+        with Image.open(path) as im:
+            return im.width, im.height
+    except Exception:
+        return default
+
+
 def home(out, summary, counts, grams):
     H = load_toml('home.toml')
     tot = summary['totals']
     n_plates = len(summary['plates'])
     all_grams = tot['grams_PETG'] + tot['grams_TPU']
-    hero, idea, how, mat, b, nx, st, op = (H[k] for k in ('hero', 'idea', 'how', 'materials', 'build', 'next', 'status', 'open'))
+    hero, idea, how, mat, b, st, op = (H[k] for k in ('hero', 'idea', 'how', 'materials', 'build', 'status', 'open'))
 
     hero_html = f'''    <section class="hero2" aria-labelledby="hero-title">
       <div class="hero-text">
@@ -299,9 +321,10 @@ def home(out, summary, counts, grams):
         <h1 id="hero-title">{L(hero['title'])}</h1>
         <p class="hero-lead">{L(hero['lead'])}</p>
         <p class="cta-row">
-          <a class="btn btn-act" href="v6/3d/" data-keep-lang>{L(hero['cta_3d'])}</a>
-          <a class="btn" href="v6/print/" data-keep-lang>{L(hero['cta_print'])}</a>
-          <a class="btn" href="v6/parts/" data-keep-lang>{L(hero['cta_parts'])}</a>
+          <a class="btn btn-act" href="3d/" data-keep-lang>{L(hero['cta_3d'])}</a>
+          <a class="btn" href="print/" data-keep-lang>{L(hero['cta_print'])}</a>
+          <a class="btn" href="parts/" data-keep-lang>{L(hero['cta_parts'])}</a>
+          <a class="btn" href="assembly/">{L(hero['cta_assembly'])}</a>
         </p>
         <p class="hero-status"><span class="dot" aria-hidden="true"></span>{L(hero['status'])}</p>
       </div>
@@ -329,6 +352,7 @@ def home(out, summary, counts, grams):
       </div>
     </section>'''
 
+    sw, sh = img_size(SITE / 'img/v62-section.webp', (769, 667))
     steps = ''.join(f'<li>{icon(s["key"])}<div><h3>{L(s["title"])}</h3><p>{L(s["body"])}</p></div></li>' for s in how['steps'])
     how_html = f'''    <section class="sec" id="how" aria-labelledby="how-title">
       <div class="sec-head">
@@ -338,12 +362,12 @@ def home(out, summary, counts, grams):
       </div>
       <div class="how-grid">
         <figure class="sheet section-fig">
-          <img src="img/v6-section.webp" width="769" height="667" loading="lazy" decoding="async" {alt_attrs(how['img_section'])}>
+          <img src="img/v62-section.webp" width="{sw}" height="{sh}" loading="lazy" decoding="async" {alt_attrs(how['img_section'])}>
           <figcaption>{L(how['cap_section'])}</figcaption>
         </figure>
         <ol class="how-steps">{steps}</ol>
       </div>
-      <p class="sec-cta"><a class="btn btn-act" href="v6/3d/" data-keep-lang>{L(hero['cta_3d'])}</a></p>
+      <p class="sec-cta"><a class="btn btn-act" href="3d/" data-keep-lang>{L(hero['cta_3d'])}</a></p>
     </section>'''
 
     total = sum(grams.values())
@@ -370,8 +394,8 @@ def home(out, summary, counts, grams):
       </div>
     </section>'''
 
-    bp, bparts = b['print'], b['parts']
-    soon = f'<span class="badge">{L(b["soon"])}</span>'
+    bp, bparts, bw, bm, kit = b['print'], b['parts'], b['wizard'], b['manual'], b['kit']
+    kit_items = ''.join(f'<li>{L(i)}</li>' for i in kit['items'])
     build_html = f'''    <section class="sec" id="build" aria-labelledby="build-title">
       <div class="sec-head">
         <p class="num" aria-hidden="true">04</p>
@@ -380,7 +404,7 @@ def home(out, summary, counts, grams):
       </div>
       <ul class="cards">
         <li class="card card-go">
-          <h3><a href="v6/print/" data-keep-lang>{L(bp['title'])}</a></h3>
+          <h3><a href="print/" data-keep-lang>{L(bp['title'])}</a></h3>
           <p>{L(bp['body'])}</p>
           <dl class="facts">
             <div><dt>{L(bp['plates'])}</dt><dd>{n_plates}</dd></div>
@@ -390,7 +414,7 @@ def home(out, summary, counts, grams):
           <span class="go" aria-hidden="true">{L(bp['cta'])} →</span>
         </li>
         <li class="card card-go">
-          <h3><a href="v6/parts/" data-keep-lang>{L(bparts['title'])}</a></h3>
+          <h3><a href="parts/" data-keep-lang>{L(bparts['title'])}</a></h3>
           <p>{L(bparts['body'])}</p>
           <dl class="facts">
             <div><dt>{L(bparts['screws'])}</dt><dd>{counts['screws']}</dd></div>
@@ -399,21 +423,29 @@ def home(out, summary, counts, grams):
           </dl>
           <span class="go" aria-hidden="true">{L(bparts['cta'])} →</span>
         </li>
-        <li class="card card-soon">{soon}<h3>{L(b['wizard']['title'])}</h3><p>{L(b['wizard']['body'])}</p></li>
-        <li class="card card-soon">{soon}<h3>{L(b['manual']['title'])}</h3><p>{L(b['manual']['body'])}</p></li>
+        <li class="card card-go">
+          <h3><a href="assembly/">{L(bw['title'])}</a></h3>
+          <p>{L(bw['body'])}</p>
+          <dl class="facts">
+            <div><dt>{L(bw['flows'])}</dt><dd>2</dd></div>
+            <div><dt>{L(bw['langs'])}</dt><dd>3</dd></div>
+          </dl>
+          <span class="go" aria-hidden="true">{L(bw['cta'])} →</span>
+        </li>
+        <li class="card card-go">
+          <h3><a href="manual/" data-keep-lang>{L(bm['title'])}</a></h3>
+          <p>{L(bm['body'])}</p>
+          <dl class="facts">
+            <div><dt>PDF</dt><dd>A6 · A4</dd></div>
+          </dl>
+          <span class="go" aria-hidden="true">{L(bm['cta'])} →</span>
+        </li>
       </ul>
-      <p class="aside"><a href="v6/3d/" data-keep-lang>{L(b['model'])}</a></p>
-    </section>'''
-
-    items = ''.join(f'<li>{icon(i["key"])}<div><h3>{L(i["title"])}</h3><p>{L(i["body"])}</p></div></li>' for i in nx['items'])
-    next_html = f'''    <section class="sec next" id="next" aria-labelledby="next-title">
-      <div class="sec-head">
-        <p class="num" aria-hidden="true">05</p>
-        <h2 id="next-title">{L(nx['title'])} <span class="badge badge-live">{L(nx['badge'])}</span></h2>
-        <p class="lead">{L(nx['lead'])}</p>
+      <div class="kitbox">
+        <div><h3>{L(kit['title'])}</h3><p>{L(kit['body'])}</p></div>
+        <ul>{kit_items}</ul>
       </div>
-      <ul class="next-items">{items}</ul>
-      <p class="warn" role="note">{L(nx['warning'])}</p>
+      <p class="aside"><a href="3d/" data-keep-lang>{L(b['model'])}</a></p>
     </section>'''
 
     photos = ''.join(f'<li>{photo_img(out, name, st["photos"][key])}</li>' for name, key in BENCH)
@@ -422,7 +454,7 @@ def home(out, summary, counts, grams):
                    for i, it in enumerate(st['roadmap']['items']))
     status_html = f'''    <section class="sec" id="status" aria-labelledby="status-title">
       <div class="sec-head">
-        <p class="num" aria-hidden="true">06</p>
+        <p class="num" aria-hidden="true">05</p>
         <h2 id="status-title">{L(st['title'])}</h2>
         <p class="stamp">{L(st['stamp'])}</p>
       </div>
@@ -430,7 +462,7 @@ def home(out, summary, counts, grams):
         <article class="st-card">
           <h3>{L(st['v6']['title'])}</h3>
           <p>{L(st['v6']['body'])}</p>
-          <p class="more"><a href="{REPO}/blob/main/hardware/v6/README.md">hardware/v6</a></p>
+          <p class="more"><a href="{REPO}/blob/main/hardware/v6.2/README.md">hardware/v6.2</a></p>
         </article>
         <article class="st-card">
           <h3>{L(st['bench']['title'])}</h3>
@@ -451,7 +483,7 @@ def home(out, summary, counts, grams):
                    for k, name, p in lic)
     open_html = f'''    <section class="sec" id="open" aria-labelledby="open-title">
       <div class="sec-head">
-        <p class="num" aria-hidden="true">07</p>
+        <p class="num" aria-hidden="true">06</p>
         <h2 id="open-title">{L(op['title'])}</h2>
         <p class="lead">{L(op['lead'])}</p>
       </div>
@@ -468,14 +500,14 @@ def home(out, summary, counts, grams):
     </section>'''
 
     nav = [('#idea', H['nav']['idea'], False), ('#how', H['nav']['how'], False), ('#build', H['nav']['build'], False),
-           ('#next', H['nav']['next'], False), ('#status', H['nav']['status'], False), ('#open', H['nav']['open'], False)]
-    body = '\n'.join([hero_html, idea_html, how_html, mat_html, build_html, next_html, status_html, open_html])
+           ('#status', H['nav']['status'], False), ('#open', H['nav']['open'], False)]
+    body = '\n'.join([hero_html, idea_html, how_html, mat_html, build_html, status_html, open_html])
     s = page(root='', titles=H['meta']['title'], description=H['meta']['description']['en'], nav=nav, body=body,
              footer=footer_html('', H), cls='home', og_image='img/hero-wide-1440.webp')
     (out / 'index.html').write_text(s, encoding='utf-8')
 
 
-# ---------------------------------------------------------------- print page
+# ---------------------------------------------------------------- print pages
 def trim_preview(src, dst):
     """Crop the white margin and the English title line of a plate preview. Returns (path, w, h)."""
     try:
@@ -508,33 +540,45 @@ def trim_preview(src, dst):
         return dst.name, c.width, c.height
 
 
-def print_page(out, summary):
-    P = load_toml('print.toml')
+def write_zip(path, prefix, members, stamp):
+    """members: [(source Path, name in the ZIP)]; fixed dates so the build is reproducible."""
+    with zipfile.ZipFile(path, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        for src, name in members:
+            zi = zipfile.ZipInfo(f'{prefix}/{name}', date_time=stamp)
+            zi.compress_type = zipfile.ZIP_DEFLATED
+            zi.external_attr = 0o644 << 16
+            z.writestr(zi, src.read_bytes(), compresslevel=9)
+
+
+def print_page(out, cfg):
+    P = load_toml(cfg['toml'])
+    plates_dir = cfg['plates']
+    summary = json.loads((plates_dir / 'summary.json').read_text(encoding='utf-8'))
+    for k in summary['plates']:
+        for x in k['parts']:
+            if x['id'] not in P['part']:
+                raise SystemExit(f"site/content/{cfg['toml']} has no name for part {x['id']}")
+    label = cfg['label']
+    zip_name = f'Kibble_Dispenser_{label}_print_files.zip'
     tot = summary['totals']
-    page_dir = out / 'v6/print'
+    page_dir = out / cfg['dir']
     files, img = page_dir / 'files', page_dir / 'img'
     for d in (files / 'plates', files / 'stl', files / 'preview', img):
         d.mkdir(parents=True, exist_ok=True)
     projects = summary['files']['bambu_projects']
     for f in projects:
-        shutil.copy2(PLATES / f, files / f)
+        shutil.copy2(plates_dir / f, files / f)
     for sub in ('plates', 'stl', 'preview'):
-        for f in sorted((PLATES / sub).iterdir()):
+        for f in sorted((plates_dir / sub).iterdir()):
             shutil.copy2(f, files / sub / f.name)
 
-    # one ZIP with everything, with fixed dates so the build is reproducible
     stamp = tuple(int(x) for x in summary['generated'].split('-')) + (0, 0, 0)
-    members = ([(PLATES / f, f) for f in projects] + [(PLATES / 'README.md', 'README.md'), (PLATES / 'summary.json', 'summary.json')]
-               + [(f, f'plates/{f.name}') for f in sorted((PLATES / 'plates').iterdir())]
-               + [(f, f'stl/{f.name}') for f in sorted((PLATES / 'stl').iterdir())]
+    members = ([(plates_dir / f, f) for f in projects] + [(plates_dir / 'README.md', 'README.md'), (plates_dir / 'summary.json', 'summary.json')]
+               + [(f, f'plates/{f.name}') for f in sorted((plates_dir / 'plates').iterdir())]
+               + [(f, f'stl/{f.name}') for f in sorted((plates_dir / 'stl').iterdir())]
                + [(ROOT / 'LICENSES/CERN-OHL-P-2.0.txt', 'LICENSES/CERN-OHL-P-2.0.txt'),
                   (ROOT / 'LICENSES/CC-BY-4.0.txt', 'LICENSES/CC-BY-4.0.txt')])
-    with zipfile.ZipFile(files / ZIP_NAME, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-        for src, name in members:
-            zi = zipfile.ZipInfo(f'Kibble_Dispenser_v6_print_files/{name}', date_time=stamp)
-            zi.compress_type = zipfile.ZIP_DEFLATED
-            zi.external_attr = 0o644 << 16
-            z.writestr(zi, src.read_bytes(), compresslevel=9)
+    write_zip(files / zip_name, zip_name[:-4], members, stamp)
 
     def sz(path):
         n = path.stat().st_size
@@ -552,7 +596,6 @@ def print_page(out, summary):
                 'yellow': P['ams']['tpu']['name']}[c]
         return c, name
 
-    # facts
     facts = f'''<dl class="facts big">
           <div><dt>{L(P['facts']['plates'])}</dt><dd>{len(summary['plates'])}</dd></div>
           <div><dt>{L(P['facts']['time'])}</dt><dd>{esc(hours(tot['time_min']))}</dd></div>
@@ -561,22 +604,24 @@ def print_page(out, summary):
           <div><dt>{L(P['facts']['swaps'])}</dt><dd>{tot['colour_swaps']}</dd></div>
         </dl>'''
 
+    toc = [('downloads', P['dl']['title']), ('ams', P['ams']['title']), ('tests', P['test']['title']), ('plates', P['plates']['title']),
+           ('settings', P['settings']['title'])]
+    if 'ip66' in P:
+        toc.append(('ip66', P['ip66']['title']))
+    if 'bought' in P:
+        toc.append(('bought', P['bought']['title']))
+    toc.append(('checklist', P['check']['title']))
     head = f'''    <section class="phead" aria-labelledby="p-title">
-      <p class="kicker">Kibble Dispenser Outdoor · v6</p>
+      <p class="kicker">Kibble Dispenser Outdoor · {esc(label)}</p>
       <h1 id="p-title">{L(P['head']['title'])}</h1>
       <p class="lead">{L(P['head']['lead'])}</p>
       <div class="banner" role="note">
         <p class="banner-t">{L(P['banner']['title'])}</p>
-        <p>{L(P['banner']['body'])} <a href="../../#next" data-keep-lang>{L(P['banner']['link'])}</a></p>
+        <p>{L(P['banner']['body'])} <a href="{esc(P['banner'].get('href', '#tests'))}" data-keep-lang>{L(P['banner']['link'])}</a></p>
       </div>
       {facts}
       <nav class="toc" aria-label="On this page"><ul>
-        <li><a href="#downloads">{L(P['dl']['title'])}</a></li>
-        <li><a href="#ams">{L(P['ams']['title'])}</a></li>
-        <li><a href="#tests">{L(P['test']['title'])}</a></li>
-        <li><a href="#plates">{L(P['plates']['title'])}</a></li>
-        <li><a href="#settings">{L(P['settings']['title'])}</a></li>
-        <li><a href="#checklist">{L(P['check']['title'])}</a></li>
+        {''.join(f'<li><a href="#{a}">{L(t)}</a></li>' for a, t in toc)}
       </ul></nav>
     </section>'''
 
@@ -584,8 +629,8 @@ def print_page(out, summary):
     dl = f'''    <section class="psec" id="downloads" aria-labelledby="dl-title">
       <h2 id="dl-title">{L(P['dl']['title'])}</h2>
       <ul class="dl-list">
-        <li class="dl-main"><a href="files/{ZIP_NAME}" download><span class="ft">ZIP</span><span class="dl-t">{L(P['dl']['zip']['title'])}</span>
-          <span class="dl-b">{L(P['dl']['zip']['body'])}</span><span class="dl-s">{sz(files / ZIP_NAME)}</span></a></li>
+        <li class="dl-main"><a href="files/{zip_name}" download><span class="ft">ZIP</span><span class="dl-t">{L(P['dl']['zip']['title'])}</span>
+          <span class="dl-b">{L(P['dl']['zip']['body'])}</span><span class="dl-s">{sz(files / zip_name)}</span></a></li>
         <li><a href="files/{esc(petg)}" download><span class="ft">3MF</span><span class="dl-t">{L(P['dl']['petg']['title'])}</span>
           <span class="dl-b">{L(P['dl']['petg']['body'])}</span><span class="dl-s">{esc(petg)} · {sz(files / petg)}</span></a></li>
         <li><a href="files/{esc(tpu)}" download><span class="ft">3MF</span><span class="dl-t">{L(P['dl']['tpu']['title'])}</span>
@@ -625,7 +670,7 @@ def print_page(out, summary):
     for pl in summary['plates']:
         key = pl['key']
         tx = P['plate'][key]
-        name, w, h = trim_preview(PLATES / pl['preview_iso'], img / f'{key}_iso.webp')
+        name, w, h = trim_preview(plates_dir / pl['preview_iso'], img / f'{key}_iso.webp')
         size = f' width="{w}" height="{h}"' if w else ''
         parts = ''.join(f'<li>{dots(x["colours"])}<span class="pn">{L(part_name[x["id"]])}</span>'
                         f'<span class="q">×{x["qty"]}</span></li>' for x in pl['parts'])
@@ -635,7 +680,7 @@ def print_page(out, summary):
             fils.append(f'<li><span class="cdot" style="--c:{COLOUR_VAR[c]}"></span>{L(nm)} '
                         f'<strong>{L(lambda lang, g=g: num(g["grams"], lang, 0 if g["grams"] >= 10 else 1) + " g")}</strong></li>')
         test = key.endswith('-0')
-        note = (f'<p class="pnote">{L(P["plates"]["tpu_note"])}</p>' if key == 'TPU-1' else '')
+        note = (f'<p class="pnote">{L(P["plates"]["tpu_note"])}</p>' if key == 'TPU-1' and 'tpu_note' in P['plates'] else '')
         plain = Path(pl['plain_3mf']).name
         cards.append(f'''<li class="plate{' plate-test' if test else ''}" id="plate-{esc(key)}">
           <a class="pimg" href="files/{esc(pl['preview_top'])}"><img src="img/{esc(name)}"{size} loading="lazy" decoding="async" {alt_attrs(tx['title'])}></a>
@@ -669,7 +714,14 @@ def print_page(out, summary):
         if s.get('brim_width'):
             bits.append(f"{pp['brim'][lang]} {s['brim_width']} mm")
         if s.get('enable_support') == '1':
-            bits.append(pp['support_bed'][lang] if s.get('support_on_build_plate_only') == '1' else pp['support_any'][lang])
+            if 'manual' in s.get('support_type', '') and 'support_manual' in pp:
+                bits.append(pp['support_manual'][lang])
+            else:
+                bits.append(pp['support_bed'][lang] if s.get('support_on_build_plate_only') == '1' else pp['support_any'][lang])
+        if s.get('print_flow_ratio') and 'flow' in pp:
+            bits.append(f"{pp['flow'][lang]} {num(float(s['print_flow_ratio']), lang, 2)}")
+        if s.get('ironing_type') and 'ironing' in pp:
+            bits.append(pp['ironing'][lang])
         if s.get('outer_wall_speed'):
             bits.append(f"{pp['slow'][lang]} {s['outer_wall_speed']} mm/s")
         return ', '.join(bits)
@@ -683,14 +735,38 @@ def print_page(out, summary):
             rows.append(f'<li><span class="pn">{L(part_name[x["id"]])}</span>'
                         f'<span class="sv">{L(lambda lang, s=x["settings"]: setting_text(lang, s))}</span></li>')
 
-    def blist(k):
-        return f'<div class="sblock"><h3>{L(se[k]["title"])}</h3><ul>{"".join(f"<li>{L(i)}</li>" for i in se[k]["items"])}</ul></div>'
+    def blist(block):
+        return f'<div class="sblock"><h3>{L(block["title"])}</h3><ul>{"".join(f"<li>{L(i)}</li>" for i in block["items"])}</ul></div>'
     settings = f'''    <section class="psec" id="settings" aria-labelledby="set-title">
       <h2 id="set-title">{L(se['title'])}</h2>
       <p class="lead">{L(se['lead'])}</p>
-      <div class="sgrid">{blist('printer')}{blist('petg')}{blist('tpu')}</div>
+      <div class="sgrid">{blist(se['printer'])}{blist(se['petg'])}{blist(se['tpu'])}</div>
       <details class="perpart"><summary>{L(pp['title'])}</summary><ul>{''.join(rows)}</ul></details>
     </section>'''
+
+    extra = []
+    if 'ip66' in P:
+        ip = P['ip66']
+        extra.append(f'''    <section class="psec" id="ip66" aria-labelledby="ip66-title">
+      <h2 id="ip66-title">{L(ip['title'])}</h2>
+      <p class="lead">{L(ip['lead'])}</p>
+      <div class="sgrid two">{blist(ip['settings'])}{blist(ip['after'])}</div>
+    </section>''')
+    if 'bought' in P:
+        import bom
+        bo = P['bought']
+        groups = []
+        for g in bom.load(label)['groups']:
+            if g['id'] == 'tools':
+                continue
+            items = ''.join(f'<li><span class="q">{it["qty"]} ×</span><span class="pn">{L(it["item"])}</span></li>' for it in g['items'] if 'qty' in it)
+            groups.append(f'<div class="sblock"><h3>{L(g["title"])}</h3><ul class="blist">{items}</ul></div>')
+        extra.append(f'''    <section class="psec" id="bought" aria-labelledby="bought-title">
+      <h2 id="bought-title">{L(bo['title'])}</h2>
+      <p class="lead">{L(bo['lead'])}</p>
+      <div class="sgrid">{''.join(groups)}</div>
+      <p class="cta-row"><a class="btn" href="{cfg['parts']}" data-keep-lang>{L(bo['link'])} →</a></p>
+    </section>''')
 
     ck = P['check']
     by_kind = {'part': [], 'test': []}
@@ -723,18 +799,112 @@ def print_page(out, summary):
       <h2 id="notes-title">{L(P['notes']['title'])}</h2>
       <ul class="notes">{notes}</ul>
       <p class="cta-row">
-        <a class="btn" href="{REPO}/blob/main/hardware/v6/plates/README.md">{L(P['notes']['guide'])}</a>
-        <a class="btn" href="{REPO}/tree/main/hardware/v6/plates">{L(P['notes']['github'])}</a>
+        <a class="btn" href="{REPO}/blob/main/{cfg['gh']}/README.md">{L(P['notes']['guide'])}</a>
+        <a class="btn" href="{REPO}/tree/main/{cfg['gh']}">{L(P['notes']['github'])}</a>
       </p>
       <p class="aside">{L(P['footer']['licence'])}</p>
     </section>'''
 
     H = load_toml('home.toml')
-    nav = [('../../', P['nav']['home'], True), ('../3d/', P['nav']['model'], True), ('../parts/', P['nav']['parts'], True)]
-    body = '\n'.join([head, dl, ams, tests, plates, settings, checklist, stl_html, notes_html])
-    s = page(root='../../', titles=P['meta']['title'], description=P['meta']['description']['en'], nav=nav, body=body,
-             footer=footer_html('../../', H), cls='print')
+    nav_text = dict(P['nav'], home=P['nav'].get('home', NAV_HOME))
+    nav = [(href, nav_text[k], k != 'assembly') for href, k in cfg['nav']]
+    body = '\n'.join([head, dl, ams, tests, plates, settings, *extra, checklist, stl_html, notes_html])
+    s = page(root=cfg['root'], titles=P['meta']['title'], description=P['meta']['description']['en'], nav=nav, body=body,
+             footer=footer_html(cfg['root'], H), cls='print')
     (page_dir / 'index.html').write_text(s, encoding='utf-8')
+    return page_dir / 'index.html'
+
+
+# ---------------------------------------------------------------- manual page
+def manual_page(out):
+    H = load_toml('home.toml')
+    M = H['manual']
+    page_dir = out / 'manual'
+    files = page_dir / 'files'
+    files.mkdir(parents=True, exist_ok=True)
+
+    def sz(path):
+        n = path.stat().st_size
+        return L(lambda lang: size_text(n, lang))
+
+    cards = []
+    for lang in LANGS:
+        booklet = MANUALS / f'kibble-dispenser-manual-{lang}.pdf'
+        a4 = MANUALS / f'kibble-dispenser-manual-{lang}-print-a4.pdf'
+        for f in (booklet, a4):
+            if not f.exists():
+                raise SystemExit(f'missing manual {f.relative_to(ROOT)}')
+            shutil.copy2(f, files / f.name)
+        w, h = img_size(SITE / f'img/manual-cover-{lang}.webp', (360, 508))
+        cards.append(f'''<li class="man" lang="{lang}">
+          <a class="man-cover" href="files/{booklet.name}"><img src="../img/manual-cover-{lang}.webp" width="{w}" height="{h}" loading="lazy" decoding="async"
+            alt="{esc(LANG_NAMES[lang])}: Kibble Dispenser Outdoor, manual cover"></a>
+          <div class="man-body">
+            <h2>{esc(LANG_NAMES[lang])}</h2>
+            <ul class="dl-list">
+              <li><a href="files/{booklet.name}" download><span class="ft">A6</span><span class="dl-t">{L(M['booklet'])}</span>
+                <span class="dl-s">PDF · {sz(booklet)}</span></a></li>
+              <li><a href="files/{a4.name}" download><span class="ft">A4</span><span class="dl-t">{L(M['print'])}</span>
+                <span class="dl-s">PDF · {sz(a4)}</span></a></li>
+            </ul>
+          </div>
+        </li>''')
+    if not TEMPLATE_PDF.exists():
+        raise SystemExit(f'missing drilling template {TEMPLATE_PDF.relative_to(ROOT)}')
+    shutil.copy2(TEMPLATE_PDF, files / TEMPLATE_NAME)
+    body = f'''    <section class="phead" aria-labelledby="m-title">
+      <p class="kicker">Kibble Dispenser Outdoor · v6.2</p>
+      <h1 id="m-title">{L(M['title'])}</h1>
+      <p class="lead">{L(M['lead'])}</p>
+      <div class="banner" role="note"><p>{L(M['status'])}</p></div>
+    </section>
+    <section class="psec" aria-label="PDF">
+      <ul class="mans">{''.join(cards)}</ul>
+      <p class="aside">{L(M['print_note'])}</p>
+    </section>
+    <section class="psec" id="template" aria-labelledby="tpl-title">
+      <h2 id="tpl-title">{L(M['template_title'])}</h2>
+      <p class="lead">{L(M['template_body'])}</p>
+      <ul class="dl-list">
+        <li class="dl-main"><a href="files/{TEMPLATE_NAME}" download><span class="ft">PDF</span><span class="dl-t">{L(M['template_title'])} · A4 · 1:1</span>
+          <span class="dl-s">{TEMPLATE_NAME} · {sz(files / TEMPLATE_NAME)}</span></a></li>
+      </ul>
+    </section>
+    <section class="psec">
+      <p class="cta-row"><a class="btn btn-act" href="../assembly/">{L(H['build']['wizard']['cta'])}</a></p>
+      <p class="aside">{L(M['also'])}</p>
+      <p class="aside">{L(M['licence'])} <a href="{REPO}/tree/main/docs/manual">docs/manual</a> · <a href="{REPO}/tree/main/hardware/v6.2/template">hardware/v6.2/template</a></p>
+    </section>'''
+    nav = [('../', NAV_HOME, True), ('../assembly/', {'en': 'Assembly', 'it': 'Montaggio', 'de': 'Montage'}, False),
+           ('../parts/', {'en': 'Bought parts', 'it': 'Pezzi da comprare', 'de': 'Zukaufteile'}, True)]
+    s = page(root='../', titles=M['meta'], description=M['lead']['en'], nav=nav, body=body, footer=footer_html('../', H), cls='print manual')
+    (page_dir / 'index.html').write_text(s, encoding='utf-8')
+    return page_dir / 'index.html'
+
+
+# ---------------------------------------------------------------- archive of design v6
+def archive_index(out):
+    H = load_toml('home.toml')
+    A = H['archive']
+    items = [('3d/', {'en': '3D model', 'it': 'Modello 3D', 'de': '3D-Modell'}),
+             ('print/', {'en': 'Print files', 'it': 'File di stampa', 'de': 'Druckdateien'}),
+             ('parts/', {'en': 'Bought parts', 'it': 'Pezzi da comprare', 'de': 'Zukaufteile'})]
+    links = ''.join(f'<li><a href="{href}" data-keep-lang>{L(t)}</a><span>v6 · hardware 6.0.0</span></li>' for href, t in items)
+    body = f'''    <section class="phead" aria-labelledby="a-title">
+      <p class="kicker">Kibble Dispenser Outdoor · v6</p>
+      <h1 id="a-title">{L(A['title'])}</h1>
+      <p class="lead">{L(A['lead'])}</p>
+      <p class="cta-row"><a class="btn btn-act" href="../" data-keep-lang>{L(A['current'])} →</a></p>
+    </section>
+    <section class="psec"><ul class="links">{links}</ul>
+      <p class="aside"><a href="{REPO}/tree/main/hardware/v6">hardware/v6</a> · <a href="{REPO}/releases/tag/hw-v6.0.0">hw-v6.0.0</a> · <a href="../earlier/">{L(H['footer']['earlier'])}</a></p>
+    </section>'''
+    page_dir = out / 'v6'
+    page_dir.mkdir(parents=True, exist_ok=True)
+    s = page(root='../', titles=A['meta'], description=A['lead']['en'], nav=[('../', NAV_HOME, True)], body=body,
+             footer=footer_html('../', H), cls='print archive')
+    (page_dir / 'index.html').write_text(s, encoding='utf-8')
+    return page_dir / 'index.html'
 
 
 VERSIONS = None
@@ -745,14 +915,14 @@ def build(out):
     VERSIONS = versions.load()
     out = Path(out)
     summary, counts, grams = load_data()
-    for k in summary['plates']:
-        for x in k['parts']:
-            if x['id'] not in load_toml('print.toml')['part']:
-                raise SystemExit(f"site/content/print.toml has no name for part {x['id']}")
     home(out, summary, counts, grams)
-    print_page(out, summary)
+    written = [out / 'index.html']
+    for cfg in PRINT_PAGES:
+        written.append(print_page(out, cfg))
+    written.append(manual_page(out))
+    written.append(archive_index(out))
     # catch unfilled markers and stray format braces
-    for f in (out / 'index.html', out / 'v6/print/index.html'):
+    for f in written:
         s = f.read_text(encoding='utf-8')
         if re.search(r'\{[a-z_]+\}', s):
             raise SystemExit(f'unfilled placeholder in {f}')

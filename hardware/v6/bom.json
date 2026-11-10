@@ -1,5 +1,5 @@
 {
- "about": "Bought parts of design v6 in English, Italian and German. Rendered by site/bom.py into docs/BOM.md and the site page v6/parts/. Each 'match' lists hardware lines of cad/v6.json: their quantities must add up to 'qty', and every v6.json hardware line must be matched somewhere.",
+ "about": "Bought parts of design v6 in English, Italian and German. Rendered by site/bom.py into docs/BOM-v6.md and the archived site page v6/parts/. Each 'match' lists hardware lines of cad/v6.json: their quantities must add up to 'qty', and every v6.json hardware line must be matched somewhere.",
  "version": "v6",
  "groups": [
   {

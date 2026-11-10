@@ -5,18 +5,21 @@ Build the static site so it always reflects the repository.
 Run from anywhere:  python site/build.py [OUTPUT_DIR]
 OUTPUT_DIR defaults to site/_build (not committed). The script:
   - copies site/ (css, js, img, vendored three.js, the earlier-versions page) into the output folder
-  - home page <out>/index.html and print-files page <out>/v6/print/ (with the downloads from
-    hardware/v6/plates/), in English, Italian and German: site/pages.py with the texts in site/content/
+  - stable URLs for the current design (v6.2): home page <out>/index.html, 3d/, print/, parts/, assembly/ (the
+    assembly wizard, copied as built from site/assembly/) and manual/; earlier designs keep versioned pages (v6/...)
+  - home page, print-files pages (print/ from hardware/v6.2/plates/, v6/print/ from hardware/v6/plates/), manual page
+    (docs/manual/ and hardware/v6.2/template/) and the v6 archive page v6/, in English, Italian and German:
+    site/pages.py with the texts in site/content/
   - earlier versions (prototype 1, drivetrain v3) at <out>/earlier/: copies hardware/assembly/* (meshes
     and assembly.json) into <out>/earlier/assembly/ and fills the printed-parts list and the photo strip
     of earlier/index.html from assembly.json and the captions in docs/photos/README.md
   - copies the selected process photos from docs/photos/ into <out>/photos/, with smaller
     previews in <out>/photos/thumb/ when Pillow is installed (the originals otherwise)
   - every footer shows the hardware, firmware and product versions (site/versions.py) and the build commit
-  - design v6: writes the full-screen 3D page <out>/v6/3d/ with site/viewer/make_viewer.py from
-    hardware/v6/assembly/ (decimated meshes as separate STL files, three.js r128 from site/vendor/three-r128/),
-    and the bought-parts page <out>/v6/parts/ from hardware/v6/bom.json (site/bom.py)
-The v6 3D page needs numpy, and fast_simplification to decimate the meshes (without it the full
+  - full-screen 3D pages with site/viewer/make_viewer.py (decimated meshes as separate STL files, three.js r128 from
+    site/vendor/three-r128/): <out>/3d/ from hardware/v6.2/assembly/ and <out>/v6/3d/ from hardware/v6/assembly/;
+    bought-parts pages <out>/parts/ (hardware/v6.2/bom.json) and <out>/v6/parts/ (hardware/v6/bom.json) with site/bom.py
+The 3D pages need numpy, and fast_simplification to decimate the meshes (without it the full
 meshes are used): pip install numpy fast_simplification. Everything else is standard library.
 """
 import html
@@ -124,35 +127,53 @@ def parts_html(data):
     return '<ol class="bom">\n' + '\n'.join(rows) + '\n</ol>'
 
 
-V6_LINKS = [
-    {'href': '../../', 'label': {'en': 'Project home', 'it': 'Pagina del progetto', 'de': 'Projektseite'}},
+LINKS_CURRENT = [
+    {'href': '../', 'label': {'en': 'Project home', 'it': 'Pagina del progetto', 'de': 'Projektseite'}},
     {'href': '../print/', 'label': {'en': 'Print files', 'it': 'File di stampa', 'de': 'Druckdateien'}},
     {'href': '../parts/', 'label': {'en': 'Bought parts', 'it': 'Pezzi extra', 'de': 'Zukaufteile'}},
+    {'href': '../assembly/', 'label': {'en': 'Assembly guide', 'it': 'Guida al montaggio', 'de': 'Montageanleitung'}},
+    {'href': '../manual/', 'label': {'en': 'Manual', 'it': 'Manuale', 'de': 'Handbuch'}},
+    {'href': f'{REPO}/tree/main/hardware/v6.2', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
+]
+LINKS_V6 = [
+    {'href': '../../3d/', 'label': {'en': 'Current design v6.2', 'it': 'Progetto attuale v6.2', 'de': 'Aktueller Entwurf v6.2'}},
+    {'href': '../', 'label': {'en': 'Design v6 (archive)', 'it': 'Progetto v6 (archivio)', 'de': 'Entwurf v6 (Archiv)'}},
+    {'href': '../print/', 'label': {'en': 'Print files v6', 'it': 'File di stampa v6', 'de': 'Druckdateien v6'}},
+    {'href': '../parts/', 'label': {'en': 'Bought parts v6', 'it': 'Pezzi extra v6', 'de': 'Zukaufteile v6'}},
     {'href': f'{REPO}/tree/main/hardware/v6', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
+]
+ARCHIVED_V6 = {'en': 'Design v6 (archive) · replaced by v6.2', 'it': 'Progetto v6 (archivio) · sostituito dalla v6.2',
+               'de': 'Entwurf v6 (Archiv) · ersetzt durch v6.2'}
+# 3D pages: (manifest, output folder, path to the site root, links, face cap per part, mesh budget MB, extra page data)
+VIEWERS = [
+    ('hardware/v6.2/assembly/v62_viewer.json', '3d', '../', LINKS_CURRENT, 30000, 24.0, {}),
+    ('hardware/v6/assembly/v6_viewer.json', 'v6/3d', '../../', LINKS_V6, 10000, 9.0, {'subtitle': ARCHIVED_V6}),
 ]
 
 
-def v6_pages():
-    """Full-screen 3D page and bought-parts page of design v6."""
+def design_pages():
+    """Full-screen 3D pages and bought-parts pages: the current design at 3d/ and parts/, v6 at v6/3d/ and v6/parts/."""
     sys.path.insert(0, str(SITE / 'viewer'))
     sys.path.insert(0, str(SITE))
     try:
         import make_viewer
         import versions
     except ImportError as e:
-        sys.exit(f'the v6 3D page needs numpy ({e}): pip install numpy fast_simplification')
+        sys.exit(f'the 3D pages need numpy ({e}): pip install numpy fast_simplification')
     import bom
     if make_viewer.fast_simplification is None:
-        print('fast_simplification not installed: the v6 3D page uses the full meshes')
-    page = OUT / 'v6/3d'
-    page.mkdir(parents=True)
-    print(make_viewer.build(str(ROOT / 'hardware/v6/assembly/v6_viewer.json'), str(page / 'index.html'),
-                            mesh_dir=str(page / 'meshes'), mesh_url='meshes/',
-                            three_src='../../vendor/three-r128/three.min.js',
-                            extra={'links': V6_LINKS, 'version': versions.viewer_data(versions.load())}))
-    parts = OUT / 'v6/parts'
-    parts.mkdir(parents=True)
-    (parts / 'index.html').write_text(bom.render_page(bom.load(), versions.html_line(versions.load())), encoding='utf-8')
+        print('fast_simplification not installed: the 3D pages use the full meshes')
+    ver = versions.load()
+    for manifest, folder, root, links, max_faces, budget, extra in VIEWERS:
+        page = OUT / folder
+        page.mkdir(parents=True)
+        print(make_viewer.build(str(ROOT / manifest), str(page / 'index.html'), max_faces=max_faces, budget_mb=budget,
+                                mesh_dir=str(page / 'meshes'), mesh_url='meshes/', three_src=f'{root}vendor/three-r128/three.min.js',
+                                extra={'links': links, 'version': versions.viewer_data(ver), **extra}))
+    for design, cfg in bom.DESIGNS.items():
+        parts = OUT / cfg['page']
+        parts.mkdir(parents=True, exist_ok=True)
+        (parts / 'index.html').write_text(bom.render_page(bom.load(design), versions.html_line(ver)), encoding='utf-8')
 
 
 def main():
@@ -178,7 +199,7 @@ def main():
             sys.exit(f'{token} not found in site/earlier/index.html')
         s = s.replace(token, content)
     page.write_text(s, encoding='utf-8')
-    v6_pages()
+    design_pages()
     import pages
     pages.build(OUT)
     n = sum(1 for f in OUT.rglob('*') if f.is_file())

@@ -464,3 +464,4 @@ main > section.earlier-note { padding-top: clamp(20px, 4vw, 36px); padding-botto
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+.links span a { font: inherit; }
