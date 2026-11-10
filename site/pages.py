@@ -5,7 +5,8 @@ Home page, print-files pages, manual page and the v6 archive page of the website
 site/build.py calls build(out) after copying site/ to the output folder. It writes:
   <out>/index.html            home page (current design v6.2), texts from site/content/home.toml
   <out>/print/                print files of the current design v6.2, texts from site/content/print.toml, with
-                              files/ (Bambu projects, plate 3MFs, STL files, one ZIP with everything) and img/ (previews)
+                              files/ (Bambu projects, plate 3MFs, one ZIP with everything) and img/ (previews); the
+                              single STL files are linked from GitHub (they are also in the ZIP)
   <out>/manual/               the manuals (A6 booklet and A4 print version per language, docs/manual/) and the
                               drilling template (hardware/v6.2/template/), texts from home.toml [manual]
   <out>/v6/                   archive of design v6: index page, and v6/print/ from print_v6.toml and hardware/v6/plates
@@ -563,12 +564,13 @@ def print_page(out, cfg):
     tot = summary['totals']
     page_dir = out / cfg['dir']
     files, img = page_dir / 'files', page_dir / 'img'
-    for d in (files / 'plates', files / 'stl', files / 'preview', img):
+    for d in (files / 'plates', files / 'preview', img):
         d.mkdir(parents=True, exist_ok=True)
     projects = summary['files']['bambu_projects']
     for f in projects:
         shutil.copy2(plates_dir / f, files / f)
-    for sub in ('plates', 'stl', 'preview'):
+    # single STL files are in the ZIP and linked from GitHub, not copied, to keep the Pages artifact small
+    for sub in ('plates', 'preview'):
         for f in sorted((plates_dir / sub).iterdir()):
             shutil.copy2(f, files / sub / f.name)
 
@@ -786,8 +788,9 @@ def print_page(out, cfg):
       <ul class="cklist">{''.join(by_kind['test'])}</ul>
     </section>'''
 
-    stl = sorted((files / 'stl').iterdir())
-    stl_items = ''.join(f'<li><a href="files/stl/{esc(f.name)}" download>{esc(f.name)}</a> <span>{sz(f)}</span></li>' for f in stl)
+    stl = sorted((plates_dir / 'stl').iterdir())
+    raw = f"{REPO}/raw/main/{cfg['gh']}/stl/"
+    stl_items = ''.join(f'<li><a href="{raw}{esc(f.name)}">{esc(f.name)}</a> <span>{sz(f)}</span></li>' for f in stl)
     stl_html = f'''    <section class="psec" id="stl" aria-labelledby="stl-title">
       <h2 id="stl-title">{L(P['files']['title'])}</h2>
       <p class="lead">{L(P['files']['lead'])}</p>

@@ -103,7 +103,7 @@ The firmware version stays `fw-v0.1.0+dev.20260324` (same pins and behaviour con
 ## Regenerating
 
 ```
-pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib
+pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib fast_simplification
 python hardware/v6.2/cad/build_v62.py
 python hardware/cad/check_meshes.py hardware/v6.2
 ```

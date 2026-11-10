@@ -34,7 +34,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install CAD dependencies
-        run: pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib
+        run: pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib fast_simplification
 
       # build_v62.py runs build_v6.py (with build_dosing.py and build_v5.py), build_v61.py and build_v611.py first,
       # then builds v6.2, runs its checks and publishes assembly/, template/, v62.json and check_v62.png in the copy

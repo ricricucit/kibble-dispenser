@@ -49,7 +49,8 @@ Run from anywhere:  python hardware/v6.2/cad/build_v62.py
 Optional argument: "build" stops after building, "parts" after exporting to build/ (no checks, no publishing).
 ref/measure_v61.json and ref/ta_v611.json are baseline measurements of v6.1 and v6.1.1 (line of sight, tool access),
 made once; the v6.1.1 and v6.2 checks compare against them. los.py and toolaccess.py are the helpers of those checks.
-Dependencies: trimesh, manifold3d, shapely, mapbox_earcut, rtree, numpy, scipy, networkx, lxml, matplotlib.
+Dependencies: trimesh, manifold3d, shapely, mapbox_earcut, rtree, numpy, scipy, networkx, lxml, matplotlib, fast_simplification
+(the v6.1 checks decimate meshes with trimesh's quadric decimation).
 """
 import json
 import math

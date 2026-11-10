@@ -48,5 +48,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # The artifact is about 150 MB (print files, manuals, 3D meshes, assembly guide): allow 30 minutes instead of 10
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000
