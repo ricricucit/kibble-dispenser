@@ -13,6 +13,8 @@ This repo currently holds a newly imported CAD package and an **unflashed ESPHom
 - No autonomous continuous servo cycling.
 - Code and inline comments in English.
 
+**Update 2026-11-10 (owner decision):** from hardware 6.3 the pod has **one recessed push-button + 2 LEDs** (plus a sealed speaker opening and 3 blind knock-outs). New mapping: single press = dispense one portion (only while ON); double press = ON/OFF; long press 5 s = reset all but Wi-Fi; long press 10 s = full reset. The other rules above still apply, plus: never dispense at power-on (store the last rest position). The firmware will be adapted later: see issue #2. The bench prototype keeps its two buttons until then; don't flash it.
+
 ## Evidence / uncertainty discipline
 
 - These behaviors are **owner-confirmed**; the exact MicroPython source currently flashed onto the board **has not yet been recovered**. *(2026-11-08: a dev folder snapshot of the source is now in `firmware/micropython/`; the copy on the board is still not recovered. See the update below.)*
