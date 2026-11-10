@@ -2,8 +2,9 @@
 """
 Check that every mesh under a hardware folder is a closed solid with a positive volume.
 
-Usage:  python hardware/cad/check_meshes.py [HARDWARE_DIR]
-HARDWARE_DIR defaults to the folder above this script (prototype 1); pass hardware/v6 for design v6.
+Usage:  python hardware/cad/check_meshes.py [HARDWARE_DIR] [--skip GLOB ...]
+HARDWARE_DIR defaults to the folder above this script (prototype 1); pass hardware/v6 or hardware/v6.2 for those
+designs. --skip leaves out meshes whose path relative to HARDWARE_DIR matches a glob (listed in the output).
 It scans stl/*.stl, 3mf/*.3mf, assembly/*.stl and cad/build/*.stl (the build folder exists after
 running the generator scripts).
 
@@ -13,15 +14,27 @@ raised lettering that meets the part on a line). Slicers print both; the second 
 with the number of shared edges. A mesh with an open edge, or a zero or negative volume, fails.
 Exit code 1 if any mesh fails or none is found.
 """
+import fnmatch
 import sys
 from pathlib import Path
 
 import numpy as np
 import trimesh
 
-root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent
+args, skip = [], []
+it = iter(sys.argv[1:])
+for a in it:
+    if a == '--skip':
+        skip.append(next(it))
+    else:
+        args.append(a)
+root = Path(args[0]) if args else Path(__file__).resolve().parent.parent
 files = sorted([*root.glob('stl/*.stl'), *root.glob('3mf/*.3mf'), *root.glob('assembly/*.stl'),
                 *root.glob('cad/build/*.stl')])
+skipped = [f for f in files if any(fnmatch.fnmatch(str(f.relative_to(root)), g) for g in skip)]
+for f in skipped:
+    print(f'skip {f.relative_to(root)}')
+files = [f for f in files if f not in skipped]
 if not files:
     sys.exit(f'no meshes found under {root}')
 failed, touching = [], 0

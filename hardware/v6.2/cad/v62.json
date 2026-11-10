@@ -1,0 +1,1983 @@
+{
+ "version": "v6.2",
+ "base": "v6.1.1 (v611.json): everything not listed here is unchanged",
+ "frame": "as v6.1.1: Z-up mm, shaft axis x=y=0, Z=0 = bowl base underside, LOCKED bayonet pose, gate OPEN; the shelf underside moves to z 78.1 (+8)",
+ "changes": {
+  "1_screw_access": {
+   "v611_defects_measured": {
+    "tower_lobe_screw_spacing_235_240_mm": 2.54,
+    "tool_access_v611_steps_order": {
+     "S1 tower->bowl M3x12 @0": {
+      "verdict": "OK",
+      "first_obstacle": null,
+      "key_length_min_mm": 21.0
+     },
+     "S1 tower->bowl M3x12 @125": {
+      "verdict": "OK",
+      "first_obstacle": null,
+      "key_length_min_mm": 21.0
+     },
+     "S1 tower->bowl M3x12 @-120": {
+      "verdict": "OK",
+      "first_obstacle": null,
+      "key_length_min_mm": 21.0
+     },
+     "S2 chute->bowl M3x10 y+30.6": {
+      "verdict": "OK long key",
+      "first_obstacle": null,
+      "key_length_min_mm": 75.3
+     },
+     "S2 chute->bowl M3x10 y-30.6": {
+      "verdict": "OK long key",
+      "first_obstacle": null,
+      "key_length_min_mm": 75.3
+     },
+     "S3 box->tower M3x10 @90": {
+      "verdict": "BLOCKED",
+      "first_obstacle": {
+       "part": "chiocciola_v61",
+       "at_mm": 23.0,
+       "mm3": 222.147
+      },
+      "key_length_min_mm": null
+     },
+     "S3 box->tower M3x10 @-125": {
+      "verdict": "BLOCKED",
+      "first_obstacle": {
+       "part": "colonna_v61",
+       "at_mm": 9.24,
+       "mm3": 56.846
+      },
+      "key_length_min_mm": null
+     },
+     "S3 box->tower M3x10 @-30": {
+      "verdict": "BLOCKED",
+      "first_obstacle": {
+       "part": "chiocciola_v61",
+       "at_mm": 23.0,
+       "mm3": 222.147
+      },
+      "key_length_min_mm": null
+     },
+     "S4 shell->bowl M3x12 @0 (box in)": {
+      "verdict": "OK long key",
+      "first_obstacle": null,
+      "key_length_min_mm": 63.0
+     },
+     "S4b shell->bowl M3x12 @0 (no box)": {
+      "verdict": "OK long key",
+      "first_obstacle": null,
+      "key_length_min_mm": 63.0
+     },
+     "S4 shell->bowl M3x12 @120 (box in)": {
+      "verdict": "BLOCKED",
+      "first_obstacle": {
+       "part": "scatola_v611",
+       "at_mm": 21.0,
+       "mm3": 174.983
+      },
+      "key_length_min_mm": null
+     },
+     "S4b shell->bowl M3x12 @120 (no box)": {
+      "verdict": "OK",
+      "first_obstacle": null,
+      "key_length_min_mm": 15.7
+     },
+     "S4 shell->bowl M3x12 @-120 (box in)": {
+      "verdict": "BLOCKED",
+      "first_obstacle": {
+       "part": "scatola_v611",
+       "at_mm": 21.0,
+       "mm3": 174.983
+      },
+      "key_length_min_mm": null
+     },
+     "S4b shell->bowl M3x12 @-120 (no box)": {
+      "verdict": "OK",
+      "first_obstacle": null,
+      "key_length_min_mm": 15.7
+     }
+    },
+    "why_relocate": "with the tower top screws at r 19 / 0-125-240 deg, no box-screw triangle reachable from below surrounds the axis: inside the box only the servo|board corridor and the -Y bay are free; outside, the -X side is blocked by the chute and the 125/240 access bores; the v6.1 factory order (tower onto box, then onto bowl) is impossible because the box roof covers the tower-top screws"
+   },
+   "v62_solution": "one set of 3x M3x40 DIN912 A2 clamps box + tower + bowl, driven from below after the shell; P1 outside the box through a 5 mm ear, P2 (-Y bay) and P3 (servo|board corridor) through the 2.4 roof with an O-ring 3x1 under the head; the tower has 3 pillars + webs (no lobes); the bowl tower inserts move to P1..P3 (8.5 deep, old holes filled); 6 screws -> 3",
+   "positions_xy": [
+    [
+     -18.25,
+     24.5
+    ],
+    [
+     -1.5,
+     -25.5
+    ],
+    [
+     18.375,
+     14.0
+    ]
+   ],
+   "build_order": [
+    "1 latch into the bowl (as v6.1.1)",
+    "2 tower module (colonna_v62 + shaft + O-rings) set on the bowl base, collar in the base hole (no screws yet)",
+    "3 chute: 2x M3x10 from below",
+    "4 shell (button + O-ring fitted): 3x M3x12 from below - the box is not in yet, so the A/B cups no longer block 120/240 deg",
+    "5 electronics box (cap off) lowered into the shell onto the tower: shaft into the hub (rib to the latch), pillars on the ear / roof holes; 3x M3x40 from below (P2, P3 with an O-ring 3x1 under the head)",
+    "6 cap on (thumb-turns)",
+    "7 rim seal, comb lips, plates, disc from the top"
+   ],
+   "tool_access_v62": {
+    "step 3 chute -> bowl M3x10 (-42, +30.6)": {
+     "verdict": "OK long key",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 75.3,
+     "first_obstacle": null
+    },
+    "step 3 chute -> bowl M3x10 (-42, -30.6)": {
+     "verdict": "OK long key",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 75.3,
+     "first_obstacle": null
+    },
+    "step 4 shell -> bowl M3x12 @0 deg (box not yet in)": {
+     "verdict": "OK long key",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 63.0,
+     "first_obstacle": null
+    },
+    "step 4 shell -> bowl M3x12 @120 deg (box not yet in)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 15.7,
+     "first_obstacle": null
+    },
+    "step 4 shell -> bowl M3x12 @-120 deg (box not yet in)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 15.7,
+     "first_obstacle": null
+    },
+    "step 5 box+tower -> bowl M3x40 P1 (-18.2, 24.5) via ear": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 54.5,
+     "first_obstacle": null
+    },
+    "step 5 box+tower -> bowl M3x40 P2 (-1.5, -25.5) sealed": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 36.6,
+     "first_obstacle": null
+    },
+    "step 5 box+tower -> bowl M3x40 P3 (18.4, 14.0) sealed": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 57.1,
+     "first_obstacle": null
+    },
+    "factory servo -> cradle M3x8 #1": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 27.0,
+     "first_obstacle": null
+    },
+    "factory servo -> cradle M3x8 #2": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 22.5,
+     "first_obstacle": null
+    },
+    "factory servo -> cradle M3x8 #3": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 22.5,
+     "first_obstacle": null
+    },
+    "factory servo -> cradle M3x8 #4": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 27.0,
+     "first_obstacle": null
+    },
+    "factory hub -> servo M3x8 (through the plateau hole, before the tower)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 15.0,
+     "first_obstacle": null
+    },
+    "flange join ST2.9x9.5 @215 deg (from the shelf face, flange on the bench)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 15.0,
+     "first_obstacle": null
+    },
+    "flange join ST2.9x9.5 @255 deg (from the shelf face, flange on the bench)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 15.0,
+     "first_obstacle": null
+    },
+    "flange join ST2.9x9.5 @290 deg (from the shelf face, flange on the bench)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 15.0,
+     "first_obstacle": null
+    },
+    "flange -> shelf wood 5x35 @80 deg (PZ2, from below, unit not hung)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 37.1,
+     "first_obstacle": null
+    },
+    "flange -> shelf wood 5x35 @150 deg (PZ2, from below, unit not hung)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 37.1,
+     "first_obstacle": null
+    },
+    "flange -> shelf wood 5x35 @225 deg (PZ2, from below, unit not hung)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 37.1,
+     "first_obstacle": null
+    },
+    "flange -> shelf wood 5x35 @295 deg (PZ2, from below, unit not hung)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 37.1,
+     "first_obstacle": null
+    }
+   },
+   "tool_model": "straight key cylinder along the screw axis from the head face (2.5 mm hex: \u00d83.2; PZ2 for wood screws: \u00d86.5) must reach the head without touching anything present at that step; hand = \u00d828 (\u00d832 for wood) cylinder beyond the key length; key_length_min = shortest straight key/screwdriver with the hand free; verdict OK <= 60 mm, \"OK long key\" <= 100 mm (hex screwdriver 2.5 x 100)"
+  },
+  "2_gate_and_interlock": {
+   "parts": {
+    "flangia_piano_v62": "lower plate = v6.1.1 bayonet plate (hooks, skirt, pins, rim-lip and skirt-lip grooves) at r 90, pie opening only, \u00d84 pivot pin, ring groove with a 360 deg snap undercut, peg slot over the arm sweep, landing drain slot, lower half of the cable tunnel",
+    "flangia_alta_v62": "NEW upper plate 70.1..78.1: blade pocket (sector -62.8..169.8 deg, r 70, 3.4 deep), arm channel, funnel (pie prism to 74.1 + the v6 morph raised 8 mm), shelf-gasket groove, collar pins, cable tunnel upper half + channel port, 3 countersunk join screws from the shelf face",
+    "saracinesca_v62": "NEW PETG blade: green 119 deg sector r 69.5 x 3.0 (single-bevel knife leading edge) + orange arm with the peg hole",
+    "anello_saracinesca_v62": "NEW orange ring r 85..88 x z 28.5..65.9 round the pod top, tongue + 360 deg snap barb in the lower plate, \u00d83 peg into the blade arm, ONE \u00d828 window at the button height"
+   },
+   "kinematics": {
+    "residual_open_at_full_stroke_mm2_and_gap_d": [
+     0.53,
+     0.15
+    ],
+    "kibble_tight_rule": "residual open area <= 3.0 mm2 and no gap wider than 1.0 mm (the 0.15 mm pivot clearance ring)",
+    "pie_opening_half_angle_deg": 50.15,
+    "blade_lead_open_deg": 50.5,
+    "stroke_deg": 113.0,
+    "fully_covered_from_deg": 101.0,
+    "window_gate_frame_deg": 189.5,
+    "closing_direction": "anticlockwise seen from below (same hand motion as the unit removal twist)",
+    "stops": "the arm hits the ends of its channel at 0 and 113 deg"
+   },
+   "open_passage": {
+    "v611_minimum_section": "flange funnel pie at the flange underside (v6.1.1)",
+    "v611_area_mm2": 2238.2,
+    "v611_inscribed_d_mm": 43.96,
+    "v62_gate_open_area_mm2": 2236.0,
+    "v62_area_ratio": 0.999,
+    "v62_inscribed_d_mm": 43.97,
+    "pivot_pin_takes_mm2": 2.26,
+    "note": "the \u00d84 pivot pin covers 1.1 mm2 at the pie apex (r < 2), where the opening is narrower than the smallest kibble; the blade parks 0.35 deg outside the pie edge: full passage elsewhere",
+    "gate_plane_z": [
+     70.3,
+     73.3
+    ],
+    "downstream_unchanged": "pie prism down to the bowl rim (66.1), then the unchanged v6.1 window/disc"
+   },
+   "closed_hold": {
+    "assumptions": "full 200 L drum (\u00d8585 x 850 mm kibble), bulk density 0.45, wall friction 0.3 (kibble on HDPE), Janssen K 0.4; design pressure = max(2 x Janssen at the bottom, Janssen asymptote, hydrostatic without wall friction)",
+    "p_janssen_bottom_kPa": 2.7,
+    "p_janssen_asymptote_kPa": 5.38,
+    "p_hydrostatic_kPa": 3.75,
+    "p_design_kPa": 5.4,
+    "force_on_opening_N": 12.1,
+    "blade_model": "PETG plate 3.0 mm, simply supported over the largest inscribed circle of the opening (\u00d844.0); the blade rests on the lower plate all round the pie (and on the landing floor past the far edge at full stroke)",
+    "blade_bending_MPa": 0.37,
+    "blade_SF": 122.0,
+    "blade_deflection_mm": 0.015,
+    "creep": "long-term stress < 1 MPa: no creep concern",
+    "kibble_below_blade_g": 4.2,
+    "closing": "single-bevel knife leading edge (0.6 edge, 25 deg) lifts pieces into the column; over-travel 12.4 deg past the far edge into a landing whose far end has a 1.6 mm drain slot (crumbs fall out, no crumb cake); torque at the ring ~0.1-0.5 N m",
+    "closing_torque_Nm_est": 0.232
+   },
+   "interlock": {
+    "logic": "the ring covers the button except through one window that lines up with it only at the end of the closing stroke; the unit can only be unlatched by pressing that button",
+    "strict": true,
+    "button_first_reachable_deg": 105.0,
+    "opening_fully_covered_from_deg": 101.0,
+    "probes": [
+     "thumb \u00d816 centred",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 centred"
+    ],
+    "table": [
+     {
+      "g_deg": 0.0,
+      "opening_covered": 0.001,
+      "residual_open_mm2": 2235.96,
+      "residual_gap_d_mm": 43.97,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 8.0,
+      "opening_covered": 0.0764,
+      "residual_open_mm2": 2067.26,
+      "residual_gap_d_mm": 42.5,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 16.0,
+      "opening_covered": 0.1562,
+      "residual_open_mm2": 1888.62,
+      "residual_gap_d_mm": 40.74,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 24.0,
+      "opening_covered": 0.236,
+      "residual_open_mm2": 1709.98,
+      "residual_gap_d_mm": 38.76,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 32.0,
+      "opening_covered": 0.3158,
+      "residual_open_mm2": 1531.35,
+      "residual_gap_d_mm": 36.51,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 40.0,
+      "opening_covered": 0.3956,
+      "residual_open_mm2": 1352.71,
+      "residual_gap_d_mm": 33.97,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 48.0,
+      "opening_covered": 0.4754,
+      "residual_open_mm2": 1174.07,
+      "residual_gap_d_mm": 31.1,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 56.0,
+      "opening_covered": 0.5553,
+      "residual_open_mm2": 995.44,
+      "residual_gap_d_mm": 27.87,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 64.0,
+      "opening_covered": 0.6351,
+      "residual_open_mm2": 816.8,
+      "residual_gap_d_mm": 24.21,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 72.0,
+      "opening_covered": 0.7149,
+      "residual_open_mm2": 638.16,
+      "residual_gap_d_mm": 20.08,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 80.0,
+      "opening_covered": 0.7947,
+      "residual_open_mm2": 459.53,
+      "residual_gap_d_mm": 15.39,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 88.0,
+      "opening_covered": 0.8745,
+      "residual_open_mm2": 280.89,
+      "residual_gap_d_mm": 10.05,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 96.0,
+      "opening_covered": 0.9543,
+      "residual_open_mm2": 102.25,
+      "residual_gap_d_mm": 3.86,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 97.0,
+      "opening_covered": 0.9643,
+      "residual_open_mm2": 79.92,
+      "residual_gap_d_mm": 3.03,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 98.0,
+      "opening_covered": 0.9743,
+      "residual_open_mm2": 57.63,
+      "residual_gap_d_mm": 2.2,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 99.0,
+      "opening_covered": 0.9841,
+      "residual_open_mm2": 35.55,
+      "residual_gap_d_mm": 1.37,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 100.0,
+      "opening_covered": 0.9937,
+      "residual_open_mm2": 13.99,
+      "residual_gap_d_mm": 0.54,
+      "kibble_tight": false,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 101.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 102.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 103.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 104.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": false
+     },
+     {
+      "g_deg": 105.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": true
+     },
+     {
+      "g_deg": 106.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": true
+     },
+     {
+      "g_deg": 107.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": true
+     },
+     {
+      "g_deg": 108.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": true
+     },
+     {
+      "g_deg": 109.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": false,
+      "any_fingertip_reaches": true
+     },
+     {
+      "g_deg": 110.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": true,
+      "any_fingertip_reaches": true
+     },
+     {
+      "g_deg": 111.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": true,
+      "any_fingertip_reaches": true
+     },
+     {
+      "g_deg": 112.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": true,
+      "any_fingertip_reaches": true
+     },
+     {
+      "g_deg": 113.0,
+      "opening_covered": 0.9998,
+      "residual_open_mm2": 0.53,
+      "residual_gap_d_mm": 0.15,
+      "kibble_tight": true,
+      "thumb_reaches_button": true,
+      "any_fingertip_reaches": true
+     }
+    ],
+    "no_unit_hung": "NOT provided: blocking the gate when no unit is hung needs a spring or a gravity latch lifted by the unit; with the unit off, the ring can still be turned open by hand (a label on the ring says: close before removing, open only with the unit hung)"
+   },
+   "gate_sweep_mm3": {
+    "columns": [
+     "g",
+     "blade|flange",
+     "ring|flange",
+     "gate|unit (locked)",
+     "blade|ring"
+    ],
+    "rows": [
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      8.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      16.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      24.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      32.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      40.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      48.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      56.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      64.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      72.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      80.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      88.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      96.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      104.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      112.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      113.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "printing": {
+    "saracinesca_v62": "flat, bottom face on the bed (the bevel is on the top); green blade + orange arm (2 colours, like the disc)",
+    "anello_saracinesca_v62": "standing on its bottom edge, tongue and peg up; window \u00d828 is a vertical hole (bridges 28 mm at the top: use the 0.8 chamfer side up or a light support); orange PETG; no other supports",
+    "flangia_alta_v62": "shelf face on the bed: pocket, tunnel and port open upward, no supports",
+    "flangia_piano_v62": "as v6.1.1 (shelf-side face on the bed); the ring groove undercut is a 0.6 internal ledge at the groove bottom"
+   }
+  },
+  "3_cable": {
+   "removed": "\u00d810 shelf hole and passacavo_v61 (a connector could not pass and the container stood on it)",
+   "path": "box gland -> unit pigtail up the -Y side of the pod -> M8 IP67 inline connector hanging from the supply cable in the pod-top annulus (r 69.5, z 4..47) -> supply cable up at r 74 into the flange tunnel (R 15 bend, TPU grommet passacavo_v62 at the pod side) -> channel port in the upper plate rim at 270 deg -> snap-in channel under the shelf to the shelf edge -> end cap, cable down (drip loop)",
+   "connector": "M8 A-coded 4-pin IP67 inline pair (male on the unit pigtail, female on the supply cable), pins 1+2 = +12 V, 3+4 = GND in parallel; cable PUR 4x0.34 \u00d85; when the unit is twisted off and lowered 8 cm the connector hangs free in the gap under the flange: unscrew it",
+   "channel": {
+    "profile_mm": "20 x 8 closed against the wood: base 17.2 wide screwed with 2x 3.5x16 countersunk per section (heads inside), cover snaps over the base barbs, R2.5 rounded outer edges, no gap at the wood (0.2)",
+    "sections": "150 mm, cut the last one to length",
+    "end_cap": "tongue into the channel, cable exits downward through a rounded \u00d86.2 hole",
+    "colour": "black PETG",
+    "scene": "2 sections (150 + 112) + end cap from the flange rim at 270 deg to the shelf edge y -360"
+   },
+   "exposure": "no cable below the pod: it is inside the pod, the flange and the channel only"
+  },
+  "4_comb_lips": {
+   "design": "labbro_pettine_v62 x4: one part, length 27.4, 5 slits 0.7 symmetric about the middle -> reversible end for end; placed in all 4 grooves by proper rotations only (gate lips flap up, window lips flap down)",
+   "lip_flap_height_mm_gate_and_window": 1.85,
+   "grooves": "the two short (skewed) edges 23.6/23.8 get their grooves lengthened inward to the common length; the long edges 26.2/26.4 unchanged (+0.15)",
+   "plates": "piastra_gate_v62, piastra_finestra_v62 (green bands relabelled v6.2)"
+  },
+  "7_fox_bite": {
+   "assumed_N": 250,
+   "canine_tip_mm": 3.0,
+   "v611_web_mm": 1.76,
+   "v611_punching_shear_MPa": 15.1,
+   "v611_SF": 1.66,
+   "v62_web_mm": 2.76,
+   "v62_punching_shear_MPa": 9.6,
+   "v62_SF": 2.6,
+   "fix": "thumb-turn dishes \u00d826 -> \u00d824 (all three; the ridge still clears 3.9 at its ends): the web between dish A/B and the outlet chamfer grows 1.72 -> 2.72; v6.1 method (canine tip punching through the thinnest wall); keep 100 % infill within 8 mm of the outlet"
+  },
+  "8_firmware_note": "At power-on the disc must NOT dispense: both rest positions (0 and 180 deg) are closed (rotary airlock). The firmware must store the last commanded rest position in non-volatile memory (NVS / flash, written only when it changes) and command exactly that position at boot, with the servo PWM enabled only after the stored value has been loaded; a cold start without a stored value goes to 0 deg. This complements the existing contract (boots OFF, one cycle on a commanded ON, one per press)."
+ },
+ "kit_split": {
+  "pre_assembled_unit": [
+   "chiocciola_v62 + linguetta_sicura + guarnizione_baionetta_v61",
+   "colonna_v62 drive module (albero_v6, 2x O-ring 9x2, O-ring 24x2, greased)",
+   "scivolo_v611 + labbro_scivolo_v611",
+   "scatola_v62 electronics box (servo, mozzo, board, gland, vent, M8 pigtail, 2x O-ring 3x1)",
+   "3x M3x40 stack screws",
+   "guscio_v611 + pulsante_v611 + O-rings",
+   "fondello_v62 + 3 thumb-turns + keys + O-rings + cap lip",
+   "piastra_gate_v62, disco_v61, piastra_finestra_v62, 4x labbro_pettine_v62"
+  ],
+  "separate_flange_assembly": [
+   "flangia_piano_v62 + labbro_ombra_v611 (pressed in)",
+   "saracinesca_v62",
+   "anello_saracinesca_v62 (snapped in)",
+   "flangia_alta_v62",
+   "3x ST2.9x9.5 join screws (shipped joined)",
+   "passacavo_v62 (on the supply cable)",
+   "guarnizione_piano_v5",
+   "colletto_v6"
+  ],
+  "separate": [
+   "cable channel: 2x canalina_base_v62, 2x canalina_coperchio_v62, 1x canalina_tappo_v62, 4x wood screw 3.5x16 countersunk",
+   "supply cable with the M8 female (or with the PSU)",
+   "4x wood screw 5x35 pan head (5x30 for an 18 mm shelf)",
+   "drilling template (template_v62)"
+  ],
+  "diy_build_possible": "yes: the order in 1_screw_access.build_order passes the tool-access check for every screw (straight key, hand free)"
+ },
+ "hardware_delta_vs_v611": [
+  {
+   "qty": -3,
+   "item": "M3x12 DIN912 (tower -> bowl)"
+  },
+  {
+   "qty": -3,
+   "item": "M3x10 DIN912 (tower -> box)"
+  },
+  {
+   "qty": 3,
+   "item": "M3x40 DIN912 A2",
+   "use": "box + tower + bowl stack, from below"
+  },
+  {
+   "qty": 2,
+   "item": "O-ring NBR70 3x1",
+   "use": "under the P2/P3 heads in the roof countersinks (dry box stays sealed)"
+  },
+  {
+   "qty": -3,
+   "item": "M3 heat-set insert (box plateau)"
+  },
+  {
+   "qty": 0,
+   "item": "M3 heat-set inserts in the bowl: same 8, three moved to P1..P3"
+  },
+  {
+   "qty": 4,
+   "item": "wood screw 5x35 pan head instead of 5x25 (flange is 8 mm thicker)"
+  },
+  {
+   "qty": 3,
+   "item": "ST2.9x9.5 DIN 7982 countersunk",
+   "use": "join the two flange plates from the shelf face"
+  },
+  {
+   "qty": 4,
+   "item": "wood screw 3.5x16 countersunk",
+   "use": "cable channel bases"
+  },
+  {
+   "qty": 1,
+   "item": "M8 A-coded 4-pin IP67 inline pair + PUR 4x0.34 \u00d85 cable",
+   "use": "replaces the generic inline connector + \u00d86 cable"
+  },
+  {
+   "qty": -1,
+   "item": "TPU grommet passacavo_v61 / \u00d810 shelf hole"
+  }
+ ],
+ "shelf": {
+  "underside_z": 78.1,
+  "hole_saw_d": 76.0,
+  "hole_centre_xy": [
+   27.0,
+   0.0
+  ],
+  "cable_hole": null,
+  "wood_screws_xy": [
+   [
+    13.11,
+    74.35
+   ],
+   [
+    -65.38,
+    37.75
+   ],
+   [
+    -53.39,
+    -53.39
+   ],
+   [
+    31.91,
+    -68.43
+   ]
+  ],
+  "flange_outline_r": 90.0,
+  "unit_height_below_shelf_mm": 182.1,
+  "v611_unit_height_below_shelf_mm": 174.1,
+  "template": {
+   "pdf_mediabox_pt": [
+    0.0,
+    0.0,
+    595.2755905512,
+    841.8897637795
+   ],
+   "a4_pt": [
+    595.28,
+    841.89
+   ],
+   "contents": [
+    "flange outline \u00d8180 + ring",
+    "hole-saw \u00d876 centre (27 mm from the flange centre) with pilot mark",
+    "4 wood-screw positions S1..S4 (r 75.5 at 80/150/225/295 deg)",
+    "keep-clear circle r 100 for the hand on the gate ring",
+    "cable channel strip to the back edge + first channel screw",
+    "FRONT arrow (room side: release button + window)",
+    "outlet position for the pet bowl",
+    "50 mm scale bar"
+   ],
+   "view": "from below (printed side facing the person below, back of the sheet against the shelf), FRONT at the top of the sheet: not mirrored",
+   "svg": "template_v62/dima_foratura_v62.svg",
+   "pdf": "template_v62/dima_foratura_v62.pdf"
+  }
+ },
+ "changed_parts": {
+  "chiocciola_v62": "bowl: tower inserts moved to P1..P3 (8.5 deep), old r 19 holes filled",
+  "colonna_v62": "tower: 3 \u00d89 pillars + 4 mm webs + top arms instead of top/bottom lobes; tube, bushing, O-ring grooves unchanged",
+  "scatola_v62": "box: no plateau inserts; 5 mm ear at P1; \u00d83.4 + 90 deg countersink (O-ring 3x1) at P2/P3; vent at (12, -30)",
+  "fondello_v62": "cap: thumb-turn dishes \u00d824 (fox-bite web 2.72)",
+  "flangia_piano_v62": "lower flange plate (see 2_gate_and_interlock)",
+  "piastra_gate_v62": "outlet plate: lip grooves for the common lip",
+  "piastra_finestra_v62": "window plate: lip grooves for the common lip"
+ },
+ "new_parts": [
+  "flangia_alta_v62",
+  "saracinesca_v62",
+  "anello_saracinesca_v62",
+  "passacavo_v62",
+  "labbro_pettine_v62",
+  "canalina_base_v62",
+  "canalina_coperchio_v62",
+  "canalina_tappo_v62"
+ ],
+ "reused_unchanged": [
+  "guscio_v611",
+  "pulsante_v611",
+  "labbro_ombra_v611",
+  "scivolo_v611",
+  "labbro_scivolo_v611",
+  "nottolino_v611",
+  "disco_v61",
+  "guarnizione_baionetta_v61",
+  "guarnizione_fondello_v61",
+  "colletto_v6 (8 mm higher)",
+  "guarnizione_piano_v5 (8 mm higher)",
+  "linguetta_sicura",
+  "albero_v6",
+  "mozzo_v6"
+ ],
+ "checks": {
+  "watertight_built": {
+   "chiocciola_v62": true,
+   "colonna_v62": true,
+   "scatola_v62": true,
+   "fondello_v62": true,
+   "flangia_piano_v62": true,
+   "flangia_alta_v62": true,
+   "saracinesca_v62": true,
+   "anello_saracinesca_v62": true,
+   "passacavo_v62": true,
+   "labbro_pettine_v62": true,
+   "piastra_gate_v62": true,
+   "piastra_finestra_v62": true,
+   "canalina_base_v62": true,
+   "canalina_coperchio_v62": true,
+   "canalina_tappo_v62": true
+  },
+  "watertight_exported_stl_reload": {
+   "chiocciola_v62": true,
+   "colonna_v62": true,
+   "scatola_v62": true,
+   "fondello_v62": true,
+   "flangia_piano_v62": true,
+   "flangia_alta_v62": true,
+   "saracinesca_v62": true,
+   "anello_saracinesca_v62": true,
+   "passacavo_v62": true,
+   "labbro_pettine_v62": true,
+   "piastra_gate_v62": true,
+   "piastra_finestra_v62": true,
+   "canalina_base_v62": true,
+   "canalina_coperchio_v62": true,
+   "canalina_tappo_v62": true
+  },
+  "hard_interference_mm3_max": 0.0,
+  "hard_pairs_checked": 1522,
+  "hard_interference_nonzero": {},
+  "stack_screw_vs_drilled_parts_mm3": {
+   "chiocciola_v62": 0.0,
+   "colonna_v62": 0.0,
+   "scatola_v62": 0.0
+  },
+  "designed_contacts_mm3": {
+   "flangia_piano_v62|passacavo_v62": {
+    "overlap_mm3": 15.4715,
+    "role": "cable grommet pressed in the tunnel mouth"
+   },
+   "flangia_piano_v62|labbro_ombra_v611": {
+    "overlap_mm3": 79.7811,
+    "role": "skirt lip anchor pressed in the lower plate groove"
+   },
+   "flangia_piano_v62|guarnizione_baionetta_v61": {
+    "overlap_mm3": 94.541,
+    "role": "bayonet rim lip seal under the lower plate (as v6.1)"
+   },
+   "flangia_alta_v62|guarnizione_piano_v5": {
+    "overlap_mm3": 0.0,
+    "role": "shelf gasket in its groove"
+   },
+   "flangia_alta_v62|canalina_base_1": {
+    "overlap_mm3": 0.0,
+    "role": "channel base end pressed into the flange port"
+   },
+   "flangia_alta_v62|canalina_coperchio_1": {
+    "overlap_mm3": 0.0,
+    "role": "channel cover end in the port"
+   },
+   "passacavo_v62|cable_12v_supply": {
+    "overlap_mm3": 10.9309,
+    "role": "grommet on the cable (pod second barrier)"
+   },
+   "guarnizione_piano_v5|shelf": {
+    "overlap_mm3": 257.5072,
+    "role": "shelf gasket (as v6.1)"
+   },
+   "labbro_scivolo_v611|fondello_v62": {
+    "overlap_mm3": 16.2955,
+    "role": "chute lip anchor"
+   },
+   "piastra_gate_v62|labbro_pettine_out_1": {
+    "overlap_mm3": 4.0278,
+    "role": "comb lip anchor pressed in the groove"
+   },
+   "piastra_gate_v62|labbro_pettine_out_2": {
+    "overlap_mm3": 4.0278,
+    "role": "comb lip anchor pressed in the groove"
+   },
+   "piastra_finestra_v62|labbro_pettine_win_1": {
+    "overlap_mm3": 4.0278,
+    "role": "comb lip anchor pressed in the groove"
+   },
+   "piastra_finestra_v62|labbro_pettine_win_2": {
+    "overlap_mm3": 4.0278,
+    "role": "comb lip anchor pressed in the groove"
+   },
+   "disco_v61@0|labbro_pettine_out_1": {
+    "overlap_mm3": 3.7439,
+    "role": "comb lip on the disc (0.15 preload)"
+   },
+   "disco_v61@0|labbro_pettine_out_2": {
+    "overlap_mm3": 4.724,
+    "role": "comb lip on the disc (0.15 preload)"
+   },
+   "disco_v61@0|labbro_pettine_win_1": {
+    "overlap_mm3": 3.7439,
+    "role": "comb lip on the disc (0.15 preload)"
+   },
+   "disco_v61@0|labbro_pettine_win_2": {
+    "overlap_mm3": 3.7439,
+    "role": "comb lip on the disc (0.15 preload)"
+   },
+   "disco_v61@180|labbro_pettine_out_1": {
+    "overlap_mm3": 3.7439,
+    "role": "comb lip on the disc (0.15 preload)"
+   },
+   "disco_v61@180|labbro_pettine_out_2": {
+    "overlap_mm3": 4.724,
+    "role": "comb lip on the disc (0.15 preload)"
+   },
+   "disco_v61@180|labbro_pettine_win_1": {
+    "overlap_mm3": 3.7439,
+    "role": "comb lip on the disc (0.15 preload)"
+   },
+   "disco_v61@180|labbro_pettine_win_2": {
+    "overlap_mm3": 3.7439,
+    "role": "comb lip on the disc (0.15 preload)"
+   },
+   "colonna_v62|oring_shaft_9x2": {
+    "overlap_mm3": 22.9451,
+    "role": "shaft O-rings in the bushing"
+   },
+   "colonna_v62|oring_face_24x2": {
+    "overlap_mm3": 49.5927,
+    "role": "face O-ring in the tower groove"
+   },
+   "scatola_v62|guarnizione_fondello_v61": {
+    "overlap_mm3": 250.4698,
+    "role": "PRIMARY dry box: cap lip on the box rim face"
+   },
+   "scatola_v62|oring_face_24x2": {
+    "overlap_mm3": 0.0,
+    "role": "face O-ring on the box plateau"
+   },
+   "scatola_v62|keys_3x3x18": {
+    "overlap_mm3": 0.0,
+    "role": "keys on the cup ledges"
+   },
+   "scatola_v62|oring_3x1": {
+    "overlap_mm3": 9.0134,
+    "role": "NEW: O-ring 3x1 in the roof countersink (P2/P3 keep the dry box sealed)"
+   },
+   "fondello_v62|guarnizione_fondello_v61": {
+    "overlap_mm3": 30.6116,
+    "role": "cap lip in its groove"
+   },
+   "fondello_v62|oring_tt_8x1.5": {
+    "overlap_mm3": 18.0719,
+    "role": "thumb-turn O-rings in the bores"
+   },
+   "fondello_v62|oring_seam_2": {
+    "overlap_mm3": 45.3174,
+    "role": "seam O-ring in the spigot groove"
+   },
+   "shelf|canalina_base_1": {
+    "overlap_mm3": 0.0,
+    "role": "channel base screwed to the shelf face"
+   },
+   "shelf|canalina_base_2": {
+    "overlap_mm3": 0.0,
+    "role": "channel base screwed to the shelf face"
+   },
+   "oring_3x1|m3x40_stack": {
+    "overlap_mm3": 0.3594,
+    "role": "NEW: O-ring 3x1 squeezed by the screw head / on the shank"
+   },
+   "canalina_base_1|canalina_coperchio_1": {
+    "overlap_mm3": 24.4983,
+    "role": "cover snap lips on the base barbs"
+   },
+   "canalina_base_2|canalina_coperchio_2": {
+    "overlap_mm3": 18.2921,
+    "role": "cover snap lips on the base barbs"
+   },
+   "canalina_base_2|canalina_tappo": {
+    "overlap_mm3": 1.32,
+    "role": "end-cap tongue in the channel"
+   },
+   "canalina_coperchio_2|canalina_tappo": {
+    "overlap_mm3": 5.4395,
+    "role": "end-cap tongue in the cover"
+   }
+  },
+  "seal_continuity": {
+   "oring_3x1 (-1.5, -25.5) | scatola_v62 (countersink)": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1878,
+    "all_in_contact": true
+   },
+   "oring_3x1 (-1.5, -25.5) | M3x40 (head + shank)": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.0075,
+    "all_in_contact": true
+   },
+   "oring_3x1 (18.375, 14.0) | scatola_v62 (countersink)": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1878,
+    "all_in_contact": true
+   },
+   "oring_3x1 (18.375, 14.0) | M3x40 (head + shank)": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.0075,
+    "all_in_contact": true
+   },
+   "guarnizione_fondello_v61 | scatola_v62 (PRIMARY lip)": {
+    "sectors": 36,
+    "min_overlap_mm3": 4.4702,
+    "all_in_contact": true
+   },
+   "guarnizione_fondello_v61 | fondello_v62 (groove)": {
+    "sectors": 36,
+    "min_overlap_mm3": 0.55,
+    "all_in_contact": true
+   },
+   "oring_seam | fondello_v62": {
+    "sectors": 36,
+    "min_overlap_mm3": 1.2584,
+    "all_in_contact": true
+   },
+   "labbro_ombra | flangia_piano_v62 (anchor)": {
+    "sectors": 72,
+    "min_overlap_mm3": 1.108,
+    "all_in_contact": true
+   },
+   "labbro_ombra | guscio_v611": {
+    "sectors": 72,
+    "min_overlap_mm3": 3.5644,
+    "all_in_contact": true
+   },
+   "passacavo_v62 | cable (local axis, 2.4 mm slab)": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1879,
+    "all_in_contact": true
+   },
+   "passacavo_v62 | flangia_piano_v62 tunnel (local axis)": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1507,
+    "all_in_contact": true
+   }
+  },
+  "line_of_sight": {
+   "thumbturn_A": {
+    "rays": 12600,
+    "reach_pod": 0,
+    "reach_dry": 0
+   },
+   "thumbturn_B": {
+    "rays": 12600,
+    "reach_pod": 0,
+    "reach_dry": 0
+   },
+   "thumbturn_C": {
+    "rays": 12600,
+    "reach_pod": 0,
+    "reach_dry": 0
+   },
+   "shadow_gap_behind_ring": {
+    "rays": 2520,
+    "reach_pod": 0,
+    "first_part_seen": [
+     [
+      "anello",
+      2277
+     ],
+     [
+      "flangia_piano_v62",
+      240
+     ],
+     [
+      "guscio_v611",
+      3
+     ]
+    ]
+   },
+   "cable_tunnel": {
+    "rays": 405,
+    "reach_pod": 0,
+    "first_part_seen": [
+     [
+      "cable",
+      360
+     ],
+     [
+      "passacavo",
+      15
+     ],
+     [
+      "flangia_alta_v62",
+      12
+     ]
+    ]
+   }
+  },
+  "bayonet": {
+   "removal_sweep_with_gate_closed_angle_dz_mm3": [
+    [
+     -0.0,
+     0.0,
+     0.0
+    ],
+    [
+     -3.0,
+     0.0,
+     0.0
+    ],
+    [
+     -6.0,
+     0.0,
+     0.0
+    ],
+    [
+     -9.0,
+     0.0,
+     0.0
+    ],
+    [
+     -12.0,
+     0.0,
+     0.0
+    ],
+    [
+     -15.0,
+     0.0,
+     0.0
+    ],
+    [
+     -18.0,
+     0.0,
+     0.0
+    ],
+    [
+     -21.0,
+     0.0,
+     0.0
+    ],
+    [
+     -24.0,
+     0.0,
+     0.0
+    ],
+    [
+     -27.0,
+     -0.38,
+     0.0
+    ],
+    [
+     -30.0,
+     -1.5,
+     0.0
+    ],
+    [
+     -30.0,
+     -3.5,
+     0.0
+    ],
+    [
+     -30.0,
+     -6.5,
+     0.0
+    ],
+    [
+     -30.0,
+     -11.5,
+     0.0
+    ],
+    [
+     -30.0,
+     -21.5,
+     0.0
+    ],
+    [
+     -30.0,
+     -41.5,
+     0.0
+    ],
+    [
+     -30.0,
+     -81.5,
+     0.0
+    ]
+   ],
+   "max_mm3": 0.0,
+   "unit_at_insertion_vs_flange_and_gate_mm3": 0.0,
+   "pressed_button_vs_ring_at_full_stroke_mm3": 0.0
+  },
+  "gate_open_passage": {
+   "v611_minimum_section": "flange funnel pie at the flange underside (v6.1.1)",
+   "v611_area_mm2": 2238.2,
+   "v611_inscribed_d_mm": 43.96,
+   "v62_gate_open_area_mm2": 2236.0,
+   "v62_area_ratio": 0.999,
+   "v62_inscribed_d_mm": 43.97,
+   "pivot_pin_takes_mm2": 2.26,
+   "note": "the \u00d84 pivot pin covers 1.1 mm2 at the pie apex (r < 2), where the opening is narrower than the smallest kibble; the blade parks 0.35 deg outside the pie edge: full passage elsewhere",
+   "gate_plane_z": [
+    70.3,
+    73.3
+   ],
+   "downstream_unchanged": "pie prism down to the bowl rim (66.1), then the unchanged v6.1 window/disc"
+  },
+  "gate_hold": {
+   "assumptions": "full 200 L drum (\u00d8585 x 850 mm kibble), bulk density 0.45, wall friction 0.3 (kibble on HDPE), Janssen K 0.4; design pressure = max(2 x Janssen at the bottom, Janssen asymptote, hydrostatic without wall friction)",
+   "p_janssen_bottom_kPa": 2.7,
+   "p_janssen_asymptote_kPa": 5.38,
+   "p_hydrostatic_kPa": 3.75,
+   "p_design_kPa": 5.4,
+   "force_on_opening_N": 12.1,
+   "blade_model": "PETG plate 3.0 mm, simply supported over the largest inscribed circle of the opening (\u00d844.0); the blade rests on the lower plate all round the pie (and on the landing floor past the far edge at full stroke)",
+   "blade_bending_MPa": 0.37,
+   "blade_SF": 122.0,
+   "blade_deflection_mm": 0.015,
+   "creep": "long-term stress < 1 MPa: no creep concern",
+   "kibble_below_blade_g": 4.2,
+   "closing": "single-bevel knife leading edge (0.6 edge, 25 deg) lifts pieces into the column; over-travel 12.4 deg past the far edge into a landing whose far end has a 1.6 mm drain slot (crumbs fall out, no crumb cake); torque at the ring ~0.1-0.5 N m",
+   "closing_torque_Nm_est": 0.232
+  },
+  "interlock_strict": true,
+  "tool_access": {
+   "step 3 chute -> bowl M3x10 (-42, +30.6)": {
+    "verdict": "OK long key",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 75.3,
+    "first_obstacle": null
+   },
+   "step 3 chute -> bowl M3x10 (-42, -30.6)": {
+    "verdict": "OK long key",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 75.3,
+    "first_obstacle": null
+   },
+   "step 4 shell -> bowl M3x12 @0 deg (box not yet in)": {
+    "verdict": "OK long key",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 63.0,
+    "first_obstacle": null
+   },
+   "step 4 shell -> bowl M3x12 @120 deg (box not yet in)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 15.7,
+    "first_obstacle": null
+   },
+   "step 4 shell -> bowl M3x12 @-120 deg (box not yet in)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 15.7,
+    "first_obstacle": null
+   },
+   "step 5 box+tower -> bowl M3x40 P1 (-18.2, 24.5) via ear": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 54.5,
+    "first_obstacle": null
+   },
+   "step 5 box+tower -> bowl M3x40 P2 (-1.5, -25.5) sealed": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 36.6,
+    "first_obstacle": null
+   },
+   "step 5 box+tower -> bowl M3x40 P3 (18.4, 14.0) sealed": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 57.1,
+    "first_obstacle": null
+   },
+   "factory servo -> cradle M3x8 #1": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 27.0,
+    "first_obstacle": null
+   },
+   "factory servo -> cradle M3x8 #2": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 22.5,
+    "first_obstacle": null
+   },
+   "factory servo -> cradle M3x8 #3": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 22.5,
+    "first_obstacle": null
+   },
+   "factory servo -> cradle M3x8 #4": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 27.0,
+    "first_obstacle": null
+   },
+   "factory hub -> servo M3x8 (through the plateau hole, before the tower)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "flange join ST2.9x9.5 @215 deg (from the shelf face, flange on the bench)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "flange join ST2.9x9.5 @255 deg (from the shelf face, flange on the bench)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "flange join ST2.9x9.5 @290 deg (from the shelf face, flange on the bench)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "flange -> shelf wood 5x35 @80 deg (PZ2, from below, unit not hung)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 37.1,
+    "first_obstacle": null
+   },
+   "flange -> shelf wood 5x35 @150 deg (PZ2, from below, unit not hung)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 37.1,
+    "first_obstacle": null
+   },
+   "flange -> shelf wood 5x35 @225 deg (PZ2, from below, unit not hung)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 37.1,
+    "first_obstacle": null
+   },
+   "flange -> shelf wood 5x35 @295 deg (PZ2, from below, unit not hung)": {
+    "verdict": "OK",
+    "straight_key_reaches_head": true,
+    "key_length_min_mm": 37.1,
+    "first_obstacle": null
+   }
+  },
+  "clearances_mm": {
+   "tower_to_chute": [
+    1.25,
+    [
+     -21.3,
+     21.2,
+     -1.7
+    ]
+   ],
+   "tower_to_vent": [
+    2.76,
+    [
+     2.9,
+     -26.6,
+     -20.0
+    ]
+   ],
+   "ear_to_chute": [
+    4.53,
+    [
+     -29.9,
+     25.8,
+     -33.8
+    ]
+   ],
+   "P3_head_to_board": [
+    0.38,
+    [
+     21.1,
+     14.0,
+     -33.3
+    ]
+   ],
+   "P2_head_to_vent_nut": [
+    3.84,
+    [
+     0.8,
+     -27.0,
+     -33.6
+    ]
+   ],
+   "ring_to_shell_open": [
+    2.99,
+    [
+     -84.9,
+     -2.8,
+     59.6
+    ]
+   ],
+   "ring_to_shell_closed": [
+    2.99,
+    [
+     -85.0,
+     0.0,
+     60.2
+    ]
+   ],
+   "connector_to_bowl": [
+    1.2,
+    [
+     -0.0,
+     -63.2,
+     27.1
+    ]
+   ],
+   "connector_to_shell": [
+    1.33,
+    [
+     0.3,
+     -75.2,
+     6.0
+    ]
+   ],
+   "supply_cable_to_shell": [
+    2.31,
+    [
+     0.3,
+     -77.8,
+     64.8
+    ]
+   ],
+   "supply_cable_to_flange_skirt": [
+    0.25,
+    [
+     0.1,
+     -69.2,
+     51.8
+    ]
+   ],
+   "blade_to_pocket_wall_radial": 0.5,
+   "blade_gaps_top_bottom": [
+    0.2,
+    0.2
+   ],
+   "dish_to_outlet_chamfer_mm": [
+    2.76,
+    2.76,
+    29.5
+   ],
+   "v611_dish_to_outlet_chamfer_mm": [
+    1.76,
+    1.76,
+    28.5
+   ],
+   "bowl_insert_wall_mm": {
+    "(-18.25, 24.5)": "solid >= 1.2 all round",
+    "(-1.5, -25.5)": "solid >= 1.2 all round",
+    "(18.375, 14.0)": "solid >= 1.2 all round"
+   }
+  },
+  "print_downfacing_flatter_45_mm2": {
+   "chiocciola_v62": 665.4,
+   "colonna_v62": 215.0,
+   "scatola_v62": 639.3,
+   "fondello_v62": 6516.3,
+   "flangia_piano_v62": 23223.2,
+   "flangia_alta_v62": 746.6,
+   "saracinesca_v62": 0.0,
+   "anello_saracinesca_v62": 363.7,
+   "passacavo_v62": 70.5,
+   "labbro_pettine_v62": 0.0,
+   "piastra_gate_v62": 0.0,
+   "piastra_finestra_v62": 0.0,
+   "canalina_base_v62": 1961.7,
+   "canalina_coperchio_v62": 2445.0,
+   "canalina_tappo_v62": 115.1
+  }
+ },
+ "load_case": {
+  "case": "as v6.1: 250 N down at the flat bottom (z -104.0) + 100 N sideways there + unit weight 12.6 N + 20 N kibble column",
+  "materials": {
+   "PETG_in_layer_MPa": 45.0,
+   "PETG_inter_layer_MPa": 20.0,
+   "PETG_shear_MPa": 25.0,
+   "M3_insert_pullout_N": 600.0,
+   "wood_screw_5x25_pullout_softwood_N": 900.0,
+   "M3_A2_70_proof_N": 2200.0
+  },
+  "stack_screws_M3x40": {
+   "positions": [
+    [
+     -18.25,
+     24.5
+    ],
+    [
+     -1.5,
+     -25.5
+    ],
+    [
+     18.375,
+     14.0
+    ]
+   ],
+   "governing_case": "vertical 282 N through cap -> thumb-turns -> box -> stack; the 100 N side load goes cap spigot -> shell -> tabs -> bowl (v6.1 load path, unchanged)",
+   "vertical_shares_N": [
+    167.1,
+    144.6,
+    -29.1
+   ],
+   "worst_screw_N": 167.1,
+   "SF_insert_pullout": 3.6,
+   "SF_screw_proof": 13.2,
+   "v611_reference": "121 N per tower-box screw (v6.1 calc, same assumption)",
+   "upper_bound_if_side_load_went_through_the_box": {
+    "worst_screw_N": 461.1,
+    "direction_deg": 170,
+    "SF_insert_pullout": 1.3,
+    "SF_screw_proof": 4.8,
+    "note": "only if the 0.25 mm spigot clearance never closed; v6.1/v6.1.1 would be worse there (screws at r 17-19 instead of 23-29)"
+   }
+  },
+  "box_ear_P1": {
+   "force_N": 167.1,
+   "arm_mm": 3.0,
+   "root_width_mm": 14.0,
+   "thickness_mm": 5.0,
+   "bending_MPa": 8.6,
+   "SF_in_layer": 5.2,
+   "upper_bound_force_N": 461.1,
+   "upper_bound_SF": 1.9,
+   "layer_direction": "in layer (box printed roof-down, the ear is on the bed)"
+  },
+  "box_roof_P2_P3": {
+   "head_punch_shear_MPa": 4.0,
+   "SF": 6.2,
+   "note": "the 2.4 roof is clamped between the pillar foot and the head (compression), not bent"
+  },
+  "tower_pillars": {
+   "preload_assumed_N": 400.0,
+   "stress_MPa": 10.4,
+   "SF_compression_50MPa": 4.8,
+   "note": "\u00d89 pillars with \u00d83.4 holes, braced by 4 mm webs to the tube over the full 30 mm: no buckling concern"
+  },
+  "flange_wood_screws": {
+   "moment_at_shelf_Nm": 18.2,
+   "worst_screw_N": 157,
+   "SF_pullout": 5.7,
+   "head_pull_through_shear_MPa": 2.6,
+   "SF_head": 9.5,
+   "v611": "132 N, SF 6.8 (moment arm +8 mm, screws re-angled 80/150/225/295)"
+  },
+  "bayonet_lugs_hooks": {
+   "unchanged": "lower flange plate keeps the v6.1 hooks and skirt; lugs unchanged",
+   "bayonet_lugs_SF": 2.4,
+   "flange_hooks_SF": 2.1
+  },
+  "shell_tabs": {
+   "unchanged": true,
+   "SF": 7.3
+  },
+  "cap_thumbturns": {
+   "unchanged_from_v611": 8.1
+  },
+  "gate_blade_column": {
+   "p_design_kPa": 5.4,
+   "bending_MPa": 0.37,
+   "SF": 122.0
+  },
+  "gate_ring_fox": {
+   "pull_or_bite_N": 250.0,
+   "snap_barb_shear_MPa": 0.83,
+   "SF_barb": 24.0,
+   "bite_through_3mm_ring_MPa": 8.8,
+   "SF_bite": 2.8,
+   "peg_shear_MPa_at_50N_user_overload": 7.1,
+   "SF_peg": 3.5,
+   "note": "the ring hangs on a 360 deg snap barb in the lower plate; the \u00d83 peg only drives the rotation"
+  },
+  "fox_bite_outlet_rim": {
+   "assumed_N": 250,
+   "canine_tip_mm": 3.0,
+   "v611_web_mm": 1.76,
+   "v611_punching_shear_MPa": 15.1,
+   "v611_SF": 1.66,
+   "v62_web_mm": 2.76,
+   "v62_punching_shear_MPa": 9.6,
+   "v62_SF": 2.6,
+   "fix": "thumb-turn dishes \u00d826 -> \u00d824 (all three; the ridge still clears 3.9 at its ends): the web between dish A/B and the outlet chamfer grows 1.72 -> 2.72; v6.1 method (canine tip punching through the thinnest wall); keep 100 % infill within 8 mm of the outlet"
+  }
+ },
+ "grams": {
+  "method": "solid = volume x density (PETG 1.27, TPU 1.21); print estimate = 1.2 mm shell over the whole surface (~3 walls / top-bottom) + 15 % infill of the rest; same formula for v5 and v6",
+  "v62_changed_and_new_parts": {
+   "chiocciola_v62": {
+    "qty": 1,
+    "volume_cm3": 368.29,
+    "grams_solid": 467.7,
+    "grams_print_est": 163.2,
+    "material": "PETG",
+    "watertight": true
+   },
+   "colonna_v62": {
+    "qty": 1,
+    "volume_cm3": 19.61,
+    "grams_solid": 24.9,
+    "grams_print_est": 18.1,
+    "material": "PETG",
+    "watertight": true
+   },
+   "scatola_v62": {
+    "qty": 1,
+    "volume_cm3": 79.82,
+    "grams_solid": 101.4,
+    "grams_print_est": 87.0,
+    "material": "PETG",
+    "watertight": true
+   },
+   "fondello_v62": {
+    "qty": 1,
+    "volume_cm3": 108.13,
+    "grams_solid": 137.3,
+    "grams_print_est": 128.2,
+    "material": "PETG",
+    "watertight": true
+   },
+   "flangia_piano_v62": {
+    "qty": 1,
+    "volume_cm3": 101.54,
+    "grams_solid": 129.0,
+    "grams_print_est": 110.4,
+    "material": "PETG",
+    "watertight": true
+   },
+   "flangia_alta_v62": {
+    "qty": 1,
+    "volume_cm3": 144.99,
+    "grams_solid": 184.1,
+    "grams_print_est": 98.1,
+    "material": "PETG",
+    "watertight": true
+   },
+   "saracinesca_v62": {
+    "qty": 1,
+    "volume_cm3": 15.08,
+    "grams_solid": 19.2,
+    "grams_print_est": 17.4,
+    "material": "PETG",
+    "watertight": true
+   },
+   "anello_saracinesca_v62": {
+    "qty": 1,
+    "volume_cm3": 61.06,
+    "grams_solid": 77.5,
+    "grams_print_est": 70.8,
+    "material": "PETG",
+    "watertight": true
+   },
+   "passacavo_v62": {
+    "qty": 1,
+    "volume_cm3": 0.11,
+    "grams_solid": 0.1,
+    "grams_print_est": 0.1,
+    "material": "TPU 95A",
+    "watertight": true
+   },
+   "labbro_pettine_v62": {
+    "qty": 4,
+    "volume_cm3": 0.54,
+    "grams_solid": 0.8,
+    "grams_print_est": 0.8,
+    "material": "TPU 95A",
+    "watertight": true
+   },
+   "piastra_gate_v62": {
+    "qty": 1,
+    "volume_cm3": 20.32,
+    "grams_solid": 25.8,
+    "grams_print_est": 24.0,
+    "material": "PETG",
+    "watertight": true
+   },
+   "piastra_finestra_v62": {
+    "qty": 1,
+    "volume_cm3": 22.89,
+    "grams_solid": 29.1,
+    "grams_print_est": 26.8,
+    "material": "PETG",
+    "watertight": true
+   },
+   "canalina_base_v62": {
+    "qty": 2,
+    "volume_cm3": 7.55,
+    "grams_solid": 9.6,
+    "grams_print_est": 9.6,
+    "material": "PETG",
+    "watertight": true
+   },
+   "canalina_coperchio_v62": {
+    "qty": 2,
+    "volume_cm3": 12.66,
+    "grams_solid": 16.0,
+    "grams_print_est": 16.0,
+    "material": "PETG",
+    "watertight": true
+   },
+   "canalina_tappo_v62": {
+    "qty": 1,
+    "volume_cm3": 1.45,
+    "grams_solid": 1.8,
+    "grams_print_est": 1.8,
+    "material": "PETG",
+    "watertight": true
+   }
+  },
+  "replaced_parts_v611_print_est_g": 538.8,
+  "their_v62_versions_g": 558.6,
+  "new_parts_g": 213.7,
+  "of_which_gate_g": 186.3,
+  "of_which_cable_channel_2_sections_g": 27.4,
+  "v611_total_print_est_g": 844.2,
+  "v62_total_print_est_g": 1077.7,
+  "delta_g": 233.5,
+  "delta_pct": 27.7,
+  "by_part_delta_g": {
+   "chiocciola_v62": 0.0,
+   "colonna_v62": 5.4,
+   "scatola_v62": 0.1,
+   "fondello_v62": 0.1,
+   "flangia_piano_v62": 14.3,
+   "passacavo_v62": -0.3,
+   "piastra_gate_v62": 0.0,
+   "piastra_finestra_v62": 0.0,
+   "labbro_pettine_v62": 0.2
+  },
+  "bought_changes": "-3 M3x12 -3 M3x10 +3 M3x40 +2 O-ring 3x1; wood 5x25 -> 5x35; +3 ST2.9x9.5; +4 wood 3.5x16 (channel); connector M8 IP67 pair"
+ },
+ "print": {
+  "chiocciola_v62": "as v6.1 (flat base on the bed)",
+  "colonna_v62": "upright, flange on the bed; pillars and webs vertical; top arms carried by 45 deg chamfers",
+  "scatola_v62": "as v6.1.1 (roof on the bed): the ear prints on the bed; 100 % infill; countersinks face up",
+  "fondello_v62": "as v6.1.1",
+  "flangia_piano_v62": "shelf-side face on the bed (pivot pin grows up)",
+  "flangia_alta_v62": "shelf face on the bed",
+  "saracinesca_v62": "flat on the bed, 2 colours",
+  "anello_saracinesca_v62": "on its bottom edge",
+  "passacavo_v62": "TPU 95A, lip on the bed",
+  "labbro_pettine_v62": "print 4, TPU 95A, anchor on the bed",
+  "piastra_gate_v62": "as v6.1",
+  "piastra_finestra_v62": "as v6.1 (flipped)",
+  "canalina_base_v62": "flat, wood face on the bed",
+  "canalina_coperchio_v62": "open side up (bottom wall on the bed)",
+  "canalina_tappo_v62": "on its side"
+ },
+ "open_risks": [
+  "P3 head sits 0.375 mm from the cradle and the board in the corridor: check the first print (a low-head DIN 7984 would give 1 mm)",
+  "stack screws: governing vertical case SF 3.6 on the inserts; if the side load ever went through the box instead of the cap spigot the worst insert would be at SF 1.3 (upper bound, also exceeded by v6.1.1)",
+  "M3x40 pillars: printed PETG under screw preload creeps; tighten 0.4 N m and re-check after a week",
+  "gate pocket gaps 0.2: insects could walk the pocket; same class as the 0.7 comb slits (kibble path open by design)",
+  "ring window \u00d828 is a 28 mm bridge when printed on edge: chamfer side up or a small support",
+  "cable R 15 bend in the flange is 3 x OD for a \u00d85 PUR cable: fixed install only; a stiffer PVC cable needs R 20 (flange +5 mm)",
+  "unit height below the shelf +8 mm (182.1)"
+ ],
+ "files": {
+  "chiocciola_v62": [
+   "chiocciola_v62.stl",
+   "chiocciola_v62.3mf",
+   "chiocciola_v62_print.stl",
+   "chiocciola_v62_print.3mf"
+  ],
+  "colonna_v62": [
+   "colonna_v62.stl",
+   "colonna_v62.3mf",
+   "colonna_v62_print.stl",
+   "colonna_v62_print.3mf"
+  ],
+  "scatola_v62": [
+   "scatola_v62.stl",
+   "scatola_v62.3mf",
+   "scatola_v62_print.stl",
+   "scatola_v62_print.3mf"
+  ],
+  "fondello_v62": [
+   "fondello_v62.stl",
+   "fondello_v62.3mf",
+   "fondello_v62_print.stl",
+   "fondello_v62_print.3mf"
+  ],
+  "flangia_piano_v62": [
+   "flangia_piano_v62.stl",
+   "flangia_piano_v62.3mf",
+   "flangia_piano_v62_print.stl",
+   "flangia_piano_v62_print.3mf"
+  ],
+  "flangia_alta_v62": [
+   "flangia_alta_v62.stl",
+   "flangia_alta_v62.3mf",
+   "flangia_alta_v62_print.stl",
+   "flangia_alta_v62_print.3mf"
+  ],
+  "saracinesca_v62": [
+   "saracinesca_v62.stl",
+   "saracinesca_v62.3mf",
+   "saracinesca_v62_print.stl",
+   "saracinesca_v62_print.3mf"
+  ],
+  "anello_saracinesca_v62": [
+   "anello_saracinesca_v62.stl",
+   "anello_saracinesca_v62.3mf",
+   "anello_saracinesca_v62_print.stl",
+   "anello_saracinesca_v62_print.3mf"
+  ],
+  "passacavo_v62": [
+   "passacavo_v62.stl",
+   "passacavo_v62.3mf",
+   "passacavo_v62_print.stl",
+   "passacavo_v62_print.3mf"
+  ],
+  "labbro_pettine_v62": [
+   "labbro_pettine_v62.stl",
+   "labbro_pettine_v62.3mf",
+   "labbro_pettine_v62_print.stl",
+   "labbro_pettine_v62_print.3mf"
+  ],
+  "piastra_gate_v62": [
+   "piastra_gate_v62.stl",
+   "piastra_gate_v62.3mf",
+   "piastra_gate_v62_print.stl",
+   "piastra_gate_v62_print.3mf"
+  ],
+  "piastra_finestra_v62": [
+   "piastra_finestra_v62.stl",
+   "piastra_finestra_v62.3mf",
+   "piastra_finestra_v62_print.stl",
+   "piastra_finestra_v62_print.3mf"
+  ],
+  "canalina_base_v62": [
+   "canalina_base_v62.stl",
+   "canalina_base_v62.3mf",
+   "canalina_base_v62_print.stl",
+   "canalina_base_v62_print.3mf"
+  ],
+  "canalina_coperchio_v62": [
+   "canalina_coperchio_v62.stl",
+   "canalina_coperchio_v62.3mf",
+   "canalina_coperchio_v62_print.stl",
+   "canalina_coperchio_v62_print.3mf"
+  ],
+  "canalina_tappo_v62": [
+   "canalina_tappo_v62.stl",
+   "canalina_tappo_v62.3mf",
+   "canalina_tappo_v62_print.stl",
+   "canalina_tappo_v62_print.3mf"
+  ],
+  "assembled_position_copies": "v62_asm/*.stl",
+  "check": "check_v62.png",
+  "viewer": "v62_viewer.json",
+  "template": "template_v62/"
+ }
+}

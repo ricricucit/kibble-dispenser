@@ -1,0 +1,162 @@
+{
+ "S1 tower->bowl M3x12 @0": {
+  "shaft_clear": true,
+  "first_obstacle": null,
+  "key_length_min_mm": 21.0,
+  "hand_obstacles": {
+   "colonna_v61": 21.0,
+   "albero": 16.5
+  },
+  "verdict": "OK"
+ },
+ "S1 tower->bowl M3x12 @125": {
+  "shaft_clear": true,
+  "first_obstacle": null,
+  "key_length_min_mm": 21.0,
+  "hand_obstacles": {
+   "colonna_v61": 21.0,
+   "albero": 16.5
+  },
+  "verdict": "OK"
+ },
+ "S1 tower->bowl M3x12 @-120": {
+  "shaft_clear": true,
+  "first_obstacle": null,
+  "key_length_min_mm": 21.0,
+  "hand_obstacles": {
+   "colonna_v61": 21.0,
+   "albero": 16.5
+  },
+  "verdict": "OK"
+ },
+ "S2 chute->bowl M3x10 y+30.6": {
+  "shaft_clear": true,
+  "first_obstacle": null,
+  "key_length_min_mm": 75.3,
+  "hand_obstacles": {
+   "scivolo_v611": 75.3
+  },
+  "verdict": "OK long key"
+ },
+ "S2 chute->bowl M3x10 y-30.6": {
+  "shaft_clear": true,
+  "first_obstacle": null,
+  "key_length_min_mm": 75.3,
+  "hand_obstacles": {
+   "scivolo_v611": 75.3
+  },
+  "verdict": "OK long key"
+ },
+ "S3 box->tower M3x10 @90": {
+  "shaft_clear": false,
+  "first_obstacle": {
+   "part": "chiocciola_v61",
+   "at_mm": 23.0,
+   "mm3": 222.147
+  },
+  "key_length_min_mm": null,
+  "hand_obstacles": {
+   "albero": 52.5,
+   "chiocciola_v61": 50.8,
+   "inserts_bowl": 28.9
+  },
+  "verdict": "BLOCKED"
+ },
+ "S3 box->tower M3x10 @-125": {
+  "shaft_clear": false,
+  "first_obstacle": {
+   "part": "colonna_v61",
+   "at_mm": 9.24,
+   "mm3": 56.846
+  },
+  "key_length_min_mm": null,
+  "hand_obstacles": {
+   "albero": 52.5,
+   "chiocciola_v61": 50.8,
+   "inserts_bowl": 28.9
+  },
+  "verdict": "BLOCKED"
+ },
+ "S3 box->tower M3x10 @-30": {
+  "shaft_clear": false,
+  "first_obstacle": {
+   "part": "chiocciola_v61",
+   "at_mm": 23.0,
+   "mm3": 222.147
+  },
+  "key_length_min_mm": null,
+  "hand_obstacles": {
+   "albero": 52.5,
+   "chiocciola_v61": 50.8,
+   "inserts_bowl": 28.9
+  },
+  "verdict": "BLOCKED"
+ },
+ "S4 shell->bowl M3x12 @0 (box in)": {
+  "shaft_clear": true,
+  "first_obstacle": null,
+  "key_length_min_mm": 63.0,
+  "hand_obstacles": {
+   "guscio_v611": 63.0
+  },
+  "verdict": "OK long key"
+ },
+ "S4b shell->bowl M3x12 @0 (no box)": {
+  "shaft_clear": true,
+  "first_obstacle": null,
+  "key_length_min_mm": 63.0,
+  "hand_obstacles": {
+   "guscio_v611": 63.0
+  },
+  "verdict": "OK long key"
+ },
+ "S4 shell->bowl M3x12 @120 (box in)": {
+  "shaft_clear": false,
+  "first_obstacle": {
+   "part": "scatola_v611",
+   "at_mm": 21.0,
+   "mm3": 174.983
+  },
+  "key_length_min_mm": null,
+  "hand_obstacles": {
+   "scatola_v611": 83.5,
+   "guscio_v611": 15.71
+  },
+  "verdict": "BLOCKED"
+ },
+ "S4b shell->bowl M3x12 @120 (no box)": {
+  "shaft_clear": true,
+  "first_obstacle": null,
+  "key_length_min_mm": 15.7,
+  "hand_obstacles": {
+   "guscio_v611": 15.71
+  },
+  "verdict": "OK"
+ },
+ "S4 shell->bowl M3x12 @-120 (box in)": {
+  "shaft_clear": false,
+  "first_obstacle": {
+   "part": "scatola_v611",
+   "at_mm": 21.0,
+   "mm3": 174.983
+  },
+  "key_length_min_mm": null,
+  "hand_obstacles": {
+   "scatola_v611": 83.5,
+   "guscio_v611": 15.71
+  },
+  "verdict": "BLOCKED"
+ },
+ "S4b shell->bowl M3x12 @-120 (no box)": {
+  "shaft_clear": true,
+  "first_obstacle": null,
+  "key_length_min_mm": 15.7,
+  "hand_obstacles": {
+   "guscio_v611": 15.71
+  },
+  "verdict": "OK"
+ },
+ "_facts": {
+  "min_dist_top_lobe_screw_to_bottom_lobe_screw_mm": 2.54
+ }
+}

@@ -8,6 +8,7 @@ path = [
   "firmware/**",
   "hardware/cad/*.py",
   "hardware/v6/cad/*.py",
+  "hardware/v6.2/cad/*.py",
   ".github/**",
   "site/**",
   "tools/**",
@@ -30,6 +31,11 @@ path = [
   "hardware/v6/assembly/**",
   "hardware/v6/cad/*.json",
   "hardware/v6/bom.json",
+  "hardware/v6.2/assembly/**",
+  "hardware/v6.2/cad/*.json",
+  "hardware/v6.2/cad/ref/**",
+  "hardware/v6.2/template/**",
+  "hardware/v6.2/bom.json",
   "hardware/VERSION",
 ]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
@@ -43,6 +49,8 @@ path = [
   "hardware/README.md",
   "hardware/v6/README.md",
   "hardware/v6/cad/*.png",
+  "hardware/v6.2/README.md",
+  "hardware/v6.2/cad/*.png",
   "firmware/README.md",
   "import/**/*.md",
   "site/earlier/index.html",
@@ -100,3 +108,39 @@ SPDX-License-Identifier = "MIT"
 path = ["hardware/v6/plates/README.md", "hardware/v6/plates/preview/**"]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CC-BY-4.0"
+
+# Print package of design v6.2 (the authoritative print set): Bambu Studio projects, plate 3MFs, STL files, slicer data
+[[annotations]]
+path = "hardware/v6.2/plates/**"
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CERN-OHL-P-2.0"
+
+# ... its generator scripts (software)
+[[annotations]]
+path = "hardware/v6.2/plates/tools/**"
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "MIT"
+
+# ... and its print guide and plate preview images (documentation)
+[[annotations]]
+path = ["hardware/v6.2/plates/README.md", "hardware/v6.2/plates/preview/**"]
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+# Assembly wizard of design v6.2 (site/assembly/, copied as built): the code stays MIT (site/**); the step texts
+# and data are documentation, the meshes and the drilling template are hardware design files
+[[annotations]]
+path = "site/assembly/js/data.js"
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+[[annotations]]
+path = ["site/assembly/models/**", "site/assembly/template/**"]
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CERN-OHL-P-2.0"
+
+# three.js r128 bundled again by the wizard (same file as site/vendor/three-r128/)
+[[annotations]]
+path = "site/assembly/vendor/three-r128/**"
+SPDX-FileCopyrightText = "2010-2021 three.js authors"
+SPDX-License-Identifier = "MIT"
