@@ -3,6 +3,6 @@
 # PATCH = a fix that does not change the fit.
 # status: designed, printed, tested or field-proven. It can rise for the same version; the release workflow
 # then updates the title of the existing GitHub Release instead of tagging again.
-version = "6.0.0"
+version = "6.2.0"
 status = "designed"
-design = "hardware/v6"
+design = "hardware/v6.2"

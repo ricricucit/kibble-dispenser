@@ -2,7 +2,8 @@
 """
 Tag and publish the three version lines of the project (see VERSIONS.md).
 
-    hardware  hardware/VERSION       tag hw-v<version>       zip: v6 STL, plate 3MFs, BOM, manuals (PDF) if present
+    hardware  hardware/VERSION       tag hw-v<version>       STL zip, plate 3MF zip (with the print guide and the BOM),
+                                                             the drilling template and the manuals (PDF), if present
     firmware  firmware/VERSION       tag fw-v<version>       zip: the MicroPython sources (tracked files only)
     product   product/product.json   tag product-v<version>  lock file plus the pinned hardware and firmware zips
 
@@ -113,24 +114,42 @@ def hardware_line():
         sys.exit(f'hardware/VERSION: bad version {version!r} or status {status!r}')
     if not (ROOT / design).is_dir():
         sys.exit(f'hardware/VERSION: design folder {design} not found')
-    major = version.split('.')[0]
-    if not design.endswith(f'v{major}'):
+    major, minor = version.split('.')[:2]
+    if not design.endswith((f'v{major}', f'v{major}.{minor}')):
         print(f'note: hardware {version} with design folder {design}')
     content = last_commit(['hardware'], ['hardware/VERSION'])
     target = git('rev-parse', 'HEAD')
 
     def assets(out, when):
+        """STL zip, plate 3MF zip, drilling template and manuals; each zip carries a VERSION.txt and the licences."""
         at = rel['target']
-        files = (tracked(f'{design}/stl', at=at)
-                 + [f for f in tracked(f'{design}/plates', at=at) if f.endswith(('.3mf', 'README.md', 'summary.json')) and '/tools/' not in f]
-                 + tracked(f'{design}/bom.json', f'{design}/README.md', 'docs/BOM.md', at=at)
-                 + [f for f in tracked('docs', design, at=at) if f.lower().endswith('.pdf')]
-                 + tracked('LICENSES/CERN-OHL-P-2.0.txt', 'LICENSES/CC-BY-4.0.txt', at=at))
         tag = f'hw-v{version}'
+        base = f'kibble-dispenser-{safe_name(tag)}'
         manifest = (f'Kibble Dispenser Outdoor, hardware {version}\nStatus: {status}\nDesign: {design}\n'
                     f'Commit: {target}\nSource: {REPO}/tree/{tag}\n')
-        return [write_zip(out / f'kibble-dispenser-{safe_name(tag)}.zip', f'kibble-dispenser-{safe_name(tag)}', files,
-                          {'VERSION.txt': manifest}, when, at)]
+        docs = tracked(f'{design}/README.md', f'{design}/bom.json', 'docs/BOM.md', at=at)
+        plates = tracked(f'{design}/plates', at=at)
+        guide = [f for f in plates if f.endswith(('plates/README.md', 'plates/summary.json'))]
+        lic = {'cern': tracked('LICENSES/CERN-OHL-P-2.0.txt', at=at), 'cc': tracked('LICENSES/CC-BY-4.0.txt', at=at)}
+        # print-ready STL files: the print package (plates/stl) when there is one, otherwise the design's stl/ folder
+        stl = [f for f in plates if '/plates/stl/' in f and f.endswith('.stl')] or tracked(f'{design}/stl', at=at)
+        mf = [f for f in plates if f.endswith('.3mf') and '/tools/' not in f]
+        res = []
+        if stl:
+            res.append(write_zip(out / f'{base}-stl.zip', f'{base}-stl', stl + docs + guide + lic['cern'] + lic['cc'],
+                                 {'VERSION.txt': manifest}, when, at))
+        if mf:
+            res.append(write_zip(out / f'{base}-plates-3mf.zip', f'{base}-plates-3mf', mf + docs + guide + lic['cern'] + lic['cc'],
+                                 {'VERSION.txt': manifest}, when, at))
+        # single PDFs: the drilling template of the design and the manuals in docs/manual/
+        pdfs = [f for f in tracked(f'{design}/template', at=at) if f.endswith('.pdf')]
+        names = {f: 'kibble-dispenser-drilling-template.pdf' for f in pdfs[:1]}
+        names.update({f: Path(f).name for f in tracked('docs/manual', at=at) if f.endswith('.pdf')})
+        for f, name in names.items():
+            dst = out / name
+            dst.write_bytes(blob(f, at))
+            res.append(dst)
+        return res
 
     rel = dict(line='hardware', tag=f'hw-v{version}', version=version, status=status, target=target, content=content, paths='hardware/ (VERSION aside)',
                 title=f'Hardware {version} · {status}', prerelease=status in ('designed', 'printed'),
@@ -201,7 +220,7 @@ def product_line(tags, hw):
             r = gh('release', 'download', t, '--dir', str(out), '--clobber', check=False)
             if r.returncode:
                 print(f'note: could not download the assets of {t}: {r.stderr.strip()}')
-        return res + [f for f in out.glob('kibble-dispenser-*-v*.zip') if f not in res]
+        return res + [f for f in sorted(out.iterdir()) if f.suffix in ('.zip', '.pdf') and f not in res]
 
     return dict(line='product', tag=f'product-v{version}', version=version, status=None, target=target, content=target, paths='product/',
                 title=f'{p["name"]} {version}', prerelease=False,
@@ -273,8 +292,11 @@ def main():
             print(f'  content last changed in {rel["content"][:7]} ({git("log", "-1", "--format=%s", rel["content"])})')
         print(f'  title: {rel["title"]}{"  [pre-release]" if rel["prerelease"] else ""}')
         for f in assets:
-            with zipfile.ZipFile(f) as z:
-                print(f'  asset: {f.name}  {f.stat().st_size / 1e6:.1f} MB, {len(z.namelist())} files')
+            if f.suffix == '.zip':
+                with zipfile.ZipFile(f) as z:
+                    print(f'  asset: {f.name}  {f.stat().st_size / 1e6:.1f} MB, {len(z.namelist())} files')
+            else:
+                print(f'  asset: {f.name}  {f.stat().st_size / 1e6:.1f} MB')
         print('  notes:\n' + '\n'.join('    ' + line for line in notes.splitlines()[:12]) + ('\n    ...' if notes.count('\n') > 12 else ''))
         if not publish:
             continue
