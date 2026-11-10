@@ -1,6 +1,6 @@
 # Kibble Dispenser Outdoor v6 - print guide (Bambu Lab A1 + AMS lite)
 
-**Preview of v6: don't print the whole unit yet.** v6.1 is in design and will replace these files. They are here to look at the plates, set up the printer and print the test pieces. Website version, in English, Italian and German: <https://ricricucit.github.io/kibble-dispenser/v6/print/>
+**Archived: print package of design v6 (hardware 6.0.0).** Design v6.2 replaced it: print [`../../v6.2/plates/`](../../v6.2/plates/README.md) instead. Archived website version, in English, Italian and German: <https://ricricucit.github.io/kibble-dispenser/v6/print/>
 
 Everything you need to print the v6 dispenser on a Bambu Lab A1 with the AMS lite: two ready Bambu Studio projects, plain 3MF files for any slicer, single STL files in print orientation, the recommended settings and a check list of every printed part.
 

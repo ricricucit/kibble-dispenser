@@ -1,8 +1,8 @@
 # Hardware
 
-**Current design: v6, in [`v6/`](v6/README.md)** (one-twist unit: everything under the shelf comes off with one quarter-turn). v6 is **designed and checked in CAD only: not yet printed, assembled or tested.** 3D model: <https://ricricucit.github.io/kibble-dispenser/v6/3d/>; bought parts: [docs/BOM.md](../docs/BOM.md).
+**Current design: v6.2, in [`v6.2/`](v6.2/README.md)** (closed claw-proof pod with a shut-off gate and a cable channel under the shelf). v6.2 is **designed and checked in CAD only: not yet printed, assembled or tested.** 3D model: <https://ricricucit.github.io/kibble-dispenser/3d/>; print files: <https://ricricucit.github.io/kibble-dispenser/print/> (the authoritative print set is [`v6.2/plates/`](v6.2/plates/README.md)); bought parts: [docs/BOM.md](../docs/BOM.md); assembly guide: <https://ricricucit.github.io/kibble-dispenser/assembly/>; manual: <https://ricricucit.github.io/kibble-dispenser/manual/>. The earlier design v6 (hardware 6.0.0, never printed) is archived in [`v6/`](v6/README.md).
 
-The rest of this file describes prototype 1 and its drivetrain v3 design (disco_v3, albero_mozzo, passante_culla, scivolo_v1), which **v6 supersedes as the design**. These files stay for reference and for the spline fit test, which v6 still uses. Nothing here describes what is physically built: the as-built prototype is in [the as-built baseline](../docs/AS_BUILT_BASELINE.it.md).
+The rest of this file describes prototype 1 and its drivetrain v3 design (disco_v3, albero_mozzo, passante_culla, scivolo_v1), which **v6 and then v6.2 supersede as the design**. These files stay for reference and for the spline fit test, which v6.2 still uses. Nothing here describes what is physically built: the as-built prototype is in [the as-built baseline](../docs/AS_BUILT_BASELINE.it.md).
 
 All dimensions are in mm. The assembly frame is Z-up, with Z=0 at the top face of the box lid (see `cad/layout_v3.json`).
 
@@ -54,7 +54,7 @@ Status: superseded as the design by v6; test_scanalato is still the spline test 
 - Material: PETG, green spool.
 - Print orientation: the STL is exported with the flange on top and the outside of the bend on the bed, so it needs supports. Not validated yet; flange-down is an alternative worth testing.
 
-## Bought parts (prototype 1; for v6 see [docs/BOM.md](../docs/BOM.md))
+## Bought parts (prototype 1; for v6.2 see [docs/BOM.md](../docs/BOM.md))
 
 - 1 x M3x50 DIN 912 / ISO 4762 socket head screw, A2: disc and shaft into the thread of the servo spline
 - 3 x M3x12 ISO 10642 (DIN 7991) countersunk screw, A2: from above through the bowl floor and the lid into the flange inserts (5.3 mm engagement)

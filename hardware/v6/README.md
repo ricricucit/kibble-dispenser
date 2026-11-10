@@ -1,11 +1,13 @@
 # Design v6: the one-twist unit
 
-**Status: designed and checked in CAD only. Nothing of v6 has been printed, assembled or tested yet.** The working prototype is still prototype 1 (see [the as-built baseline](../../docs/AS_BUILT_BASELINE.it.md)).
+**Archived: design v6 is hardware 6.0.0, replaced by [design v6.2](../v6.2/README.md) (closed pod, shut-off gate, cable channel). Print v6.2, not these files.**
+
+**Status: designed and checked in CAD only. Nothing of v6 has been printed, assembled or tested.** The working prototype is still prototype 1 (see [the as-built baseline](../../docs/AS_BUILT_BASELINE.it.md)).
 
 Everything under the shelf (the dosing bowl with its rotary disc, the chute, the tower with the sealed shaft, the electronics box with the servo) comes off with one quarter-turn of the bowl bayonet; only the shelf flange stays screwed to the shelf. The disc is driven coaxially (servo, hub, shaft, disc: no gears), the box hangs from the tower, and its cover closes with four printed quarter-turn buttons, so the cover needs no tools.
 
 - 3D model, full screen: <https://ricricucit.github.io/kibble-dispenser/v6/3d/>
-- Bought parts, in English, Italian and German: <https://ricricucit.github.io/kibble-dispenser/v6/parts/> (also [docs/BOM.md](../../docs/BOM.md))
+- Bought parts, in English, Italian and German: <https://ricricucit.github.io/kibble-dispenser/v6/parts/> (also [docs/BOM-v6.md](../../docs/BOM-v6.md))
 - Design data: [cad/v6.json](cad/v6.json) (parts, hardware, z-stack, assembly, sealing, checks, grams, print orientation, files)
 
 All dimensions are in mm. Frame: Z up, shaft axis at x = y = 0, Z = 0 at the underside of the bowl base.
@@ -52,11 +54,11 @@ Reused unchanged from earlier iterations:
 - `labbro_uscita_1`, `labbro_uscita_2`, `labbro_finestra_1`, `labbro_finestra_2`, plate lips, TPU 95A: flat on the wide face
 - `guarnizione_piano_v5`, shelf gasket, TPU 95A: flat ring, 100 % infill
 
-Print plates for a Bambu Lab A1 with the AMS lite are in [`plates/`](plates/README.md): two Bambu Studio projects (PETG and TPU), a plain 3MF per plate, every part as an STL in print orientation, the AMS setup, settings and a check list, also on the site at <https://ricricucit.github.io/kibble-dispenser/v6/print/>. They are a preview: v6.1 is in design and will replace them.
+Print plates for a Bambu Lab A1 with the AMS lite are in [`plates/`](plates/README.md): two Bambu Studio projects (PETG and TPU), a plain 3MF per plate, every part as an STL in print orientation, the AMS setup, settings and a check list, also on the site at <https://ricricucit.github.io/kibble-dispenser/v6/print/>. They are archived: design v6.2 replaced them with its own print package in [`../v6.2/plates/`](../v6.2/plates/README.md).
 
 ## Bought parts
 
-Screws, inserts, O-rings, grease, the electronics module, the optional DN50 pipe and the tools: see [docs/BOM.md](../../docs/BOM.md) or the [bought-parts page](https://ricricucit.github.io/kibble-dispenser/v6/parts/). In the kit the electronics box comes pre-assembled.
+Screws, inserts, O-rings, grease, the electronics module, the optional DN50 pipe and the tools: see [docs/BOM-v6.md](../../docs/BOM-v6.md) or the [bought-parts page](https://ricricucit.github.io/kibble-dispenser/v6/parts/). In the kit the electronics box comes pre-assembled.
 
 ## Assembly order (design, not tested)
 
