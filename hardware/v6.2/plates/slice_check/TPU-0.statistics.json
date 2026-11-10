@@ -1,0 +1,110 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 736.726,
+  "prepare_time": 397.99,
+  "travel_time": 396.089,
+  "travel_distance": 15516.24,
+  "layer_count": 26,
+  "volume": 434.584,
+  "weight": 0.5389,
+  "filament_cost": 0.01,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 180.68,
+    "volume": 434.584,
+    "weight": 0.5389,
+    "cost": 0.01,
+    "model": {
+     "volume": 434.584,
+     "weight": 0.5389
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 29.332,
+    "volume": 54.609,
+    "weight": 0.0677
+   },
+   "Outer wall": {
+    "time": 172.68,
+    "volume": 254.863,
+    "weight": 0.316
+   },
+   "Internal solid infill": {
+    "time": 9.562,
+    "volume": 30.166,
+    "weight": 0.0374
+   },
+   "Top surface": {
+    "time": 7.717,
+    "volume": 20.474,
+    "weight": 0.0254
+   },
+   "Bottom surface": {
+    "time": 8.016,
+    "volume": 12.639,
+    "weight": 0.0157
+   },
+   "Gap infill": {
+    "time": 3.249,
+    "volume": 9.537,
+    "weight": 0.0118
+   },
+   "Custom": {
+    "time": 19.069,
+    "volume": 52.296,
+    "weight": 0.0648
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "test_rim_lip",
+   "instance": 0,
+   "volume": 84.873,
+   "weight": 0.1052,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "test_cap_lip",
+   "instance": 0,
+   "volume": 72.915,
+   "weight": 0.0904,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "test_skirt_lip",
+   "instance": 0,
+   "volume": 95.162,
+   "weight": 0.118,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "test_comb_lip",
+   "instance": 0,
+   "volume": 129.338,
+   "weight": 0.1604,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

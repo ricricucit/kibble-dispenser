@@ -1,0 +1,388 @@
+{
+ "PETG-0": {
+  "name": "00 TEST - spline + rim, cap and skirt grooves",
+  "tower_xy": null,
+  "min_gap_mm": 6.99,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "test_scanalato",
+    "part": "test_scanalato",
+    "x": 128.0,
+    "y": 149.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "test_groove_rim",
+    "part": "test_groove_rim",
+    "x": 131.0,
+    "y": 119.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "test_groove_cap",
+    "part": "test_groove_cap",
+    "x": 145.0,
+    "y": 114.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "test_groove_skirt",
+    "part": "test_groove_skirt",
+    "x": 112.0,
+    "y": 119.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-1": {
+  "name": "01 BLACK - pod shell + electronics box",
+  "tower_xy": null,
+  "min_gap_mm": 6.05,
+  "bed_margins": "relaxed",
+  "items": [
+   {
+    "name": "guscio_v611",
+    "part": "guscio_v611",
+    "x": 98.0,
+    "y": 99.5,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "scatola_v62",
+    "part": "scatola_v62",
+    "x": 189.5,
+    "y": 190.5,
+    "rot_z_deg": 45.0
+   }
+  ]
+ },
+ "PETG-2": {
+  "name": "02 BLACK - bowl + pod cap",
+  "tower_xy": null,
+  "min_gap_mm": 6.0,
+  "bed_margins": "relaxed",
+  "items": [
+   {
+    "name": "chiocciola_v62",
+    "part": "chiocciola_v62",
+    "x": 182.0,
+    "y": 181.5,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "fondello_v62",
+    "part": "fondello_v62",
+    "x": 83.5,
+    "y": 84.5,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-3": {
+  "name": "03 BLACK - lower flange + cable channel",
+  "tower_xy": null,
+  "min_gap_mm": 5.9,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "flangia_piano_v62",
+    "part": "flangia_piano_v62",
+    "x": 103.5,
+    "y": 105.5,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "canalina_base_v62#1",
+    "part": "canalina_base_v62",
+    "x": 234.0,
+    "y": 90.5,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "canalina_base_v62#2",
+    "part": "canalina_base_v62",
+    "x": 88.5,
+    "y": 236.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "canalina_coperchio_v62#1",
+    "part": "canalina_coperchio_v62",
+    "x": 209.5,
+    "y": 90.5,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "canalina_coperchio_v62#2",
+    "part": "canalina_coperchio_v62",
+    "x": 88.5,
+    "y": 211.5,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "canalina_tappo_v62",
+    "part": "canalina_tappo_v62",
+    "x": 23.5,
+    "y": 19.5,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-4": {
+  "name": "04 BLACK - upper flange + tower + shaft + hub",
+  "tower_xy": null,
+  "min_gap_mm": 6.88,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "flangia_alta_v62",
+    "part": "flangia_alta_v62",
+    "x": 120.0,
+    "y": 121.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "colonna_v62",
+    "part": "colonna_v62",
+    "x": 198.0,
+    "y": 206.0,
+    "rot_z_deg": 270.0
+   },
+   {
+    "name": "albero_v6",
+    "part": "albero_v6",
+    "x": 42.0,
+    "y": 44.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "mozzo_v6",
+    "part": "mozzo_v6",
+    "x": 195.0,
+    "y": 43.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-5": {
+  "name": "05 GREEN+black - chute + collar + gate + window plates",
+  "tower_xy": [
+   158.0,
+   23.0
+  ],
+  "min_gap_mm": 7.37,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "scivolo_v611",
+    "part": "scivolo_v611",
+    "x": 159.0,
+    "y": 131.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "colletto_v6",
+    "part": "colletto_v6",
+    "x": 185.0,
+    "y": 204.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "piastra_finestra_v62",
+    "part": "piastra_finestra_v62",
+    "x": 91.0,
+    "y": 73.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "piastra_gate_v62",
+    "part": "piastra_gate_v62",
+    "x": 89.0,
+    "y": 189.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-6": {
+  "name": "06 ORANGE+green+black - interlock ring + disc + gate blade + latch + button + 3 thumb-turns",
+  "tower_xy": [
+   198.5,
+   20.5
+  ],
+  "min_gap_mm": 5.7,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "anello_saracinesca_v62",
+    "part": "anello_saracinesca_v62",
+    "x": 106.0,
+    "y": 109.5,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "disco_v61",
+    "part": "disco_v61",
+    "x": 103.0,
+    "y": 88.0,
+    "rot_z_deg": 15.0
+   },
+   {
+    "name": "saracinesca_v62",
+    "part": "saracinesca_v62",
+    "x": 202.0,
+    "y": 193.5,
+    "rot_z_deg": 105.0
+   },
+   {
+    "name": "linguetta_sicura",
+    "part": "linguetta_sicura",
+    "x": 216.0,
+    "y": 93.0,
+    "rot_z_deg": 60.0
+   },
+   {
+    "name": "pulsante_v611",
+    "part": "pulsante_v611",
+    "x": 169.0,
+    "y": 96.5,
+    "rot_z_deg": 30.0
+   },
+   {
+    "name": "nottolino_v611#1",
+    "part": "nottolino_v611",
+    "x": 21.0,
+    "y": 24.5,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "nottolino_v611#2",
+    "part": "nottolino_v611",
+    "x": 174.0,
+    "y": 24.5,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "nottolino_v611#3",
+    "part": "nottolino_v611",
+    "x": 230.0,
+    "y": 75.5,
+    "rot_z_deg": 15.0
+   }
+  ]
+ },
+ "TPU-0": {
+  "name": "00 TEST - rim, cap, skirt and comb lips",
+  "tower_xy": null,
+  "min_gap_mm": 7.01,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "test_rim_lip",
+    "part": "test_rim_lip",
+    "x": 128.0,
+    "y": 126.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "test_cap_lip",
+    "part": "test_cap_lip",
+    "x": 123.0,
+    "y": 146.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "test_skirt_lip",
+    "part": "test_skirt_lip",
+    "x": 128.0,
+    "y": 136.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "test_comb_lip",
+    "part": "test_comb_lip",
+    "x": 126.0,
+    "y": 114.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "TPU-1": {
+  "name": "01 TPU 95A - all seals",
+  "tower_xy": null,
+  "min_gap_mm": 6.1,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "labbro_ombra_v611",
+    "part": "labbro_ombra_v611",
+    "x": 105.0,
+    "y": 106.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "guarnizione_baionetta_v61",
+    "part": "guarnizione_baionetta_v61",
+    "x": 100.0,
+    "y": 92.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "guarnizione_piano_v5",
+    "part": "guarnizione_piano_v5",
+    "x": 99.0,
+    "y": 84.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "labbro_scivolo_v611",
+    "part": "labbro_scivolo_v611",
+    "x": 208.0,
+    "y": 49.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "guarnizione_fondello_v61",
+    "part": "guarnizione_fondello_v61",
+    "x": 194.0,
+    "y": 209.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "labbro_pettine_v62#1",
+    "part": "labbro_pettine_v62",
+    "x": 35.0,
+    "y": 25.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "labbro_pettine_v62#2",
+    "part": "labbro_pettine_v62",
+    "x": 24.0,
+    "y": 48.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "labbro_pettine_v62#3",
+    "part": "labbro_pettine_v62",
+    "x": 163.0,
+    "y": 25.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "labbro_pettine_v62#4",
+    "part": "labbro_pettine_v62",
+    "x": 206.0,
+    "y": 46.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "passacavo_v62",
+    "part": "passacavo_v62",
+    "x": 95.0,
+    "y": 56.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ }
+}

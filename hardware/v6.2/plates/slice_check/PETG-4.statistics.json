@@ -1,0 +1,135 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 20592.109,
+  "prepare_time": 380.492,
+  "travel_time": 2451.293,
+  "travel_distance": 402222.69,
+  "layer_count": 536,
+  "volume": 99481.821,
+  "weight": 126.3419,
+  "filament_cost": 3.79,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 41359.74,
+    "volume": 99481.821,
+    "weight": 126.3419,
+    "cost": 3.79,
+    "model": {
+     "volume": 99481.821,
+     "weight": 126.3419
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 4069.315,
+    "volume": 19690.705,
+    "weight": 25.0072
+   },
+   "Outer wall": {
+    "time": 1770.637,
+    "volume": 7929.302,
+    "weight": 10.0702
+   },
+   "Overhang wall": {
+    "time": 5.063,
+    "volume": 8.333,
+    "weight": 0.0106
+   },
+   "Sparse infill": {
+    "time": 3237.998,
+    "volume": 24366.33,
+    "weight": 30.9452
+   },
+   "Internal solid infill": {
+    "time": 5762.85,
+    "volume": 30427.929,
+    "weight": 38.6435
+   },
+   "Top surface": {
+    "time": 663.49,
+    "volume": 4543.259,
+    "weight": 5.7699
+   },
+   "Bottom surface": {
+    "time": 675.273,
+    "volume": 3785.63,
+    "weight": 4.8078
+   },
+   "Bridge": {
+    "time": 193.411,
+    "volume": 343.145,
+    "weight": 0.4358
+   },
+   "Internal Bridge": {
+    "time": 781.822,
+    "volume": 5937.637,
+    "weight": 7.5408
+   },
+   "Gap infill": {
+    "time": 186.08,
+    "volume": 737.174,
+    "weight": 0.9362
+   },
+   "Brim": {
+    "time": 406.943,
+    "volume": 1660.076,
+    "weight": 2.1083
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "flangia_alta_v62",
+   "instance": 0,
+   "volume": 68699.007,
+   "weight": 87.2477,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "colonna_v62",
+   "instance": 0,
+   "volume": 18114.378,
+   "weight": 23.0053,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "albero_v6",
+   "instance": 0,
+   "volume": 5772.929,
+   "weight": 7.3316,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "mozzo_v6",
+   "instance": 0,
+   "volume": 5183.136,
+   "weight": 6.5826,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

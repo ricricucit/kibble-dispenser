@@ -1,0 +1,134 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 34516.837,
+  "prepare_time": 380.748,
+  "travel_time": 4037.26,
+  "travel_distance": 716772.75,
+  "layer_count": 857,
+  "volume": 207237.736,
+  "weight": 263.1919,
+  "filament_cost": 7.9,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 86159.44,
+    "volume": 207237.736,
+    "weight": 263.1919,
+    "cost": 7.9,
+    "model": {
+     "volume": 204720.252,
+     "weight": 259.9947
+    },
+    "support": {
+     "volume": 2517.484,
+     "weight": 3.1972
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 11613.888,
+    "volume": 86141.517,
+    "weight": 109.3997
+   },
+   "Outer wall": {
+    "time": 8768.743,
+    "volume": 65314.095,
+    "weight": 82.9489
+   },
+   "Overhang wall": {
+    "time": 36.482,
+    "volume": 116.947,
+    "weight": 0.1485
+   },
+   "Sparse infill": {
+    "time": 81.367,
+    "volume": 489.32,
+    "weight": 0.6214
+   },
+   "Internal solid infill": {
+    "time": 3946.217,
+    "volume": 25898.862,
+    "weight": 32.8916
+   },
+   "Top surface": {
+    "time": 209.065,
+    "volume": 1096.924,
+    "weight": 1.3931
+   },
+   "Bottom surface": {
+    "time": 123.742,
+    "volume": 592.539,
+    "weight": 0.7525
+   },
+   "Ironing": {
+    "time": 1016.864,
+    "volume": 87.963,
+    "weight": 0.1117
+   },
+   "Bridge": {
+    "time": 60.713,
+    "volume": 171.899,
+    "weight": 0.2183
+   },
+   "Internal Bridge": {
+    "time": 22.383,
+    "volume": 142.744,
+    "weight": 0.1813
+   },
+   "Gap infill": {
+    "time": 3046.451,
+    "volume": 22787.469,
+    "weight": 28.9401
+   },
+   "Brim": {
+    "time": 442.922,
+    "volume": 1827.663,
+    "weight": 2.3211
+   },
+   "Support": {
+    "time": 360.422,
+    "volume": 2398.575,
+    "weight": 3.0462
+   },
+   "Support interface": {
+    "time": 21.287,
+    "volume": 118.908,
+    "weight": 0.151
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "guscio_v611",
+   "instance": 0,
+   "volume": 126672.876,
+   "weight": 160.8745,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "scatola_v62",
+   "instance": 0,
+   "volume": 76167.417,
+   "weight": 96.7326,
+   "support_volume": 2517.484,
+   "support_weight": 3.1972
+  }
+ ]
+}

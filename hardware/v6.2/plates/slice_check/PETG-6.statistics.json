@@ -1,0 +1,228 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 20378.751,
+  "prepare_time": 380.83,
+  "travel_time": 1702.061,
+  "travel_distance": 219087.63,
+  "layer_count": 222,
+  "volume": 122381.843,
+  "weight": 155.4249,
+  "filament_cost": 4.66,
+  "filament_changes": 18,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 885.31,
+    "volume": 2129.413,
+    "weight": 2.7044,
+    "cost": 0.08,
+    "model": {
+     "volume": 1666.659,
+     "weight": 2.1167
+    },
+    "support": {
+     "volume": 117.03,
+     "weight": 0.1486
+    },
+    "prime_tower": {
+     "volume": 115.484,
+     "weight": 0.1467
+    },
+    "flush": {
+     "volume": 230.24,
+     "weight": 0.2924
+    }
+   },
+   {
+    "id": 2,
+    "length": 43198.85,
+    "volume": 103905.421,
+    "weight": 131.9599,
+    "cost": 3.96,
+    "model": {
+     "volume": 99018.634,
+     "weight": 125.7537
+    },
+    "support": {
+     "volume": 1099.022,
+     "weight": 1.3958
+    },
+    "prime_tower": {
+     "volume": 768.67,
+     "weight": 0.9762
+    },
+    "flush": {
+     "volume": 3019.095,
+     "weight": 3.8343
+    }
+   },
+   {
+    "id": 3,
+    "length": 6796.3,
+    "volume": 16347.009,
+    "weight": 20.7607,
+    "cost": 0.62,
+    "model": {
+     "volume": 13960.697,
+     "weight": 17.7301
+    },
+    "support": {
+     "volume": 94.032,
+     "weight": 0.1194
+    },
+    "prime_tower": {
+     "volume": 371.339,
+     "weight": 0.4716
+    },
+    "flush": {
+     "volume": 1920.941,
+     "weight": 2.4396
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 5571.489,
+    "volume": 42551.734,
+    "weight": 54.0407
+   },
+   "Outer wall": {
+    "time": 2979.089,
+    "volume": 21338.128,
+    "weight": 27.0994
+   },
+   "Overhang wall": {
+    "time": 9.306,
+    "volume": 29.145,
+    "weight": 0.037
+   },
+   "Sparse infill": {
+    "time": 1746.61,
+    "volume": 12677.966,
+    "weight": 16.101
+   },
+   "Internal solid infill": {
+    "time": 2931.434,
+    "volume": 20593.167,
+    "weight": 26.1533
+   },
+   "Top surface": {
+    "time": 441.532,
+    "volume": 2486.496,
+    "weight": 3.1578
+   },
+   "Bottom surface": {
+    "time": 392.63,
+    "volume": 1906.221,
+    "weight": 2.4209
+   },
+   "Bridge": {
+    "time": 21.584,
+    "volume": 61.641,
+    "weight": 0.0783
+   },
+   "Internal Bridge": {
+    "time": 213.817,
+    "volume": 1551.114,
+    "weight": 1.9699
+   },
+   "Gap infill": {
+    "time": 1312.441,
+    "volume": 9782.66,
+    "weight": 12.424
+   },
+   "Brim": {
+    "time": 380.609,
+    "volume": 1615.416,
+    "weight": 2.0516
+   },
+   "Support": {
+    "time": 239.393,
+    "volume": 1172.586,
+    "weight": 1.4892
+   },
+   "Support interface": {
+    "time": 35.395,
+    "volume": 137.499,
+    "weight": 0.1746
+   },
+   "Prime tower": {
+    "time": 239.426,
+    "volume": 1255.492,
+    "weight": 1.5945
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "anello_saracinesca_v62",
+   "instance": 0,
+   "volume": 55483.957,
+   "weight": 70.4646,
+   "support_volume": 1178.54,
+   "support_weight": 1.4967
+  },
+  {
+   "name": "disco_v61",
+   "instance": 0,
+   "volume": 35225.073,
+   "weight": 44.7358,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "saracinesca_v62",
+   "instance": 0,
+   "volume": 14312.697,
+   "weight": 18.1771,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "linguetta_sicura",
+   "instance": 0,
+   "volume": 1283.345,
+   "weight": 1.6298,
+   "support_volume": 131.545,
+   "support_weight": 0.1671
+  },
+  {
+   "name": "pulsante_v611",
+   "instance": 0,
+   "volume": 1410.809,
+   "weight": 1.7917,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "nottolino_v611",
+   "instance": 0,
+   "volume": 1754.042,
+   "weight": 2.2276,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "nottolino_v611",
+   "instance": 1,
+   "volume": 1754.042,
+   "weight": 2.2276,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "nottolino_v611",
+   "instance": 0,
+   "volume": 1754.312,
+   "weight": 2.228,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

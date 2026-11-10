@@ -1,0 +1,129 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 37593.385,
+  "prepare_time": 380.603,
+  "travel_time": 3111.514,
+  "travel_distance": 547095.69,
+  "layer_count": 340,
+  "volume": 232713.804,
+  "weight": 295.5465,
+  "filament_cost": 8.87,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 96751.16,
+    "volume": 232713.804,
+    "weight": 295.5465,
+    "cost": 8.87,
+    "model": {
+     "volume": 222740.103,
+     "weight": 282.8799
+    },
+    "support": {
+     "volume": 9973.702,
+     "weight": 12.6666
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 11320.501,
+    "volume": 86066.203,
+    "weight": 109.3041
+   },
+   "Outer wall": {
+    "time": 5375.105,
+    "volume": 38926.126,
+    "weight": 49.4362
+   },
+   "Overhang wall": {
+    "time": 205.949,
+    "volume": 704.509,
+    "weight": 0.8947
+   },
+   "Sparse infill": {
+    "time": 6584.337,
+    "volume": 46558.295,
+    "weight": 59.129
+   },
+   "Internal solid infill": {
+    "time": 4136.276,
+    "volume": 28622.636,
+    "weight": 36.3507
+   },
+   "Top surface": {
+    "time": 760.893,
+    "volume": 3868.087,
+    "weight": 4.9125
+   },
+   "Bottom surface": {
+    "time": 478.962,
+    "volume": 2575.5,
+    "weight": 3.2709
+   },
+   "Bridge": {
+    "time": 99.003,
+    "volume": 271.485,
+    "weight": 0.3448
+   },
+   "Internal Bridge": {
+    "time": 430.381,
+    "volume": 2982.858,
+    "weight": 3.7882
+   },
+   "Gap infill": {
+    "time": 1408.866,
+    "volume": 10387.47,
+    "weight": 13.1921
+   },
+   "Brim": {
+    "time": 507.685,
+    "volume": 1724.624,
+    "weight": 2.1903
+   },
+   "Support": {
+    "time": 1875.996,
+    "volume": 8106.174,
+    "weight": 10.2948
+   },
+   "Support interface": {
+    "time": 475.081,
+    "volume": 1867.527,
+    "weight": 2.3718
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "chiocciola_v62",
+   "instance": 0,
+   "volume": 118494.025,
+   "weight": 150.4874,
+   "support_volume": 4577.539,
+   "support_weight": 5.8135
+  },
+  {
+   "name": "fondello_v62",
+   "instance": 0,
+   "volume": 102469.158,
+   "weight": 130.1358,
+   "support_volume": 5396.163,
+   "support_weight": 6.8531
+  }
+ ]
+}

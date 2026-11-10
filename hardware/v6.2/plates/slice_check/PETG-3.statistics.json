@@ -1,0 +1,151 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 14997.587,
+  "prepare_time": 380.671,
+  "travel_time": 1127.904,
+  "travel_distance": 165951.84,
+  "layer_count": 90,
+  "volume": 91620.374,
+  "weight": 116.3579,
+  "filament_cost": 3.49,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 38091.33,
+    "volume": 91620.374,
+    "weight": 116.3579,
+    "cost": 3.49,
+    "model": {
+     "volume": 91620.374,
+     "weight": 116.3579
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 2564.976,
+    "volume": 18852.513,
+    "weight": 23.9427
+   },
+   "Outer wall": {
+    "time": 1868.876,
+    "volume": 13029.395,
+    "weight": 16.5473
+   },
+   "Overhang wall": {
+    "time": 32.885,
+    "volume": 110.064,
+    "weight": 0.1398
+   },
+   "Sparse infill": {
+    "time": 1368.662,
+    "volume": 9806.211,
+    "weight": 12.4539
+   },
+   "Internal solid infill": {
+    "time": 3798.106,
+    "volume": 26776.768,
+    "weight": 34.0065
+   },
+   "Top surface": {
+    "time": 1167.606,
+    "volume": 6363.525,
+    "weight": 8.0817
+   },
+   "Bottom surface": {
+    "time": 986.086,
+    "volume": 5326.76,
+    "weight": 6.765
+   },
+   "Bridge": {
+    "time": 27.443,
+    "volume": 74.81,
+    "weight": 0.095
+   },
+   "Internal Bridge": {
+    "time": 830.839,
+    "volume": 5648.336,
+    "weight": 7.1734
+   },
+   "Gap infill": {
+    "time": 421.365,
+    "volume": 3267.606,
+    "weight": 4.1499
+   },
+   "Brim": {
+    "time": 550.069,
+    "volume": 2312.084,
+    "weight": 2.9363
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "flangia_piano_v62",
+   "instance": 0,
+   "volume": 69555.621,
+   "weight": 88.3356,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "canalina_base_v62",
+   "instance": 0,
+   "volume": 3522.123,
+   "weight": 4.4731,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "canalina_base_v62",
+   "instance": 0,
+   "volume": 3522.121,
+   "weight": 4.4731,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "canalina_coperchio_v62",
+   "instance": 0,
+   "volume": 5820.021,
+   "weight": 7.3914,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "canalina_coperchio_v62",
+   "instance": 0,
+   "volume": 5820.02,
+   "weight": 7.3914,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "canalina_tappo_v62",
+   "instance": 0,
+   "volume": 1016.089,
+   "weight": 1.2904,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

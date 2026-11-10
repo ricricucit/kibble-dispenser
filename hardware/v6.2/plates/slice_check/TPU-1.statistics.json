@@ -1,0 +1,158 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 4101.441,
+  "prepare_time": 397.579,
+  "travel_time": 465.703,
+  "travel_distance": 32344.61,
+  "layer_count": 26,
+  "volume": 6045.215,
+  "weight": 7.4961,
+  "filament_cost": 0.15,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 2513.31,
+    "volume": 6045.215,
+    "weight": 7.4961,
+    "cost": 0.15,
+    "model": {
+     "volume": 6045.215,
+     "weight": 7.4961
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 589.013,
+    "volume": 1094.021,
+    "weight": 1.3566
+   },
+   "Outer wall": {
+    "time": 2566.925,
+    "volume": 4005.435,
+    "weight": 4.9667
+   },
+   "Internal solid infill": {
+    "time": 66.027,
+    "volume": 208.211,
+    "weight": 0.2582
+   },
+   "Top surface": {
+    "time": 117.166,
+    "volume": 311.027,
+    "weight": 0.3857
+   },
+   "Bottom surface": {
+    "time": 67.502,
+    "volume": 110.232,
+    "weight": 0.1367
+   },
+   "Gap infill": {
+    "time": 84.702,
+    "volume": 263.994,
+    "weight": 0.3274
+   },
+   "Custom": {
+    "time": 19.069,
+    "volume": 52.296,
+    "weight": 0.0648
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "labbro_ombra_v611",
+   "instance": 0,
+   "volume": 1652.868,
+   "weight": 2.0496,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "guarnizione_baionetta_v61",
+   "instance": 0,
+   "volume": 1036.02,
+   "weight": 1.2847,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "guarnizione_piano_v5",
+   "instance": 0,
+   "volume": 973.905,
+   "weight": 1.2076,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "labbro_scivolo_v611",
+   "instance": 0,
+   "volume": 729.289,
+   "weight": 0.9043,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "guarnizione_fondello_v61",
+   "instance": 0,
+   "volume": 970.639,
+   "weight": 1.2036,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "labbro_pettine_v62",
+   "instance": 0,
+   "volume": 129.338,
+   "weight": 0.1604,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "labbro_pettine_v62",
+   "instance": 1,
+   "volume": 129.338,
+   "weight": 0.1604,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "labbro_pettine_v62",
+   "instance": 0,
+   "volume": 129.338,
+   "weight": 0.1604,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "labbro_pettine_v62",
+   "instance": 1,
+   "volume": 129.338,
+   "weight": 0.1604,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "passacavo_v62",
+   "instance": 0,
+   "volume": 112.847,
+   "weight": 0.1399,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}
