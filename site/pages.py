@@ -3,16 +3,17 @@
 Home page, print-files pages, manual page and the v6 archive page of the website, in English, Italian and German.
 
 site/build.py calls build(out) after copying site/ to the output folder. It writes:
-  <out>/index.html            home page (current design v6.2), texts from site/content/home.toml
-  <out>/print/                print files of the current design v6.2, texts from site/content/print.toml, with
+  <out>/index.html            home page (current design v6.3), texts from site/content/home.toml
+  <out>/print/                print files of the current design v6.3, texts from site/content/print.toml, with
                               files/ (Bambu projects, plate 3MFs, one ZIP with everything) and img/ (previews); the
                               single STL files are linked from GitHub (they are also in the ZIP)
   <out>/manual/               the manuals (A6 booklet and A4 print version per language, docs/manual/) and the
-                              drilling template (hardware/v6.2/template/), texts from home.toml [manual]
-  <out>/v6/                   archive of design v6: index page, and v6/print/ from print_v6.toml and hardware/v6/plates
+                              drilling template (hardware/v6.3/template/), texts from home.toml [manual]
+  <out>/v6.2/, <out>/v6/      archives of designs v6.2 and v6: index page, print/ (print_v62.toml, print_v6.toml) and, for
+                              v6.2, manual/; their downloads link to GitHub (raw files and the release) instead of copies
 The stable URLs 3d/, print/, parts/, assembly/ and manual/ always show the current design; earlier designs keep
 versioned pages (v6/...). Grams, times, plates, parts and file names come from the plates' summary.json, the bought
-part counts from hardware/v6.2/plates/summary.json. Every text is written once per language; the language switch
+part counts from hardware/v6.3/plates/summary.json. Every text is written once per language; the language switch
 (js/lang.js) shows one of them. Standard library only; Pillow is optional.
 """
 import html
@@ -27,21 +28,31 @@ import versions
 
 SITE = Path(__file__).resolve().parent
 ROOT = SITE.parent
-PLATES = ROOT / 'hardware/v6.2/plates'          # current design
+CURRENT = 'v6.3'
+PLATES = ROOT / 'hardware/v6.3/plates'          # current design
 REPO = 'https://github.com/ricricucit/kibble-dispenser'
 LANGS = ('en', 'it', 'de')
 LANG_NAMES = {'en': 'English', 'it': 'Italiano', 'de': 'Deutsch'}
 MANUALS = ROOT / 'docs/manual'
-TEMPLATE_PDF = ROOT / 'hardware/v6.2/template/dima_foratura_v62.pdf'
+TEMPLATE_PDF = ROOT / 'hardware/v6.3/template/dima_foratura_v63.pdf'
 TEMPLATE_NAME = 'kibble-dispenser-drilling-template.pdf'
 
 # Print-files pages: the current design at the stable URL print/, earlier designs at versioned URLs.
 NAV_HOME = {'en': 'Project home', 'it': 'Pagina del progetto', 'de': 'Projektseite'}
 PRINT_PAGES = [
-    dict(label='v6.2', plates=ROOT / 'hardware/v6.2/plates', toml='print.toml', dir='print', root='../', gh='hardware/v6.2/plates',
+    dict(label='v6.3', plates=ROOT / 'hardware/v6.3/plates', toml='print.toml', dir='print', root='../', gh='hardware/v6.3/plates',
          nav=[('../', 'home'), ('../3d/', 'model'), ('../parts/', 'parts'), ('../assembly/', 'assembly')], parts='../parts/'),
+    dict(label='v6.2', plates=ROOT / 'hardware/v6.2/plates', toml='print_v62.toml', dir='v6.2/print', root='../../', gh='hardware/v6.2/plates',
+         nav=[('../../', 'home'), ('../3d/', 'model'), ('../parts/', 'parts'), ('../assembly/', 'assembly')], parts='../parts/',
+         release='hw-v6.2.0'),
     dict(label='v6', plates=ROOT / 'hardware/v6/plates', toml='print_v6.toml', dir='v6/print', root='../../', gh='hardware/v6/plates',
-         nav=[('../../', 'home'), ('../3d/', 'model'), ('../parts/', 'parts')], parts='../parts/'),
+         nav=[('../../', 'home'), ('../3d/', 'model'), ('../parts/', 'parts')], parts='../parts/', release='hw-v6.0.0'),
+]
+# Archive pages of earlier designs (index page, plus a manual page for v6.2 that links the release assets)
+ARCHIVES = [
+    dict(label='v6.2', dir='v6.2', toml_key='archive_v62', release='hw-v6.2.0', hw='6.2.0', folder='hardware/v6.2',
+         pages=['3d/', 'print/', 'parts/', 'assembly/', 'manual/']),
+    dict(label='v6', dir='v6', toml_key='archive', release='hw-v6.0.0', hw='6.0.0', folder='hardware/v6', pages=['3d/', 'print/', 'parts/']),
 ]
 COLOUR_VAR = {'black': 'var(--petg-black)', 'orange': 'var(--orange)', 'green': 'var(--green)', 'yellow': 'var(--tpu)'}
 # bench photos on the home page (docs/photos/, thumbnails made by build.py)
@@ -87,7 +98,7 @@ def num(x, lang, nd=0):
 
 
 def hours(minutes):
-    h, m = divmod(round(minutes), 60)
+    h, m = divmod(int(minutes), 60)            # whole minutes, as time_hm in summary.json and the print guides
     return f'{h} h {m:02d} min' if h else f'{m} min'
 
 
@@ -209,8 +220,8 @@ def svg_text(x, y, texts, cls='lbl', anchor='start'):
 
 
 def idea_svg(d):
-    """Side view of v6.2: container on a shelf, the flange with the orange ring and the closed pod underneath,
-    the green food path to the bowl, the cable channel under the shelf."""
+    """Side view of v6.3: container on a shelf, the flange with the orange ring and the closed pod underneath with the
+    control panel, the green food path to the bowl, the cable leaving at the back of the flange."""
     return f'''<svg class="idea-svg" viewBox="0 0 360 350" role="img" aria-labelledby="idea-svg-t">
   <title id="idea-svg-t">{esc(d['drum']['en'])}, {esc(d['shelf']['en'])}, {esc(d['unit']['en'])}, {esc(d['food']['en'])}, {esc(d['cable']['en'])}</title>
   <defs>
@@ -233,14 +244,17 @@ def idea_svg(d):
   {svg_text(186, 139, d['shelf'])}
   <path d="M76 177 97 164" class="dimline"/>
   {svg_text(64, 186, d['hole'], 'lbl dim', 'end')}
-  <!-- cable channel under the shelf, from the flange to the back edge -->
-  <rect x="158" y="162" width="172" height="6" class="petg"/>
-  {svg_text(214, 184, d['cable'], 'lbl dim')}
+  <!-- the 12 V cable leaves at the back of the flange, held by a tie, and is clipped along the shelf -->
+  <path d="M158 166H232q8 0 8 8v40" class="cable"/>
+  <circle cx="186" cy="166" r="1.6" class="ink-fill"/><circle cx="214" cy="166" r="1.6" class="ink-fill"/>
+  {svg_text(246, 196, d['cable'], 'lbl dim')}
   <!-- dispenser: two flange plates, the closed pod with the orange ring round its top, flat bottom with the outlet -->
   <rect x="66" y="162" width="92" height="8" class="petg"/>
   <path d="M74 170h76v92q0 12-12 12H86q-12 0-12-12z" class="petg"/>
   <rect x="70" y="172" width="84" height="12" rx="2" class="touch"/>
   <rect x="90" y="272" width="14" height="3" class="tpu"/>
+  <rect x="140" y="232" width="6" height="22" rx="2" class="panel"/>
+  <circle cx="143" cy="237" r="1.3" class="led"/><circle cx="143" cy="242" r="1.3" class="led"/><circle cx="143" cy="249" r="2" class="touch"/>
   <path d="M156 236H182" class="dimline"/>
   {svg_text(186, 240, d['unit'])}
   <!-- food path: through the hole and the gate, down inside the pod, out of the outlet -->
@@ -273,9 +287,13 @@ ICONS = {
     # closed smooth pod with the orange ring and a hidden chute
     'shell': '<path d="M10 10h28v26q0 6-6 6H16q-6 0-6-6z" class="i-petg"/><rect x="9" y="12" width="30" height="5" rx="1" class="i-touch"/>'
              '<path d="M14 21q10-5 20 0" class="i-sheen"/><path d="M21 42v4" class="i-food"/>',
-    # cable under the shelf
+    # cable leaving at the back of the flange, clipped along the shelf
     'cable': '<path d="M4 9h40" class="i-line w"/><rect x="10" y="11" width="16" height="22" rx="3" class="i-petg"/>'
-             '<path d="M26 14h16" class="i-cable"/>',
+             '<path d="M26 14h10q4 0 4 4v20" class="i-cable"/><circle cx="33" cy="14" r="2" class="i-ink-f"/>',
+    # control panel: one recessed button, two LEDs, the speaker grille
+    'panel': '<rect x="12" y="4" width="24" height="40" rx="6" class="i-petg"/><circle cx="24" cy="12" r="2.6" class="i-led"/>'
+             '<circle cx="24" cy="20" r="2.6" class="i-led2"/><circle cx="24" cy="31" r="5" class="i-hole"/><circle cx="24" cy="31" r="3.2" class="i-touch"/>'
+             '<path d="M19 40h2M23 40h2M27 40h2" class="i-line"/>',
     'care': '<circle cx="24" cy="24" r="15" class="i-touch"/><path d="M24 24 15 15a12.7 12.7 0 0 1 18 0z" class="i-hole"/>'
             '<path d="M11 39 37 9" class="i-line"/><path d="M33 8l5 1-1 5" class="i-line"/>',
 }
@@ -353,7 +371,7 @@ def home(out, summary, counts, grams):
       </div>
     </section>'''
 
-    sw, sh = img_size(SITE / 'img/v62-section.webp', (769, 667))
+    sw, sh = img_size(SITE / 'img/v63-section.webp', (580, 610))
     steps = ''.join(f'<li>{icon(s["key"])}<div><h3>{L(s["title"])}</h3><p>{L(s["body"])}</p></div></li>' for s in how['steps'])
     how_html = f'''    <section class="sec" id="how" aria-labelledby="how-title">
       <div class="sec-head">
@@ -363,7 +381,7 @@ def home(out, summary, counts, grams):
       </div>
       <div class="how-grid">
         <figure class="sheet section-fig">
-          <img src="img/v62-section.webp" width="{sw}" height="{sh}" loading="lazy" decoding="async" {alt_attrs(how['img_section'])}>
+          <img src="img/v63-section.webp" width="{sw}" height="{sh}" loading="lazy" decoding="async" {alt_attrs(how['img_section'])}>
           <figcaption>{L(how['cap_section'])}</figcaption>
         </figure>
         <ol class="how-steps">{steps}</ol>
@@ -463,13 +481,14 @@ def home(out, summary, counts, grams):
         <article class="st-card">
           <h3>{L(st['v6']['title'])}</h3>
           <p>{L(st['v6']['body'])}</p>
-          <p class="more"><a href="{REPO}/blob/main/hardware/v6.2/README.md">hardware/v6.2</a></p>
+          <p class="more"><a href="{REPO}/blob/main/hardware/{CURRENT}/README.md">hardware/{CURRENT}</a></p>
         </article>
         <article class="st-card">
           <h3>{L(st['bench']['title'])}</h3>
           <p>{L(st['bench']['body'])}</p>
           <ul class="bench">{photos}</ul>
-          <p class="more"><a href="{REPO}/tree/main/firmware/micropython">{L(st['bench']['firmware'])}</a></p>
+          <p class="more"><a href="{REPO}/tree/main/firmware/micropython">{L(st['bench']['firmware'])}</a> ·
+            <a href="{REPO}/issues/2">{L(st['bench']['issue'])}</a></p>
         </article>
         <article class="st-card road">
           <h3>{L(st['roadmap']['title'])}</h3>
@@ -560,27 +579,35 @@ def print_page(out, cfg):
             if x['id'] not in P['part']:
                 raise SystemExit(f"site/content/{cfg['toml']} has no name for part {x['id']}")
     label = cfg['label']
+    archived = 'release' in cfg
     zip_name = f'Kibble_Dispenser_{label}_print_files.zip'
     tot = summary['totals']
     page_dir = out / cfg['dir']
     files, img = page_dir / 'files', page_dir / 'img'
-    for d in (files / 'plates', files / 'preview', img):
-        d.mkdir(parents=True, exist_ok=True)
+    raw = f"{REPO}/raw/main/{cfg['gh']}/"
     projects = summary['files']['bambu_projects']
-    for f in projects:
-        shutil.copy2(plates_dir / f, files / f)
-    # single STL files are in the ZIP and linked from GitHub, not copied, to keep the Pages artifact small
-    for sub in ('plates', 'preview'):
-        for f in sorted((plates_dir / sub).iterdir()):
-            shutil.copy2(f, files / sub / f.name)
-
-    stamp = tuple(int(x) for x in summary['generated'].split('-')) + (0, 0, 0)
-    members = ([(plates_dir / f, f) for f in projects] + [(plates_dir / 'README.md', 'README.md'), (plates_dir / 'summary.json', 'summary.json')]
-               + [(f, f'plates/{f.name}') for f in sorted((plates_dir / 'plates').iterdir())]
-               + [(f, f'stl/{f.name}') for f in sorted((plates_dir / 'stl').iterdir())]
-               + [(ROOT / 'LICENSES/CERN-OHL-P-2.0.txt', 'LICENSES/CERN-OHL-P-2.0.txt'),
-                  (ROOT / 'LICENSES/CC-BY-4.0.txt', 'LICENSES/CC-BY-4.0.txt')])
-    write_zip(files / zip_name, zip_name[:-4], members, stamp)
+    for d in ([img] if archived else [files / 'plates', files / 'preview', img]):
+        d.mkdir(parents=True, exist_ok=True)
+    if archived:
+        # archived design: every download is linked from GitHub (raw files, the release), nothing is copied into the site
+        def href(rel):
+            return raw + rel
+    else:
+        def href(rel):
+            return 'files/' + rel
+        for f in projects:
+            shutil.copy2(plates_dir / f, files / f)
+        # single STL files are in the ZIP and linked from GitHub, not copied, to keep the Pages artifact small
+        for sub in ('plates', 'preview'):
+            for f in sorted((plates_dir / sub).iterdir()):
+                shutil.copy2(f, files / sub / f.name)
+        stamp = tuple(int(x) for x in summary['generated'].split('-')) + (0, 0, 0)
+        members = ([(plates_dir / f, f) for f in projects] + [(plates_dir / 'README.md', 'README.md'), (plates_dir / 'summary.json', 'summary.json')]
+                   + [(f, f'plates/{f.name}') for f in sorted((plates_dir / 'plates').iterdir())]
+                   + [(f, f'stl/{f.name}') for f in sorted((plates_dir / 'stl').iterdir())]
+                   + [(ROOT / 'LICENSES/CERN-OHL-P-2.0.txt', 'LICENSES/CERN-OHL-P-2.0.txt'),
+                      (ROOT / 'LICENSES/CC-BY-4.0.txt', 'LICENSES/CC-BY-4.0.txt')])
+        write_zip(files / zip_name, zip_name[:-4], members, stamp)
 
     def sz(path):
         n = path.stat().st_size
@@ -628,15 +655,23 @@ def print_page(out, cfg):
     </section>'''
 
     petg, tpu = projects
+    if archived:
+        rel = cfg['release']
+        main_dl = (f'<li class="dl-main"><a href="{REPO}/releases/tag/{rel}"><span class="ft">ZIP</span>'
+                   f'<span class="dl-t">{L({"en": f"GitHub release {rel}", "it": f"Release GitHub {rel}", "de": f"GitHub-Release {rel}"})}</span>'
+                   f'<span class="dl-b">{L({"en": "Every file of this design as ZIP, with the print guide and the licences.", "it": "Tutti i file di questo progetto in ZIP, con la guida di stampa e le licenze.", "de": "Alle Dateien dieses Entwurfs als ZIP, mit Druckanleitung und Lizenzen."})}</span>'
+                   f'<span class="dl-s">github.com</span></a></li>')
+    else:
+        main_dl = (f'<li class="dl-main"><a href="files/{zip_name}" download><span class="ft">ZIP</span><span class="dl-t">{L(P["dl"]["zip"]["title"])}</span>'
+                   f'<span class="dl-b">{L(P["dl"]["zip"]["body"])}</span><span class="dl-s">{sz(files / zip_name)}</span></a></li>')
     dl = f'''    <section class="psec" id="downloads" aria-labelledby="dl-title">
       <h2 id="dl-title">{L(P['dl']['title'])}</h2>
       <ul class="dl-list">
-        <li class="dl-main"><a href="files/{zip_name}" download><span class="ft">ZIP</span><span class="dl-t">{L(P['dl']['zip']['title'])}</span>
-          <span class="dl-b">{L(P['dl']['zip']['body'])}</span><span class="dl-s">{sz(files / zip_name)}</span></a></li>
-        <li><a href="files/{esc(petg)}" download><span class="ft">3MF</span><span class="dl-t">{L(P['dl']['petg']['title'])}</span>
-          <span class="dl-b">{L(P['dl']['petg']['body'])}</span><span class="dl-s">{esc(petg)} · {sz(files / petg)}</span></a></li>
-        <li><a href="files/{esc(tpu)}" download><span class="ft">3MF</span><span class="dl-t">{L(P['dl']['tpu']['title'])}</span>
-          <span class="dl-b">{L(P['dl']['tpu']['body'])}</span><span class="dl-s">{esc(tpu)} · {sz(files / tpu)}</span></a></li>
+        {main_dl}
+        <li><a href="{href(petg)}" download><span class="ft">3MF</span><span class="dl-t">{L(P['dl']['petg']['title'])}</span>
+          <span class="dl-b">{L(P['dl']['petg']['body'])}</span><span class="dl-s">{esc(petg)} · {sz(plates_dir / petg)}</span></a></li>
+        <li><a href="{href(tpu)}" download><span class="ft">3MF</span><span class="dl-t">{L(P['dl']['tpu']['title'])}</span>
+          <span class="dl-b">{L(P['dl']['tpu']['body'])}</span><span class="dl-s">{esc(tpu)} · {sz(plates_dir / tpu)}</span></a></li>
       </ul>
       <p class="check-note">{L(P['dl']['check'])}</p>
       <p class="aside">{L(P['dl']['other'])}</p>
@@ -685,7 +720,7 @@ def print_page(out, cfg):
         note = (f'<p class="pnote">{L(P["plates"]["tpu_note"])}</p>' if key == 'TPU-1' and 'tpu_note' in P['plates'] else '')
         plain = Path(pl['plain_3mf']).name
         cards.append(f'''<li class="plate{' plate-test' if test else ''}" id="plate-{esc(key)}">
-          <a class="pimg" href="files/{esc(pl['preview_top'])}"><img src="img/{esc(name)}"{size} loading="lazy" decoding="async" {alt_attrs(tx['title'])}></a>
+          <a class="pimg" href="{href(pl['preview_top'])}"><img src="img/{esc(name)}"{size} loading="lazy" decoding="async" {alt_attrs(tx['title'])}></a>
           <div class="pbody">
             <p class="pkey">{esc(key)}{(' · <span class="badge">' + L(P['plates']['test']) + '</span>') if test else ''}</p>
             <h3>{L(tx['title'])}</h3>
@@ -695,7 +730,7 @@ def print_page(out, cfg):
             <p class="pmeta"><span>{esc(pl['est_time_hm'])}</span><span>{pl['colour_swaps']} {L(P['plates']['swaps'])}</span>
               <span>{L(P['plates']['in_project'])} {pl['plate_in_project']}</span></p>
             {note}
-            <p class="pdl"><a class="btn btn-sm" href="files/plates/{esc(plain)}" download>{L(P['plates']['download'])} · {sz(files / 'plates' / plain)}</a></p>
+            <p class="pdl"><a class="btn btn-sm" href="{href('plates/' + plain)}" download>{L(P['plates']['download'])} · {sz(plates_dir / 'plates' / plain)}</a></p>
           </div>
         </li>''')
     plates = f'''    <section class="psec" id="plates" aria-labelledby="plates-title">
@@ -789,8 +824,7 @@ def print_page(out, cfg):
     </section>'''
 
     stl = sorted((plates_dir / 'stl').iterdir())
-    raw = f"{REPO}/raw/main/{cfg['gh']}/stl/"
-    stl_items = ''.join(f'<li><a href="{raw}{esc(f.name)}">{esc(f.name)}</a> <span>{sz(f)}</span></li>' for f in stl)
+    stl_items = ''.join(f'<li><a href="{raw}stl/{esc(f.name)}">{esc(f.name)}</a> <span>{sz(f)}</span></li>' for f in stl)
     stl_html = f'''    <section class="psec" id="stl" aria-labelledby="stl-title">
       <h2 id="stl-title">{L(P['files']['title'])}</h2>
       <p class="lead">{L(P['files']['lead'])}</p>
@@ -818,48 +852,79 @@ def print_page(out, cfg):
     return page_dir / 'index.html'
 
 
-# ---------------------------------------------------------------- manual page
-def manual_page(out):
+# ---------------------------------------------------------------- manual pages
+def fill(texts, **kw):
+    """per-language texts with {name} placeholders filled in"""
+    t = per_lang(texts)
+    out = {}
+    for lang in LANGS:
+        v = t[lang]
+        for k, x in kw.items():
+            v = v.replace('{' + k + '}', x)
+        out[lang] = v
+    return out
+
+
+def manual_page(out, label=CURRENT, release=None):
+    """Manual page of the current design (manual/, PDFs copied from docs/manual/ and the design's template) or of an
+    archived design (<label>/manual/, linking the PDFs of its GitHub release)."""
     H = load_toml('home.toml')
     M = H['manual']
-    page_dir = out / 'manual'
+    root = '../' if release is None else '../../'
+    page_dir = out / ('manual' if release is None else f'{label}/manual')
     files = page_dir / 'files'
-    files.mkdir(parents=True, exist_ok=True)
+    page_dir.mkdir(parents=True, exist_ok=True)
+    cover = 'manual-cover' if release is None else f'manual-cover-{label.replace(".", "")}'
 
     def sz(path):
         n = path.stat().st_size
         return L(lambda lang: size_text(n, lang))
 
+    if release is None:
+        files.mkdir(parents=True, exist_ok=True)
+
+        def link(name, src):
+            if not src.exists():
+                raise SystemExit(f'missing {src.relative_to(ROOT)}')
+            shutil.copy2(src, files / name)
+            return f'files/{name}', f'PDF · {size_text(src.stat().st_size, "en")}', sz(src)
+    else:
+        def link(name, src):
+            return f'{REPO}/releases/download/{release}/{name}', None, L(f'PDF · {release}')
+
     cards = []
     for lang in LANGS:
-        booklet = MANUALS / f'kibble-dispenser-manual-{lang}.pdf'
-        a4 = MANUALS / f'kibble-dispenser-manual-{lang}-print-a4.pdf'
-        for f in (booklet, a4):
-            if not f.exists():
-                raise SystemExit(f'missing manual {f.relative_to(ROOT)}')
-            shutil.copy2(f, files / f.name)
-        w, h = img_size(SITE / f'img/manual-cover-{lang}.webp', (360, 508))
+        rows = []
+        for ft, key, name in (('A6', 'booklet', f'kibble-dispenser-manual-{lang}.pdf'), ('A4', 'print', f'kibble-dispenser-manual-{lang}-print-a4.pdf')):
+            url, _, size_html = link(name, MANUALS / name)
+            if release is None:
+                size_html = L(lambda lg, n=(MANUALS / name).stat().st_size: f'PDF · {size_text(n, lg)}')
+            rows.append(f'<li><a href="{url}" download><span class="ft">{ft}</span><span class="dl-t">{L(M[key])}</span>'
+                        f'<span class="dl-s">{size_html}</span></a></li>')
+        w, h = img_size(SITE / f'img/{cover}-{lang}.webp', (360, 508))
+        first = rows[0].split('href="', 1)[1].split('"', 1)[0]
         cards.append(f'''<li class="man" lang="{lang}">
-          <a class="man-cover" href="files/{booklet.name}"><img src="../img/manual-cover-{lang}.webp" width="{w}" height="{h}" loading="lazy" decoding="async"
+          <a class="man-cover" href="{first}"><img src="{root}img/{cover}-{lang}.webp" width="{w}" height="{h}" loading="lazy" decoding="async"
             alt="{esc(LANG_NAMES[lang])}: Kibble Dispenser Outdoor, manual cover"></a>
           <div class="man-body">
             <h2>{esc(LANG_NAMES[lang])}</h2>
-            <ul class="dl-list">
-              <li><a href="files/{booklet.name}" download><span class="ft">A6</span><span class="dl-t">{L(M['booklet'])}</span>
-                <span class="dl-s">PDF · {sz(booklet)}</span></a></li>
-              <li><a href="files/{a4.name}" download><span class="ft">A4</span><span class="dl-t">{L(M['print'])}</span>
-                <span class="dl-s">PDF · {sz(a4)}</span></a></li>
-            </ul>
+            <ul class="dl-list">{''.join(rows)}</ul>
           </div>
         </li>''')
-    if not TEMPLATE_PDF.exists():
-        raise SystemExit(f'missing drilling template {TEMPLATE_PDF.relative_to(ROOT)}')
-    shutil.copy2(TEMPLATE_PDF, files / TEMPLATE_NAME)
+    if release is None:
+        tpl_url, _, tpl_size = link(TEMPLATE_NAME, TEMPLATE_PDF)
+        tpl_dir = f'{REPO}/tree/main/hardware/{label}/template'
+        status = f'<div class="banner" role="note"><p>{L(fill(M["status"], v=label))}</p></div>'
+    else:
+        tpl_url, tpl_size = f'{REPO}/releases/download/{release}/{TEMPLATE_NAME}', L(f'PDF · {release}')
+        tpl_dir = f'{REPO}/tree/main/hardware/{label}/template'
+        status = (f'<div class="banner" role="note"><p class="banner-t">{L(fill(M["archived_title"], v=label))}</p>'
+                  f'<p>{L(fill(M["archived_body"], v=label, c=CURRENT))} <a href="../../manual/" data-keep-lang>{L(fill(M["archived_link"], c=CURRENT))}</a></p></div>')
     body = f'''    <section class="phead" aria-labelledby="m-title">
-      <p class="kicker">Kibble Dispenser Outdoor · v6.2</p>
+      <p class="kicker">Kibble Dispenser Outdoor · {label}</p>
       <h1 id="m-title">{L(M['title'])}</h1>
-      <p class="lead">{L(M['lead'])}</p>
-      <div class="banner" role="note"><p>{L(M['status'])}</p></div>
+      <p class="lead">{L(fill(M['lead'], v=label))}</p>
+      {status}
     </section>
     <section class="psec" aria-label="PDF">
       <ul class="mans">{''.join(cards)}</ul>
@@ -869,40 +934,47 @@ def manual_page(out):
       <h2 id="tpl-title">{L(M['template_title'])}</h2>
       <p class="lead">{L(M['template_body'])}</p>
       <ul class="dl-list">
-        <li class="dl-main"><a href="files/{TEMPLATE_NAME}" download><span class="ft">PDF</span><span class="dl-t">{L(M['template_title'])} · A4 · 1:1</span>
-          <span class="dl-s">{TEMPLATE_NAME} · {sz(files / TEMPLATE_NAME)}</span></a></li>
+        <li class="dl-main"><a href="{tpl_url}" download><span class="ft">PDF</span><span class="dl-t">{L(M['template_title'])} · A4 · 1:1</span>
+          <span class="dl-s">{TEMPLATE_NAME} · {tpl_size}</span></a></li>
       </ul>
     </section>
     <section class="psec">
       <p class="cta-row"><a class="btn btn-act" href="../assembly/">{L(H['build']['wizard']['cta'])}</a></p>
       <p class="aside">{L(M['also'])}</p>
-      <p class="aside">{L(M['licence'])} <a href="{REPO}/tree/main/docs/manual">docs/manual</a> · <a href="{REPO}/tree/main/hardware/v6.2/template">hardware/v6.2/template</a></p>
+      <p class="aside">{L(M['licence'])} <a href="{REPO}/tree/main/docs/manual">docs/manual</a> · <a href="{tpl_dir}">hardware/{label}/template</a></p>
     </section>'''
-    nav = [('../', NAV_HOME, True), ('../assembly/', {'en': 'Assembly', 'it': 'Montaggio', 'de': 'Montage'}, False),
+    nav = [(root, NAV_HOME, True), ('../assembly/', {'en': 'Assembly', 'it': 'Montaggio', 'de': 'Montage'}, False),
            ('../parts/', {'en': 'Bought parts', 'it': 'Pezzi da comprare', 'de': 'Zukaufteile'}, True)]
-    s = page(root='../', titles=M['meta'], description=M['lead']['en'], nav=nav, body=body, footer=footer_html('../', H), cls='print manual')
+    s = page(root=root, titles=fill(M['meta'], v=label), description=fill(M['lead'], v=label)['en'], nav=nav, body=body,
+             footer=footer_html(root, H), cls='print manual')
     (page_dir / 'index.html').write_text(s, encoding='utf-8')
     return page_dir / 'index.html'
 
 
-# ---------------------------------------------------------------- archive of design v6
-def archive_index(out):
+# ---------------------------------------------------------------- archives of earlier designs
+PAGE_NAMES = {'3d/': {'en': '3D model', 'it': 'Modello 3D', 'de': '3D-Modell'},
+              'print/': {'en': 'Print files', 'it': 'File di stampa', 'de': 'Druckdateien'},
+              'parts/': {'en': 'Bought parts', 'it': 'Pezzi da comprare', 'de': 'Zukaufteile'},
+              'assembly/': {'en': 'Assembly guide', 'it': 'Guida al montaggio', 'de': 'Montageanleitung'},
+              'manual/': {'en': 'Manual', 'it': 'Manuale', 'de': 'Handbuch'}}
+
+
+def archive_index(out, cfg):
     H = load_toml('home.toml')
-    A = H['archive']
-    items = [('3d/', {'en': '3D model', 'it': 'Modello 3D', 'de': '3D-Modell'}),
-             ('print/', {'en': 'Print files', 'it': 'File di stampa', 'de': 'Druckdateien'}),
-             ('parts/', {'en': 'Bought parts', 'it': 'Pezzi da comprare', 'de': 'Zukaufteile'})]
-    links = ''.join(f'<li><a href="{href}" data-keep-lang>{L(t)}</a><span>v6 · hardware 6.0.0</span></li>' for href, t in items)
+    A = H[cfg['toml_key']]
+    label = cfg['label']
+    links = ''.join(f'<li><a href="{href}"{"" if href == "assembly/" else " data-keep-lang"}>{L(PAGE_NAMES[href])}</a>'
+                    f'<span>{label} · hardware {cfg["hw"]}</span></li>' for href in cfg['pages'])
     body = f'''    <section class="phead" aria-labelledby="a-title">
-      <p class="kicker">Kibble Dispenser Outdoor · v6</p>
+      <p class="kicker">Kibble Dispenser Outdoor · {label}</p>
       <h1 id="a-title">{L(A['title'])}</h1>
       <p class="lead">{L(A['lead'])}</p>
-      <p class="cta-row"><a class="btn btn-act" href="../" data-keep-lang>{L(A['current'])} →</a></p>
+      <p class="cta-row"><a class="btn btn-act" href="../" data-keep-lang>{L(fill(H['archive_current'], c=CURRENT))} →</a></p>
     </section>
     <section class="psec"><ul class="links">{links}</ul>
-      <p class="aside"><a href="{REPO}/tree/main/hardware/v6">hardware/v6</a> · <a href="{REPO}/releases/tag/hw-v6.0.0">hw-v6.0.0</a> · <a href="../earlier/">{L(H['footer']['earlier'])}</a></p>
+      <p class="aside"><a href="{REPO}/tree/main/{cfg['folder']}">{cfg['folder']}</a> · <a href="{REPO}/releases/tag/{cfg['release']}">{cfg['release']}</a> · <a href="../earlier/">{L(H['footer']['earlier'])}</a></p>
     </section>'''
-    page_dir = out / 'v6'
+    page_dir = out / cfg['dir']
     page_dir.mkdir(parents=True, exist_ok=True)
     s = page(root='../', titles=A['meta'], description=A['lead']['en'], nav=[('../', NAV_HOME, True)], body=body,
              footer=footer_html('../', H), cls='print archive')
@@ -923,7 +995,9 @@ def build(out):
     for cfg in PRINT_PAGES:
         written.append(print_page(out, cfg))
     written.append(manual_page(out))
-    written.append(archive_index(out))
+    written.append(manual_page(out, 'v6.2', release='hw-v6.2.0'))
+    for cfg in ARCHIVES:
+        written.append(archive_index(out, cfg))
     # catch unfilled markers and stray format braces
     for f in written:
         s = f.read_text(encoding='utf-8')

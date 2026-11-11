@@ -1,4 +1,4 @@
-/* Kibble Dispenser Outdoor v6.2 - assembly wizard (three.js r128, no other libraries).
+/* Kibble Dispenser Outdoor v6.3 - assembly wizard (three.js r128, no other libraries).
    Data: window.WIZ_DATA = {steps: <steps.json>, parts: [...], geomsB64 | modelBase, version, mode, templateHref}.
    Two reading orders (steps.json meta.flows): "kit" (install the ready-made unit) and "diy" (build it yourself);
    the reader's position S.i counts inside the chosen flow, STEPS indexes stay global (stills, 3D state).
@@ -64,7 +64,9 @@
     ruler: '<path d="M3 21L21 3l8 8-18 18z"/><path d="M8 16l3 3M11 13l2 2M14 10l3 3M17 7l2 2M20 4l3 3"/>',
     level: '<rect x="3" y="11" width="26" height="10" rx="2"/><rect x="12.5" y="13.5" width="7" height="5" rx="2.5"/><path d="M16 14.6v2.8"/>',
     glasses: '<path d="M3 13h26"/><path d="M5 13c0 4 1.5 6 5 6s5-2 5.5-5"/><path d="M27 13c0 4-1.5 6-5 6s-5-2-5.5-5"/><path d="M3 13l-1-3M29 13l1-3"/>',
-    cloth: '<path d="M6 8c4-2 8 2 12 0s6-2 8-1v17c-2-1-4-1-8 1s-8-2-12 0z"/><path d="M10 13h10M10 18h8"/>'
+    cloth: '<path d="M6 8c4-2 8 2 12 0s6-2 8-1v17c-2-1-4-1-8 1s-8-2-12 0z"/><path d="M10 13h10M10 18h8"/>',
+    cutter: '<path d="M14 4l2 10 2-10"/><path d="M16 14l-5 9a3 3 0 1 0 2 1.5l3-6.5 3 6.5a3 3 0 1 0 2-1.5z"/>',
+    clip: '<path d="M4 24h24"/><path d="M10 24v-9a6 6 0 0 1 12 0v9"/><circle cx="16" cy="15" r="2.6"/><path d="M7 24v4M25 24v4"/>'
   };
   const ICON_WARN = '<path d="M16 4l13 23H3z"/><path d="M16 13v7"/><path d="M16 23.5v.5"/>';
   const ICON_CHECK = '<path d="M6 17l6 6L26 9"/>';
@@ -576,7 +578,16 @@
       }
       return g;
     }
-    const PROC = { psu_kit: psuKitObj, shelf: () => shelfObj(true), shelf_plain: () => shelfObj(false), container: containerObj, petbowl: petBowlObj, floor: floorObj,
+    function clipsObj() { // the user's own cable clips along the shelf underside (positions from steps.json scene.clips_y)
+      const g = new THREE.Group(); const mat = pm('#eef0f2', { roughness: 0.6 });
+      (SC.clips_y || []).forEach((y) => {
+        const c = mkMesh(new THREE.BoxGeometry(12, 7, 6.5), mat, true); c.position.set(SC.cable_x || 0, y, SH.underside_z - 3.25); c.userData.outline = true; g.add(c);
+        const n = mkMesh(new THREE.CylinderGeometry(1.4, 1.4, 4, 10).rotateX(Math.PI / 2), pm('#9aa1a8', { metalness: 0.6, roughness: 0.4 }), false);
+        n.position.set((SC.cable_x || 0) + 4, y, SH.underside_z - 6.6); g.add(n);
+      });
+      return g;
+    }
+    const PROC = { clips: clipsObj, psu_kit: psuKitObj, shelf: () => shelfObj(true), shelf_plain: () => shelfObj(false), container: containerObj, petbowl: petBowlObj, floor: floorObj,
       psu: psuObj, holesaw: holeSawObj, bit: bitObj, template: templateObj, small_screws: smallScrewsObj };
 
     /* ---------- dynamic cables: points in the frame of a unit item ('u') or in the world ('w') ---------- */
@@ -826,23 +837,38 @@
         labelsEl.append(div); labs.push({ div, kind: 'item', I, at: e.at || 'top', pt: e.pt || null, dx: e.dx || 0, dy: e.dy || 0 });
       });
       (s.dims || []).forEach((d) => { const div = el('div', 'lab dim', tr(d.text)); labelsEl.append(div); labs.push({ div, kind: 'pt', after: d.after, p: new V3(...(d.label_at || [(d.a[0] + d.b[0]) / 2, (d.a[1] + d.b[1]) / 2, (d.a[2] + d.b[2]) / 2])) }); });
-      if (!noCallouts) (s.callouts || []).forEach((c) => { const div = el('div', 'lab call', tr(c.text)); labelsEl.append(div); labs.push({ div, kind: 'pt', until: c.until, after: c.after, p: new V3(...c.at) }); });
+      if (!noCallouts) (s.callouts || []).forEach((c) => {
+        const div = el('div', 'lab call', tr(c.text)); labelsEl.append(div);
+        const o = { div, kind: 'pt', until: c.until, after: c.after, p: new V3(...c.at) };
+        if (c.dx != null || c.dy != null) {            // leader: dot at the point, text offset by (dx, dy) still-px
+          o.lead = [c.dx || 0, c.dy || 0]; o.dot = el('div', 'lab-dot'); o.line = el('div', 'lab-line'); labelsEl.append(o.line, o.dot);
+        }
+        labs.push(o);
+      });
     }
     const pv = new V3();
     function drawLabels() {
       const W0 = stage.clientWidth, H0 = stage.clientHeight; const placed = [];
       labs.forEach((o) => {
         let p;
-        if (o.hide) { o.div.style.display = 'none'; return; }
+        const hideLead = () => { if (o.dot) { o.dot.style.display = 'none'; o.line.style.display = 'none'; } };
+        if (o.hide) { o.div.style.display = 'none'; hideLead(); return; }
         if (o.kind === 'item') {
           if (!o.I.g.visible) { o.div.style.display = 'none'; return; }
           if (o.pt) { o.I.g.updateMatrixWorld(true); p = new V3(o.pt[0], o.pt[1], o.pt[2]).applyMatrix4(o.I.g.matrixWorld); }   // anchor in the item's own frame
           else { const b = bboxWorld(o.I); p = new V3((b.min.x + b.max.x) / 2, (b.min.y + b.max.y) / 2, o.at === 'bottom' ? b.min.z : b.max.z); }
         } else p = o.p.clone();
         pv.copy(p).project(camera);
-        if (pv.z > 1 || Math.abs(pv.x) > 1.05 || Math.abs(pv.y) > 1.05) { o.div.style.display = 'none'; return; }
+        if (pv.z > 1 || Math.abs(pv.x) > 1.05 || Math.abs(pv.y) > 1.05) { o.div.style.display = 'none'; hideLead(); return; }
         o.div.style.display = 'flex';
         let x = (pv.x * 0.5 + 0.5) * W0 + (o.dx || 0), y = (-pv.y * 0.5 + 0.5) * H0 + (o.dy || 0);
+        if (o.lead) {
+          const k = STILL ? 1 : 0.55, ax = x, ay = y; x += o.lead[0] * k; y += o.lead[1] * k;
+          const L = Math.hypot(x - ax, y - ay), ang = Math.atan2(y - ay, x - ax);
+          o.dot.style.display = 'block'; o.dot.style.transform = 'translate(' + ax.toFixed(1) + 'px,' + ay.toFixed(1) + 'px)';
+          o.line.style.display = 'block'; o.line.style.width = L.toFixed(1) + 'px';
+          o.line.style.transform = 'translate(' + ax.toFixed(1) + 'px,' + ay.toFixed(1) + 'px) rotate(' + ang.toFixed(4) + 'rad)';
+        }
         if (o.kind === 'item' && !o.pt) { y -= STILL ? 34 : 22; }
         const w = o.div.offsetWidth || 30, h = o.div.offsetHeight || 24;
         x = clamp(x, w / 2 + 4, W0 - w / 2 - 4); y = clamp(y, h / 2 + 4, H0 - h / 2 - 4);
@@ -1084,10 +1110,10 @@
       if (!S.auto && !reduce) { S.t = 0; S.playing = true; }
       applyAll(S.t);
       buildArrows(cur, S.t);
-      const bench = ['bench', 'kit', 'hardware', 'box', 'shellbench', 'plates', 'clean', 'info', 'flangebench'].includes(cur.s.context);
+      const bench = ['bench', 'kit', 'hardware', 'box', 'shellbench', 'plates', 'clean', 'info', 'flangebench', 'panel'].includes(cur.s.context);
       benchG.visible = bench && !STILL;
       S.userCam = false; camHome(!S.everEntered); S.everEntered = true;
-      makeLabels(i, STILL);
+      makeLabels(i, STILL && !cur.s.still_callouts);
       applyAll(S.t);
     };
     replay = function () { if (!cur) return; S.t = 0; S.playing = true; S.hold = 0; };
@@ -1218,7 +1244,7 @@
         const cam = Object.assign({}, cur.s.camera || {}, spec.camera || {}); const saved = cur.s.camera; cur.s.camera = cam;
         const g = camGoalFor(cur, aspectNow(), spec.fit_all ? null : (spec.fit_t || [t, cur.dur])); C.t.copy(g.t); C.r = g.r; C.az = g.az; C.el = g.el; goal.t = goal.r = goal.az = goal.el = null; cur.s.camera = saved;
         applyAll(t);
-        const sl = cur.s.labels; if (spec.labels !== undefined) cur.s.labels = spec.labels; makeLabels(i, true); cur.s.labels = sl;
+        const sl = cur.s.labels; if (spec.labels !== undefined) cur.s.labels = spec.labels; makeLabels(i, !cur.s.still_callouts); cur.s.labels = sl;
         applyAll(t);
         frame(performance.now()); frame(performance.now());
         return spec.file || '';

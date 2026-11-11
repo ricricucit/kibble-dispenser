@@ -1,14 +1,14 @@
-# Print-files page of the current design, v6.2 (print/), in English, Italian and German. Rendered by site/pages.py.
-# Plates, parts, grams, times and file names come from hardware/v6.2/plates/summary.json; only the words are here.
-# The archived page of design v6 (v6/print/) has its texts in print_v6.toml.
+# Print-files page of the current design, v6.3 (print/), in English, Italian and German. Rendered by site/pages.py.
+# Plates, parts, grams, times and file names come from hardware/v6.3/plates/summary.json; only the words are here.
+# Archived designs: v6.2 at v6.2/print/ (print_v62.toml), v6 at v6/print/ (print_v6.toml).
 
 [meta.title]
-en = "Print files · Kibble Dispenser v6.2"
-it = "File di stampa · Kibble Dispenser v6.2"
-de = "Druckdateien · Kibble Dispenser v6.2"
+en = "Print files · Kibble Dispenser v6.3"
+it = "File di stampa · Kibble Dispenser v6.3"
+de = "Druckdateien · Kibble Dispenser v6.3"
 
 [meta.description]
-en = "Print plates for the Kibble Dispenser Outdoor v6.2 on a Bambu Lab A1 with AMS lite: Bambu Studio projects, plain 3MF per plate, STL files, AMS setup, IP66 settings, bought parts and a check list. Designed, not yet printed or tested."
+en = "Print plates for the Kibble Dispenser Outdoor v6.3 on a Bambu Lab A1 with AMS lite: Bambu Studio projects, plain 3MF per plate, STL files, AMS setup, IP66 settings, bought parts and a check list. Designed, not yet printed or tested."
 
 [nav]
 model = { en = "3D model", it = "Modello 3D", de = "3D-Modell" }
@@ -30,14 +30,14 @@ de = "Fertige Platten für einen Bambu Lab A1 mit AMS lite: zwei Bambu-Studio-Pr
 href = "#tests"
 
 [banner.title]
-en = "Design v6.2: designed, not yet printed or tested"
-it = "Progetto v6.2: disegnato, non ancora stampato né provato"
-de = "Entwurf v6.2: konstruiert, noch nicht gedruckt oder getestet"
+en = "Design v6.3: designed, not yet printed or tested"
+it = "Progetto v6.3: disegnato, non ancora stampato né provato"
+de = "Entwurf v6.3: konstruiert, noch nicht gedruckt oder getestet"
 
 [banner.body]
-en = "Every part has been checked in CAD and every plate sliced without errors, but nobody has printed v6.2 yet. Start with the two short test plates, and tell us how they fit."
-it = "Ogni pezzo è stato verificato in CAD e ogni piatto passa lo slicing senza errori, ma nessuno ha ancora stampato la v6.2. Cominciate dai due piatti di prova, brevi, e diteci come vanno."
-de = "Jedes Teil ist im CAD geprüft und jede Platte ohne Fehler geslict, aber v6.2 hat noch niemand gedruckt. Fangt mit den zwei kurzen Testplatten an und erzählt uns, wie sie passen."
+en = "Every part has been checked in CAD and every plate sliced without errors, but nobody has printed v6.3 yet. The CAD now carries the print orientations and the dowel hole, so these files need no corrections. Start with the two short test plates, and tell us how they fit."
+it = "Ogni pezzo è stato verificato in CAD e ogni piatto passa lo slicing senza errori, ma nessuno ha ancora stampato la v6.3. Il CAD ora contiene gli orientamenti di stampa e il foro della spina, quindi questi file non chiedono correzioni. Cominciate dai due piatti di prova, brevi, e diteci come vanno."
+de = "Jedes Teil ist im CAD geprüft und jede Platte ohne Fehler geslict, aber v6.3 hat noch niemand gedruckt. Das CAD enthält jetzt Druckausrichtungen und Stiftloch, diese Dateien brauchen also keine Korrekturen. Fangt mit den zwei kurzen Testplatten an und erzählt uns, wie sie passen."
 
 [banner.link]
 en = "Test pieces first"
@@ -117,9 +117,9 @@ role = { en = "seals, external spool", it = "guarnizioni, bobina esterna", de = 
 slot = { en = "Ext.", it = "Est.", de = "Ext." }
 
 [ams.note_spare]
-en = "Black is about 81 % of all PETG, and plates 01 and 02 take over 250 g each. A second black spool in slot 4, with “Filament backup / auto refill” on, saves a failed print. No spare? Leave slot 4 empty."
-it = "Il nero è circa l'81 % di tutto il PETG, e i piatti 01 e 02 ne usano più di 250 g ciascuno. Una seconda bobina nera nello slot 4, con “Backup filamento / ricarica automatica” attivo, evita una stampa fallita. Niente scorta? Lasciate vuoto lo slot 4."
-de = "Schwarz ist etwa 81 % des ganzen PETG, und die Platten 01 und 02 brauchen je über 250 g. Eine zweite schwarze Spule in Slot 4 mit „Filament-Backup / Auto-Nachfüllen“ rettet einen Druck. Keine Reserve? Slot 4 leer lassen."
+en = "Black is about 82 % of all PETG, and plates 01 and 02 take about 250 and 300 g. A second black spool in slot 4, with “Filament backup / auto refill” on, saves a failed print. No spare? Leave slot 4 empty."
+it = "Il nero è circa l'82 % di tutto il PETG, e i piatti 01 e 02 ne usano circa 250 e 300 g. Una seconda bobina nera nello slot 4, con “Backup filamento / ricarica automatica” attivo, evita una stampa fallita. Niente scorta? Lasciate vuoto lo slot 4."
+de = "Schwarz ist etwa 82 % des ganzen PETG, und die Platten 01 und 02 brauchen etwa 250 und 300 g. Eine zweite schwarze Spule in Slot 4 mit „Filament-Backup / Auto-Nachfüllen“ rettet einen Druck. Keine Reserve? Slot 4 leer lassen."
 
 [ams.note_tpu]
 en = "TPU can't go through the AMS lite. Put it on the external spool holder, map it to “External spool” in the print dialog, and print it on its own plates."
@@ -133,9 +133,9 @@ it = "Prima stampate i pezzi di prova"
 de = "Zuerst die Testteile drucken"
 
 [test.lead]
-en = "Two short plates, about 45 minutes together, tell you how the parts will fit your servo and your filament before you spend 40 hours on the rest."
-it = "Due piatti brevi, circa 45 minuti in tutto, vi dicono come i pezzi si adatteranno al vostro servo e al vostro filamento prima di spendere 40 ore per il resto."
-de = "Zwei kurze Platten, zusammen etwa 45 Minuten, zeigen, wie die Teile zu eurem Servo und eurem Filament passen, bevor ihr 40 Stunden in den Rest steckt."
+en = "Two short plates, about 45 minutes together, tell you how the parts will fit your servo and your filament before you spend nearly 40 hours on the rest."
+it = "Due piatti brevi, circa 45 minuti in tutto, vi dicono come i pezzi si adatteranno al vostro servo e al vostro filamento prima di spendere quasi 40 ore per il resto."
+de = "Zwei kurze Platten, zusammen etwa 45 Minuten, zeigen, wie die Teile zu eurem Servo und eurem Filament passen, bevor ihr fast 40 Stunden in den Rest steckt."
 
 [[test.steps]]
 [test.steps.title]
@@ -163,9 +163,9 @@ en = "After assembly: hose test"
 it = "Dopo il montaggio: prova con la canna"
 de = "Nach der Montage: Schlauchtest"
 [test.steps.body]
-en = "Close the empty pod and spray it with a garden hose before any electronics go inside. Tighten the three M3 × 40 stack screws to 0.4 N·m and check them again after a week: printed PETG creeps a little under load."
-it = "Chiudete il guscio vuoto e bagnatelo con la canna da giardino prima di metterci l'elettronica. Stringete le tre viti M3 × 40 del pacco a 0,4 N·m e ricontrollatele dopo una settimana: il PETG stampato sotto carico cede un poco."
-de = "Die leere Hülle schließen und mit dem Gartenschlauch abspritzen, bevor Elektronik hineinkommt. Die drei M3×40-Stapelschrauben mit 0,4 N·m anziehen und nach einer Woche nachprüfen: gedrucktes PETG kriecht unter Last ein wenig."
+en = "Close the empty pod and spray it with a garden hose before any electronics go inside. Drive the PT screws by hand (about 0.6 N·m, at most about 5 times per hole); tighten the three M3 × 40 stack screws to 0.4 N·m and check them again after a week: printed PETG creeps a little under load."
+it = "Chiudete il guscio vuoto e bagnatelo con la canna da giardino prima di metterci l'elettronica. Avvitate le viti PT a mano (circa 0,6 N·m, al massimo 5 volte circa per foro); stringete le tre viti M3 × 40 del pacco a 0,4 N·m e ricontrollatele dopo una settimana: il PETG stampato sotto carico cede un poco."
+de = "Die leere Hülle schließen und mit dem Gartenschlauch abspritzen, bevor Elektronik hineinkommt. Die PT-Schrauben von Hand eindrehen (etwa 0,6 N·m, höchstens etwa 5-mal pro Loch); die drei M3×40-Stapelschrauben mit 0,4 N·m anziehen und nach einer Woche nachprüfen: gedrucktes PETG kriecht unter Last ein wenig."
 
 # ------------------------------------------------------------------ plates
 [plates.title]
@@ -174,9 +174,9 @@ it = "I piatti"
 de = "Die Platten"
 
 [plates.lead]
-en = "Each plate follows one body colour, so colour swaps only happen in the few inlay layers and in the two-colour gate blade. Times and grams are slicer estimates including supports, prime tower and flushing; Bambu Studio may differ by 5 to 10 %."
-it = "Ogni piatto segue un solo colore di base, così i cambi colore avvengono solo nei pochi strati delle scritte e nella lama bicolore della saracinesca. Tempi e grammi sono stime dello slicer con supporti, torre di spurgo e spurghi; Bambu Studio può dare il 5-10 % in più o in meno."
-de = "Jede Platte folgt einer Grundfarbe, so gibt es Farbwechsel nur in den wenigen Inlay-Schichten und im zweifarbigen Schieberblatt. Zeiten und Gramm sind Slicer-Schätzungen mit Stützen, Reinigungsturm und Spülen; Bambu Studio kann 5 bis 10 % abweichen."
+en = "Each plate follows one body colour, so colour swaps only happen in the few inlay layers: 18 in total, down from 33. Times and grams are slicer estimates including supports, prime tower and flushing; Bambu Studio may differ by 5 to 10 %."
+it = "Ogni piatto segue un solo colore di base, così i cambi colore avvengono solo nei pochi strati delle scritte: 18 in tutto, invece di 33. Tempi e grammi sono stime dello slicer con supporti, torre di spurgo e spurghi; Bambu Studio può dare il 5-10 % in più o in meno."
+de = "Jede Platte folgt einer Grundfarbe, so gibt es Farbwechsel nur in den wenigen Inlay-Schichten: insgesamt 18 statt 33. Zeiten und Gramm sind Slicer-Schätzungen mit Stützen, Reinigungsturm und Spülen; Bambu Studio kann 5 bis 10 % abweichen."
 
 [plates.download]
 en = "Plate 3MF"
@@ -209,22 +209,22 @@ title = { en = "Test: spline and seal grooves", it = "Prova: scanalato e gole de
 purpose = { en = "Print first: pick the spline clearance and get the groove coupons for the TPU test strips.", it = "Da stampare per primo: scegliete il gioco dello scanalato e preparate i provini delle gole per le strisce in TPU.", de = "Zuerst drucken: Verzahnungsspiel wählen und die Nutproben für die TPU-Teststreifen bekommen." }
 [plate.PETG-1]
 title = { en = "Black: pod shell and electronics box", it = "Nero: guscio ed elettronica", de = "Schwarz: Hülle und Elektronikgehäuse" }
-purpose = { en = "One colour. The shell gets a brim; the box prints with the IP66 settings and a small support under one cup only.", it = "Un solo colore. Il guscio ha un brim; la scatola va con le impostazioni IP66 e un piccolo supporto solo sotto una coppa.", de = "Eine Farbe. Die Hülle bekommt einen Brim; das Gehäuse druckt mit den IP66-Einstellungen und einer kleinen Stütze nur unter einer Schale." }
+purpose = { en = "One colour. The shell gets a brim; the box prints with the IP66 settings and needs no support any more.", it = "Un solo colore. Il guscio ha un brim; la scatola va con le impostazioni IP66 e non chiede più supporti.", de = "Eine Farbe. Die Hülle bekommt einen Brim; das Gehäuse druckt mit den IP66-Einstellungen und braucht keine Stützen mehr." }
 [plate.PETG-2]
-title = { en = "Black: bowl and pod cap", it = "Nero: vasca e fondello", de = "Schwarz: Schale und Boden" }
+title = { en = "Black: bowl and pod cap with the control panel", it = "Nero: vasca e fondello con il pannello comandi", de = "Schwarz: Schale und Boden mit Bedienfeld" }
 purpose = { en = "One colour. The bowl lugs and the lower edge of the cap stand on bed-only supports; the cap uses the IP66 settings.", it = "Un solo colore. Le alette della vasca e il bordo basso del fondello poggiano su supporti solo dal piatto; il fondello va con le impostazioni IP66.", de = "Eine Farbe. Die Schalennasen und die Unterkante des Bodens stehen auf Stützen nur vom Bett; der Boden druckt mit den IP66-Einstellungen." }
 [plate.PETG-3]
-title = { en = "Black: lower flange and cable channel", it = "Nero: flangia inferiore e canalina", de = "Schwarz: unterer Flansch und Kabelkanal" }
-purpose = { en = "The lower flange plate, with a Ø4 hole for the steel dowel of the gate, and all five cable-channel parts.", it = "La flangia inferiore, con un foro Ø4 per la spina d'acciaio della saracinesca, e tutti e cinque i pezzi della canalina.", de = "Der untere Flansch mit einem Ø4-Loch für den Stahlstift des Schiebers und alle fünf Kabelkanalteile." }
+title = { en = "Black: lower flange, tower, shaft, hub", it = "Nero: flangia inferiore, torre, albero, mozzo", de = "Schwarz: unterer Flansch, Turm, Welle, Nabe" }
+purpose = { en = "One colour and no prime tower, so the shaft can print at 0.15 mm layers. The lower flange has the hole for the steel dowel of the gate.", it = "Un solo colore e niente torre di spurgo, così l'albero può andare a strati da 0,15 mm. La flangia inferiore ha il foro per la spina d'acciaio della saracinesca.", de = "Eine Farbe und kein Reinigungsturm, damit die Welle mit 0,15-mm-Schichten druckt. Der untere Flansch hat das Loch für den Stahlstift des Schiebers." }
 [plate.PETG-4]
-title = { en = "Black: upper flange, tower, shaft, hub", it = "Nero: flangia superiore, torre, albero, mozzo", de = "Schwarz: oberer Flansch, Turm, Welle, Nabe" }
-purpose = { en = "One colour and no prime tower, so the shaft can print at 0.15 mm layers.", it = "Un solo colore e niente torre di spurgo, così l'albero può andare a strati da 0,15 mm.", de = "Eine Farbe und kein Reinigungsturm, damit die Welle mit 0,15-mm-Schichten druckt." }
+title = { en = "Black: upper flange", it = "Nero: flangia superiore", de = "Schwarz: oberer Flansch" }
+purpose = { en = "The second 180 mm plate, with its three press-fit pins and the window for the cable tie.", it = "La seconda piastra da 180 mm, con le sue tre spine a pressione e la finestra per la fascetta.", de = "Die zweite 180-mm-Platte, mit drei Pressstiften und dem Fenster für den Kabelbinder." }
 [plate.PETG-5]
-title = { en = "Green + black: chute, collar and plates", it = "Verde + nero: scivolo, colletto e piastre", de = "Grün + schwarz: Rutsche, Kragen und Platten" }
-purpose = { en = "The food path: the green parts and the two 3 mm plates with their green bands.", it = "Il percorso del cibo: i pezzi verdi e le due piastre da 3 mm con le fasce verdi.", de = "Der Futterweg: die grünen Teile und die zwei 3-mm-Platten mit grünen Bändern." }
+title = { en = "Green + black: chute, collar, gate blade and plates", it = "Verde + nero: scivolo, colletto, lama e piastre", de = "Grün + schwarz: Rutsche, Kragen, Schieberblatt und Platten" }
+purpose = { en = "The food path: the green parts, the gate blade (now one colour) and the two 3 mm plates with their green bands.", it = "Il percorso del cibo: i pezzi verdi, la lama della saracinesca (ora di un solo colore) e le due piastre da 3 mm con le fasce verdi.", de = "Der Futterweg: die grünen Teile, das Schieberblatt (jetzt einfarbig) und die zwei 3-mm-Platten mit grünen Bändern." }
 [plate.PETG-6]
-title = { en = "Orange: ring, disc, gate blade, latch, button, thumb-turns", it = "Arancione: anello, disco, lama, linguetta, pulsante, nottolini", de = "Orange: Ring, Scheibe, Schieberblatt, Lasche, Knopf, Drehknebel" }
-purpose = { en = "Everything you touch. The disc prints inside the 176 mm ring; the green blade with its orange arm adds swaps in its 15 layers.", it = "Tutto ciò che si tocca. Il disco si stampa dentro l'anello da 176 mm; la lama verde col braccio arancione aggiunge cambi nei suoi 15 strati.", de = "Alles, was man anfasst. Die Scheibe druckt im 176-mm-Ring; das grüne Blatt mit orangem Arm bringt Wechsel in seinen 15 Schichten." }
+title = { en = "Orange: ring, disc, latch, button", it = "Arancione: anello, disco, linguetta, pulsante", de = "Orange: Ring, Scheibe, Lasche, Knopf" }
+purpose = { en = "Everything you touch. The disc prints inside the 176 mm ring; the black disc label is only in the first 3 layers.", it = "Tutto ciò che si tocca. Il disco si stampa dentro l'anello da 176 mm; l'etichetta nera del disco è solo nei primi 3 strati.", de = "Alles, was man anfasst. Die Scheibe druckt im 176-mm-Ring; die schwarze Beschriftung liegt nur in den ersten 3 Schichten." }
 [plate.TPU-0]
 title = { en = "Test: TPU lip strips", it = "Prova: strisce dei labbri in TPU", de = "Test: TPU-Lippenstreifen" }
 purpose = { en = "Print first: check the thin TPU flaps and their fit in the groove coupons.", it = "Da stampare per primo: controllate i labbri sottili in TPU e come entrano nei provini delle gole.", de = "Zuerst drucken: die dünnen TPU-Lippen und ihren Sitz in den Nutproben prüfen." }
@@ -234,35 +234,32 @@ purpose = { en = "All 10 TPU pieces, from the external spool. The thin flaps pri
 
 # Printed part names by part id
 [part]
-guscio_v611 = { en = "Pod shell", it = "Guscio", de = "Hülle" }
-fondello_v62 = { en = "Pod cap", it = "Fondello", de = "Boden" }
-chiocciola_v62 = { en = "Dosing housing (bowl)", it = "Vasca dosatore (chiocciola)", de = "Dosiergehäuse (Schale)" }
-flangia_piano_v62 = { en = "Lower flange plate", it = "Flangia inferiore", de = "Unterer Flansch" }
-flangia_alta_v62 = { en = "Upper flange plate", it = "Flangia superiore", de = "Oberer Flansch" }
-canalina_base_v62 = { en = "Cable channel base", it = "Base della canalina", de = "Kabelkanal-Unterteil" }
-canalina_coperchio_v62 = { en = "Cable channel cover", it = "Coperchio della canalina", de = "Kabelkanal-Deckel" }
-canalina_tappo_v62 = { en = "Cable channel end cap", it = "Tappo della canalina", de = "Kabelkanal-Endkappe" }
-disco_v61 = { en = "Dosing disc (self-cleaning)", it = "Disco dosatore (autopulente)", de = "Dosierscheibe (selbstreinigend)" }
+fondello_v63 = { en = "Pod cap with control panel", it = "Fondello con pannello comandi", de = "Boden mit Bedienfeld" }
+chiocciola_v63 = { en = "Dosing housing (bowl)", it = "Vasca dosatore (chiocciola)", de = "Dosiergehäuse (Schale)" }
+flangia_piano_v63 = { en = "Lower flange plate", it = "Flangia inferiore", de = "Unterer Flansch" }
+flangia_alta_v63 = { en = "Upper flange plate", it = "Flangia superiore", de = "Oberer Flansch" }
+saracinesca_v63 = { en = "Gate blade", it = "Lama della saracinesca", de = "Schieberblatt" }
+anello_saracinesca_v63 = { en = "Gate ring (interlock)", it = "Anello della saracinesca (interblocco)", de = "Schieberring (Verriegelung)" }
+linguetta_sicura_v63 = { en = "Safety latch", it = "Linguetta di sicurezza", de = "Sicherungslasche" }
+colonna_v63 = { en = "Tower (3 pillars)", it = "Torre (3 pilastri)", de = "Turm (3 Säulen)" }
+scatola_v63 = { en = "Electronics box", it = "Scatola elettronica", de = "Elektronikgehäuse" }
+passacavo_v63 = { en = "Cable grommet", it = "Passacavo", de = "Kabeltülle" }
 piastra_gate_v62 = { en = "Outlet plate (OUT)", it = "Piastra gate (OUT)", de = "Auslassplatte (OUT)" }
 piastra_finestra_v62 = { en = "Window plate (FOOD IN)", it = "Piastra finestra (FOOD IN)", de = "Fensterplatte (FOOD IN)" }
-saracinesca_v62 = { en = "Gate blade", it = "Lama della saracinesca", de = "Schieberblatt" }
-anello_saracinesca_v62 = { en = "Gate ring (interlock)", it = "Anello della saracinesca (interblocco)", de = "Schieberring (Verriegelung)" }
+labbro_pettine_v62 = { en = "Comb lip", it = "Labbro a pettine", de = "Kammlippe" }
+guscio_v611 = { en = "Pod shell", it = "Guscio", de = "Hülle" }
+disco_v61 = { en = "Dosing disc (self-cleaning)", it = "Disco dosatore (autopulente)", de = "Dosierscheibe (selbstreinigend)" }
 scivolo_v611 = { en = "Chute", it = "Scivolo", de = "Rutsche" }
 colletto_v6 = { en = "Funnel collar", it = "Colletto imbuto", de = "Trichterkragen" }
 linguetta_sicura = { en = "Safety latch", it = "Linguetta di sicurezza", de = "Sicherungslasche" }
 pulsante_v611 = { en = "Release button", it = "Pulsante di sgancio", de = "Entriegelungsknopf" }
-nottolino_v611 = { en = "Flush thumb-turn", it = "Nottolino a filo", de = "Bündiger Drehknebel" }
-colonna_v62 = { en = "Tower (3 pillars)", it = "Torre (3 pilastri)", de = "Turm (3 Säulen)" }
 albero_v6 = { en = "Shaft", it = "Albero", de = "Welle" }
 mozzo_v6 = { en = "Servo hub", it = "Mozzo del servo", de = "Servonabe" }
-scatola_v62 = { en = "Electronics box", it = "Scatola elettronica", de = "Elektronikgehäuse" }
-labbro_pettine_v62 = { en = "Comb lip", it = "Labbro a pettine", de = "Kammlippe" }
 guarnizione_baionetta_v61 = { en = "Rim lip seal", it = "Labbro del bordo", de = "Randlippe" }
 guarnizione_fondello_v61 = { en = "Cap lip seal", it = "Labbro del fondello", de = "Bodenlippe" }
 guarnizione_piano_v5 = { en = "Shelf gasket", it = "Guarnizione del ripiano", de = "Regalbrett-Dichtung" }
 labbro_ombra_v611 = { en = "Skirt lip", it = "Bordino (labbro ombra)", de = "Schürzenlippe" }
 labbro_scivolo_v611 = { en = "Chute lip ring", it = "Labbro dello scivolo", de = "Rutschenlippe" }
-passacavo_v62 = { en = "Cable grommet", it = "Passacavo", de = "Kabeltülle" }
 test_scanalato = { en = "Spline fit test, 3 coupons", it = "Prova dello scanalato, 3 provini", de = "Verzahnungstest, 3 Proben" }
 test_groove_rim = { en = "Rim groove coupon", it = "Provino della gola del bordo", de = "Probe der Randnut" }
 test_groove_cap = { en = "Cap groove coupon", it = "Provino della gola del fondello", de = "Probe der Bodennut" }
@@ -329,7 +326,7 @@ slow = { en = "walls at", it = "pareti a", de = "Wände mit" }
 flow = { en = "flow", it = "flusso", de = "Fluss" }
 ironing = { en = "ironed top", it = "stiratura sopra", de = "Oberseite gebügelt" }
 
-# ------------------------------------------------------------------ IP66 settings (v6.2 only)
+# ------------------------------------------------------------------ IP66 settings (current design and v6.2)
 [ip66.title]
 en = "IP66 settings: box and cap"
 it = "Impostazioni IP66: scatola e fondello"
@@ -345,29 +342,29 @@ title = { en = "Settings", it = "Impostazioni", de = "Einstellungen" }
 items = [
   { en = "5 walls at 0.42 mm line width, 100 % infill, 5 top and 5 bottom layers, seam at the back", it = "5 pareti con linea da 0,42 mm, riempimento 100 %, 5 strati sopra e 5 sotto, cucitura dietro", de = "5 Wände mit 0,42 mm Linienbreite, 100 % Füllung, 5 Schichten oben und unten, Naht hinten" },
   { en = "Object flow ratio 1.03 (+3 %)", it = "Rapporto di flusso dell'oggetto 1,03 (+3 %)", de = "Flussrate des Objekts 1,03 (+3 %)" },
-  { en = "Box: top surfaces ironed; support only under the far half of one cup, through a support enforcer (normal support, manual mode)", it = "Scatola: superfici superiori stirate; supporto solo sotto metà di una coppa, con un rinforzo dei supporti (supporto normale, modo manuale)", de = "Gehäuse: Oberseiten gebügelt; Stütze nur unter der hinteren Hälfte einer Schale, über einen Stützenverstärker (normale Stütze, manueller Modus)" },
-  { en = "Cap: a bed-only support ring under the lowest 5 mm of its rounded bottom edge", it = "Fondello: un anello di supporto solo dal piatto sotto i 5 mm più bassi del bordo arrotondato", de = "Boden: ein Stützring nur vom Bett unter den untersten 5 mm der gerundeten Unterkante" },
+  { en = "Box: top surfaces ironed; no support at all", it = "Scatola: superfici superiori stirate; nessun supporto", de = "Gehäuse: Oberseiten gebügelt; keine Stützen" },
+  { en = "Cap: a bed-only support ring under the lowest 5 mm of its rounded bottom edge; the control panel, its flush knock-outs and the dry pocket print without support", it = "Fondello: un anello di supporto solo dal piatto sotto i 5 mm più bassi del bordo arrotondato; il pannello comandi, le predisposizioni a filo e la tasca asciutta si stampano senza supporti", de = "Boden: ein Stützring nur vom Bett unter den untersten 5 mm der gerundeten Unterkante; Bedienfeld, bündige Ausbrüche und trockene Tasche drucken ohne Stützen" },
   { en = "For these two plates: nozzle 245 to 250 °C and part fan at 40 % or less, for strong layer bonding", it = "Per questi due piatti: ugello 245-250 °C e ventola del pezzo al 40 % o meno, per un buon legame tra gli strati", de = "Für diese zwei Platten: Düse 245 bis 250 °C und Bauteillüfter höchstens 40 %, für gute Schichthaftung" },
 ]
 
 [ip66.after]
 title = { en = "After printing", it = "Dopo la stampa", de = "Nach dem Druck" }
 items = [
-  { en = "Clear the 4 drain holes in the cap (Ø0.8 mm) with a 0.8 mm drill: first-layer squish can close them", it = "Liberate i 4 fori di scarico del fondello (Ø0,8 mm) con una punta da 0,8 mm: lo schiacciamento del primo strato può chiuderli", de = "Die 4 Ablauflöcher im Boden (Ø0,8 mm) mit einem 0,8-mm-Bohrer freibohren: die erste Schicht kann sie zudrücken" },
+  { en = "Clear the drain holes of the cap (Ø0.8 mm, two labyrinth drains) with a 0.8 mm drill: first-layer squish can close them", it = "Liberate i fori di scarico del fondello (Ø0,8 mm, due drenaggi a labirinto) con una punta da 0,8 mm: lo schiacciamento del primo strato può chiuderli", de = "Die Ablauflöcher des Bodens (Ø0,8 mm, zwei Labyrinth-Abläufe) mit einem 0,8-mm-Bohrer freibohren: die erste Schicht kann sie zudrücken" },
   { en = "Hold the empty box against a bright light in a dark room: pinholes glow", it = "Tenete la scatola vuota davanti a una luce forte in una stanza buia: i forellini si vedono brillare", de = "Das leere Gehäuse im dunklen Raum gegen eine helle Lampe halten: Nadellöcher leuchten" },
   { en = "Check that the gland pad, a vertical face that cannot be ironed, is flat where the gland O-ring seats", it = "Controllate che la piazzola del pressacavo, una faccia verticale che non si può stirare, sia piana dove appoggia l'O-ring", de = "Prüfen, dass die Fläche der Kabelverschraubung, eine senkrechte und nicht bügelbare Fläche, dort eben ist, wo der O-Ring sitzt" },
 ]
 
-# ------------------------------------------------------------------ bought parts (v6.2 only)
+# ------------------------------------------------------------------ bought parts (current design and v6.2)
 [bought.title]
 en = "Bought parts"
 it = "Pezzi da comprare"
 de = "Zukaufteile"
 
 [bought.lead]
-en = "Not on any plate: screws, inserts, O-rings, a steel dowel, the connector pair and the electronics. Quantities for one dispenser."
-it = "Non sono su nessun piatto: viti, inserti, O-ring, una spina d'acciaio, la coppia di connettori e l'elettronica. Quantità per un distributore."
-de = "Auf keiner Platte: Schrauben, Gewindeeinsätze, O-Ringe, ein Stahlstift, das Steckverbinderpaar und die Elektronik. Mengen für einen Spender."
+en = "Not on any plate: screws, inserts, O-rings, a steel dowel, the control-panel parts, the connector pair and the electronics. Quantities for one dispenser."
+it = "Non sono su nessun piatto: viti, inserti, O-ring, una spina d'acciaio, i pezzi del pannello comandi, la coppia di connettori e l'elettronica. Quantità per un distributore."
+de = "Auf keiner Platte: Schrauben, Gewindeeinsätze, O-Ringe, ein Stahlstift, die Teile des Bedienfelds, das Steckverbinderpaar und die Elektronik. Mengen für einen Spender."
 
 [bought.link]
 en = "The full list, with what each part is for"
@@ -428,10 +425,10 @@ de = "Gut zu wissen"
 
 [notes.items]
 items = [
-  { en = "These print files are the authoritative print set of v6.2. They lay four parts differently from the CAD exports, with less overhang: the channel base flipped (wood face on the bed), the channel cover open side up, the channel end cap on its other side and the cable grommet lip down.", it = "Questi file sono il set di stampa di riferimento della v6.2. Dispongono quattro pezzi in modo diverso dagli export CAD, con meno sbalzi: la base della canalina capovolta (faccia per il legno sul piatto), il coperchio della canalina col lato aperto in su, il tappo della canalina sull'altro fianco e il passacavo col labbro in basso.", de = "Diese Druckdateien sind der maßgebliche Drucksatz von v6.2. Vier Teile liegen anders als in den CAD-Exporten, mit weniger Überhang: das Kanal-Unterteil gewendet (Holzseite auf dem Bett), der Kanaldeckel mit der offenen Seite nach oben, die Endkappe auf der anderen Seite und die Kabeltülle mit der Lippe nach unten." },
-  { en = "The lower flange plate is printed without the Ø4 pivot pin of the gate, which would stand on the bed face: it gets a Ø4.0 × 2.7 mm hole for a pressed-in stainless dowel Ø4 × 6 (ISO 2338), listed with the bought parts. The unmodified CAD file is in the ZIP as flangia_piano_v62_print_cad_original.stl.", it = "La flangia inferiore si stampa senza il perno Ø4 della saracinesca, che starebbe sulla faccia appoggiata al piatto: ha invece un foro Ø4,0 × 2,7 mm per una spina inox Ø4 × 6 (ISO 2338) piantata a pressione, che trovate tra i pezzi da comprare. Il file CAD non modificato è nello ZIP come flangia_piano_v62_print_cad_original.stl.", de = "Der untere Flansch wird ohne den Ø4-Drehstift des Schiebers gedruckt, der auf der Bettseite stehen würde: er bekommt ein Loch Ø4,0 × 2,7 mm für einen eingepressten Edelstahlstift Ø4 × 6 (ISO 2338), der bei den Zukaufteilen steht. Die unveränderte CAD-Datei liegt in der ZIP als flangia_piano_v62_print_cad_original.stl." },
-  { en = "The 28 mm window of the orange ring is a bridge when printed on edge, so a small support stands on its sill (support enforcer).", it = "La finestra da 28 mm dell'anello arancione è un ponte quando si stampa di taglio, quindi un piccolo supporto poggia sul suo davanzale (rinforzo dei supporti).", de = "Das 28-mm-Fenster des orangen Rings ist hochkant gedruckt eine Brücke, deshalb steht eine kleine Stütze auf seiner Unterkante (Stützenverstärker)." },
-  { en = "If another spline coupon fits better than the 2-notch one, change the clearance in the CAD script, rebuild the hub and run tools/run_all.sh before printing plate 04.", it = "Se un altro provino dello scanalato va meglio di quello a 2 tacche, cambiate il gioco nello script CAD, rigenerate il mozzo e lanciate tools/run_all.sh prima di stampare il piatto 04.", de = "Passt eine andere Verzahnungsprobe besser als die mit 2 Kerben, ändert das Spiel im CAD-Skript, baut die Nabe neu und startet tools/run_all.sh, bevor ihr Platte 04 druckt." },
+  { en = "Since 6.3.0 the CAD itself carries the print orientations and the Ø4 dowel hole of the lower flange plate (v6.2 needed corrections in its print package). They were checked by slicing and used as they are.", it = "Dalla 6.3.0 il CAD stesso contiene gli orientamenti di stampa e il foro Ø4 per la spina della flangia inferiore (la v6.2 chiedeva correzioni nel suo pacchetto di stampa). Sono stati verificati con lo slicing e usati così.", de = "Seit 6.3.0 enthält das CAD selbst die Druckausrichtungen und das Ø4-Stiftloch des unteren Flanschs (v6.2 brauchte Korrekturen im Druckpaket). Sie wurden durch Slicen geprüft und so verwendet." },
+  { en = "No support enforcers any more: the box needs no support, and the window of the orange ring is now a teardrop that prints on its own.", it = "Niente più rinforzi dei supporti: la scatola non chiede supporti, e la finestra dell'anello arancione ora è a goccia e si stampa da sola.", de = "Keine Stützenverstärker mehr: das Gehäuse braucht keine Stützen, und das Fenster des orangen Rings ist jetzt tropfenförmig und druckt von selbst." },
+  { en = "The raw CAD file of the cap has four zero-area slivers; the mesh clean of the package removes them, so the cap is one watertight solid in all files.", it = "Il file CAD grezzo del fondello ha quattro schegge di area nulla; la pulizia della mesh del pacchetto le toglie, così il fondello è un solido chiuso in tutti i file.", de = "Die rohe CAD-Datei des Bodens hat vier Splitter ohne Fläche; die Netzbereinigung des Pakets entfernt sie, der Boden ist in allen Dateien ein geschlossener Körper." },
+  { en = "If another spline coupon fits better than the 2-notch one, change the clearance in the CAD script, rebuild the hub and run tools/run_all.sh before printing plate 03.", it = "Se un altro provino dello scanalato va meglio di quello a 2 tacche, cambiate il gioco nello script CAD, rigenerate il mozzo e lanciate tools/run_all.sh prima di stampare il piatto 03.", de = "Passt eine andere Verzahnungsprobe besser als die mit 2 Kerben, ändert das Spiel im CAD-Skript, baut die Nabe neu und startet tools/run_all.sh, bevor ihr Platte 03 druckt." },
 ]
 
 [notes.guide]

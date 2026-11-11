@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """
-Bought parts ("Pezzi extra") in English, Italian and German, for the current design (v6.2) and the archived v6.
+Bought parts ("Pezzi extra") in English, Italian and German, for the current design (v6.3) and the archived v6.2 and v6.
 
 Sources, one per design (DESIGNS below):
-  v6.2  hardware/v6.2/bom.json (texts and quantities), checked against the bought-parts list of the print package,
-        hardware/v6.2/plates/summary.json (bought_parts, collected from v62.json, v611.json and v61.json)
-  v6    hardware/v6/bom.json, checked against the hardware list of hardware/v6/cad/v6.json
+  v6.3  hardware/v6.3/bom.json (texts and quantities), checked against the bought-parts list of the print package,
+        hardware/v6.3/plates/summary.json (bought_parts, collected from v63.json and the earlier design data)
+  v6.2  hardware/v6.2/bom.json, checked against hardware/v6.2/plates/summary.json (archived)
+  v6    hardware/v6/bom.json, checked against the hardware list of hardware/v6/cad/v6.json (archived)
 Every line of the source list must appear in some item's "match", and an item's quantity must equal the sum of the
 source lines it matches. Items without "match" (electronics, tools) are not in the design data.
 
-    python site/bom.py           rewrite docs/BOM.md (v6.2) and docs/BOM-v6.md (v6)
+    python site/bom.py           rewrite docs/BOM.md (v6.3), docs/BOM-v6.2.md and docs/BOM-v6.md
     python site/bom.py --check   exit 1 if one of them is out of date (CI runs this)
 
-site/build.py imports load() and render_page() to write the site pages parts/ (v6.2) and v6/parts/ (archive).
+site/build.py imports load() and render_page() to write the site pages parts/ (v6.3), v6.2/parts/ and v6/parts/.
 Only the Python standard library is required.
 """
 import html
@@ -32,19 +33,22 @@ def _hw_v6():
     return json.loads((ROOT / 'hardware/v6/cad/v6.json').read_text(encoding='utf-8'))['hardware']
 
 
-def _hw_v62():
-    return json.loads((ROOT / 'hardware/v6.2/plates/summary.json').read_text(encoding='utf-8'))['bought_parts']
+def _bought(design):
+    return lambda: json.loads((ROOT / f'hardware/{design}/plates/summary.json').read_text(encoding='utf-8'))['bought_parts']
 
 
 DESIGNS = {
-    'v6.2': dict(label='v6.2', bom='hardware/v6.2/bom.json', source=_hw_v62, source_name='plates/summary.json (bought_parts)',
+    'v6.3': dict(label='v6.3', bom='hardware/v6.3/bom.json', source=_bought('v6.3'), source_name='plates/summary.json (bought_parts)',
                  md='docs/BOM.md', page='parts/', root='../', model='../3d/', print='../print/', archived=False,
+                 printed_md='../hardware/v6.3/plates/README.md', folder='hardware/v6.3'),
+    'v6.2': dict(label='v6.2', bom='hardware/v6.2/bom.json', source=_bought('v6.2'), source_name='plates/summary.json (bought_parts)',
+                 md='docs/BOM-v6.2.md', page='v6.2/parts/', root='../../', model='../3d/', print='../print/', archived=True,
                  printed_md='../hardware/v6.2/plates/README.md', folder='hardware/v6.2'),
     'v6': dict(label='v6', bom='hardware/v6/bom.json', source=_hw_v6, source_name='cad/v6.json (hardware)',
                md='docs/BOM-v6.md', page='v6/parts/', root='../../', model='../3d/', print='../print/', archived=True,
                printed_md='../hardware/v6/README.md', folder='hardware/v6'),
 }
-CURRENT = 'v6.2'
+CURRENT = 'v6.3'
 
 
 def ui(cfg):
@@ -69,10 +73,11 @@ def ui(cfg):
                     'de': 'Text CC BY 4.0, Konstruktionsdaten CERN-OHL-P-2.0.'},
     }
     if cfg['archived']:
-        t['archived'] = {'en': f'Archived page: design {v}. The current design is v6.2, with its own list of bought parts.',
-                         'it': f'Pagina archiviata: progetto {v}. Il progetto attuale è la v6.2, con il suo elenco di pezzi extra.',
-                         'de': f'Archivseite: Entwurf {v}. Der aktuelle Entwurf ist v6.2, mit eigener Zukaufteile-Liste.'}
-        t['current'] = {'en': 'Bought parts of v6.2', 'it': 'Pezzi extra della v6.2', 'de': 'Zukaufteile von v6.2'}
+        c = DESIGNS[CURRENT]['label']
+        t['archived'] = {'en': f'Archived page: design {v}. The current design is {c}, with its own list of bought parts.',
+                         'it': f'Pagina archiviata: progetto {v}. Il progetto attuale è la {c}, con il suo elenco di pezzi extra.',
+                         'de': f'Archivseite: Entwurf {v}. Der aktuelle Entwurf ist {c}, mit eigener Zukaufteile-Liste.'}
+        t['current'] = {'en': f'Bought parts of {c}', 'it': f'Pezzi extra della {c}', 'de': f'Zukaufteile von {c}'}
     return t
 
 
@@ -125,7 +130,7 @@ def render_markdown(bom):
            f"Website: <{SITE_URL}{cfg['page']}>",
            '']
     if cfg['archived']:
-        out += [f"Archived: this is design {cfg['label']}. The current design is v6.2: [docs/BOM.md](BOM.md).", '']
+        out += [f"Archived: this is design {cfg['label']}. The current design is {DESIGNS[CURRENT]['label']}: [docs/BOM.md](BOM.md).", '']
     for lang in LANGS:
         out += [f'## {LANG_NAMES[lang]}', '', f"**{U['status'][lang]}**", '',
                 f"{U['lead'][lang]} {U['source'][lang]}", '']
@@ -234,7 +239,7 @@ def main():
     if check:
         if stale:
             sys.exit(f'out of date: {", ".join(stale)}: run python site/bom.py')
-        print('docs/BOM.md and docs/BOM-v6.md are up to date')
+        print('docs/BOM.md, docs/BOM-v6.2.md and docs/BOM-v6.md are up to date')
 
 
 if __name__ == '__main__':

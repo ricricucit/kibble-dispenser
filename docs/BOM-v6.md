@@ -6,7 +6,7 @@
 
 Website: <https://ricricucit.github.io/kibble-dispenser/v6/parts/>
 
-Archived: this is design v6. The current design is v6.2: [docs/BOM.md](BOM.md).
+Archived: this is design v6. The current design is v6.3: [docs/BOM.md](BOM.md).
 
 ## English
 

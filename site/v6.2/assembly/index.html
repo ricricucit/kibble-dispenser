@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kibble Dispenser Assembly</title>
+<link rel="stylesheet" href="css/wizard.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header class="bar">
+    <button class="ibtn" id="bList" type="button" aria-controls="drawer" aria-expanded="false" aria-label="Steps">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    </button>
+    <div class="brand">
+      <b id="brandName">Kibble Dispenser Outdoor</b>
+      <span id="brandSub">Assembly instructions</span>
+    </div>
+    <div class="lang" id="langSw" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="it" aria-pressed="false">IT</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+    </div>
+  </header>
+  <div class="progress" aria-hidden="true"><div class="progress-fill" id="progFill"></div></div>
+
+  <main class="main">
+    <section class="stage" id="stage" aria-label="3D view">
+      <canvas id="c"></canvas>
+      <div class="labels" id="labels" aria-hidden="true"></div>
+      <div class="stage-tools" id="stageTools">
+        <button class="ibtn glass" id="bReplay" type="button" aria-label="Replay">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg>
+        </button>
+        <button class="ibtn glass" id="bAuto" type="button" aria-pressed="true" aria-label="Autoplay">
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg>
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        </button>
+        <button class="ibtn glass" id="bFull" type="button" aria-pressed="false" aria-label="Full screen">
+          <svg class="i-full" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+          <svg class="i-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+        </button>
+      </div>
+      <div class="timeline" aria-hidden="true"><div class="timeline-fill" id="tlFill"></div></div>
+      <p class="stage-hint" id="hint"></p>
+      <div class="stage-msg" id="stageMsg">Loading 3D…</div>
+    </section>
+
+    <section class="text" id="text" aria-live="polite">
+      <div class="text-scroll" id="textScroll">
+        <article class="step" id="stepArticle"></article>
+        <p class="foot" id="foot"></p>
+      </div>
+      <nav class="nav" aria-label="Step navigation">
+        <button class="btn" id="bPrev" type="button"><span aria-hidden="true">←</span> <span id="lPrev">Back</span></button>
+        <span class="count" id="navCount">1 / 1</span>
+        <button class="btn primary" id="bNext" type="button"><span id="lNext">Next</span> <span aria-hidden="true">→</span></button>
+      </nav>
+    </section>
+  </main>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="drawer" hidden aria-labelledby="drawerTitle">
+    <div class="drawer-head">
+      <b id="drawerTitle">Steps</b>
+      <button class="ibtn" id="bClose" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="drawer-body" id="stepList"></nav>
+  </aside>
+</div>
+
+<script src="vendor/three-r128/three.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/wizard.js"></script>
+</body>
+</html>

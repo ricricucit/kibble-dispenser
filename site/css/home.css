@@ -403,3 +403,9 @@ details[open] summary { border-bottom: 1px solid var(--rule); }
 .man .dl-s { overflow-wrap: anywhere; }
 @media (min-width: 1000px) { .mans { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .archive .links { margin-top: 4px; }
+/* v6.3: control panel and cable in the side view and the icons */
+.idea-svg .cable { stroke: var(--ink); stroke-width: 2.2; fill: none; stroke-linecap: round; }
+.idea-svg .panel { fill: #3a3d42; stroke: var(--ink); stroke-width: 0.8; }
+.idea-svg .led { fill: #7bd389; }
+.icon .i-led { fill: #49c26a; stroke: var(--ink); stroke-width: 1; }
+.icon .i-led2 { fill: #4f8fe0; stroke: var(--ink); stroke-width: 1; }

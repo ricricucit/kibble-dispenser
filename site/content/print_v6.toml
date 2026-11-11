@@ -1,6 +1,6 @@
 # Archived print-files page of design v6 (v6/print/) in English, Italian and German. Rendered by site/pages.py.
 # Plates, parts, grams, times and file names come from hardware/v6/plates/summary.json; only the words are here.
-# The current design (v6.2) has its own page, print/, with the texts in print.toml.
+# The current design has its own page, print/, with the texts in print.toml.
 
 [meta.title]
 en = "Print files (archive) · Kibble Dispenser v6"
@@ -8,7 +8,7 @@ it = "File di stampa (archivio) · Kibble Dispenser v6"
 de = "Druckdateien (Archiv) · Kibble Dispenser v6"
 
 [meta.description]
-en = "Archived print plates of the Kibble Dispenser Outdoor v6 for a Bambu Lab A1 with AMS lite. The current design is v6.2."
+en = "Archived print plates of the Kibble Dispenser Outdoor v6 for a Bambu Lab A1 with AMS lite. The current design is v6.3."
 
 [nav]
 model = { en = "3D model", it = "Modello 3D", de = "3D-Modell" }
@@ -29,19 +29,19 @@ de = "Fertige Platten für einen Bambu Lab A1 mit AMS lite: zwei Bambu-Studio-Pr
 href = "../../print/"
 
 [banner.title]
-en = "Archived: design v6. Print v6.2 instead"
-it = "Archivio: progetto v6. Stampate invece la v6.2"
-de = "Archiv: Entwurf v6. Druckt stattdessen v6.2"
+en = "Archived: design v6. Print the current design instead"
+it = "Archivio: progetto v6. Stampate invece il progetto attuale"
+de = "Archiv: Entwurf v6. Druckt stattdessen den aktuellen Entwurf"
 
 [banner.body]
-en = "This is the print package of design v6 (hardware 6.0.0), kept for the record. Design v6.2 replaces it: closed pod, shut-off gate, cable channel and new print files."
-it = "Questo è il pacchetto di stampa del progetto v6 (hardware 6.0.0), conservato per archivio. Il progetto v6.2 lo sostituisce: guscio chiuso, saracinesca, canalina per il cavo e nuovi file di stampa."
-de = "Das ist das Druckpaket von Entwurf v6 (Hardware 6.0.0), zum Nachschlagen aufbewahrt. Entwurf v6.2 ersetzt es: geschlossene Hülle, Absperrschieber, Kabelkanal und neue Druckdateien."
+en = "This is the print package of design v6 (hardware 6.0.0), kept for the record; its downloads come from GitHub. Designs v6.2 and v6.3 replaced it: closed pod, shut-off gate, control panel and new print files."
+it = "Questo è il pacchetto di stampa del progetto v6 (hardware 6.0.0), conservato per archivio; i download arrivano da GitHub. I progetti v6.2 e v6.3 lo hanno sostituito: guscio chiuso, saracinesca, pannello comandi e nuovi file di stampa."
+de = "Das ist das Druckpaket von Entwurf v6 (Hardware 6.0.0), zum Nachschlagen aufbewahrt; die Downloads kommen von GitHub. Die Entwürfe v6.2 und v6.3 haben es ersetzt: geschlossene Hülle, Absperrschieber, Bedienfeld und neue Druckdateien."
 
 [banner.link]
-en = "Print files of v6.2"
-it = "File di stampa della v6.2"
-de = "Druckdateien von v6.2"
+en = "Current print files"
+it = "File di stampa attuali"
+de = "Aktuelle Druckdateien"
 
 [facts]
 plates = { en = "plates", it = "piatti", de = "Platten" }

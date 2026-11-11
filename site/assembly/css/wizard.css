@@ -90,7 +90,9 @@ body.fs-on{overflow:hidden}
 .lab{position:absolute;left:0;top:0;display:flex;align-items:center;gap:4px;white-space:nowrap;will-change:transform}
 .lab .qty{font-weight:650;font-size:12px;line-height:1;color:var(--fg);background:var(--glass);padding:2px 5px;border-radius:5px;font-variant-numeric:tabular-nums}
 .lab.dim{font-weight:650;font-size:12px;line-height:1;color:var(--fg);background:var(--glass);border:1px solid var(--line-2);padding:3px 6px;border-radius:5px;font-variant-numeric:tabular-nums}
-.lab.call{font-weight:600;font-size:12px;line-height:1.1;color:var(--accent-fg);background:var(--accent);padding:4px 7px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.lab.call{font-weight:600;font-size:12px;line-height:1.1;color:var(--accent-fg);background:var(--accent);padding:4px 7px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:2}
+.lab-dot{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 2px var(--glass);display:none}
+.lab-line{position:absolute;left:0;top:-1px;height:2px;background:var(--accent);transform-origin:0 50%;display:none}
 
 /* balloons: part letters (A-Z, A1..) and hardware numbers (1-16), as on a parts list */
 .bal{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 4px;border-radius:12px;border:1.6px solid var(--fg);background:var(--sheet);color:var(--fg);font-weight:700;font-size:12.5px;line-height:1;letter-spacing:0;flex:0 0 auto;font-variant-numeric:tabular-nums}
@@ -217,6 +219,9 @@ body.still .bal{border-color:#111;color:#111;background:#fff;box-shadow:none;min
 body.still .bal.hw{border-radius:10px}
 body.still .lab{gap:8px}
 body.still .lab .qty{font-size:28px;color:#111;background:transparent;padding:0}
+body.still .lab.call{font-size:28px;font-weight:650;color:#111;background:#fff;border:2.4px solid #111;padding:6px 12px;border-radius:10px;box-shadow:none}
+body.still .lab-dot{width:16px;height:16px;left:-8px;top:-8px;background:#111;box-shadow:0 0 0 3px #fff}
+body.still .lab-line{height:3px;top:-1.5px;background:#111}
 body.still .lab.dim{font-size:27px;color:#111;background:#fff;border:2px solid #111;padding:6px 10px;border-radius:8px}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

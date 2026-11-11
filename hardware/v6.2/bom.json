@@ -1,5 +1,5 @@
 {
- "about": "Bought parts of design v6.2 in English, Italian and German. Rendered by site/bom.py into docs/BOM.md and the site page parts/. Each 'match' lists items of the bought-parts list of the print package (plates/summary.json, bought_parts, which collects v62.json, v611.json and v61.json): their quantities must add up to 'qty', and every item of that list must be matched somewhere.",
+ "about": "Bought parts of design v6.2 in English, Italian and German. Rendered by site/bom.py into docs/BOM-v6.2.md and the archived site page v6.2/parts/. Each 'match' lists items of the bought-parts list of the print package (plates/summary.json, bought_parts, which collects v62.json, v611.json and v61.json): their quantities must add up to 'qty', and every item of that list must be matched somewhere.",
  "version": "v6.2",
  "groups": [
   {
