@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- 2026-11-11: The stable URLs `3d/`, `print/`, `parts/`, `assembly/` and `manual/` now show design v6.3. Design v6.2 moves to an archive: `v6.2/` (new index page), `v6.2/3d/`, `v6.2/print/`, `v6.2/parts/`, `v6.2/assembly/` (the v6.2 wizard, moved as it was to `site/v6.2/assembly/`) and `v6.2/manual/` stay online with an "archived" note and links to v6.3; the archived print and manual pages link the files in the repository and the assets of the release hw-v6.2.0 instead of copying them into the site. The earlier-versions page links v6.2 and v6.
+- 2026-11-11: Assembly guide `assembly/` for v6.3 (`site/assembly/`, 41 steps: 23 in "Install the kit", 40 in "Build it yourself"; English, Italian and German).
+- 2026-11-11: Manual page `manual/` with the v6.3 manuals (A6 booklet and A4 print version in English, Italian and German, `docs/manual/`) and the 1:1 drilling template (`hardware/v6.3/template/`); the v6.2 PDFs stay as assets of hw-v6.2.0.
+- 2026-11-11: Home page for v6.3: hero re-rendered from the v6.3 forest view, a section drawing of v6.3, the control panel (one recessed push-button, two LEDs, sealed speaker opening), 28 printed pieces instead of 36, no cable channel; status designed (not printed or tested) and the one-button firmware pending ([issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2)).
+- 2026-11-11: Print-files page `print/` for v6.3 from `site/content/print.toml` and `hardware/v6.3/plates/`; the v6.2 texts move to `print_v62.toml`. Bought-parts page `parts/` and `docs/BOM.md` for v6.3 from `hardware/v6.3/bom.json`, checked against the bought-parts list of the print package; the v6.2 list moves to `docs/BOM-v6.2.md` and `v6.2/parts/`.
+- 2026-11-11: CI: job `meshes-v63` checks the committed v6.3 meshes on every push; the new workflow `cad-v63.yml` regenerates the whole v6.3 chain in a temporary copy when its CAD scripts change and checks every mesh and the main results of `v63.json` (watertight, no hard interference, strict interlock, control panel).
 - 2026-11-10: Stable URLs for the current design on the site: `3d/`, `print/`, `parts/`, `assembly/` and `manual/` always show the current design (now v6.2); earlier designs keep versioned pages. Design v6 moves to an archive: `v6/` (new index page), `v6/3d/`, `v6/print/` and `v6/parts/` stay online with an "archived" note and links to v6.2, and the earlier-versions page links them. Every internal link, the home page buttons, the footers and the README point to the stable URLs.
 - 2026-11-10: Assembly guide `assembly/` (the v6.2 wizard, copied as built into `site/assembly/`): step by step with the 3D model, two flows ("Install the kit", the default, and "Build it yourself"), English, Italian and German, deep links `#step-N` and `#diy-N`.
 - 2026-11-10: Manual page `manual/`: the v6.2 user manual (0.6.2 draft) as an A6 booklet and an A4 print version in English, Italian and German (`docs/manual/`), and the 1:1 drilling template (`hardware/v6.2/template/`).
@@ -62,6 +68,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Fixed
 
 - 2026-11-08: `reuse lint` failed on `import/previous-chat/README.md`; `REUSE.toml` now covers `import/**/*.md` as documentation (CC BY 4.0).
+
+## [hw-v6.3.0] - 2026-11-11
+
+Hardware 6.3.0: design v6.3, the closed pod made simpler, with a control panel and without the cable channel. Status: designed (checked in CAD; not printed, assembled or tested yet). It needs firmware for the one-button control panel that does not exist yet ([issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2)); the bench prototype keeps its two buttons and its firmware.
+
+### Added
+
+- 2026-11-11: Design v6.3 in `hardware/v6.3/`: `cad/` with `build_v63.py`, `build_v63_checks.py`, `build_v63_report.py` and `publish_v63.py`, plus copies of the scripts of v6.2, v6.1.1, v6.1, v6, v5, the v4b dosing core and drivetrain v4 that it builds on (relative paths; `build_v63.py` runs the earlier stages first, about 12 minutes from a clean checkout, and compares grams and pieces with the committed v6.2 print package); `v63.json` and `check_v63.png`; `assembly/` with the viewer meshes and `v63_viewer.json` in English, Italian and German; `template/` with the drilling template; `bom.json`; `README.md`.
+- 2026-11-11: Control panel on the room side of the cap: one IP67 12 mm short-body push-button in a Ø17 × 8 mm recess (a fingertip reaches it, a paw pad or a snout does not, checked with probes), two flush Ø5 light pipes with 3 mm LEDs (status, Wi-Fi), a down-facing speaker grille with an IP67 ePTFE acoustic membrane, three flush blind knock-outs for future switches with a drilling recipe, all fitted from the dry side.
+- 2026-11-11: Print package of v6.3 for a Bambu Lab A1 with AMS lite in `hardware/v6.3/plates/` (two Bambu Studio projects, 7 PETG plates and 2 TPU plates, a plain 3MF per plate, every part as an STL, previews, slicer statistics, `summary.json` with the bought-parts list, print guide, generator scripts): 1000 g of PETG (816 g black, 120 g orange, 64 g green) and 8 g of TPU, 39 h 30 min, 18 colour swaps (v6.2: 1047 g, 41 h 14 min, 33 swaps). Made from the CAD print files without changes; validated by slicing every plate with OrcaSlicer 2.5, not opened in Bambu Studio yet.
+
+### Changed
+
+- 2026-11-11: Cable channel removed: the supply cable leaves the flange at the back rim through a bell mouth and is held by a UV cable tie cinched in a window of the upper plate. One Ø76 hole and four wood screws in the shelf; the drilling template has no channel strip.
+- 2026-11-11: 28 printed pieces instead of 36: three PT K30 × 12 thread-forming screws with O-rings hold the cap instead of three thumb-turns with keys, O-rings and cups (cap service needs a T10 driver); three press-fit pins join the flange plates instead of three screws; five heat-set inserts become PT screws in pilot holes; the gate blade is one colour; the ring window is a teardrop and prints without support.
+- 2026-11-11: Second labyrinth drain in the cap for a corner of the wet region that had no drain in v6.2; full wall round the dowel seat of the gate pivot; the cap seam spigot joined to the cap wall with a 45° collar; the print orientations and the dowel hole of the v6.2 print package are now in the CAD.
+- 2026-11-11: `hardware/VERSION` is 6.3.0 (status designed, design folder `hardware/v6.3`); design v6.2 is archived. `product/product.json` points the planned kit to the v6.3 bought parts and kit split (still unreleased).
 
 ## [hw-v6.2.0] - 2026-11-10
 

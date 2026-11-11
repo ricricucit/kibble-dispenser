@@ -15,20 +15,19 @@
     "version": null,
     "file": null
   },
-  "bom": "hardware/v6.2/bom.json",
+  "bom": "hardware/v6.3/bom.json",
   "kit": {
     "electronics": "electronics box pre-assembled and tested, closed inside the pre-assembled dispenser unit",
     "enclosure": null,
     "packaging": null,
     "contents": [
-      "dispenser unit, pre-assembled and closed (pod, dosing core, drive, electronics box)",
-      "flange set, pre-assembled (two flange plates, gate blade, interlock ring, skirt lip, cable grommet)",
-      "cable channel (2 bases, 2 covers, end cap) with 4 wood screws 3.5x16",
-      "funnel collar, shelf gasket, 4 wood screws 5x35, 12 V supply cable with M8 connector, drilling template"
+      "dispenser unit, pre-assembled and closed (pod, dosing core, drive, electronics box, cap with the control panel: push-button, 2 LEDs with light pipes, speaker with acoustic membrane)",
+      "flange set, pre-assembled (two flange plates, dowel pin, gate blade, interlock ring, skirt lip) and the cable grommet",
+      "funnel collar, shelf gasket, 4 wood screws 5x35, 12 V supply cable with M8 connector, UV cable tie, drilling template"
     ]
   },
   "notes": [
-    "No product release yet. The first, product-v1.0.0, will pin a tested hardware release and a firmware release that has run on it. The planned kit follows the split of design v6.2 (hardware/v6.2/cad/v62.json, kit_split).",
+    "No product release yet. The first, product-v1.0.0, will pin a tested hardware release and a firmware release that has run on it. The planned kit follows the split of design v6.3 (hardware/v6.3/cad/v63.json, kit_split); hardware 6.3 needs the one-button firmware of issue #2.",
     "Changes that only touch the kit (enclosure, packaging, manual) bump the product version without a new hardware or firmware tag."
   ]
 }

@@ -1,5 +1,7 @@
 # Design v6.2: closed pod, shut-off gate, cable channel
 
+**Archived: [design v6.3](../v6.3/README.md) (hardware 6.3.0) replaces it as the current design.** The v6.2 pages stay online under <https://ricricucit.github.io/kibble-dispenser/v6.2/>, and the release [hw-v6.2.0](https://github.com/ricricucit/kibble-dispenser/releases/tag/hw-v6.2.0) keeps its print files, template and manuals. The links below that point to the stable pages (`3d/`, `print/`, `parts/`, `assembly/`, `manual/`) now show v6.3.
+
 **Status: designed and checked in CAD only (hardware 6.2.0, status designed). Nothing of v6.2 has been printed, assembled or tested yet.** The working prototype is still prototype 1 on the bench (see [the as-built baseline](../../docs/AS_BUILT_BASELINE.it.md)).
 
 v6.2 keeps the mechanism of [design v6](../v6/README.md) (coaxial servo, hub, shaft and two-pocket disc; the whole unit comes off the shelf with one twist of a bayonet) and closes it in a smooth, claw-proof pod:
@@ -12,11 +14,11 @@ v6.2 keeps the mechanism of [design v6](../v6/README.md) (coaxial servo, hub, sh
 
 Pages, in English, Italian and German:
 
-- 3D model, full screen: <https://ricricucit.github.io/kibble-dispenser/3d/>
-- Print files: <https://ricricucit.github.io/kibble-dispenser/print/> (files in [`plates/`](plates/README.md))
-- Bought parts: <https://ricricucit.github.io/kibble-dispenser/parts/> (also [docs/BOM.md](../../docs/BOM.md))
-- Assembly guide, "Install the kit" and "Build it yourself": <https://ricricucit.github.io/kibble-dispenser/assembly/>
-- Manual (A6 booklet and A4 print version per language) and drilling template: <https://ricricucit.github.io/kibble-dispenser/manual/> (files in [docs/manual/](../../docs/manual/) and [`template/`](template/))
+- 3D model, full screen: <https://ricricucit.github.io/kibble-dispenser/v6.2/3d/>
+- Print files: <https://ricricucit.github.io/kibble-dispenser/v6.2/print/> (files in [`plates/`](plates/README.md))
+- Bought parts: <https://ricricucit.github.io/kibble-dispenser/v6.2/parts/> (also [docs/BOM-v6.2.md](../../docs/BOM-v6.2.md))
+- Assembly guide, "Install the kit" and "Build it yourself": <https://ricricucit.github.io/kibble-dispenser/v6.2/assembly/>
+- Manual (A6 booklet and A4 print version per language) and drilling template: <https://ricricucit.github.io/kibble-dispenser/v6.2/manual/> (the PDFs are assets of the release hw-v6.2.0; the template is in [`template/`](template/))
 
 All dimensions are in mm. Frame: Z up, shaft axis at x = y = 0, Z = 0 at the underside of the bowl base, bayonet locked, gate open; the shelf underside is at z = 78.1.
 
@@ -60,7 +62,7 @@ Colours follow the project rule: black for structure, orange where you act, gree
 
 ## Bought parts and kit
 
-Screws, inserts, O-rings, the dowel pin, the M8 connector pair, the gland and vent, the electronics and the tools: [docs/BOM.md](../../docs/BOM.md) or the [bought-parts page](https://ricricucit.github.io/kibble-dispenser/parts/). The planned kit (`v62.json`, `kit_split`) ships the dispenser unit pre-assembled and closed, the flange set pre-assembled (both plates, blade, ring, skirt lip, grommet), the cable channel with its screws, the collar, the shelf gasket, the wood screws, the supply cable with the M8 connector and the drilling template. No kit is sold yet.
+Screws, inserts, O-rings, the dowel pin, the M8 connector pair, the gland and vent, the electronics and the tools: [docs/BOM-v6.2.md](../../docs/BOM-v6.2.md) or the [bought-parts page](https://ricricucit.github.io/kibble-dispenser/v6.2/parts/). The planned kit (`v62.json`, `kit_split`) ships the dispenser unit pre-assembled and closed, the flange set pre-assembled (both plates, blade, ring, skirt lip, grommet), the cable channel with its screws, the collar, the shelf gasket, the wood screws, the supply cable with the M8 connector and the drilling template. No kit is sold yet.
 
 ## Assembly order (design, not tested)
 
