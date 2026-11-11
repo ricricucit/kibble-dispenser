@@ -1,0 +1,595 @@
+{
+ "about": "Bought parts of design v6.3 in English, Italian and German. Rendered by site/bom.py into docs/BOM.md and the site page parts/. Each 'match' lists items of the bought-parts list of the print package (plates/summary.json, bought_parts, which collects v63.json and the earlier design data): their quantities must add up to 'qty', and every item of that list must be matched somewhere.",
+ "version": "v6.3",
+ "groups": [
+  {
+   "id": "fasteners",
+   "title": {
+    "en": "Screws, inserts and pins",
+    "it": "Viti, inserti e perni",
+    "de": "Schrauben, Einsätze und Stifte"
+   },
+   "note": {
+    "en": "Stainless steel throughout. In the kit the dispenser unit and the flange set come assembled: you only need the wood screws and the cable tie.",
+    "it": "Tutto in acciaio inox. Nel kit l'unità dosatrice e il set flangia arrivano montati: servono solo le viti da legno e la fascetta.",
+    "de": "Durchgehend Edelstahl. Im Bausatz kommen Spendereinheit und Flanschsatz montiert: ihr braucht nur die Holzschrauben und den Kabelbinder."
+   },
+   "items": [
+    {
+     "qty": 4,
+     "match": [
+      "wood screw 5x35 pan head (5x30 for an 18 mm shelf)"
+     ],
+     "item": {
+      "en": "Wood screw 5 × 35, pan head (5 × 30 for an 18 mm shelf)",
+      "it": "Vite da legno 5 × 35, testa bombata (5 × 30 per un ripiano da 18 mm)",
+      "de": "Holzschraube 5 × 35, Linsenkopf (5 × 30 bei 18 mm Regalbrett)"
+     },
+     "use": {
+      "en": "Flange set to the shelf, from below; they also clamp the cable jacket at the back",
+      "it": "Set flangia al ripiano, da sotto; serrano anche la guaina del cavo dietro",
+      "de": "Flanschsatz an das Regalbrett, von unten; sie klemmen hinten auch den Kabelmantel"
+     }
+    },
+    {
+     "qty": 3,
+     "match": [
+      "M3x40 DIN912 A2"
+     ],
+     "item": {
+      "en": "M3 × 40 socket head cap screw, DIN 912 / ISO 4762, stainless A2",
+      "it": "Vite M3 × 40 a testa cilindrica con esagono incassato, DIN 912 / ISO 4762, inox A2",
+      "de": "Zylinderschraube M3 × 40 mit Innensechskant, DIN 912 / ISO 4762, Edelstahl A2"
+     },
+     "use": {
+      "en": "Clamp box, tower and bowl in one stack, from below (one through the outside ear, two through the box roof)",
+      "it": "Serrano scatola, torre e vasca in un solo pacco, da sotto (una nell'orecchia esterna, due attraverso il tetto della scatola)",
+      "de": "Spannen Gehäuse, Turm und Schale in einem Stapel, von unten (eine durch die äußere Lasche, zwei durch das Gehäusedach)"
+     }
+    },
+    {
+     "qty": 6,
+     "match": [
+      "EJOT PT K30x12 thread-forming screw, Torx T10",
+      "EJOT PT K30x12 thread-forming screw"
+     ],
+     "item": {
+      "en": "Thread-forming screw for plastics PT K30 × 12 (EJOT PT or equivalent), Torx T10, stainless",
+      "it": "Vite autoformante per plastica PT K30 × 12 (EJOT PT o equivalente), Torx T10, inox",
+      "de": "Gewindeformende Kunststoffschraube PT K30 × 12 (EJOT PT oder gleichwertig), Torx T10, Edelstahl"
+     },
+     "use": {
+      "en": "3 × cap to the box bosses, from below, with an O-ring 3 × 1 under each head; 3 × shell tabs to the bowl (Ø2.5 pilot holes, no inserts)",
+      "it": "3 × fondello ai bossoli della scatola, da sotto, con un O-ring 3 × 1 sotto ogni testa; 3 × alette del guscio alla vasca (fori pilota Ø2,5, senza inserti)",
+      "de": "3 × Boden an die Dome des Gehäuses, von unten, mit einem O-Ring 3 × 1 unter jedem Kopf; 3 × Hüllenlaschen an die Schale (Vorbohrungen Ø2,5, ohne Einsätze)"
+     }
+    },
+    {
+     "qty": 2,
+     "match": [
+      "EJOT PT K30x10 thread-forming screw"
+     ],
+     "item": {
+      "en": "Thread-forming screw for plastics PT K30 × 10 (EJOT PT or equivalent), Torx T10, stainless",
+      "it": "Vite autoformante per plastica PT K30 × 10 (EJOT PT o equivalente), Torx T10, inox",
+      "de": "Gewindeformende Kunststoffschraube PT K30 × 10 (EJOT PT oder gleichwertig), Torx T10, Edelstahl"
+     },
+     "use": {
+      "en": "Chute ears to the bowl, from below (Ø2.5 pilot holes, no inserts)",
+      "it": "Orecchie dello scivolo alla vasca, da sotto (fori pilota Ø2,5, senza inserti)",
+      "de": "Rutschenlaschen an die Schale, von unten (Vorbohrungen Ø2,5, ohne Einsätze)"
+     }
+    },
+    {
+     "qty": 5,
+     "match": [
+      "M3x8 DIN912 A2 + washer",
+      "M3x8 DIN912 A2"
+     ],
+     "item": {
+      "en": "M3 × 8 socket head cap screw, DIN 912 / ISO 4762, stainless A2",
+      "it": "Vite M3 × 8 a testa cilindrica con esagono incassato, DIN 912 / ISO 4762, inox A2",
+      "de": "Zylinderschraube M3 × 8 mit Innensechskant, DIN 912 / ISO 4762, Edelstahl A2"
+     },
+     "use": {
+      "en": "4 × servo to the cradle in the box; 1 × hub to the servo spline",
+      "it": "4 × servo alla culla nella scatola; 1 × mozzo all'albero scanalato del servo",
+      "de": "4 × Servo an die Wiege im Gehäuse; 1 × Nabe an die Servoverzahnung"
+     }
+    },
+    {
+     "qty": 4,
+     "match": [
+      "M3x8 DIN912 A2 + washer"
+     ],
+     "item": {
+      "en": "M3 washer, DIN 125-A / ISO 7089 (3.2 × 7 × 0.5), stainless A2",
+      "it": "Rondella M3, DIN 125-A / ISO 7089 (3,2 × 7 × 0,5), inox A2",
+      "de": "Unterlegscheibe M3, DIN 125-A / ISO 7089 (3,2 × 7 × 0,5), Edelstahl A2"
+     },
+     "use": {
+      "en": "Under the 4 servo screws",
+      "it": "Sotto le 4 viti del servo",
+      "de": "Unter den 4 Servoschrauben"
+     }
+    },
+    {
+     "qty": 7,
+     "match": [
+      "M3 heat-set insert RX-M3x5.7"
+     ],
+     "item": {
+      "en": "M3 brass heat-set insert, 5.7 mm long, for a 4.0 mm hole (for example Ruthex RX-M3x5.7)",
+      "it": "Inserto filettato M3 in ottone da inserire a caldo, lungo 5,7 mm, per foro da 4,0 mm (per esempio Ruthex RX-M3x5.7)",
+      "de": "M3-Gewindeeinsatz aus Messing zum Einschmelzen, 5,7 mm lang, für ein 4,0-mm-Loch (zum Beispiel Ruthex RX-M3x5.7)"
+     },
+     "use": {
+      "en": "3 in the bowl for the stack screws, 4 in the servo cradle of the box",
+      "it": "3 nella vasca per le viti del pacco, 4 nella culla del servo nella scatola",
+      "de": "3 in der Schale für die Stapelschrauben, 4 in der Servowiege des Gehäuses"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "dowel pin ISO 2338 4 m6 x 6, stainless"
+     ],
+     "item": {
+      "en": "Dowel pin Ø4 × 6, ISO 2338 m6, stainless",
+      "it": "Spina cilindrica Ø4 × 6, ISO 2338 m6, inox",
+      "de": "Zylinderstift Ø4 × 6, ISO 2338 m6, Edelstahl"
+     },
+     "use": {
+      "en": "Pivot of the gate blade, pressed into the hole of the lower flange plate",
+      "it": "Perno della lama della saracinesca, piantato nel foro della flangia inferiore",
+      "de": "Drehachse des Schieberblatts, in das Loch des unteren Flanschs eingepresst"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "cable tie 3.6 x 140, UV-stable PA66"
+     ],
+     "item": {
+      "en": "Cable tie 3.6 × 140, UV-stable PA66 (black)",
+      "it": "Fascetta 3,6 × 140, PA66 resistente ai raggi UV (nera)",
+      "de": "Kabelbinder 3,6 × 140, UV-beständiges PA66 (schwarz)"
+     },
+     "use": {
+      "en": "Strain relief: cinched round the 12 V cable in the window of the upper flange plate",
+      "it": "Antistrappo: stretta intorno al cavo 12 V nella finestra della flangia superiore",
+      "de": "Zugentlastung: um das 12-V-Kabel im Fenster des oberen Flanschs zugezogen"
+     }
+    }
+   ]
+  },
+  {
+   "id": "seals",
+   "title": {
+    "en": "O-rings and grease",
+    "it": "O-ring e grasso",
+    "de": "O-Ringe und Fett"
+   },
+   "note": {
+    "en": "The other seals (rim lip seal, comb lips, skirt lip, chute lip, cap lip seal, shelf gasket, cable grommet) are printed in TPU 95A with the other parts. The O-rings 5 × 1 of the light pipes come with them (control panel). In the kit everything is greased at the factory.",
+    "it": "Le altre guarnizioni (labbro del bordo, labbri a pettine, bordino, labbro dello scivolo, labbro del fondello, guarnizione del ripiano, passacavo) si stampano in TPU 95A con gli altri pezzi. Gli O-ring 5 × 1 delle guide luce sono con esse (pannello comandi). Nel kit tutto è ingrassato in fabbrica.",
+    "de": "Die übrigen Dichtungen (Randlippe, Kammlippen, Schürzenlippe, Rutschenlippe, Bodenlippe, Regalbrett-Dichtung, Kabeltülle) werden mit den anderen Teilen aus TPU 95A gedruckt. Die O-Ringe 5 × 1 der Lichtleiter gehören zu diesen (Bedienfeld). Im Bausatz ist alles ab Werk gefettet."
+   },
+   "items": [
+    {
+     "qty": 2,
+     "match": [
+      "O-ring NBR70 9x2"
+     ],
+     "item": {
+      "en": "O-ring 9 × 2 mm, NBR 70",
+      "it": "O-ring 9 × 2 mm, NBR 70",
+      "de": "O-Ring 9 × 2 mm, NBR 70"
+     },
+     "use": {
+      "en": "Shaft, both grooves, in the bushing at the top of the tower",
+      "it": "Albero, entrambe le gole, nella boccola in cima alla torre",
+      "de": "Welle, beide Nuten, in der Buchse oben im Turm"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "O-ring NBR70 24x2"
+     ],
+     "item": {
+      "en": "O-ring 24 × 2 mm, NBR 70",
+      "it": "O-ring 24 × 2 mm, NBR 70",
+      "de": "O-Ring 24 × 2 mm, NBR 70"
+     },
+     "use": {
+      "en": "Face seal between the tower and the box",
+      "it": "Tenuta frontale tra torre e scatola",
+      "de": "Stirndichtung zwischen Turm und Gehäuse"
+     }
+    },
+    {
+     "qty": 5,
+     "match": [
+      "O-ring NBR70 3x1"
+     ],
+     "item": {
+      "en": "O-ring 3 × 1 mm, NBR 70",
+      "it": "O-ring 3 × 1 mm, NBR 70",
+      "de": "O-Ring 3 × 1 mm, NBR 70"
+     },
+     "use": {
+      "en": "2 × under the stack-screw heads in the box roof, 3 × under the cap screws: the dry box stays sealed",
+      "it": "2 × sotto le teste delle viti del pacco nel tetto della scatola, 3 × sotto le viti del fondello: la scatola asciutta resta stagna",
+      "de": "2 × unter den Stapelschrauben im Gehäusedach, 3 × unter den Bodenschrauben: das trockene Gehäuse bleibt dicht"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "O-ring NBR70 132x2"
+     ],
+     "item": {
+      "en": "O-ring 132 × 2 mm, NBR 70",
+      "it": "O-ring 132 × 2 mm, NBR 70",
+      "de": "O-Ring 132 × 2 mm, NBR 70"
+     },
+     "use": {
+      "en": "Seam between the shell and the cap, in the groove of the cap spigot",
+      "it": "Giunto tra guscio e fondello, nella gola del codolo del fondello",
+      "de": "Fuge zwischen Hülle und Boden, in der Nut des Bodenzapfens"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "O-ring NBR70 14x1.5"
+     ],
+     "item": {
+      "en": "O-ring 14 × 1.5 mm, NBR 70",
+      "it": "O-ring 14 × 1,5 mm, NBR 70",
+      "de": "O-Ring 14 × 1,5 mm, NBR 70"
+     },
+     "use": {
+      "en": "Release button, in the groove of its hole in the shell",
+      "it": "Pulsante di sgancio, nella gola del suo foro nel guscio",
+      "de": "Entriegelungsknopf, in der Nut seiner Bohrung in der Hülle"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "food-grade silicone grease NSF H1"
+     ],
+     "item": {
+      "en": "Food-grade silicone grease, NSF H1 (a small tube is plenty)",
+      "it": "Grasso al silicone per alimenti, NSF H1 (basta un tubetto piccolo)",
+      "de": "Lebensmittelechtes Silikonfett, NSF H1 (eine kleine Tube reicht)"
+     },
+     "use": {
+      "en": "DIY only: a thin film on every O-ring when you fit it. Once assembled, the unit never needs grease",
+      "it": "Solo per chi costruisce: un velo su ogni O-ring al montaggio. Una volta montata, l'unità non chiede mai grasso",
+      "de": "Nur beim Eigenbau: ein dünner Film auf jedem O-Ring beim Einbau. Montiert braucht die Einheit nie Fett"
+     }
+    }
+   ]
+  },
+  {
+   "id": "panel",
+   "title": {
+    "en": "Control panel",
+    "it": "Pannello comandi",
+    "de": "Bedienfeld"
+   },
+   "note": {
+    "en": "New in v6.3: the control panel in the cap (one button, two lights, the speaker). The firmware for the one-button panel is still to come (issue #2 on GitHub).",
+    "it": "Novità della v6.3: il pannello comandi nel fondello (un pulsante, due luci, l'altoparlante). Il firmware per il pannello a un pulsante deve ancora arrivare (issue #2 su GitHub).",
+    "de": "Neu in v6.3: das Bedienfeld im Boden (ein Taster, zwei Lichter, der Lautsprecher). Die Firmware für das Ein-Knopf-Bedienfeld kommt noch (Issue #2 auf GitHub)."
+   },
+   "items": [
+    {
+     "qty": 1,
+     "match": [
+      "IP67 12 mm momentary push-button, flush flat head, M12x1 front mount, short body (<= 14 mm behind the panel, d13), front gasket"
+     ],
+     "item": {
+      "en": "IP67 momentary push-button, 12 mm, flush flat head, M12 × 1 front mount, short body (at most 14 mm behind the panel, Ø13), with front gasket",
+      "it": "Pulsante momentaneo IP67 da 12 mm, testa piatta a filo, montaggio frontale M12 × 1, corpo corto (al massimo 14 mm dietro il pannello, Ø13), con guarnizione frontale",
+      "de": "IP67-Taster, 12 mm, flacher bündiger Kopf, Frontmontage M12 × 1, kurzer Körper (höchstens 14 mm hinter dem Panel, Ø13), mit Frontdichtung"
+     },
+     "use": {
+      "en": "The one button of the control panel, in a paw-proof recess. Check the depth on the datasheet: 14 mm are free behind the mount wall",
+      "it": "L'unico pulsante del pannello comandi, in un incavo a prova di zampa. Controllate la profondità sulla scheda tecnica: dietro la parete di montaggio ci sono 14 mm liberi",
+      "de": "Der einzige Taster des Bedienfelds, in einer pfotensicheren Mulde. Tiefe im Datenblatt prüfen: hinter der Montagewand sind 14 mm frei"
+     }
+    },
+    {
+     "qty": 2,
+     "match": [
+      "panel light pipe d5 x 9-10 mm, flat flush lens, flange d8 (clear PC) + O-ring NBR70 5x1 each"
+     ],
+     "item": {
+      "en": "Panel light pipe Ø5 × 9–10 mm, flat flush lens, Ø8 flange, clear PC, with an O-ring 5 × 1 NBR 70",
+      "it": "Guida luce da pannello Ø5 × 9–10 mm, lente piatta a filo, flangia Ø8, PC trasparente, con un O-ring 5 × 1 NBR 70",
+      "de": "Panel-Lichtleiter Ø5 × 9–10 mm, flache bündige Linse, Flansch Ø8, klares PC, mit einem O-Ring 5 × 1 NBR 70"
+     },
+     "use": {
+      "en": "Status and Wi-Fi lights, flush with the panel face",
+      "it": "Luci di stato e Wi-Fi, a filo della faccia del pannello",
+      "de": "Status- und WLAN-Licht, bündig mit der Panelfläche"
+     }
+    },
+    {
+     "qty": 2,
+     "match": [
+      "LED 3 mm (status green, Wi-Fi blue) + series resistors on the board"
+     ],
+     "item": {
+      "en": "LED 3 mm, one green (status) and one blue (Wi-Fi), with series resistors on the board",
+      "it": "LED da 3 mm, uno verde (stato) e uno blu (Wi-Fi), con resistenze in serie sulla scheda",
+      "de": "LED 3 mm, eine grüne (Status) und eine blaue (WLAN), mit Vorwiderständen auf der Platine"
+     },
+     "use": {
+      "en": "Behind the two light pipes",
+      "it": "Dietro le due guide luce",
+      "de": "Hinter den zwei Lichtleitern"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "mylar speaker d20 x 4.5, 8 ohm 0.5 W + foam ring d20/12 x 1"
+     ],
+     "item": {
+      "en": "Mylar speaker Ø20 × 4.5 mm, 8 Ω, 0.5 W, with a foam ring Ø20/12 × 1",
+      "it": "Altoparlante in mylar Ø20 × 4,5 mm, 8 Ω, 0,5 W, con anello in spugna Ø20/12 × 1",
+      "de": "Mylar-Lautsprecher Ø20 × 4,5 mm, 8 Ω, 0,5 W, mit Schaumring Ø20/12 × 1"
+     },
+     "use": {
+      "en": "A sound with every portion, on the dry floor behind the panel",
+      "it": "Un suono a ogni porzione, sul fondo asciutto dietro il pannello",
+      "de": "Ein Ton bei jeder Portion, auf dem trockenen Boden hinter dem Bedienfeld"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "IP67 adhesive acoustic vent, ePTFE, d15 disc with d8 active area"
+     ],
+     "item": {
+      "en": "IP67 adhesive acoustic vent, ePTFE, Ø15 disc with Ø8 active area",
+      "it": "Membrana acustica adesiva IP67, ePTFE, disco Ø15 con area attiva Ø8",
+      "de": "Klebende IP67-Akustikmembran, ePTFE, Scheibe Ø15 mit Ø8 aktiver Fläche"
+     },
+     "use": {
+      "en": "Inside the speaker grille of the cap: sound out, water and dust stay out",
+      "it": "Dentro la griglia dell'altoparlante nel fondello: il suono esce, acqua e polvere restano fuori",
+      "de": "In der Lautsprecheröffnung des Bodens: der Ton geht raus, Wasser und Staub bleiben draußen"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "harness JST-XH 2.54 8-pin"
+     ],
+     "item": {
+      "en": "Panel harness, JST-XH 2.54 mm, 8 pins",
+      "it": "Cablaggio del pannello, JST-XH 2,54 mm, 8 poli",
+      "de": "Bedienfeld-Kabelbaum, JST-XH 2,54 mm, 8-polig"
+     },
+     "use": {
+      "en": "Button, LEDs, speaker and one spare to the board; unplug it before you pull the cap off",
+      "it": "Pulsante, LED, altoparlante e una riserva verso la scheda; staccatelo prima di togliere il fondello",
+      "de": "Taster, LEDs, Lautsprecher und eine Reserve zur Platine; vor dem Abnehmen des Bodens abziehen"
+     }
+    }
+   ]
+  },
+  {
+   "id": "electronics",
+   "title": {
+    "en": "Electronics and cable",
+    "it": "Elettronica e cavo",
+    "de": "Elektronik und Kabel"
+   },
+   "note": {
+    "en": "In the kit the dispenser unit comes pre-assembled and closed, with the electronics and the panel: this list is for DIY builders. The electronics are not final yet; wiring, fuse and the power chain are in firmware/README.md.",
+    "it": "Nel kit l'unità dosatrice arriva già montata e chiusa, con l'elettronica e il pannello: questo elenco è per chi costruisce da sé. L'elettronica non è ancora definitiva; cablaggio, fusibile e catena di alimentazione sono in firmware/README.md.",
+    "de": "Im Bausatz kommt die Spendereinheit vormontiert und verschlossen, mit Elektronik und Bedienfeld: diese Liste ist für den Eigenbau. Die Elektronik ist noch nicht endgültig; Verdrahtung, Sicherung und Stromversorgung stehen in firmware/README.md."
+   },
+   "items": [
+    {
+     "qty": 1,
+     "item": {
+      "en": "12 V 3 A outdoor-rated power supply, certified (for example Mean Well GST36 12 V), with a screw-terminal adapter",
+      "it": "Alimentatore 12 V 3 A certificato (per esempio Mean Well GST36 12 V), con adattatore a morsetti",
+      "de": "Zertifiziertes 12-V-3-A-Netzteil (zum Beispiel Mean Well GST36 12 V), mit Schraubklemmen-Adapter"
+     },
+     "use": {
+      "en": "In a dry place under the roof: only 12 V runs outdoors, no mains voltage near the unit",
+      "it": "In un posto asciutto sotto il tetto: all'aperto arrivano solo 12 V, nessuna tensione di rete vicino all'unità",
+      "de": "An einem trockenen Ort unter dem Dach: draußen liegen nur 12 V, keine Netzspannung an der Einheit"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "M8 A-coded 4-pin IP67 inline connector pair"
+     ],
+     "item": {
+      "en": "M8 A-coded 4-pin IP67 inline connector pair",
+      "it": "Coppia di connettori in linea M8 codifica A, 4 poli, IP67",
+      "de": "M8-Steckverbinderpaar A-codiert, 4-polig, IP67"
+     },
+     "use": {
+      "en": "Between the short cable of the unit and the supply cable, in the top of the pod; it comes free when you lower the unit 8 cm",
+      "it": "Tra il cavo corto dell'unità e il cavo di alimentazione, nella parte alta del guscio; si raggiunge abbassando l'unità di 8 cm",
+      "de": "Zwischen dem kurzen Kabel der Einheit und dem Versorgungskabel, oben in der Hülle; frei, wenn man die Einheit 8 cm absenkt"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "12 V cable, unit side (pigtail) + supply cable PUR 4x0.34 d5"
+     ],
+     "item": {
+      "en": "PUR cable 4 × 0.34 mm², Ø5 mm: the short cable of the unit and the supply cable",
+      "it": "Cavo PUR 4 × 0,34 mm², Ø5 mm: il cavo corto dell'unità e il cavo di alimentazione",
+      "de": "PUR-Kabel 4 × 0,34 mm², Ø5 mm: das kurze Kabel der Einheit und das Versorgungskabel"
+     },
+     "use": {
+      "en": "The supply cable runs through the flange tunnel and leaves at the back; clip it along the shelf with ordinary cable clips (not included)",
+      "it": "Il cavo di alimentazione passa nel tunnel della flangia ed esce dietro; fissatelo lungo il ripiano con normali clip (non incluse)",
+      "de": "Das Versorgungskabel läuft durch den Flanschtunnel und tritt hinten aus; mit normalen Kabelclips am Brett befestigen (nicht enthalten)"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "M12x1.5 cable gland IP68 + locknut"
+     ],
+     "item": {
+      "en": "M12 × 1.5 cable gland, IP68, for 4 to 7 mm cable, with locknut",
+      "it": "Pressacavo M12 × 1,5, IP68, per cavo da 4 a 7 mm, con controdado",
+      "de": "Kabelverschraubung M12 × 1,5, IP68, für 4 bis 7 mm Kabel, mit Gegenmutter"
+     },
+     "use": {
+      "en": "The only cable entry of the electronics box, in its side wall inside the pod",
+      "it": "L'unico ingresso cavo della scatola elettronica, nella parete laterale dentro il guscio",
+      "de": "Der einzige Kabeleingang des Elektronikgehäuses, in seiner Seitenwand innerhalb der Hülle"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "M12x1.5 ePTFE membrane vent IP68 + locknut"
+     ],
+     "item": {
+      "en": "M12 × 1.5 screw-in ePTFE membrane vent, IP68, with locknut (GORE PolyVent or Amphenol LTW VENT-PS1 class)",
+      "it": "Valvola a membrana ePTFE M12 × 1,5 a vite, IP68, con controdado (classe GORE PolyVent o Amphenol LTW VENT-PS1)",
+      "de": "Membranbelüftung ePTFE M12 × 1,5 zum Einschrauben, IP68, mit Gegenmutter (Klasse GORE PolyVent oder Amphenol LTW VENT-PS1)"
+     },
+     "use": {
+      "en": "In the box roof: balances pressure and humidity, instead of a silica gel bag",
+      "it": "Nel tetto della scatola: equilibra pressione e umidità, al posto del sacchetto di gel di silice",
+      "de": "Im Gehäusedach: gleicht Druck und Feuchte aus, statt eines Silicagel-Beutels"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "70 x 50 perfboard + ESP32-WROVER dev board + Pololu D36V50F6 12 V regulator + 5 V logic regulator + 1000 uF capacitor"
+     ],
+     "item": {
+      "en": "Electronics module: 70 × 50 mm perfboard with an ESP32-WROVER dev board, a Pololu D36V50F6 6 V regulator (servo), a 5 V logic regulator and a 1000 µF capacitor",
+      "it": "Modulo elettronico: scheda millefori 70 × 50 mm con scheda ESP32-WROVER, regolatore Pololu D36V50F6 da 6 V (servo), regolatore 5 V per la logica e condensatore da 1000 µF",
+      "de": "Elektronikmodul: Lochrasterplatine 70 × 50 mm mit ESP32-WROVER-Board, Regler Pololu D36V50F6 6 V (Servo), 5-V-Logikregler und 1000-µF-Kondensator"
+     },
+     "use": {
+      "en": "Slides up into the slots of the box; runs the firmware (the one-button version is still to come, issue #2)",
+      "it": "Scorre nelle guide della scatola; esegue il firmware (la versione a un pulsante deve ancora arrivare, issue #2)",
+      "de": "Gleitet in die Schlitze des Gehäuses; führt die Firmware aus (die Ein-Knopf-Version kommt noch, Issue #2)"
+     }
+    },
+    {
+     "qty": 1,
+     "match": [
+      "standard servo (25T spline)"
+     ],
+     "item": {
+      "en": "Standard-size servo with a 25-tooth spline, 25 kg·cm digital (DS3218 / DS3225 class)",
+      "it": "Servo formato standard con albero scanalato a 25 denti, 25 kg·cm digitale (classe DS3218 / DS3225)",
+      "de": "Standard-Servo mit 25-Zahn-Verzahnung, 25 kg·cm digital (Klasse DS3218 / DS3225)"
+     },
+     "use": {
+      "en": "Turns the disc; hangs in the cradle in the box and runs on 6 V",
+      "it": "Gira il disco; sta nella culla della scatola e va a 6 V",
+      "de": "Dreht die Scheibe; hängt in der Wiege des Gehäuses und läuft mit 6 V"
+     }
+    }
+   ]
+  },
+  {
+   "id": "tools",
+   "title": {
+    "en": "Tools needed",
+    "it": "Attrezzi necessari",
+    "de": "Benötigtes Werkzeug"
+   },
+   "items": [
+    {
+     "item": {
+      "en": "Drill with a 76 mm hole saw (with its centre drill) and a 3 mm bit",
+      "it": "Trapano con sega a tazza da 76 mm (con la sua punta di centraggio) e una punta da 3 mm",
+      "de": "Bohrmaschine mit 76-mm-Lochsäge (mit Zentrierbohrer) und einem 3-mm-Bohrer"
+     },
+     "use": {
+      "en": "One hole through the shelf for the food, and pilot holes for the wood screws",
+      "it": "Un foro nel ripiano per il cibo e i fori pilota per le viti da legno",
+      "de": "Ein Loch durch das Brett für das Futter und Vorbohrungen für die Holzschrauben"
+     }
+    },
+    {
+     "item": {
+      "en": "Drilling template, printed on A4 at 100 % (in the kit, or as a PDF on the manual page)",
+      "it": "Dima di foratura stampata su A4 al 100 % (nel kit, o come PDF nella pagina del manuale)",
+      "de": "Bohrschablone, auf A4 in 100 % gedruckt (im Bausatz oder als PDF auf der Anleitungsseite)"
+     },
+     "use": {
+      "en": "Marks the hole, the 4 screw points and the cable exit at the back; check its 50 mm scale bar",
+      "it": "Segna il foro, i 4 punti delle viti e l'uscita del cavo dietro; controllate la barra di scala da 50 mm",
+      "de": "Markiert das Loch, die 4 Schraubpunkte und den Kabelausgang hinten; prüft den 50-mm-Maßstab"
+     }
+    },
+    {
+     "item": {
+      "en": "PZ2 screwdriver, awl or pencil, tape, spirit level, safety glasses, cable clips for a 5 mm cable",
+      "it": "Cacciavite PZ2, punteruolo o matita, nastro adesivo, livella, occhiali di protezione, clip per cavo da 5 mm",
+      "de": "PZ2-Schraubendreher, Vorstecher oder Bleistift, Klebeband, Wasserwaage, Schutzbrille, Kabelclips für 5-mm-Kabel"
+     },
+     "use": {
+      "en": "Mounting the flange and clipping the cable along the shelf",
+      "it": "Montare la flangia e fissare il cavo lungo il ripiano",
+      "de": "Flansch montieren und das Kabel am Brett entlang befestigen"
+     }
+    },
+    {
+     "item": {
+      "en": "Torx T10 screwdriver",
+      "it": "Cacciavite Torx T10",
+      "de": "Torx-T10-Schraubendreher"
+     },
+     "use": {
+      "en": "The three cap screws (service: unplug the panel harness before you pull the cap off)",
+      "it": "Le tre viti del fondello (manutenzione: staccate il cablaggio del pannello prima di togliere il fondello)",
+      "de": "Die drei Bodenschrauben (Wartung: den Bedienfeld-Kabelbaum abziehen, bevor ihr den Boden abnehmt)"
+     }
+    },
+    {
+     "item": {
+      "en": "DIY only: 2.5 mm hex screwdriver, 100 mm long",
+      "it": "Solo per chi costruisce: cacciavite a brugola da 2,5 mm, lungo 100 mm",
+      "de": "Nur beim Eigenbau: Sechskant-Schraubendreher 2,5 mm, 100 mm lang"
+     },
+     "use": {
+      "en": "The M3 screws of the stack, the servo and the hub",
+      "it": "Le viti M3 del pacco, del servo e del mozzo",
+      "de": "Die M3-Schrauben des Stapels, des Servos und der Nabe"
+     }
+    },
+    {
+     "item": {
+      "en": "DIY only: soldering iron with an M3 insert tip",
+      "it": "Solo per chi costruisce: saldatore con punta per inserti M3",
+      "de": "Nur beim Eigenbau: Lötkolben mit M3-Einsatzspitze"
+     },
+     "use": {
+      "en": "Pressing in the 7 heat-set inserts",
+      "it": "Inserire a caldo i 7 inserti",
+      "de": "Die 7 Gewindeeinsätze einschmelzen"
+     }
+    }
+   ]
+  }
+ ]
+}

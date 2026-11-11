@@ -1,0 +1,70 @@
+name: CAD v6.3
+
+# Regenerates design v6.3 from its scripts in a temporary copy and checks every mesh. The chain runs the earlier stages
+# it builds on first (v6 with build_dosing/build_v5, v6.1, v6.1.1, v6.2, each with its checks) and takes 15 to 25
+# minutes, so it only runs when the v6.3 CAD scripts or the mesh check change, and on demand from the Actions tab.
+# The committed v6.3 meshes are checked on every push by the meshes-v63 job in ci.yml. The v6.3 checks compare with
+# the committed v6.2 print package, so the copy keeps hardware/v6.2/plates next to hardware/v6.3.
+
+on:
+  push:
+    paths:
+      - "hardware/v6.3/cad/**"
+      - "hardware/cad/check_meshes.py"
+      - ".github/workflows/cad-v63.yml"
+  pull_request:
+    paths:
+      - "hardware/v6.3/cad/**"
+      - "hardware/cad/check_meshes.py"
+      - ".github/workflows/cad-v63.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cad-v63:
+    name: Regenerate design v6.3 and check meshes
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install CAD dependencies
+        run: pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib fast_simplification
+
+      # build_v63.py runs build_v6.py (with build_dosing.py and build_v5.py), build_v61.py, build_v611.py and build_v62.py
+      # first, then builds v6.3, runs its checks and publishes assembly/, template/, v63.json and check_v63.png in the copy
+      - name: Build v6.3 in a temporary copy of hardware/v6.3 (with the v6.2 print package next to it)
+        run: |
+          tmp="$(mktemp -d)"
+          mkdir -p "$tmp/hardware/v6.2"
+          cp -r hardware/v6.3 "$tmp/hardware/"
+          cp -r hardware/v6.2/plates "$tmp/hardware/v6.2/"
+          python "$tmp/hardware/v6.3/cad/build_v63.py"
+          echo "V63_TMP=$tmp/hardware/v6.3" >> "$GITHUB_ENV"
+
+      # The colour-body exports of three v6.1 plates (build/*_v61_print_<colour>.stl) are known to be empty; v6.1.1
+      # re-exports them as *_v611.stl, which are checked, and v6.2 and v6.3 do not use either.
+      - name: Check every v6.3 mesh is closed
+        run: >-
+          python hardware/cad/check_meshes.py "$V63_TMP"
+          --skip 'cad/build/*_v61_print_black.stl' --skip 'cad/build/*_v61_print_green.stl'
+          --skip 'cad/build/*_v61_print_orange.stl'
+
+      - name: The checks of v63.json passed
+        run: |
+          python - "$V63_TMP/cad/v63.json" <<'EOF'
+          import json, sys
+          c = json.load(open(sys.argv[1]))['checks']
+          bad = [k for k, v in c['watertight_exported_stl_reload'].items() if not v]
+          assert not bad, f'not watertight after export: {bad}'
+          assert c['hard_interference_mm3_max'] == 0.0, c['hard_interference_nonzero']
+          assert c['interlock']['strict'] is True, 'gate interlock is not strict'
+          assert c['panel_ok'] is True, 'control panel probes failed'
+          print('watertight, no hard interference in', c['hard_pairs_checked'], 'pairs, strict interlock, panel ok')
+          EOF

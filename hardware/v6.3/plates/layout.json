@@ -1,0 +1,332 @@
+{
+ "PETG-0": {
+  "name": "00 TEST - spline + rim, cap and skirt grooves",
+  "tower_xy": null,
+  "min_gap_mm": 6.99,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "test_scanalato",
+    "part": "test_scanalato",
+    "x": 128.0,
+    "y": 149.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "test_groove_rim",
+    "part": "test_groove_rim",
+    "x": 131.0,
+    "y": 119.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "test_groove_cap",
+    "part": "test_groove_cap",
+    "x": 145.0,
+    "y": 114.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "test_groove_skirt",
+    "part": "test_groove_skirt",
+    "x": 112.0,
+    "y": 119.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-1": {
+  "name": "01 BLACK - pod shell + electronics box",
+  "tower_xy": null,
+  "min_gap_mm": 7.21,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "guscio_v611",
+    "part": "guscio_v611",
+    "x": 104.0,
+    "y": 107.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "scatola_v63",
+    "part": "scatola_v63",
+    "x": 208.0,
+    "y": 200.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-2": {
+  "name": "02 BLACK - bowl + pod cap",
+  "tower_xy": null,
+  "min_gap_mm": 6.0,
+  "bed_margins": "relaxed",
+  "items": [
+   {
+    "name": "chiocciola_v63",
+    "part": "chiocciola_v63",
+    "x": 182.0,
+    "y": 181.5,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "fondello_v63",
+    "part": "fondello_v63",
+    "x": 83.5,
+    "y": 84.5,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-3": {
+  "name": "03 BLACK - lower flange + tower + shaft + hub",
+  "tower_xy": null,
+  "min_gap_mm": 7.16,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "flangia_piano_v63",
+    "part": "flangia_piano_v63",
+    "x": 120.0,
+    "y": 121.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "colonna_v63",
+    "part": "colonna_v63",
+    "x": 197.0,
+    "y": 207.0,
+    "rot_z_deg": 270.0
+   },
+   {
+    "name": "albero_v6",
+    "part": "albero_v6",
+    "x": 42.0,
+    "y": 43.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "mozzo_v6",
+    "part": "mozzo_v6",
+    "x": 194.0,
+    "y": 42.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-4": {
+  "name": "04 BLACK - upper flange",
+  "tower_xy": null,
+  "min_gap_mm": Infinity,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "flangia_alta_v63",
+    "part": "flangia_alta_v63",
+    "x": 128.0,
+    "y": 130.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-5": {
+  "name": "05 GREEN+black - chute + collar + gate blade + gate + window plates",
+  "tower_xy": [
+   203.5,
+   77.0
+  ],
+  "min_gap_mm": 5.96,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "scivolo_v611",
+    "part": "scivolo_v611",
+    "x": 208.5,
+    "y": 214.5,
+    "rot_z_deg": 225.0
+   },
+   {
+    "name": "colletto_v6",
+    "part": "colletto_v6",
+    "x": 160.0,
+    "y": 54.5,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "saracinesca_v63",
+    "part": "saracinesca_v63",
+    "x": 50.5,
+    "y": 169.5,
+    "rot_z_deg": 30.0
+   },
+   {
+    "name": "piastra_finestra_v62",
+    "part": "piastra_finestra_v62",
+    "x": 147.0,
+    "y": 152.0,
+    "rot_z_deg": 315.0
+   },
+   {
+    "name": "piastra_gate_v62",
+    "part": "piastra_gate_v62",
+    "x": 65.5,
+    "y": 71.5,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "PETG-6": {
+  "name": "06 ORANGE+black - interlock ring + disc + latch + button",
+  "tower_xy": [
+   193.0,
+   195.0
+  ],
+  "min_gap_mm": 6.42,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "anello_saracinesca_v63",
+    "part": "anello_saracinesca_v63",
+    "x": 116.0,
+    "y": 118.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "disco_v61",
+    "part": "disco_v61",
+    "x": 116.0,
+    "y": 97.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "linguetta_sicura_v63",
+    "part": "linguetta_sicura_v63",
+    "x": 200.0,
+    "y": 30.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "pulsante_v611",
+    "part": "pulsante_v611",
+    "x": 31.0,
+    "y": 33.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "TPU-0": {
+  "name": "00 TEST - rim, cap, skirt and comb lips",
+  "tower_xy": null,
+  "min_gap_mm": 7.01,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "test_rim_lip",
+    "part": "test_rim_lip",
+    "x": 128.0,
+    "y": 126.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "test_cap_lip",
+    "part": "test_cap_lip",
+    "x": 123.0,
+    "y": 146.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "test_skirt_lip",
+    "part": "test_skirt_lip",
+    "x": 128.0,
+    "y": 136.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "test_comb_lip",
+    "part": "test_comb_lip",
+    "x": 126.0,
+    "y": 114.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ },
+ "TPU-1": {
+  "name": "01 TPU 95A - all seals",
+  "tower_xy": null,
+  "min_gap_mm": 6.1,
+  "bed_margins": "normal",
+  "items": [
+   {
+    "name": "labbro_ombra_v611",
+    "part": "labbro_ombra_v611",
+    "x": 105.0,
+    "y": 106.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "guarnizione_baionetta_v61",
+    "part": "guarnizione_baionetta_v61",
+    "x": 100.0,
+    "y": 92.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "guarnizione_piano_v5",
+    "part": "guarnizione_piano_v5",
+    "x": 99.0,
+    "y": 84.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "labbro_scivolo_v611",
+    "part": "labbro_scivolo_v611",
+    "x": 208.0,
+    "y": 49.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "guarnizione_fondello_v61",
+    "part": "guarnizione_fondello_v61",
+    "x": 194.0,
+    "y": 209.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "labbro_pettine_v62#1",
+    "part": "labbro_pettine_v62",
+    "x": 35.0,
+    "y": 25.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "labbro_pettine_v62#2",
+    "part": "labbro_pettine_v62",
+    "x": 24.0,
+    "y": 48.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "labbro_pettine_v62#3",
+    "part": "labbro_pettine_v62",
+    "x": 163.0,
+    "y": 25.0,
+    "rot_z_deg": 0.0
+   },
+   {
+    "name": "labbro_pettine_v62#4",
+    "part": "labbro_pettine_v62",
+    "x": 206.0,
+    "y": 46.0,
+    "rot_z_deg": 90.0
+   },
+   {
+    "name": "passacavo_v63",
+    "part": "passacavo_v63",
+    "x": 95.0,
+    "y": 56.0,
+    "rot_z_deg": 0.0
+   }
+  ]
+ }
+}

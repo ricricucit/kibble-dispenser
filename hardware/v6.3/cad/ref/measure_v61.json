@@ -1,0 +1,217 @@
+{
+ "thumbturns": {
+  "shaft_d": 10.0,
+  "bore_d": 10.3,
+  "shaft_radial_clearance": 0.15,
+  "face_disc_d": 18.0,
+  "countersink_d_at_floor": 18.4,
+  "face_radial_clearance": 0.2,
+  "dish_d": 26.0,
+  "dish_depth": 3.5,
+  "cap_floor_t": 2.0,
+  "boss_d": 20.0,
+  "dish_breaks_through_floor": true,
+  "open_ring_r_mm": [
+   10.0,
+   13.0
+  ],
+  "open_ring_height_mm": 1.5,
+  "keyway_w_x_l": [
+   9.6,
+   10.0
+  ],
+  "keyway_runs_dish_floor_to_boss_top": true,
+  "keyway_beyond_face_disc_mm": 1.0,
+  "line_of_sight": {
+   "A": {
+    "vertical_see_through_mm2": 212.1,
+    "reaches": [
+     [
+      "pod",
+      5360
+     ],
+     [
+      "dry",
+      17
+     ]
+    ],
+    "first_part_seen": [
+     [
+      "",
+      4978
+     ],
+     [
+      "scatola_v61",
+      202
+     ],
+     [
+      "fondello_v61",
+      147
+     ],
+     [
+      "guarnizione_fondello_v61",
+      48
+     ]
+    ]
+   },
+   "B": {
+    "vertical_see_through_mm2": 212.1,
+    "reaches": [
+     [
+      "pod",
+      5360
+     ],
+     [
+      "dry",
+      17
+     ]
+    ],
+    "first_part_seen": [
+     [
+      "",
+      4951
+     ],
+     [
+      "scatola_v61",
+      202
+     ],
+     [
+      "fondello_v61",
+      147
+     ],
+     [
+      "guarnizione_fondello_v61",
+      48
+     ]
+    ]
+   },
+   "C": {
+    "vertical_see_through_mm2": 231.5,
+    "reaches": [
+     [
+      "dry",
+      5851
+     ]
+    ],
+    "first_part_seen": [
+     [
+      "scatola_v61",
+      5476
+     ],
+     [
+      "board",
+      228
+     ],
+     [
+      "fondello_v61",
+      147
+     ]
+    ]
+   }
+  }
+ },
+ "drain_slots": {
+  "count": 2,
+  "size_mm": [
+   3.0,
+   2.0
+  ],
+  "into": "outlet bore wall at the cap floor (y +-23..26)",
+  "rays_aimed": 6000,
+  "rays_reaching_pod": 4016,
+  "first_part_seen": [
+   [
+    "fondello_v61",
+    3199
+   ],
+   [
+    "",
+    649
+   ],
+   [
+    "nottolino_B",
+    89
+   ]
+  ]
+ },
+ "chute_outlet_gap": {
+  "axial_gap_mm": 1.0,
+  "chute_od": 48.0,
+  "outlet_bore_d": 46.0,
+  "outlet_tube_od": 50.0,
+  "path": "outlet bore -> 1 mm annulus -> pod interior (wet ring), open",
+  "rays_aimed": 6000,
+  "rays_reaching_pod": 365,
+  "first_part_seen": [
+   [
+    "",
+    266
+   ],
+   [
+    "scatola_v61",
+    98
+   ],
+   [
+    "chiocciola_v61",
+    1
+   ]
+  ]
+ },
+ "seam": {
+  "axial_mm": 0.6,
+  "spigot_radial_clearance_mm": 0.25,
+  "spigot_height_mm": 4.0,
+  "path": "0.6 seam -> 0.25 x 4.0 annulus up the spigot -> pod interior (labyrinth, no seal)",
+  "rays": 10800,
+  "rays_reaching_pod": 0
+ },
+ "shadow_gap": {
+  "gap_mm": 2.1,
+  "at_r_mm": [
+   80.0,
+   82.0
+  ],
+  "rays": 5400,
+  "rays_reaching_pod": 4500,
+  "first_part_seen": [
+   [
+    "flangia_piano_v61",
+    4500
+   ]
+  ]
+ },
+ "push_button": {
+  "head_d": 14.0,
+  "bore_d": 14.4,
+  "radial_clearance_mm": 0.2,
+  "behind": "collar chamfer 0.1-0.3 from the boss face (labyrinth, no seal)",
+  "rays": 28800,
+  "rays_reaching_pod": 0
+ },
+ "cap_gasket_seat": {
+  "upstand_offsets_from_box_outline": [
+   0.5,
+   -1.5
+  ],
+  "upstand_w": 2.0,
+  "groove_w": 2.4,
+  "groove_offsets": [
+   0.7,
+   -1.7
+  ],
+  "verdict": "groove (2.4) wider than the upstand (2.0): the cut removes the whole upstand top, the lip base sits on a flat land with no walls"
+ },
+ "thumbturn_kinematics": {
+  "arm_z": [
+   -93.1,
+   -88.6
+  ],
+  "post_bottom_z": -88.6,
+  "cap_boss_top_z": -93.4,
+  "face_disc_z": [
+   -101.7,
+   -100.55
+  ],
+  "verdict": "the arm sits UNDER the box post (post bottom face = arm top) and the face disc sits UNDER the cap: both contacts can only push the thumb-turn DOWN, so nothing holds the cap up against the lip seal; the arm must rest ON an upward-facing box ledge"
+ }
+}

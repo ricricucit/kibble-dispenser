@@ -1,0 +1,2006 @@
+{
+ "project": "Kibble Dispenser Outdoor v6.3",
+ "generated": "2026-11-11",
+ "printer": {
+  "model": "Bambu Lab A1",
+  "bed_mm": [
+   256,
+   256,
+   256
+  ],
+  "plate": "Textured PEI",
+  "nozzle_mm": 0.4,
+  "ams": "AMS lite (4 slots)",
+  "machine_profile": "Bambu Lab A1 0.4 nozzle",
+  "process_profile": "0.20mm Standard @BBL A1"
+ },
+ "filament_slots": {
+  "AMS lite slot 1": "PETG black (structure) - Generic PETG @BBL A1, #1A1A1A",
+  "AMS lite slot 2": "PETG orange (touch points) - Generic PETG @BBL A1, #F07A1A",
+  "AMS lite slot 3": "PETG green (food path) - Generic PETG @BBL A1, #2E9D4F",
+  "AMS lite slot 4": "suggested: a second PETG black spool as auto-refill backup (black is most of the PETG); otherwise leave empty",
+  "external spool": "TPU 95A yellow (seals) - Generic TPU @BBL A1, #F2C81E; TPU cannot go through the AMS lite"
+ },
+ "files": {
+  "bambu_projects": [
+   "Kibble_Dispenser_v63_PETG.bambu.3mf",
+   "Kibble_Dispenser_v63_TPU.bambu.3mf"
+  ],
+  "plain_3mf_per_plate": "plates/",
+  "stl_print_orientation": "stl/",
+  "previews": "preview/",
+  "layout": "layout.json",
+  "slicer_statistics": "slice_check/",
+  "guide": "README.md",
+  "generator": "tools/build_print_v63.py, tools/make_summary.py, tools/make_guide.py, tools/run_all.sh"
+ },
+ "validation": {
+  "slicer": "OrcaSlicer 2.5.0",
+  "method": "OrcaSlicer 2.5.0 Linux CLI (AppImage) opened each Bambu project 3MF and sliced all plates with the settings embedded in the project (--slice 0 --export-statistics); no Bambu Studio binary was available here, so the files were not opened in Bambu Studio itself",
+  "results": {
+   "Kibble_Dispenser_v63_PETG.bambu.3mf": {
+    "return_code": 0,
+    "error_string": "Success.",
+    "plates": [
+     {
+      "id": 1,
+      "warning": ""
+     },
+     {
+      "id": 2,
+      "warning": ""
+     },
+     {
+      "id": 3,
+      "warning": ""
+     },
+     {
+      "id": 4,
+      "warning": ""
+     },
+     {
+      "id": 5,
+      "warning": ""
+     },
+     {
+      "id": 6,
+      "warning": ""
+     },
+     {
+      "id": 7,
+      "warning": ""
+     }
+    ],
+    "warnings": []
+   },
+   "Kibble_Dispenser_v63_TPU.bambu.3mf": {
+    "return_code": 0,
+    "error_string": "Success.",
+    "plates": [
+     {
+      "id": 1,
+      "warning": ""
+     },
+     {
+      "id": 2,
+      "warning": ""
+     }
+    ],
+    "warnings": []
+   }
+  },
+  "bambu_profiles": "BambuStudio master, resources/profiles/BBL, profile version 02.09.00.74, fetched 2026-11-09",
+  "application_tag": "BambuStudio-02.05.00.00"
+ },
+ "plates": [
+  {
+   "key": "PETG-0",
+   "name": "00 TEST - spline + rim, cap and skirt grooves",
+   "purpose": "print first: spline clearance for mozzo_v6; groove coupons for the TPU test strips",
+   "material": "PETG",
+   "bambu_project": "Kibble_Dispenser_v63_PETG.bambu.3mf",
+   "plate_in_project": 1,
+   "plain_3mf": "plates/PETG-0_spline__rim_cap_and_skirt_grooves.3mf",
+   "preview_top": "preview/PETG-0_top.png",
+   "preview_iso": "preview/PETG-0_iso.png",
+   "parts": [
+    {
+     "id": "test_scanalato",
+     "label": "Spline fit test (3 coupons)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "4",
+      "sparse_infill_density": "100%"
+     },
+     "print_note": "socket on the bed; 1/2/3 notches = 0.05/0.10/0.20 mm radial clearance; mozzo_v6 is built with 0.10"
+    },
+    {
+     "id": "test_groove_rim",
+     "label": "Bowl rim groove coupon (30 mm cut of chiocciola_v63)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "15%"
+     },
+     "print_note": "rim with the 3.0 x 2.2 lip-seal groove; cut face on the bed"
+    },
+    {
+     "id": "test_groove_cap",
+     "label": "Cap upstand groove coupon (20 mm cut of fondello_v63)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "5",
+      "inner_wall_line_width": "0.42",
+      "outer_wall_line_width": "0.42",
+      "sparse_infill_density": "100%",
+      "top_shell_layers": "5",
+      "bottom_shell_layers": "5",
+      "seam_position": "back",
+      "print_flow_ratio": "1.03"
+     },
+     "print_note": "straight side of the D upstand with the 2.1 retaining groove; cut face on the bed"
+    },
+    {
+     "id": "test_groove_skirt",
+     "label": "Flange skirt groove coupon (30 mm cut of flangia_piano_v63)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "25%"
+     },
+     "print_note": "plate edge with the skirt-lip groove (groove up); shelf face on the bed"
+    }
+   ],
+   "filament_slots": [
+    "AMS lite slot 1 = PETG black"
+   ],
+   "colour_swaps": 0,
+   "est_grams_per_filament": {
+    "PETG black": {
+     "slot": "AMS lite slot 1",
+     "grams": 6.9,
+     "model": 6.9,
+     "support": 0.0,
+     "prime_tower": 0.0,
+     "flush": 0.0
+    }
+   },
+   "est_grams_total": 6.9,
+   "est_time_min": 31.5,
+   "est_time_hm": "0 h 31 min",
+   "layers": 60,
+   "prime_tower_xy_mm": null,
+   "min_part_gap_mm": 6.99
+  },
+  {
+   "key": "PETG-1",
+   "name": "01 BLACK - pod shell + electronics box",
+   "purpose": "single colour (black); shell with brim; box with the IP66 settings (no support any more)",
+   "material": "PETG",
+   "bambu_project": "Kibble_Dispenser_v63_PETG.bambu.3mf",
+   "plate_in_project": 2,
+   "plain_3mf": "plates/PETG-1_pod_shell__electronics_box.3mf",
+   "preview_top": "preview/PETG-1_top.png",
+   "preview_iso": "preview/PETG-1_iso.png",
+   "parts": [
+    {
+     "id": "guscio_v611",
+     "label": "Pod shell",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "5",
+      "sparse_infill_density": "15%",
+      "brim_type": "outer_only",
+      "brim_width": "6"
+     },
+     "print_note": "as v6.1.1: seam edge on the bed, rim up; 5 walls; no supports; 6 mm brim"
+    },
+    {
+     "id": "scatola_v63",
+     "label": "Electronics box (PT bosses)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "5",
+      "inner_wall_line_width": "0.42",
+      "outer_wall_line_width": "0.42",
+      "sparse_infill_density": "100%",
+      "top_shell_layers": "5",
+      "bottom_shell_layers": "5",
+      "seam_position": "back",
+      "print_flow_ratio": "1.03",
+      "ironing_type": "top"
+     },
+     "print_note": "roof on the bed; IP66 settings; the C boss overhangs its column by 2.5 mm: no support at all"
+    }
+   ],
+   "filament_slots": [
+    "AMS lite slot 1 = PETG black"
+   ],
+   "colour_swaps": 0,
+   "est_grams_per_filament": {
+    "PETG black": {
+     "slot": "AMS lite slot 1",
+     "grams": 248.4,
+     "model": 248.4,
+     "support": 0.0,
+     "prime_tower": 0.0,
+     "flush": 0.0
+    }
+   },
+   "est_grams_total": 248.4,
+   "est_time_min": 547.7,
+   "est_time_hm": "9 h 07 min",
+   "layers": 680,
+   "prime_tower_xy_mm": null,
+   "min_part_gap_mm": 7.21
+  },
+  {
+   "key": "PETG-2",
+   "name": "02 BLACK - bowl + pod cap",
+   "purpose": "single colour (black); bowl lugs and cap bottom edge on bed-only supports",
+   "material": "PETG",
+   "bambu_project": "Kibble_Dispenser_v63_PETG.bambu.3mf",
+   "plate_in_project": 3,
+   "plain_3mf": "plates/PETG-2_bowl__pod_cap.3mf",
+   "preview_top": "preview/PETG-2_top.png",
+   "preview_iso": "preview/PETG-2_iso.png",
+   "parts": [
+    {
+     "id": "chiocciola_v63",
+     "label": "Bowl (PT pilots, P3 insert moved)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "15%",
+      "enable_support": "1",
+      "support_type": "tree(auto)",
+      "support_on_build_plate_only": "1"
+     },
+     "print_note": "as v6.2: flat base on the bed; supports on build plate only (3 bayonet lugs)"
+    },
+    {
+     "id": "fondello_v63",
+     "label": "Pod cap (control panel, PT screw bosses)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "5",
+      "inner_wall_line_width": "0.42",
+      "outer_wall_line_width": "0.42",
+      "sparse_infill_density": "100%",
+      "top_shell_layers": "5",
+      "bottom_shell_layers": "5",
+      "seam_position": "back",
+      "print_flow_ratio": "1.03",
+      "enable_support": "1",
+      "support_type": "normal(auto)",
+      "support_on_build_plate_only": "1",
+      "support_threshold_angle": "45"
+     },
+     "print_note": "flat bottom on the bed; IP66 settings (knock-out skins print solid); bed-only support ring under the R15 bottom edge only (the pocket roof bridges <= 18 mm, the button bore and engravings need none); clear the drain holes (d0.8) with a drill"
+    }
+   ],
+   "filament_slots": [
+    "AMS lite slot 1 = PETG black"
+   ],
+   "colour_swaps": 0,
+   "est_grams_per_filament": {
+    "PETG black": {
+     "slot": "AMS lite slot 1",
+     "grams": 304.0,
+     "model": 290.8,
+     "support": 13.2,
+     "prime_tower": 0.0,
+     "flush": 0.0
+    }
+   },
+   "est_grams_total": 304.0,
+   "est_time_min": 666.3,
+   "est_time_hm": "11 h 06 min",
+   "layers": 380,
+   "prime_tower_xy_mm": null,
+   "min_part_gap_mm": 6.0
+  },
+  {
+   "key": "PETG-3",
+   "name": "03 BLACK - lower flange + tower + shaft + hub",
+   "purpose": "single colour (black); the shaft at 0.15 mm layers needs a plate without prime tower",
+   "material": "PETG",
+   "bambu_project": "Kibble_Dispenser_v63_PETG.bambu.3mf",
+   "plate_in_project": 4,
+   "plain_3mf": "plates/PETG-3_lower_flange__tower__shaft__hub.3mf",
+   "preview_top": "preview/PETG-3_top.png",
+   "preview_iso": "preview/PETG-3_iso.png",
+   "parts": [
+    {
+     "id": "flangia_piano_v63",
+     "label": "Lower flange plate (dowel hole)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "25%"
+     },
+     "print_note": "shelf-side face on the bed (CAD: no pin, d4.0 x 2.7 dowel hole); press the 4 x 6 dowel in after printing; no supports"
+    },
+    {
+     "id": "colonna_v63",
+     "label": "Tower (3 pillars, P3 moved)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "4",
+      "sparse_infill_density": "100%"
+     },
+     "print_note": "as v6.2: upright, flange on the bed; 100 % infill (the pillars carry the M3x40 preload)"
+    },
+    {
+     "id": "albero_v6",
+     "label": "Shaft",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "4",
+      "sparse_infill_density": "100%",
+      "layer_height": "0.15",
+      "brim_type": "outer_only",
+      "brim_width": "5"
+     },
+     "print_note": "bottom hex on the bed; 100 % infill; 0.15 mm layers; 5 mm brim"
+    },
+    {
+     "id": "mozzo_v6",
+     "label": "Servo hub",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "4",
+      "sparse_infill_density": "100%"
+     },
+     "print_note": "spline socket on the bed (print test_scanalato first); 100 % infill"
+    }
+   ],
+   "filament_slots": [
+    "AMS lite slot 1 = PETG black"
+   ],
+   "colour_swaps": 0,
+   "est_grams_per_filament": {
+    "PETG black": {
+     "slot": "AMS lite slot 1",
+     "grams": 128.2,
+     "model": 128.2,
+     "support": 0.0,
+     "prime_tower": 0.0,
+     "flush": 0.0
+    }
+   },
+   "est_grams_total": 128.2,
+   "est_time_min": 352.1,
+   "est_time_hm": "5 h 52 min",
+   "layers": 536,
+   "prime_tower_xy_mm": null,
+   "min_part_gap_mm": 7.16
+  },
+  {
+   "key": "PETG-4",
+   "name": "04 BLACK - upper flange",
+   "purpose": "single colour (black); the second d180 plate cannot share a plate with another big part",
+   "material": "PETG",
+   "bambu_project": "Kibble_Dispenser_v63_PETG.bambu.3mf",
+   "plate_in_project": 5,
+   "plain_3mf": "plates/PETG-4_upper_flange.3mf",
+   "preview_top": "preview/PETG-4_top.png",
+   "preview_iso": "preview/PETG-4_iso.png",
+   "parts": [
+    {
+     "id": "flangia_alta_v63",
+     "label": "Upper flange plate (3 press-fit pins, tie window)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "25%"
+     },
+     "print_note": "shelf face on the bed, the 3 press-fit pins grow up; no supports"
+    }
+   ],
+   "filament_slots": [
+    "AMS lite slot 1 = PETG black"
+   ],
+   "colour_swaps": 0,
+   "est_grams_per_filament": {
+    "PETG black": {
+     "slot": "AMS lite slot 1",
+     "grams": 89.5,
+     "model": 89.5,
+     "support": 0.0,
+     "prime_tower": 0.0,
+     "flush": 0.0
+    }
+   },
+   "est_grams_total": 89.5,
+   "est_time_min": 181.7,
+   "est_time_hm": "3 h 01 min",
+   "layers": 54,
+   "prime_tower_xy_mm": null,
+   "min_part_gap_mm": Infinity
+  },
+  {
+   "key": "PETG-5",
+   "name": "05 GREEN+black - chute + collar + gate blade + gate + window plates",
+   "purpose": "food path and gate: green parts + the two 3 mm plates (black body, green bands)",
+   "material": "PETG",
+   "bambu_project": "Kibble_Dispenser_v63_PETG.bambu.3mf",
+   "plate_in_project": 6,
+   "plain_3mf": "plates/PETG-5_chute__collar__gate_blade__gate__window_plates.3mf",
+   "preview_top": "preview/PETG-5_top.png",
+   "preview_iso": "preview/PETG-5_iso.png",
+   "parts": [
+    {
+     "id": "scivolo_v611",
+     "label": "Chute",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "green"
+     ],
+     "slots": [
+      "AMS lite slot 3"
+     ],
+     "settings": {
+      "wall_loops": "5",
+      "sparse_infill_density": "15%"
+     },
+     "print_note": "as v6.1.1: joint flange on the bed; no supports"
+    },
+    {
+     "id": "colletto_v6",
+     "label": "Funnel collar",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "green"
+     ],
+     "slots": [
+      "AMS lite slot 3"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "15%"
+     },
+     "print_note": "flipped, top rim on the bed; no supports"
+    },
+    {
+     "id": "saracinesca_v63",
+     "label": "Gate blade (one colour)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "green"
+     ],
+     "slots": [
+      "AMS lite slot 3"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "100%"
+     },
+     "print_note": "flat on the bed, green only; 100 % infill (3 mm blade)"
+    },
+    {
+     "id": "piastra_finestra_v62",
+     "label": "Window plate",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black",
+      "green"
+     ],
+     "slots": [
+      "AMS lite slot 1",
+      "AMS lite slot 3"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "15%"
+     },
+     "print_note": "as v6.1 (flipped): green FOOD IN band in the first 3 layers"
+    },
+    {
+     "id": "piastra_gate_v62",
+     "label": "Gate plate",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "black",
+      "green"
+     ],
+     "slots": [
+      "AMS lite slot 1",
+      "AMS lite slot 3"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "15%"
+     },
+     "print_note": "as v6.1: bottom face on the bed; green OUT band in the top 3 layers"
+    }
+   ],
+   "filament_slots": [
+    "AMS lite slot 1 = PETG black",
+    "AMS lite slot 3 = PETG green"
+   ],
+   "colour_swaps": 15,
+   "est_grams_per_filament": {
+    "PETG black": {
+     "slot": "AMS lite slot 1",
+     "grams": 37.2,
+     "model": 35.1,
+     "support": 0.0,
+     "prime_tower": 0.8,
+     "flush": 1.3
+    },
+    "PETG green": {
+     "slot": "AMS lite slot 3",
+     "grams": 63.8,
+     "model": 59.5,
+     "support": 0.0,
+     "prime_tower": 0.5,
+     "flush": 3.7
+    }
+   },
+   "est_grams_total": 101.0,
+   "est_time_min": 261.5,
+   "est_time_hm": "4 h 21 min",
+   "layers": 407,
+   "prime_tower_xy_mm": [
+    203.5,
+    77.0
+   ],
+   "min_part_gap_mm": 5.96
+  },
+  {
+   "key": "PETG-6",
+   "name": "06 ORANGE+black - interlock ring + disc + latch + button",
+   "purpose": "orange parts; the disc prints inside the ring; black disc label only in the first 3 layers",
+   "material": "PETG",
+   "bambu_project": "Kibble_Dispenser_v63_PETG.bambu.3mf",
+   "plate_in_project": 7,
+   "plain_3mf": "plates/PETG-6_interlock_ring__disc__latch__button.3mf",
+   "preview_top": "preview/PETG-6_top.png",
+   "preview_iso": "preview/PETG-6_iso.png",
+   "parts": [
+    {
+     "id": "anello_saracinesca_v63",
+     "label": "Interlock ring (teardrop window)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "orange"
+     ],
+     "slots": [
+      "AMS lite slot 2"
+     ],
+     "settings": {
+      "wall_loops": "4",
+      "sparse_infill_density": "15%",
+      "brim_type": "outer_only",
+      "brim_width": "5"
+     },
+     "print_note": "on its bottom edge; the window is a 45 deg teardrop: no support; 5 mm outer brim"
+    },
+    {
+     "id": "disco_v61",
+     "label": "Dosing disc (self-cleaning)",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "orange",
+      "black"
+     ],
+     "slots": [
+      "AMS lite slot 2",
+      "AMS lite slot 1"
+     ],
+     "settings": {
+      "wall_loops": "3",
+      "sparse_infill_density": "15%"
+     },
+     "print_note": "flipped, disc top on the bed; black label in the first 3 layers; no supports"
+    },
+    {
+     "id": "linguetta_sicura_v63",
+     "label": "Safety latch",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "orange"
+     ],
+     "slots": [
+      "AMS lite slot 2"
+     ],
+     "settings": {
+      "wall_loops": "4",
+      "sparse_infill_density": "100%",
+      "enable_support": "1",
+      "support_type": "normal(auto)",
+      "support_on_build_plate_only": "1"
+     },
+     "print_note": "on its back (CAD print file now matches the note); 100 % infill; small bed-only support under the spring tab"
+    },
+    {
+     "id": "pulsante_v611",
+     "label": "Latch push-button",
+     "qty": 1,
+     "material": "PETG",
+     "colours": [
+      "orange"
+     ],
+     "slots": [
+      "AMS lite slot 2"
+     ],
+     "settings": {
+      "wall_loops": "4",
+      "sparse_infill_density": "100%"
+     },
+     "print_note": "as v6.1.1: standing on its head face; 100 % infill"
+    }
+   ],
+   "filament_slots": [
+    "AMS lite slot 1 = PETG black",
+    "AMS lite slot 2 = PETG orange"
+   ],
+   "colour_swaps": 3,
+   "est_grams_per_filament": {
+    "PETG black": {
+     "slot": "AMS lite slot 1",
+     "grams": 2.2,
+     "model": 1.6,
+     "support": 0.0,
+     "prime_tower": 0.2,
+     "flush": 0.3
+    },
+    "PETG orange": {
+     "slot": "AMS lite slot 2",
+     "grams": 120.3,
+     "model": 118.9,
+     "support": 0.1,
+     "prime_tower": 0.2,
+     "flush": 1.1
+    }
+   },
+   "est_grams_total": 122.5,
+   "est_time_min": 249.5,
+   "est_time_hm": "4 h 09 min",
+   "layers": 222,
+   "prime_tower_xy_mm": [
+    193.0,
+    195.0
+   ],
+   "min_part_gap_mm": 6.42
+  },
+  {
+   "key": "TPU-0",
+   "name": "00 TEST - rim, cap, skirt and comb lips",
+   "purpose": "print first: the thin TPU flaps (0.5 rim, 0.5 skirt, comb slits, cap lip)",
+   "material": "TPU",
+   "bambu_project": "Kibble_Dispenser_v63_TPU.bambu.3mf",
+   "plate_in_project": 1,
+   "plain_3mf": "plates/TPU-0_rim_cap_skirt_and_comb_lips.3mf",
+   "preview_top": "preview/TPU-0_top.png",
+   "preview_iso": "preview/TPU-0_iso.png",
+   "parts": [
+    {
+     "id": "test_rim_lip",
+     "label": "TPU rim lip seal test arc (30 mm)",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%",
+      "wall_generator": "arachne",
+      "outer_wall_speed": "15",
+      "inner_wall_speed": "15"
+     },
+     "print_note": "same cut box as test_groove_rim; foot on the bed"
+    },
+    {
+     "id": "test_cap_lip",
+     "label": "TPU cap lip seal test strip (20 mm)",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%"
+     },
+     "print_note": "same cut box as test_groove_cap; base on the bed"
+    },
+    {
+     "id": "test_skirt_lip",
+     "label": "TPU skirt lip test arc (30 mm)",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%",
+      "wall_generator": "arachne",
+      "outer_wall_speed": "15",
+      "inner_wall_speed": "15"
+     },
+     "print_note": "same cut box as test_groove_skirt; anchor on the bed"
+    },
+    {
+     "id": "test_comb_lip",
+     "label": "TPU comb lip test (spare labbro_pettine_v62)",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%",
+      "wall_generator": "arachne",
+      "outer_wall_speed": "15",
+      "inner_wall_speed": "15"
+     },
+     "print_note": "one spare comb lip: check the slits and the flap"
+    }
+   ],
+   "filament_slots": [
+    "external spool = TPU yellow"
+   ],
+   "colour_swaps": 0,
+   "est_grams_per_filament": {
+    "TPU yellow": {
+     "slot": "external spool",
+     "grams": 0.5,
+     "model": 0.5,
+     "support": 0.0,
+     "prime_tower": 0.0,
+     "flush": 0.0
+    }
+   },
+   "est_grams_total": 0.5,
+   "est_time_min": 12.3,
+   "est_time_hm": "0 h 12 min",
+   "layers": 26,
+   "prime_tower_xy_mm": null,
+   "min_part_gap_mm": 7.01
+  },
+  {
+   "key": "TPU-1",
+   "name": "01 TPU 95A - all seals",
+   "purpose": "all 10 TPU pieces, external spool",
+   "material": "TPU",
+   "bambu_project": "Kibble_Dispenser_v63_TPU.bambu.3mf",
+   "plate_in_project": 2,
+   "plain_3mf": "plates/TPU-1_all_seals.3mf",
+   "preview_top": "preview/TPU-1_top.png",
+   "preview_iso": "preview/TPU-1_iso.png",
+   "parts": [
+    {
+     "id": "labbro_ombra_v611",
+     "label": "Skirt lip ring",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%",
+      "wall_generator": "arachne",
+      "outer_wall_speed": "15",
+      "inner_wall_speed": "15"
+     },
+     "print_note": "anchor on the bed, 0.5 mm flap as a 20 deg cone; Arachne, 15 mm/s"
+    },
+    {
+     "id": "guarnizione_baionetta_v61",
+     "label": "Rim lip seal",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%",
+      "wall_generator": "arachne",
+      "outer_wall_speed": "15",
+      "inner_wall_speed": "15"
+     },
+     "print_note": "foot on the bed, 0.5 mm flap; Arachne, 15 mm/s"
+    },
+    {
+     "id": "guarnizione_piano_v5",
+     "label": "Flange-shelf gasket ring",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%"
+     },
+     "print_note": "flat ring"
+    },
+    {
+     "id": "labbro_scivolo_v611",
+     "label": "Chute lip ring",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%",
+      "wall_generator": "arachne",
+      "outer_wall_speed": "15",
+      "inner_wall_speed": "15"
+     },
+     "print_note": "anchor on the bed, 0.6 mm flap up; Arachne"
+    },
+    {
+     "id": "guarnizione_fondello_v61",
+     "label": "Cap lip seal (D outline)",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%",
+      "outer_wall_speed": "20",
+      "inner_wall_speed": "20"
+     },
+     "print_note": "base on the bed, lip up"
+    },
+    {
+     "id": "labbro_pettine_v62",
+     "label": "Comb lip (common, x4)",
+     "qty": 4,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%",
+      "wall_generator": "arachne",
+      "outer_wall_speed": "15",
+      "inner_wall_speed": "15"
+     },
+     "print_note": "anchor on the bed; Arachne, 15 mm/s; print 4"
+    },
+    {
+     "id": "passacavo_v63",
+     "label": "Cable tunnel grommet (raised tunnel)",
+     "qty": 1,
+     "material": "TPU 95A",
+     "colours": [
+      "yellow"
+     ],
+     "slots": [
+      "external spool"
+     ],
+     "settings": {
+      "wall_loops": "2",
+      "sparse_infill_density": "100%"
+     },
+     "print_note": "lip on the bed (CAD print file now as assembled)"
+    }
+   ],
+   "filament_slots": [
+    "external spool = TPU yellow"
+   ],
+   "colour_swaps": 0,
+   "est_grams_per_filament": {
+    "TPU yellow": {
+     "slot": "external spool",
+     "grams": 7.5,
+     "model": 7.5,
+     "support": 0.0,
+     "prime_tower": 0.0,
+     "flush": 0.0
+    }
+   },
+   "est_grams_total": 7.5,
+   "est_time_min": 68.4,
+   "est_time_hm": "1 h 08 min",
+   "layers": 26,
+   "prime_tower_xy_mm": null,
+   "min_part_gap_mm": 6.1
+  }
+ ],
+ "totals": {
+  "grams_per_filament": {
+   "PETG black": 816.4,
+   "PETG green": 63.8,
+   "PETG orange": 120.3,
+   "TPU yellow": 8.0
+  },
+  "grams_PETG": 1000.5,
+  "grams_TPU": 8.0,
+  "time_min": 2370.8,
+  "time_hm": "39 h 30 min",
+  "colour_swaps": 18,
+  "plates": 9,
+  "note": "slicer estimates (OrcaSlicer 2.5.0 with the Bambu A1 system profiles); include supports, prime tower and flush; test plates included"
+ },
+ "purge_per_swap_A1": {
+  "model": "Bambu Studio colour flush model (FlushVolCalc) + A1 nozzle volume 92 mm3, multiplier 1.0; these values are written into flush_volumes_matrix of the PETG project",
+  "volumes": {
+   "black->orange": {
+    "mm3": 551,
+    "grams": 0.7
+   },
+   "black->green": {
+    "mm3": 421,
+    "grams": 0.53
+   },
+   "orange->black": {
+    "mm3": 203,
+    "grams": 0.26
+   },
+   "orange->green": {
+    "mm3": 263,
+    "grams": 0.33
+   },
+   "green->black": {
+    "mm3": 172,
+    "grams": 0.22
+   },
+   "green->orange": {
+    "mm3": 423,
+    "grams": 0.54
+   }
+  }
+ },
+ "parts_checklist": [
+  {
+   "id": "guscio_v611",
+   "label": "Pod shell",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-1"
+   ],
+   "stl": [
+    "stl/guscio_v611_print.stl"
+   ],
+   "source": "v6.1.1 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "fondello_v63",
+   "label": "Pod cap (control panel, PT screw bosses)",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-2"
+   ],
+   "stl": [
+    "stl/fondello_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": null
+  },
+  {
+   "id": "chiocciola_v63",
+   "label": "Bowl (PT pilots, P3 insert moved)",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-2"
+   ],
+   "stl": [
+    "stl/chiocciola_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": null
+  },
+  {
+   "id": "flangia_piano_v63",
+   "label": "Lower flange plate (dowel hole)",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-3"
+   ],
+   "stl": [
+    "stl/flangia_piano_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": null
+  },
+  {
+   "id": "flangia_alta_v63",
+   "label": "Upper flange plate (3 press-fit pins, tie window)",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-4"
+   ],
+   "stl": [
+    "stl/flangia_alta_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": null
+  },
+  {
+   "id": "colonna_v63",
+   "label": "Tower (3 pillars, P3 moved)",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-3"
+   ],
+   "stl": [
+    "stl/colonna_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": "drive tower"
+  },
+  {
+   "id": "albero_v6",
+   "label": "Shaft",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-3"
+   ],
+   "stl": [
+    "stl/albero_v6_print.stl"
+   ],
+   "source": "v6 (reused)",
+   "kit_module": "drive tower"
+  },
+  {
+   "id": "mozzo_v6",
+   "label": "Servo hub",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-3"
+   ],
+   "stl": [
+    "stl/mozzo_v6_print.stl"
+   ],
+   "source": "v6 (reused)",
+   "kit_module": "electronics box (hub on the servo)"
+  },
+  {
+   "id": "scatola_v63",
+   "label": "Electronics box (PT bosses)",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-1"
+   ],
+   "stl": [
+    "stl/scatola_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": "electronics box"
+  },
+  {
+   "id": "piastra_gate_v62",
+   "label": "Gate plate",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black",
+    "green"
+   ],
+   "plates": [
+    "PETG-5"
+   ],
+   "stl": [
+    "stl/piastra_gate_v62_print.stl",
+    "stl/piastra_gate_v62_print_black.stl",
+    "stl/piastra_gate_v62_print_green.stl"
+   ],
+   "source": "v6.2 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "piastra_finestra_v62",
+   "label": "Window plate",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black",
+    "green"
+   ],
+   "plates": [
+    "PETG-5"
+   ],
+   "stl": [
+    "stl/piastra_finestra_v62_print.stl",
+    "stl/piastra_finestra_v62_print_black.stl",
+    "stl/piastra_finestra_v62_print_green.stl"
+   ],
+   "source": "v6.2 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "saracinesca_v63",
+   "label": "Gate blade (one colour)",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "green"
+   ],
+   "plates": [
+    "PETG-5"
+   ],
+   "stl": [
+    "stl/saracinesca_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": null
+  },
+  {
+   "id": "scivolo_v611",
+   "label": "Chute",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "green"
+   ],
+   "plates": [
+    "PETG-5"
+   ],
+   "stl": [
+    "stl/scivolo_v611_print.stl"
+   ],
+   "source": "v6.1.1 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "colletto_v6",
+   "label": "Funnel collar",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "green"
+   ],
+   "plates": [
+    "PETG-5"
+   ],
+   "stl": [
+    "stl/colletto_v6_print.stl"
+   ],
+   "source": "v6 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "disco_v61",
+   "label": "Dosing disc (self-cleaning)",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "orange",
+    "black"
+   ],
+   "plates": [
+    "PETG-6"
+   ],
+   "stl": [
+    "stl/disco_v61_print.stl",
+    "stl/disco_v61_print_orange.stl",
+    "stl/disco_v61_print_black.stl"
+   ],
+   "source": "v6.1 (reused, v6.1.1 colour bodies)",
+   "kit_module": null
+  },
+  {
+   "id": "anello_saracinesca_v63",
+   "label": "Interlock ring (teardrop window)",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "orange"
+   ],
+   "plates": [
+    "PETG-6"
+   ],
+   "stl": [
+    "stl/anello_saracinesca_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": null
+  },
+  {
+   "id": "linguetta_sicura_v63",
+   "label": "Safety latch",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "orange"
+   ],
+   "plates": [
+    "PETG-6"
+   ],
+   "stl": [
+    "stl/linguetta_sicura_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": null
+  },
+  {
+   "id": "pulsante_v611",
+   "label": "Latch push-button",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "orange"
+   ],
+   "plates": [
+    "PETG-6"
+   ],
+   "stl": [
+    "stl/pulsante_v611_print.stl"
+   ],
+   "source": "v6.1.1 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "labbro_pettine_v62",
+   "label": "Comb lip (common, x4)",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 4,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-1"
+   ],
+   "stl": [
+    "stl/labbro_pettine_v62_print.stl"
+   ],
+   "source": "v6.2 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "guarnizione_baionetta_v61",
+   "label": "Rim lip seal",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-1"
+   ],
+   "stl": [
+    "stl/guarnizione_baionetta_v61_print.stl"
+   ],
+   "source": "v6.1 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "guarnizione_fondello_v61",
+   "label": "Cap lip seal (D outline)",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-1"
+   ],
+   "stl": [
+    "stl/guarnizione_fondello_v61_print.stl"
+   ],
+   "source": "v6.1 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "guarnizione_piano_v5",
+   "label": "Flange-shelf gasket ring",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-1"
+   ],
+   "stl": [
+    "stl/guarnizione_piano_v5_print.stl"
+   ],
+   "source": "v5 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "labbro_ombra_v611",
+   "label": "Skirt lip ring",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-1"
+   ],
+   "stl": [
+    "stl/labbro_ombra_v611_print.stl"
+   ],
+   "source": "v6.1.1 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "labbro_scivolo_v611",
+   "label": "Chute lip ring",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-1"
+   ],
+   "stl": [
+    "stl/labbro_scivolo_v611_print.stl"
+   ],
+   "source": "v6.1.1 (reused)",
+   "kit_module": null
+  },
+  {
+   "id": "passacavo_v63",
+   "label": "Cable tunnel grommet (raised tunnel)",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-1"
+   ],
+   "stl": [
+    "stl/passacavo_v63_print.stl"
+   ],
+   "source": "v63.json",
+   "kit_module": null
+  },
+  {
+   "id": "test_scanalato",
+   "label": "Spline fit test (3 coupons)",
+   "kind": "test",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-0"
+   ],
+   "stl": [
+    "stl/test_scanalato_print.stl"
+   ],
+   "source": "drivetrain.json",
+   "kit_module": null
+  },
+  {
+   "id": "test_groove_rim",
+   "label": "Bowl rim groove coupon (30 mm cut of chiocciola_v63)",
+   "kind": "test",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-0"
+   ],
+   "stl": [
+    "stl/test_groove_rim_print.stl"
+   ],
+   "source": "cut from chiocciola_v63.stl",
+   "kit_module": null
+  },
+  {
+   "id": "test_groove_cap",
+   "label": "Cap upstand groove coupon (20 mm cut of fondello_v63)",
+   "kind": "test",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-0"
+   ],
+   "stl": [
+    "stl/test_groove_cap_print.stl"
+   ],
+   "source": "cut from fondello_v63.stl",
+   "kit_module": null
+  },
+  {
+   "id": "test_groove_skirt",
+   "label": "Flange skirt groove coupon (30 mm cut of flangia_piano_v63)",
+   "kind": "test",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ],
+   "plates": [
+    "PETG-0"
+   ],
+   "stl": [
+    "stl/test_groove_skirt_print.stl"
+   ],
+   "source": "cut from flangia_piano_v63.stl",
+   "kit_module": null
+  },
+  {
+   "id": "test_rim_lip",
+   "label": "TPU rim lip seal test arc (30 mm)",
+   "kind": "test",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-0"
+   ],
+   "stl": [
+    "stl/test_rim_lip_print.stl"
+   ],
+   "source": "cut from guarnizione_baionetta_v61.stl",
+   "kit_module": null
+  },
+  {
+   "id": "test_cap_lip",
+   "label": "TPU cap lip seal test strip (20 mm)",
+   "kind": "test",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-0"
+   ],
+   "stl": [
+    "stl/test_cap_lip_print.stl"
+   ],
+   "source": "cut from guarnizione_fondello_v61.stl",
+   "kit_module": null
+  },
+  {
+   "id": "test_skirt_lip",
+   "label": "TPU skirt lip test arc (30 mm)",
+   "kind": "test",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-0"
+   ],
+   "stl": [
+    "stl/test_skirt_lip_print.stl"
+   ],
+   "source": "cut from labbro_ombra_v611.stl",
+   "kit_module": null
+  },
+  {
+   "id": "test_comb_lip",
+   "label": "TPU comb lip test (spare labbro_pettine_v62)",
+   "kind": "test",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ],
+   "plates": [
+    "TPU-0"
+   ],
+   "stl": [
+    "stl/test_comb_lip_print.stl"
+   ],
+   "source": "labbro_pettine_v62_print.stl",
+   "kit_module": null
+  }
+ ],
+ "bought_parts": [
+  {
+   "qty": 1,
+   "item": "dowel pin ISO 2338 4 m6 x 6, stainless",
+   "use": "gate blade pivot, pressed into the lower flange plate",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 4,
+   "item": "wood screw 5x35 pan head (5x30 for an 18 mm shelf)",
+   "use": "flange set -> shelf (they also clamp the cable jacket)",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 7,
+   "item": "M3 heat-set insert RX-M3x5.7",
+   "use": "3 in the bowl (stack screws P1..P3), 4 in the box (servo)",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 3,
+   "item": "M3x40 DIN912 A2",
+   "use": "box + tower + bowl stack, from below",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 2,
+   "item": "O-ring NBR70 3x1",
+   "use": "under the P2/P3 stack-screw heads in the roof countersinks",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 3,
+   "item": "EJOT PT K30x12 thread-forming screw, Torx T10",
+   "use": "cap -> box bosses (replace the thumb-turns), from below",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 3,
+   "item": "O-ring NBR70 3x1",
+   "use": "under the three cap screw heads",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 3,
+   "item": "EJOT PT K30x12 thread-forming screw",
+   "use": "shell tabs -> bowl (d2.5 pilots, no inserts)",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 2,
+   "item": "EJOT PT K30x10 thread-forming screw",
+   "use": "chute ears -> bowl (d2.5 pilots, no inserts)",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 4,
+   "item": "M3x8 DIN912 A2 + washer",
+   "use": "servo -> cradle inserts",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "M3x8 DIN912 A2",
+   "use": "hub -> servo spline",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 2,
+   "item": "O-ring NBR70 9x2",
+   "use": "shaft (tower module)",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "O-ring NBR70 24x2",
+   "use": "tower <-> box face seal",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "O-ring NBR70 14x1.5",
+   "use": "latch push-button, in the shell bore groove",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "O-ring NBR70 132x2",
+   "use": "shell | cap seam, in the cap spigot groove",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "M12x1.5 cable gland IP68 + locknut",
+   "use": "box wall",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "M12x1.5 ePTFE membrane vent IP68 + locknut",
+   "use": "box roof",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "M8 A-coded 4-pin IP67 inline connector pair",
+   "use": "unit pigtail <-> supply cable, in the pod top",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "12 V cable, unit side (pigtail) + supply cable PUR 4x0.34 d5",
+   "use": "supply cable runs through the flange tunnel",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "cable tie 3.6 x 140, UV-stable PA66",
+   "use": "strain relief, cinched in the upper plate window",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "IP67 12 mm momentary push-button, flush flat head, M12x1 front mount, short body (<= 14 mm behind the panel, d13), front gasket",
+   "use": "control panel; check the depth on the datasheet (14 mm free behind the mount wall)",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 2,
+   "item": "panel light pipe d5 x 9-10 mm, flat flush lens, flange d8 (clear PC) + O-ring NBR70 5x1 each",
+   "use": "status and Wi-Fi LEDs",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 2,
+   "item": "LED 3 mm (status green, Wi-Fi blue) + series resistors on the board",
+   "use": "behind the light pipes",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "IP67 adhesive acoustic vent, ePTFE, d15 disc with d8 active area",
+   "use": "speaker opening in the cap",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "mylar speaker d20 x 4.5, 8 ohm 0.5 W + foam ring d20/12 x 1",
+   "use": "meow / sounds",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "harness JST-XH 2.54 8-pin",
+   "use": "panel (button, LEDs, speaker, 1 spare) -> board; unplug before pulling the cap off",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "standard servo (25T spline)",
+   "use": "drive",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "70 x 50 perfboard + ESP32-WROVER dev board + Pololu D36V50F6 12 V regulator + 5 V logic regulator + 1000 uF capacitor",
+   "use": "electronics",
+   "source": "v63_viewer.json / v63.json"
+  },
+  {
+   "qty": 1,
+   "item": "food-grade silicone grease NSF H1",
+   "use": "factory: O-rings",
+   "source": "v63_viewer.json / v63.json"
+  }
+ ],
+ "cross_check": {
+  "expected_from_v63_json": {
+   "guscio_v611": 1,
+   "fondello_v63": 1,
+   "chiocciola_v63": 1,
+   "flangia_piano_v63": 1,
+   "flangia_alta_v63": 1,
+   "disco_v61": 1,
+   "piastra_gate_v62": 1,
+   "piastra_finestra_v62": 1,
+   "saracinesca_v63": 1,
+   "anello_saracinesca_v63": 1,
+   "scivolo_v611": 1,
+   "colletto_v6": 1,
+   "linguetta_sicura_v63": 1,
+   "pulsante_v611": 1,
+   "colonna_v63": 1,
+   "albero_v6": 1,
+   "mozzo_v6": 1,
+   "scatola_v63": 1,
+   "labbro_pettine_v62": 4,
+   "guarnizione_baionetta_v61": 1,
+   "guarnizione_fondello_v61": 1,
+   "guarnizione_piano_v5": 1,
+   "labbro_ombra_v611": 1,
+   "labbro_scivolo_v611": 1,
+   "passacavo_v63": 1
+  },
+  "missing": {},
+  "extra": {},
+  "qty_mismatch": {},
+  "listed_in_changed_or_reused_not_in_grams": [],
+  "v63_viewer_printed_ids": [
+   "guarnizione_piano",
+   "colletto_v6",
+   "flangia_piano_v63",
+   "saracinesca_v63",
+   "anello_saracinesca_v63",
+   "flangia_alta_v63",
+   "labbro_ombra_v611",
+   "passacavo_v63",
+   "guarnizione_baionetta_v61",
+   "piastra_finestra_nero",
+   "piastra_finestra_verde",
+   "labbri",
+   "disco_v61_arancio",
+   "disco_v61_nero",
+   "piastra_gate_nero",
+   "piastra_gate_verde",
+   "chiocciola_v63",
+   "linguetta_sicura",
+   "guscio_v611_basso",
+   "guscio_v611_alto",
+   "pulsante_v611",
+   "scivolo_v611",
+   "labbro_scivolo_v611",
+   "albero_v6",
+   "colonna_v63",
+   "mozzo_v6",
+   "scatola_v63",
+   "guarnizione_fondello_v61",
+   "fondello_v63_fondo",
+   "fondello_v63_fianco",
+   "fondello_v63_bordo",
+   "fondello_v63_pannello",
+   "fondello_v63_pannello_2",
+   "fondello_v63_pannello_3",
+   "fondello_v63_pannello_4",
+   "fondello_v63_pannello_5"
+  ],
+  "v63_viewer_unmatched": [],
+  "v63_asm_printed_files": [
+   "anello_saracinesca_v63_chiuso.stl",
+   "colletto_v6_v63pos.stl",
+   "fondello_v63_bordo.stl",
+   "fondello_v63_fianco.stl",
+   "fondello_v63_fondo.stl",
+   "fondello_v63_pannello.stl",
+   "fondello_v63_pannello_2.stl",
+   "fondello_v63_pannello_3.stl",
+   "fondello_v63_pannello_4.stl",
+   "fondello_v63_pannello_5.stl",
+   "guarnizione_piano_v5_v63pos.stl",
+   "labbro_pettine_out_1.stl",
+   "labbro_pettine_out_2.stl",
+   "labbro_pettine_v62_x4.stl",
+   "labbro_pettine_win_1.stl",
+   "labbro_pettine_win_2.stl",
+   "saracinesca_v63_chiusa.stl"
+  ],
+  "count_v63_json": {
+   "PETG_g": 1024.1,
+   "TPU_g": 7.9,
+   "pieces": 28,
+   "PETG_pieces": 18,
+   "TPU_pieces": 10,
+   "parts": 25
+  },
+  "count_print_v63": {
+   "PETG_parts": 18,
+   "PETG_pieces": 18,
+   "TPU_pieces": 10,
+   "test_pieces": 8
+  },
+  "changed_in_v63": [
+   "anello_saracinesca_v63",
+   "chiocciola_v63",
+   "colonna_v63",
+   "flangia_alta_v63",
+   "flangia_piano_v63",
+   "fondello_v63",
+   "linguetta_sicura_v63",
+   "passacavo_v63",
+   "saracinesca_v63",
+   "scatola_v63"
+  ],
+  "removed_in_v63": [
+   "canalina_base_v62 x2",
+   "canalina_coperchio_v62 x2",
+   "canalina_tappo_v62",
+   "nottolino_v611 x3"
+  ],
+  "cad_print_orientations_verified": [
+   "flangia_piano_v63: shelf-side face down, no pin, d4.0 x 2.7 dowel hole (22371 mm2 on the bed, 847 mm2 overhang)",
+   "linguetta_sicura_v63: on its back (56.5 x 12 x 4.8)",
+   "passacavo_v63: lip on the bed (74.5 mm2 base, 8.9 mm2 overhang)",
+   "anello_saracinesca_v63: teardrop window, no flat bridge",
+   "saracinesca_v63: one body, flat",
+   "flangia_alta_v63: shelf face down, pins up",
+   "scatola_v63: no region needing support"
+  ],
+  "cad_findings": [
+   "6.3.0 fixes verified: dowel seat in flangia_piano_v63 closed 360 deg (wall 100 % at r 2.05..4.0, section z 68.75)",
+   "6.3.0 fixes verified: fondello_v63 spigot ring unioned with the cap (one watertight body after cleaning; the raw STL carries 4 zero-area slivers that the manifold clean drops); the 1051 mm2 flat ledge at z 31.4 is gone, 84 mm2 of flat bits remain at z 30.8; the O-ring groove ceiling (627 mm2 at z 35.3, 1.5 mm deep) is unchanged",
+   "fondello_v611 / fondello_v62 keep the separate spigot ring (older packages not regenerated)"
+  ]
+ }
+}

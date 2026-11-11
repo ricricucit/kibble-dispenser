@@ -79,6 +79,25 @@ jobs:
           python hardware/cad/check_meshes.py hardware/v6.2
           python hardware/cad/check_meshes.py hardware/v6.2/plates
 
+  meshes-v63:
+    name: Check the committed meshes of design v6.3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install trimesh
+        run: pip install trimesh numpy scipy networkx lxml
+
+      # The full regeneration of v6.3 (about 15 to 25 minutes) runs in cad-v63.yml when hardware/v6.3/cad changes.
+      - name: Check the viewer meshes (hardware/v6.3/assembly) and every STL of the v6.3 print package
+        run: |
+          python hardware/cad/check_meshes.py hardware/v6.3
+          python hardware/cad/check_meshes.py hardware/v6.3/plates
+
   site:
     name: Build the website
     runs-on: ubuntu-latest
@@ -95,7 +114,7 @@ jobs:
       - name: Build the site from the repository
         run: python site/build.py
 
-      - name: docs/BOM.md and docs/BOM-v6.md match the bom.json files and their design data
+      - name: docs/BOM.md, BOM-v6.2.md and BOM-v6.md match the bom.json files and their design data
         run: python site/bom.py --check
 
   firmware:

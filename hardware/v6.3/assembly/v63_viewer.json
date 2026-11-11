@@ -1,0 +1,1954 @@
+{
+ "units": "mm",
+ "frame": "Z-up, shaft axis x=y=0",
+ "rotation_axis_xy": [
+  0,
+  0
+ ],
+ "groups": {
+  "struttura": {
+   "en": "Structure",
+   "it": "Struttura",
+   "de": "Struktur"
+  },
+  "dosatore": {
+   "en": "Dosing",
+   "it": "Dosatore",
+   "de": "Dosierung"
+  },
+  "trasmissione": {
+   "en": "Drive",
+   "it": "Trasmissione",
+   "de": "Antrieb"
+  },
+  "elettronica": {
+   "en": "Electronics",
+   "it": "Elettronica",
+   "de": "Elektronik"
+  },
+  "guarnizioni": {
+   "en": "Seals",
+   "it": "Guarnizioni",
+   "de": "Dichtungen"
+  },
+  "ferramenta": {
+   "en": "Fasteners",
+   "it": "Ferramenta",
+   "de": "Befestigung"
+  }
+ },
+ "kibble_path": [
+  [
+   27.0,
+   0.0,
+   108.1
+  ],
+  [
+   27.0,
+   0.0,
+   91.1
+  ],
+  [
+   30.0,
+   0.0,
+   74.1
+  ],
+  [
+   30.0,
+   0.0,
+   66.1
+  ],
+  [
+   30.0,
+   0.0,
+   52.2
+  ],
+  [
+   30.0,
+   0.0,
+   40.0
+  ],
+  [
+   21.2,
+   21.2,
+   40.0
+  ],
+  [
+   0.0,
+   30.0,
+   40.0
+  ],
+  [
+   -21.2,
+   21.2,
+   40.0
+  ],
+  [
+   -30.0,
+   0.0,
+   40.0
+  ],
+  [
+   -30.0,
+   0.0,
+   27.8
+  ],
+  [
+   -32.0,
+   0.0,
+   22.8
+  ],
+  [
+   -37.0,
+   0.0,
+   10.0
+  ],
+  [
+   -42.0,
+   0.0,
+   -4.0
+  ],
+  [
+   -42.0,
+   0.0,
+   -40.0
+  ],
+  [
+   -42.0,
+   0.0,
+   -73.0
+  ],
+  [
+   -42.0,
+   0.0,
+   -104.0
+  ],
+  [
+   -42.0,
+   0.0,
+   -144.0
+  ],
+  [
+   -45.0,
+   0.0,
+   -184.0
+  ]
+ ],
+ "title": "Kibble Dispenser Outdoor v6.3",
+ "subtitle": {
+  "en": "Design v6.3 · designed, not yet printed or tested",
+  "it": "Progetto v6.3 · progettato, non ancora stampato né provato",
+  "de": "Entwurf v6.3 · konstruiert, noch nicht gedruckt oder getestet"
+ },
+ "parts": [
+  {
+   "id": "guarnizione_piano",
+   "name": {
+    "en": "Shelf gasket (TPU)",
+    "it": "Guarnizione del ripiano (TPU)",
+    "de": "Regalbrett-Dichtung (TPU)"
+   },
+   "file": "guarnizione_piano_v5_v63pos.stl",
+   "color": "#f2c81e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "TPU 95A yellow",
+    "it": "TPU 95A giallo",
+    "de": "TPU 95A gelb"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    192
+   ],
+   "rotates": false
+  },
+  {
+   "id": "colletto_v6",
+   "name": {
+    "en": "Funnel collar",
+    "it": "Colletto imbuto",
+    "de": "Trichterkragen"
+   },
+   "file": "colletto_v6_v63pos.stl",
+   "color": "#2e9d4f",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG green",
+    "it": "PETG verde",
+    "de": "PETG grün"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    180
+   ],
+   "rotates": false
+  },
+  {
+   "id": "flangia_piano_v63",
+   "name": {
+    "en": "Lower flange plate (bayonet, dowel pivot)",
+    "it": "Flangia inferiore (baionetta, perno a spina)",
+    "de": "Unterer Flansch (Bajonett, Stiftachse)"
+   },
+   "file": "flangia_piano_v63.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    138
+   ],
+   "rotates": false
+  },
+  {
+   "id": "spina_4x6",
+   "name": {
+    "en": "Dowel pin ISO 2338 4x6 (gate pivot)",
+    "it": "Spina ISO 2338 4x6 (perno della saracinesca)",
+    "de": "Zylinderstift ISO 2338 4x6 (Schieberachse)"
+   },
+   "file": "bought_dowel_4x6.stl",
+   "color": "#a8adb3",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "stainless steel A2",
+    "it": "acciaio inox A2",
+    "de": "Edelstahl A2"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0,
+    0,
+    145
+   ],
+   "rotates": false
+  },
+  {
+   "id": "saracinesca_v63",
+   "name": {
+    "en": "Gate blade (one colour, open)",
+    "it": "Lama della saracinesca (un colore, aperta)",
+    "de": "Schieberblatt (einfarbig, offen)"
+   },
+   "file": "saracinesca_v63.stl",
+   "color": "#2e9d4f",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG green",
+    "it": "PETG verde",
+    "de": "PETG grün"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    152
+   ],
+   "rotates": false
+  },
+  {
+   "id": "anello_saracinesca_v63",
+   "name": {
+    "en": "Gate ring (teardrop window, open)",
+    "it": "Anello della saracinesca (finestra a goccia, aperta)",
+    "de": "Schieberring (Tropfenfenster, offen)"
+   },
+   "file": "anello_saracinesca_v63.stl",
+   "color": "#f07a1a",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG orange",
+    "it": "PETG arancione",
+    "de": "PETG orange"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    108
+   ],
+   "rotates": false
+  },
+  {
+   "id": "flangia_alta_v63",
+   "name": {
+    "en": "Upper flange plate (3 pins, cable-tie window)",
+    "it": "Flangia superiore (3 spine, finestra della fascetta)",
+    "de": "Oberer Flansch (3 Stifte, Kabelbinder-Fenster)"
+   },
+   "file": "flangia_alta_v63.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    165
+   ],
+   "rotates": false
+  },
+  {
+   "id": "labbro_ombra_v611",
+   "name": {
+    "en": "Skirt lip (TPU, closes the gap)",
+    "it": "Labbro ombra (TPU, chiude la fessura)",
+    "de": "Schürzenlippe (TPU, schließt den Spalt)"
+   },
+   "file": "labbro_ombra_v611.stl",
+   "color": "#f2c81e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "TPU 95A yellow",
+    "it": "TPU 95A giallo",
+    "de": "TPU 95A gelb"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    128
+   ],
+   "rotates": false
+  },
+  {
+   "id": "passacavo_v63",
+   "name": {
+    "en": "Cable grommet in the flange tunnel (TPU)",
+    "it": "Passacavo nel tunnel della flangia (TPU)",
+    "de": "Kabeltülle im Flanschtunnel (TPU)"
+   },
+   "file": "passacavo_v63.stl",
+   "color": "#f2c81e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "TPU 95A yellow",
+    "it": "TPU 95A giallo",
+    "de": "TPU 95A gelb"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    -14,
+    138
+   ],
+   "rotates": false
+  },
+  {
+   "id": "viti_legno",
+   "name": {
+    "en": "Wood screws 5x35",
+    "it": "Viti da legno 5x35",
+    "de": "Holzschrauben 5x35"
+   },
+   "file": "bought_wood_5x35.stl",
+   "color": "#a8adb3",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "steel",
+    "it": "acciaio",
+    "de": "Stahl"
+   },
+   "qty": 4,
+   "bought": true,
+   "explode": [
+    0,
+    0,
+    200
+   ],
+   "rotates": false
+  },
+  {
+   "id": "guarnizione_baionetta_v61",
+   "name": {
+    "en": "Bayonet rim lip seal",
+    "it": "Guarnizione a labbro della baionetta",
+    "de": "Bajonett-Lippendichtung"
+   },
+   "file": "guarnizione_baionetta_v61.stl",
+   "color": "#f2c81e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "TPU 95A yellow",
+    "it": "TPU 95A giallo",
+    "de": "TPU 95A gelb"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    128.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "piastra_finestra_nero",
+   "name": {
+    "en": "Window plate (black)",
+    "it": "Piastra finestra (nero)",
+    "de": "Fensterplatte (schwarz)"
+   },
+   "file": "piastra_finestra_v62_black.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    108.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "piastra_finestra_verde",
+   "name": {
+    "en": "Window plate (green)",
+    "it": "Piastra finestra (verde)",
+    "de": "Fensterplatte (grün)"
+   },
+   "file": "piastra_finestra_v62_green.stl",
+   "color": "#2e9d4f",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG green",
+    "it": "PETG verde",
+    "de": "PETG grün"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    108.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "labbri",
+   "name": {
+    "en": "Comb lips (4, all the same)",
+    "it": "Labbri a pettine (4 uguali)",
+    "de": "Kammlippen (4 gleiche)"
+   },
+   "file": "labbro_pettine_v62_x4.stl",
+   "color": "#f2c81e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "TPU 95A yellow",
+    "it": "TPU 95A giallo",
+    "de": "TPU 95A gelb"
+   },
+   "qty": 4,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    94.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "disco_v61_arancio",
+   "name": {
+    "en": "Self-cleaning dosing disc",
+    "it": "Disco dosatore autopulente",
+    "de": "Selbstreinigende Dosierscheibe"
+   },
+   "file": "disco_v61_orange.stl",
+   "color": "#f07a1a",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG orange",
+    "it": "PETG arancione",
+    "de": "PETG orange"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    80.0
+   ],
+   "rotates": true
+  },
+  {
+   "id": "disco_v61_nero",
+   "name": {
+    "en": "Dosing disc (label)",
+    "it": "Disco dosatore (etichetta)",
+    "de": "Dosierscheibe (Beschriftung)"
+   },
+   "file": "disco_v61_black.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    80.0
+   ],
+   "rotates": true
+  },
+  {
+   "id": "piastra_gate_nero",
+   "name": {
+    "en": "Outlet plate (black)",
+    "it": "Piastra gate (nero)",
+    "de": "Auslassplatte (schwarz)"
+   },
+   "file": "piastra_gate_v62_black.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    60.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "piastra_gate_verde",
+   "name": {
+    "en": "Outlet plate (green)",
+    "it": "Piastra gate (verde)",
+    "de": "Auslassplatte (grün)"
+   },
+   "file": "piastra_gate_v62_green.stl",
+   "color": "#2e9d4f",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG green",
+    "it": "PETG verde",
+    "de": "PETG grün"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    60.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "chiocciola_v63",
+   "name": {
+    "en": "Dosing housing (bowl)",
+    "it": "Chiocciola (vasca dosatore)",
+    "de": "Dosiergehäuse (Schale)"
+   },
+   "file": "chiocciola_v63.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    30.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "linguetta_sicura",
+   "name": {
+    "en": "Safety latch",
+    "it": "Linguetta di sicurezza",
+    "de": "Sicherungslasche"
+   },
+   "file": "linguetta_sicura_v63.stl",
+   "color": "#f07a1a",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG orange",
+    "it": "PETG arancione",
+    "de": "PETG orange"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    5.8,
+    24.3,
+    30.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "inserti_vasca",
+   "name": {
+    "en": "M3 inserts (bowl, 3)",
+    "it": "Inserti M3 (vasca, 3)",
+    "de": "M3-Gewindeeinsätze (Schale, 3)"
+   },
+   "file": "bought_inserts_bowl.stl",
+   "color": "#b08d57",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "brass",
+    "it": "ottone",
+    "de": "Messing"
+   },
+   "qty": 3,
+   "bought": true,
+   "explode": [
+    0.0,
+    0.0,
+    30.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "guscio_v611_basso",
+   "name": {
+    "en": "Pod shell, lower part",
+    "it": "Guscio, parte bassa",
+    "de": "Hülle, unterer Teil"
+   },
+   "file": "guscio_v611_basso.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    -215.0,
+    20.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "guscio_v611_alto",
+   "name": {
+    "en": "Pod shell, upper part",
+    "it": "Guscio, parte alta",
+    "de": "Hülle, oberer Teil"
+   },
+   "file": "guscio_v611_alto.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    -215.0,
+    20.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "pulsante_v611",
+   "name": {
+    "en": "Release button (O-ring)",
+    "it": "Pulsante di sgancio (O-ring)",
+    "de": "Entriegelungsknopf (O-Ring)"
+   },
+   "file": "pulsante_v611.stl",
+   "color": "#f07a1a",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG orange",
+    "it": "PETG arancione",
+    "de": "PETG orange"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    7.0,
+    -185.8,
+    20.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "viti_guscio",
+   "name": {
+    "en": "PT K30x12 screws, shell to bowl (3)",
+    "it": "Viti PT K30x12 guscio-vasca (3)",
+    "de": "PT-K30x12-Schrauben, Hülle an Schale (3)"
+   },
+   "file": "bought_pt_k30x12_shell_tabs.stl",
+   "color": "#a8adb3",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "stainless steel A2",
+    "it": "acciaio inox A2",
+    "de": "Edelstahl A2"
+   },
+   "qty": 3,
+   "bought": true,
+   "explode": [
+    0.0,
+    -215.0,
+    2.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "scivolo_v611",
+   "name": {
+    "en": "Chute (into the cap)",
+    "it": "Scivolo (entra nel fondello)",
+    "de": "Rutsche (in den Boden)"
+   },
+   "file": "scivolo_v611.stl",
+   "color": "#2e9d4f",
+   "opacity": 1.0,
+   "group": "dosatore",
+   "material": {
+    "en": "PETG green",
+    "it": "PETG verde",
+    "de": "PETG grün"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    -85.0,
+    0.0,
+    -10.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "labbro_scivolo_v611",
+   "name": {
+    "en": "Chute lip ring (TPU, in the cap)",
+    "it": "Labbro dello scivolo (TPU, nel fondello)",
+    "de": "Rutschenlippe (TPU, im Boden)"
+   },
+   "file": "labbro_scivolo_v611.stl",
+   "color": "#f2c81e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "TPU 95A yellow",
+    "it": "TPU 95A giallo",
+    "de": "TPU 95A gelb"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    -85.0,
+    0.0,
+    -200.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "viti_scivolo",
+   "name": {
+    "en": "PT K30x10 screws, chute (2)",
+    "it": "Viti PT K30x10 scivolo (2)",
+    "de": "PT-K30x10-Schrauben, Rutsche (2)"
+   },
+   "file": "bought_pt_k30x10_chute.stl",
+   "color": "#a8adb3",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "stainless steel A2",
+    "it": "acciaio inox A2",
+    "de": "Edelstahl A2"
+   },
+   "qty": 2,
+   "bought": true,
+   "explode": [
+    -85.0,
+    0.0,
+    -25.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "viti_m3x40",
+   "name": {
+    "en": "M3x40 stack screws, box-tower-bowl (3)",
+    "it": "Viti M3x40 pacco scatola-torre-vasca (3)",
+    "de": "M3x40-Stapelschrauben, Gehäuse-Turm-Schale (3)"
+   },
+   "file": "bought_m3x40_stack.stl",
+   "color": "#a8adb3",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "stainless steel A2",
+    "it": "acciaio inox A2",
+    "de": "Edelstahl A2"
+   },
+   "qty": 3,
+   "bought": true,
+   "explode": [
+    0,
+    0,
+    -120
+   ],
+   "rotates": false
+  },
+  {
+   "id": "oring_3x1",
+   "name": {
+    "en": "O-rings 3x1 under the stack-screw heads (2)",
+    "it": "O-ring 3x1 sotto le teste delle viti del pacco (2)",
+    "de": "O-Ringe 3x1 unter den Stapelschrauben (2)"
+   },
+   "file": "bought_oring_3x1.stl",
+   "color": "#1e1e1e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "NBR70",
+    "it": "NBR70",
+    "de": "NBR70"
+   },
+   "qty": 2,
+   "bought": true,
+   "explode": [
+    0,
+    0,
+    -112
+   ],
+   "rotates": false
+  },
+  {
+   "id": "albero_v6",
+   "name": {
+    "en": "Shaft (module greased for life)",
+    "it": "Albero (modulo lubrificato a vita)",
+    "de": "Welle (dauergeschmiertes Modul)"
+   },
+   "file": "albero_v6.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "trasmissione",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    -8.0
+   ],
+   "rotates": true
+  },
+  {
+   "id": "oring_albero",
+   "name": {
+    "en": "Shaft O-rings 9x2 (2)",
+    "it": "O-ring albero 9x2 (2)",
+    "de": "Wellen-O-Ringe 9x2 (2)"
+   },
+   "file": "bought_oring_shaft_9x2.stl",
+   "color": "#1e1e1e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "NBR70",
+    "it": "NBR70",
+    "de": "NBR70"
+   },
+   "qty": 2,
+   "bought": true,
+   "explode": [
+    0.0,
+    0.0,
+    -8.0
+   ],
+   "rotates": true
+  },
+  {
+   "id": "colonna_v63",
+   "name": {
+    "en": "Tower with 3 pillars",
+    "it": "Torre a 3 pilastri",
+    "de": "Turm mit 3 Säulen"
+   },
+   "file": "colonna_v63.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    -40.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "oring_faccia",
+   "name": {
+    "en": "Tower-to-box O-ring 24x2",
+    "it": "O-ring torre-scatola 24x2",
+    "de": "O-Ring Turm an Gehäuse 24x2"
+   },
+   "file": "bought_oring_face_24x2.stl",
+   "color": "#1e1e1e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "NBR70",
+    "it": "NBR70",
+    "de": "NBR70"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0.0,
+    0.0,
+    -52.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "mozzo_v6",
+   "name": {
+    "en": "Hub (25T spline)",
+    "it": "Mozzo (scanalato 25T)",
+    "de": "Nabe (25T-Verzahnung)"
+   },
+   "file": "mozzo_v6.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "trasmissione",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    -60.0
+   ],
+   "rotates": true
+  },
+  {
+   "id": "vite_mozzo",
+   "name": {
+    "en": "M3x8 hub screw",
+    "it": "Vite M3x8 mozzo",
+    "de": "M3x8-Nabenschraube"
+   },
+   "file": "bought_m3x8_hub.stl",
+   "color": "#a8adb3",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "stainless steel A2",
+    "it": "acciaio inox A2",
+    "de": "Edelstahl A2"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0.0,
+    0.0,
+    -46.0
+   ],
+   "rotates": true
+  },
+  {
+   "id": "scatola_v63",
+   "name": {
+    "en": "Electronics box (cap-screw bosses)",
+    "it": "Scatola elettronica (bossoli per le viti del fondello)",
+    "de": "Elektronikgehäuse (Dome für die Bodenschrauben)"
+   },
+   "file": "scatola_v63.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    -85.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "inserti_scatola",
+   "name": {
+    "en": "M3 inserts (box)",
+    "it": "Inserti M3 (scatola)",
+    "de": "M3-Gewindeeinsätze (Gehäuse)"
+   },
+   "file": "bought_inserts_box.stl",
+   "color": "#b08d57",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "brass",
+    "it": "ottone",
+    "de": "Messing"
+   },
+   "qty": 4,
+   "bought": true,
+   "explode": [
+    0.0,
+    0.0,
+    -85.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "pressacavo",
+   "name": {
+    "en": "M12 cable gland IP68",
+    "it": "Pressacavo M12 IP68",
+    "de": "Kabelverschraubung M12 IP68"
+   },
+   "file": "bought_gland_m12.stl",
+   "color": "#303030",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "PA black",
+    "it": "PA nero",
+    "de": "PA schwarz"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0.0,
+    -40.0,
+    -85.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "sfiato_eptfe",
+   "name": {
+    "en": "M12 ePTFE vent IP68",
+    "it": "Sfiato ePTFE M12 IP68",
+    "de": "ePTFE-Belüftung M12 IP68"
+   },
+   "file": "bought_vent_m12_eptfe.stl",
+   "color": "#d0d0d0",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0.0,
+    -30.0,
+    -60.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "cavo_12v_unita",
+   "name": {
+    "en": "12 V cable, unit side",
+    "it": "Cavo 12 V lato unità",
+    "de": "12-V-Kabel, Seite Einheit"
+   },
+   "file": "bought_cable_12v_unit.stl",
+   "color": "#151515",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "PUR 4x0.34",
+    "it": "PUR 4x0.34",
+    "de": "PUR 4x0,34"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0,
+    -40,
+    -60
+   ],
+   "rotates": false
+  },
+  {
+   "id": "cavo_12v_alimentazione",
+   "name": {
+    "en": "12 V cable in the tunnel, held by the cable tie",
+    "it": "Cavo 12 V nel tunnel, fissato con la fascetta",
+    "de": "12-V-Kabel im Tunnel, mit Kabelbinder gesichert"
+   },
+   "file": "bought_cable_12v_supply.stl",
+   "color": "#151515",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "PUR 4x0.34",
+    "it": "PUR 4x0.34",
+    "de": "PUR 4x0,34"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0,
+    -40,
+    175
+   ],
+   "rotates": false
+  },
+  {
+   "id": "connettore_ip67",
+   "name": {
+    "en": "M8 IP67 inline connector",
+    "it": "Connettore M8 IP67 in linea",
+    "de": "M8-IP67-Kupplung"
+   },
+   "file": "bought_connector_m8_ip67.stl",
+   "color": "#3b3b3b",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0,
+    -40,
+    60
+   ],
+   "rotates": false
+  },
+  {
+   "id": "servo",
+   "name": {
+    "en": "Standard servo",
+    "it": "Servo standard",
+    "de": "Standard-Servo"
+   },
+   "file": "bought_servo.stl",
+   "color": "#23305f",
+   "opacity": 1.0,
+   "group": "trasmissione",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0.0,
+    0.0,
+    -160.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "viti_servo",
+   "name": {
+    "en": "M3x8 servo screws + washers",
+    "it": "Viti M3x8 servo + rondelle",
+    "de": "M3x8-Servoschrauben + Scheiben"
+   },
+   "file": "bought_m3x8_servo.stl",
+   "color": "#a8adb3",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "stainless steel A2",
+    "it": "acciaio inox A2",
+    "de": "Edelstahl A2"
+   },
+   "qty": 4,
+   "bought": true,
+   "explode": [
+    0.0,
+    0.0,
+    -175.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "scheda",
+   "name": {
+    "en": "Perfboard 70x50",
+    "it": "Scheda millefori 70x50",
+    "de": "Lochrasterplatine 70x50"
+   },
+   "file": "bought_board_70x50.stl",
+   "color": "#3d7a3d",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    45.0,
+    0.0,
+    -160.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "esp32",
+   "name": {
+    "en": "ESP32-WROVER dev board",
+    "it": "Scheda ESP32-WROVER",
+    "de": "ESP32-WROVER-Entwicklungsboard"
+   },
+   "file": "bought_esp32.stl",
+   "color": "#1b1b1b",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    30.0,
+    0.0,
+    -160.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "reg_12v",
+   "name": {
+    "en": "Pololu D36V50F6 regulator",
+    "it": "Regolatore Pololu D36V50F6",
+    "de": "Spannungsregler Pololu D36V50F6"
+   },
+   "file": "bought_reg_12v_d36v50f6.stl",
+   "color": "#2b4a7a",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    30.0,
+    0.0,
+    -160.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "reg_5v",
+   "name": {
+    "en": "5 V logic regulator",
+    "it": "Regolatore 5 V logica",
+    "de": "5-V-Logikregler"
+   },
+   "file": "bought_reg_5v_logic.stl",
+   "color": "#2b4a7a",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    30.0,
+    0.0,
+    -160.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "condensatore",
+   "name": {
+    "en": "1000 µF capacitor",
+    "it": "Condensatore 1000 µF",
+    "de": "Kondensator 1000 µF"
+   },
+   "file": "bought_cap_1000uF.stl",
+   "color": "#1a1a2e",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    30.0,
+    0.0,
+    -160.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "guarnizione_fondello_v61",
+   "name": {
+    "en": "Cap lip seal",
+    "it": "Guarnizione a labbro del fondello",
+    "de": "Lippendichtung Boden"
+   },
+   "file": "guarnizione_fondello_v61.stl",
+   "color": "#f2c81e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "TPU 95A yellow",
+    "it": "TPU 95A giallo",
+    "de": "TPU 95A gelb"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    -215.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "fondello_v63_fondo",
+   "name": {
+    "en": "Cap (bottom)",
+    "it": "Fondello (fondo)",
+    "de": "Boden (Unterseite)"
+   },
+   "file": "fondello_v63_fondo.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    -240.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "fondello_v63_fianco",
+   "name": {
+    "en": "Cap (side)",
+    "it": "Fondello (fianco)",
+    "de": "Boden (Seite)"
+   },
+   "file": "fondello_v63_fianco.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    -240.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "fondello_v63_bordo",
+   "name": {
+    "en": "Cap (rim)",
+    "it": "Fondello (bordo)",
+    "de": "Boden (Rand)"
+   },
+   "file": "fondello_v63_bordo.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0.0,
+    0.0,
+    -240.0
+   ],
+   "rotates": false
+  },
+  {
+   "id": "oring_pulsante",
+   "name": {
+    "en": "Button O-ring 14x1.5",
+    "it": "O-ring pulsante 14x1.5",
+    "de": "Knopf-O-Ring 14x1.5"
+   },
+   "file": "bought_oring_btn_14x1_5.stl",
+   "color": "#1e1e1e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "NBR70",
+    "it": "NBR70",
+    "de": "NBR70"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    7.003360915677164,
+    -185.8289023880697,
+    20
+   ],
+   "rotates": false
+  },
+  {
+   "id": "oring_giunto",
+   "name": {
+    "en": "Shell-to-cap seam O-ring 132x2",
+    "it": "O-ring giunto guscio-fondello 132x2",
+    "de": "Fugen-O-Ring Hülle-Boden 132x2"
+   },
+   "file": "bought_oring_seam_2.stl",
+   "color": "#1e1e1e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "NBR70",
+    "it": "NBR70",
+    "de": "NBR70"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0,
+    0,
+    -228
+   ],
+   "rotates": false
+  },
+  {
+   "id": "fondello_v63_pannello",
+   "name": {
+    "en": "Control panel: LEDs",
+    "it": "Pannello comandi: LED",
+    "de": "Bedienfeld: LEDs"
+   },
+   "file": "fondello_v63_pannello.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    -240
+   ],
+   "rotates": false
+  },
+  {
+   "id": "fondello_v63_pannello_2",
+   "name": {
+    "en": "Control panel: button and knock-out 1",
+    "it": "Pannello comandi: pulsante e predisposizione 1",
+    "de": "Bedienfeld: Taster und Ausbruch 1"
+   },
+   "file": "fondello_v63_pannello_2.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    -240
+   ],
+   "rotates": false
+  },
+  {
+   "id": "fondello_v63_pannello_3",
+   "name": {
+    "en": "Control panel: knock-out 2",
+    "it": "Pannello comandi: predisposizione 2",
+    "de": "Bedienfeld: Ausbruch 2"
+   },
+   "file": "fondello_v63_pannello_3.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    -240
+   ],
+   "rotates": false
+  },
+  {
+   "id": "fondello_v63_pannello_4",
+   "name": {
+    "en": "Control panel: knock-out 3",
+    "it": "Pannello comandi: predisposizione 3",
+    "de": "Bedienfeld: Ausbruch 3"
+   },
+   "file": "fondello_v63_pannello_4.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    -240
+   ],
+   "rotates": false
+  },
+  {
+   "id": "fondello_v63_pannello_5",
+   "name": {
+    "en": "Control panel: west end",
+    "it": "Pannello comandi: estremo ovest",
+    "de": "Bedienfeld: Westende"
+   },
+   "file": "fondello_v63_pannello_5.stl",
+   "color": "#2a2b2e",
+   "opacity": 1.0,
+   "group": "struttura",
+   "material": {
+    "en": "PETG black",
+    "it": "PETG nero",
+    "de": "PETG schwarz"
+   },
+   "qty": 1,
+   "bought": false,
+   "explode": [
+    0,
+    0,
+    -240
+   ],
+   "rotates": false
+  },
+  {
+   "id": "switch_12mm_ip67",
+   "name": {
+    "en": "Panel push-button IP67 Ø12",
+    "it": "Pulsante del pannello IP67 Ø12",
+    "de": "Bedientaster IP67 Ø12"
+   },
+   "file": "bought_switch_12mm_ip67.stl",
+   "color": "#c9ccd1",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "steel / IP67",
+    "it": "acciaio / IP67",
+    "de": "Stahl / IP67"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    16,
+    40,
+    -240
+   ],
+   "rotates": false
+  },
+  {
+   "id": "lightpipes_5mm",
+   "name": {
+    "en": "Light pipes Ø5 (2)",
+    "it": "Guide luce Ø5 (2)",
+    "de": "Lichtleiter Ø5 (2)"
+   },
+   "file": "bought_lightpipes_5mm.stl",
+   "color": "#e8f4ff",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "clear PC",
+    "it": "PC trasparente",
+    "de": "PC transparent"
+   },
+   "qty": 2,
+   "bought": true,
+   "explode": [
+    12,
+    34,
+    -240
+   ],
+   "rotates": false
+  },
+  {
+   "id": "oring_5x1_lightpipe",
+   "name": {
+    "en": "Light-pipe O-rings 5x1 (2)",
+    "it": "O-ring guide luce 5x1 (2)",
+    "de": "Lichtleiter-O-Ringe 5x1 (2)"
+   },
+   "file": "bought_oring_5x1_lightpipe.stl",
+   "color": "#1e1e1e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "NBR70",
+    "it": "NBR70",
+    "de": "NBR70"
+   },
+   "qty": 2,
+   "bought": true,
+   "explode": [
+    10,
+    28,
+    -240
+   ],
+   "rotates": false
+  },
+  {
+   "id": "leds_3mm",
+   "name": {
+    "en": "3 mm LEDs (status, Wi-Fi)",
+    "it": "LED 3 mm (stato, Wi-Fi)",
+    "de": "3-mm-LEDs (Status, WLAN)"
+   },
+   "file": "bought_leds_3mm.stl",
+   "color": "#3fd16b",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 2,
+   "bought": true,
+   "explode": [
+    8,
+    20,
+    -240
+   ],
+   "rotates": false
+  },
+  {
+   "id": "speaker_20mm",
+   "name": {
+    "en": "Ø20 speaker (meow)",
+    "it": "Altoparlante Ø20 (miagolio)",
+    "de": "Lautsprecher Ø20 (Miau)"
+   },
+   "file": "bought_speaker_20mm.stl",
+   "color": "#444b55",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0,
+    10,
+    -205
+   ],
+   "rotates": false
+  },
+  {
+   "id": "membrane_acoustic_ip67",
+   "name": {
+    "en": "IP67 ePTFE acoustic membrane",
+    "it": "Membrana acustica IP67 ePTFE",
+    "de": "Akustikmembran IP67 ePTFE"
+   },
+   "file": "bought_membrane_acoustic_ip67.stl",
+   "color": "#f5f5f5",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "ePTFE",
+    "it": "ePTFE",
+    "de": "ePTFE"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0,
+    10,
+    -222
+   ],
+   "rotates": false
+  },
+  {
+   "id": "harness_jst",
+   "name": {
+    "en": "Panel harness JST-XH 8-pin",
+    "it": "Cablaggio pannello JST-XH 8 poli",
+    "de": "Bedienfeld-Kabelbaum JST-XH 8-polig"
+   },
+   "file": "bought_harness_jst.stl",
+   "color": "#b03a2e",
+   "opacity": 1.0,
+   "group": "elettronica",
+   "material": {
+    "en": "bought",
+    "it": "acquistato",
+    "de": "gekauft"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    6,
+    10,
+    -195
+   ],
+   "rotates": false
+  },
+  {
+   "id": "pt_k30x12_cap",
+   "name": {
+    "en": "PT K30x12 cap screws (3)",
+    "it": "Viti PT K30x12 del fondello (3)",
+    "de": "PT-K30x12-Bodenschrauben (3)"
+   },
+   "file": "bought_pt_k30x12_cap.stl",
+   "color": "#a8adb3",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "stainless steel A2",
+    "it": "acciaio inox A2",
+    "de": "Edelstahl A2"
+   },
+   "qty": 3,
+   "bought": true,
+   "explode": [
+    0,
+    0,
+    -275
+   ],
+   "rotates": false
+  },
+  {
+   "id": "oring_3x1_cap",
+   "name": {
+    "en": "O-rings 3x1 under the cap screws (3)",
+    "it": "O-ring 3x1 sotto le viti del fondello (3)",
+    "de": "O-Ringe 3x1 unter den Bodenschrauben (3)"
+   },
+   "file": "bought_oring_3x1_cap.stl",
+   "color": "#1e1e1e",
+   "opacity": 1.0,
+   "group": "guarnizioni",
+   "material": {
+    "en": "NBR70",
+    "it": "NBR70",
+    "de": "NBR70"
+   },
+   "qty": 3,
+   "bought": true,
+   "explode": [
+    0,
+    0,
+    -262
+   ],
+   "rotates": false
+  },
+  {
+   "id": "cable_tie",
+   "name": {
+    "en": "Strain-relief cable tie (UV)",
+    "it": "Fascetta antistrappo (UV)",
+    "de": "Zugentlastungs-Kabelbinder (UV)"
+   },
+   "file": "bought_cable_tie.stl",
+   "color": "#111111",
+   "opacity": 1.0,
+   "group": "ferramenta",
+   "material": {
+    "en": "PA66, UV-stable",
+    "it": "PA66 resistente ai raggi UV",
+    "de": "PA66, UV-beständig"
+   },
+   "qty": 1,
+   "bought": true,
+   "explode": [
+    0,
+    -40,
+    175
+   ],
+   "rotates": false
+  }
+ ],
+ "scene": {
+  "shelf_underside_z": 78.1,
+  "shelf_thickness": 30.0,
+  "shelf_hole_xy": [
+   27.0,
+   0.0
+  ],
+  "shelf_hole_d": 76.0,
+  "outlet_xyz": [
+   -42.0,
+   0.0,
+   -104.0
+  ],
+  "outlet_dir": [
+   0,
+   0,
+   -1
+  ],
+  "shelf_cable_hole": null,
+  "cable_route": {
+   "exit_xyz": [
+    0.0,
+    -90.0,
+    76.0
+   ],
+   "note": "rim exit at the back; the user clips the cable along the shelf"
+  }
+ },
+ "status_short": {
+  "en": "not yet printed or tested",
+  "it": "non ancora stampato né provato",
+  "de": "noch nicht gedruckt oder getestet"
+ },
+ "status": "designed and checked in CAD only: not printed, assembled or tested yet"
+}
