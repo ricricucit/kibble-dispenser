@@ -49,3 +49,16 @@ Don't treat documentation guesses as as-built measurements. Never overwrite the 
 ## Update 2026-11-14: project split (owner decision)
 
 - The project splits into mechanics with an electronics case holder (hardware 6.4, in design), a detachable electronics module with its own version line, and firmware. The servo stays in the chassis; prototype 1 has no camera. The soldered prototype goes on a green 5 × 7 cm perfboard with the ESP32 on socket strips, without the extension board. Bench photos, measurements and open points: `docs/PROTOTYPE_BENCH.md` (photo readings are not electrically verified; the on-device firmware readback is still pending).
+
+## Restart here (firmware bench session, written 2026-11-14)
+
+If the owner opens a fresh clone and asks to restart the software tests, do this, in order. He is on the bench with the breadboard prototype connected over USB.
+
+1. Read `docs/PROTOTYPE_BENCH.md`, `firmware/micropython/CLAUDE.md` and `firmware/micropython/PROJECT.md`. Work in `firmware/micropython/`.
+2. `make setup`, then **read-only** steps only: `make ls` and `make backup` (downloads the board's `.py` files to `backups/<timestamp>/`). Do **not** run `make deploy`, `make deploy-main`, `make clean-board` or anything that writes to the board yet.
+3. Compare the backup with `src/` file by file and report the differences in plain words. Redact secrets (Wi-Fi name and password, tokens) before showing or committing anything; keep the raw backup out of git (store a redacted copy under `import/previous-chat/` with a short provenance note).
+4. Ask the owner the three open bench questions and record the answers in `docs/PROTOTYPE_BENCH.md`: how the servo is powered (board 5 V pin or separate supply), how the speaker is driven (direct from GPIO 26, resistor, transistor or amplifier), the speaker diameter.
+5. With the owner watching the hardware, check the behavioural contract on the board as it is (boots OFF and does not dispense on reset; ON dispenses once; one portion per press while ON; no repeats on hold; sound at every portion). Note what passes and what does not.
+6. Only then start changes, on a branch, with the owner's go-ahead before each flash: first issue #2 (single button: single press = one portion, double press = ON/OFF, hold 5 s = reset all but Wi-Fi, hold 10 s = full reset; two LEDs; never dispense at power-on; move speaker and button off GPIO 26/27, see issue #3). Bump `firmware/VERSION` and update `VERSIONS.md` when the behaviour changes.
+
+Hardware design work (6.4 with the detachable electronics module) continues in a separate cloud session; do not edit `hardware/` or `site/` from the bench session unless asked.
