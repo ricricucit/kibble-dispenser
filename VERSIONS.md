@@ -8,6 +8,8 @@ The project has three version lines. Each has its own tag and its own GitHub Rel
 
 Releases: <https://github.com/ricricucit/kibble-dispenser/releases>. The website footer shows the current versions and the commit it was built from.
 
+Planned (owner decision of 2026-11-14, nothing released yet): a fourth line for the **electronics case**, a detachable electronics module with its own version and tag, starting with hardware 6.4, whose mechanics get a holder for it. The servo stays in the chassis. See [docs/PROTOTYPE_BENCH.md](docs/PROTOTYPE_BENCH.md).
+
 ## Bump rules
 
 Hardware follows SemVer, read for physical parts:

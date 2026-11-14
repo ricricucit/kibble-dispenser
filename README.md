@@ -87,6 +87,7 @@ The project site presents the current design in English, Italian and German: <ht
 - **MicroPython firmware (dev folder snapshot, baseline):** [firmware/micropython/](firmware/micropython/README.md)
 - Build guide: [docs/BUILD_GUIDE.md](docs/BUILD_GUIDE.md) (exported from the living build guide; placeholder for now)
 - Power, servo and sealing research (Italian): [docs/research/elettronica-e-tenuta.it.md](docs/research/elettronica-e-tenuta.it.md)
+- Prototype 1 on the bench (measurements, photo readings, open points): [docs/PROTOTYPE_BENCH.md](docs/PROTOTYPE_BENCH.md)
 - Process photos: [docs/photos/](docs/photos/README.md)
 - Design notes and print guide: [hardware/v6.3/README.md](hardware/v6.3/README.md) and [hardware/v6.3/plates/README.md](hardware/v6.3/plates/README.md) (v6.3), [hardware/v6.2/README.md](hardware/v6.2/README.md) (v6.2, archived), [hardware/v6/README.md](hardware/v6/README.md) (v6, archived), [hardware/README.md](hardware/README.md) (prototype 1)
 - Bought parts for v6.3: [docs/BOM.md](docs/BOM.md)

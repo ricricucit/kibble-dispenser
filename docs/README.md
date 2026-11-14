@@ -5,6 +5,7 @@
 - [Build guide](BUILD_GUIDE.md): step-by-step assembly, exported from the living build guide (placeholder for now)
 - [Research: power, electronics and sealing](research/elettronica-e-tenuta.it.md): power architecture, servo torque and current, cable entry, condensation, shaft seal and the full wiring list (Italian)
 - [Getting started](getting-started.md): for people who buy a kit or a finished dispenser (coming later)
+- [Prototype 1 on the bench](PROTOTYPE_BENCH.md): the bench electronics on 2026-11-14: owner measurements, what the photos show (not electrically verified), kit, perfboards, decisions and open points
 - [Process photos](photos/README.md): prototype 1 from the first servo tests to the bowl and box
 
 Part-by-part print notes are in [../hardware/v6.3/plates/README.md](../hardware/v6.3/plates/README.md) (design v6.3), [../hardware/v6/README.md](../hardware/v6/README.md) (design v6) and [../hardware/README.md](../hardware/README.md) (prototype 1). Wiring and flashing steps are in [../firmware/README.md](../firmware/README.md).

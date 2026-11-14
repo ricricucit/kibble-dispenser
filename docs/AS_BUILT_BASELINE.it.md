@@ -156,3 +156,7 @@ Questa pagina e `CLAUDE.md` sono il passaggio di consegne. L'altra sessione deve
 - Nel repository c'è la trasmissione v3: `disco_v3` con manicotto e cappellotto a labirinto, `albero_mozzo` con mozzo Ø22 e cono, `passante_culla` (passante stagno e culla del servo in **un solo pezzo**, sostituisce `passante_stagno`), `test_scanalato`. Distinta, foratura del coperchio e ordine di montaggio sono in `hardware/README.md`.
 - Sono pezzi **progettati**: non ancora stampati, montati né provati.
 - Il prototipo costruito usa ancora il supporto a parete di terzi (CC BY-NC-SA, §8), che resta fuori dal repository.
+
+## 10. Aggiornamento 2026-11-14: foto e misure del banco
+
+Foto del banco del 2026-11-14, misure dell'autore, lettura dei pin dalle foto (non verificata elettricamente), kit, millefori disponibili, decisioni e punti aperti: vedi [PROTOTYPE_BENCH.md](PROTOTYPE_BENCH.md) (in inglese). Il readback del firmware dalla scheda resta da fare.

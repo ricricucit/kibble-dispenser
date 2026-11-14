@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- 2026-11-14: `docs/PROTOTYPE_BENCH.md` and five bench photos of 2026-11-14 in `docs/photos/` (metadata removed): owner measurements, what the photos show of the board and wiring (not electrically verified), the camera pin conflict ([issue #3](https://github.com/ricricucit/kibble-dispenser/issues/3)), kit and perfboards, and the decision to split the project into mechanics with a case holder (hardware 6.4, in design), a detachable electronics module with its own version line, and firmware.
 - 2026-11-11: The stable URLs `3d/`, `print/`, `parts/`, `assembly/` and `manual/` now show design v6.3. Design v6.2 moves to an archive: `v6.2/` (new index page), `v6.2/3d/`, `v6.2/print/`, `v6.2/parts/`, `v6.2/assembly/` (the v6.2 wizard, moved as it was to `site/v6.2/assembly/`) and `v6.2/manual/` stay online with an "archived" note and links to v6.3; the archived print and manual pages link the files in the repository and the assets of the release hw-v6.2.0 instead of copying them into the site. The earlier-versions page links v6.2 and v6.
 - 2026-11-11: Assembly guide `assembly/` for v6.3 (`site/assembly/`, 41 steps: 23 in "Install the kit", 40 in "Build it yourself"; English, Italian and German).
 - 2026-11-11: Manual page `manual/` with the v6.3 manuals (A6 booklet and A4 print version in English, Italian and German, `docs/manual/`) and the 1:1 drilling template (`hardware/v6.3/template/`); the v6.2 PDFs stay as assets of hw-v6.2.0.

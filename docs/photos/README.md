@@ -23,3 +23,8 @@ Photos of prototype 1. Location and camera metadata were removed, and the images
 - `2026-11-08-wrover-e-extension-board-breadboard.jpg`: ESP32-WROVER-E (Freenove, with camera) on the Freenove GPIO extension board, plugged into the breadboard. Prototype wiring, pins not yet verified.
 - `2026-11-08-breadboard-servo-speaker-buttons.jpg`: breadboard with the two tactile buttons, 8 Ω speaker and the 25 kg servo on its lead.
 - `2026-11-08-bench-wrover-breadboard-servo-overview.jpg`: bench overview of the prototype electronics (breadboard phase).
+- `2026-11-14-bench-breadboard-wrover-buttons-led-speaker.jpg`: bench overview: Freenove ESP32-WROVER on the GPIO extension board, two yellow-capped buttons, red LED, 8 Ω 2 W speaker. See [PROTOTYPE_BENCH.md](../PROTOTYPE_BENCH.md).
+- `2026-11-14-wrover-board-top-view-with-ruler.jpg`: the ESP32-WROVER board from above next to a ruler (about 28 × 53 mm plus the antenna overhang, a ruler estimate).
+- `2026-11-14-wrover-and-extension-board-along-ruler.jpg`: ESP32 board and extension board along a ruler (cropped below the ruler scale).
+- `2026-11-14-extension-board-jumpers-close-up.jpg`: close-up of the jumpers on the extension board. Pins read from the photo, not electrically verified.
+- `2026-11-14-perfboards-with-caliper-and-ruler.jpg`: the perfboards on hand: a black solderable breadboard and green double-sided boards, with caliper and ruler.
