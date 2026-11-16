@@ -1,0 +1,68 @@
+name: CAD
+
+# Regenerates the hardware (chassis 6.4 and the electronics module case 1.0) from its scripts in a temporary copy of
+# hardware/ and checks every mesh. build_v64.py runs the stages it builds on first (build_v6.py with build_dosing.py and
+# build_v5.py, then build_v61.py, build_v611.py, build_v62.py and build_v63.py, each with its checks) and takes 15 to 25
+# minutes, so this workflow only runs when the CAD scripts or the mesh check change, and on demand from the Actions tab.
+# The committed meshes are checked on every push by the meshes job in ci.yml. The stage checks read the vendored
+# reference data in hardware/cad/ref/ and the print STLs in hardware/plates/stl/; publish_v64.py writes assembly/,
+# template/, cad/v64.json, cad/check_v64.png and the module folder (module/case-1.0) in the copy.
+
+on:
+  push:
+    paths:
+      - "hardware/cad/**"
+      - ".github/workflows/cad.yml"
+  pull_request:
+    paths:
+      - "hardware/cad/**"
+      - ".github/workflows/cad.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cad:
+    name: Regenerate the hardware and check meshes
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install CAD dependencies
+        run: pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib fast_simplification
+
+      - name: Build in a temporary copy of hardware/
+        run: |
+          tmp="$(mktemp -d)"
+          cp -r hardware "$tmp/"
+          python "$tmp/hardware/cad/build_v64.py"
+          echo "HW_TMP=$tmp/hardware" >> "$GITHUB_ENV"
+
+      # The colour-body exports of three v6.1 stage plates (build/*_v61_print_<colour>.stl) are known to be empty; the
+      # v6.1.1 stage re-exports them as *_v611.stl, which are checked, and the later stages do not use either.
+      - name: Check every mesh is closed
+        run: >-
+          python hardware/cad/check_meshes.py "$HW_TMP"
+          --skip 'cad/build/*_v61_print_black.stl' --skip 'cad/build/*_v61_print_green.stl'
+          --skip 'cad/build/*_v61_print_orange.stl'
+          && python hardware/cad/check_meshes.py "$HW_TMP/module/case-1.0"
+
+      - name: The checks of v64.json passed
+        run: |
+          python - "$HW_TMP/cad/v64.json" <<'EOF'
+          import json, sys
+          c = json.load(open(sys.argv[1]))['checks']
+          bad = [k for k, v in c['watertight_exported_stl_reload'].items() if not v]
+          assert not bad, f'not watertight after export: {bad}'
+          assert c['hard_interference_mm3_max'] == 0.0, c['hard_interference_nonzero']
+          assert c['module_removal_sweep_max_mm3'] == 0.0, 'the module does not come out freely'
+          for k in ('seals_ok', 'dry_ok', 'tool_access_ok', 'panel_ok'):
+              assert c[k] is True, f'{k} is not true'
+          print('watertight, no hard interference in', c['hard_pairs_checked'], 'pairs, free module removal, seals, dry volumes, tool access and panel ok')
+          EOF

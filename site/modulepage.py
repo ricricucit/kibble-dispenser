@@ -1,7 +1,7 @@
 """
 Page of the electronics module case 1.0 (module/), in English, Italian and German.
 
-Numbers come from hardware/v6.4/cad/v64.json (interface, module) and hardware/module/VERSION; the drawing is
+Numbers come from hardware/cad/v64.json (interface, module) and hardware/module/VERSION; the drawing is
 hardware/module/case-1.0/interface/interfaccia_modulo_v64.png (and .pdf, copied next to the page). Texts in
 site/content/module.toml. site/pages.py calls build(out, pages) with itself as `pages`, for its helpers.
 """
@@ -13,7 +13,7 @@ import tomllib
 def build(out, pg):
     L, Lh, esc, num = pg.L, pg.Lh, pg.esc, pg.num
     M = pg.load_toml('module.toml')
-    d = json.loads((pg.ROOT / 'hardware/v6.4/cad/v64.json').read_text(encoding='utf-8'))
+    d = json.loads((pg.ROOT / 'hardware/cad/v64.json').read_text(encoding='utf-8'))
     ver = tomllib.loads((pg.ROOT / 'hardware/module/VERSION').read_text(encoding='utf-8'))
     I, mod = d['interface'], d['module']
     inter = pg.ROOT / 'hardware/module/case-1.0/interface'

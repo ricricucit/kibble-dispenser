@@ -1,111 +1,82 @@
-# Hardware
+# Hardware 6.4: chassis with a detachable electronics module
 
-**Current design: hardware 6.4, in [`v6.4/`](v6.4/README.md)** (the chassis: closed claw-proof pod with a shut-off gate and the servo in its own sealed bay) **with the electronics module case 1.0, in [`module/`](module/README.md)** (a sealed case with the control panel that slides in from below, with its own version line). Both are **designed and checked in CAD only: not yet printed, assembled or tested**, and the one-button firmware is still to be written ([issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2)). 3D model: <https://ricricucit.github.io/kibble-dispenser/3d/>; print guide: <https://ricricucit.github.io/kibble-dispenser/print/> (print set in [`v6.4/plates/`](v6.4/plates/PRINT_GUIDE.md)); module: <https://ricricucit.github.io/kibble-dispenser/module/>; bought parts: [docs/BOM.md](../docs/BOM.md); assembly guide: <https://ricricucit.github.io/kibble-dispenser/assembly/>; manual: <https://ricricucit.github.io/kibble-dispenser/manual/>. The earlier designs are archived: v6.3 (hardware 6.3.0) in [`v6.3/`](v6.3/README.md), v6.2 (hardware 6.2.0) in [`v6.2/`](v6.2/README.md) and v6 (hardware 6.0.0) in [`v6/`](v6/README.md), none printed.
+**Status: designed and checked in CAD only (hardware 6.4.0, status designed; electronics module case 1.0, status designed). Nothing of 6.4 has been printed, assembled or tested yet, and the firmware for its one-button control panel does not exist yet ([issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2)).** The working prototype is still prototype 1 on the bench, with its two buttons (see [the as-built baseline](../docs/AS_BUILT_BASELINE.it.md) and [the bench notes](../docs/PROTOTYPE_BENCH.md)).
 
-The rest of this file describes prototype 1 and its drivetrain v3 design (disco_v3, albero_mozzo, passante_culla, scivolo_v1), which **v6 and its successors (now 6.4) supersede as the design**. These files stay for reference and for the spline fit test, which 6.4 still uses. Nothing here describes what is physically built: the as-built prototype is in [the as-built baseline](../docs/AS_BUILT_BASELINE.it.md).
+The product is two parts: the **chassis** (mechanics and a holder for the electronics, this folder, version line 6.x) and a detachable **electronics module** with its own version line (case 1.x, in [`module/`](module/README.md)). The electronics inside the module can evolve without touching the chassis.
 
-All dimensions are in mm. The assembly frame is Z-up, with Z=0 at the top face of the box lid (see `cad/layout_v3.json`).
+- The servo stays in the chassis, coaxial and structural, in its own sealed **servo bay** (`scatola_v64`: tower face, servo cradle and gland wall). Two posts with M3 inserts on the bay hold the module.
+- The **module case 1.0** is a sealed case (tub, lid, speaker ring, lid gasket) that slides into an opening of the shell and the cap from below, locks with two M3 × 16 screws and connects with one M8 5-pin plug (J1). Its outer wall is the missing piece of the pod skin and carries the control panel: hang the dispenser with the panel facing you. The interface is described in [`module/case-1.0/README.md`](module/case-1.0/README.md).
+- The shell (`guscio_v64`) has the module opening with return ribs; the cap (`fondello_v64`) closes the servo bay from below, with its lip seal (`guarnizione_fondello_v64`) and the module opening.
+- A short harness in the chassis joins the supply, the servo and the module: a 190 mm M8 tail to J1 with a service loop on the module lid, a 12 V branch to the M8 connector in the pod top, and a round servo branch through the M12 gland to a JR connector in the bay. The servo and its lead stay untouched and replaceable.
+- The panel is on the module: the push-button faces 60° clockwise from the release button (seen from above), on the side away from the bowl, because the servo body blocks the room side.
+
+Pages, in English, Italian and German:
+
+- 3D model, full screen: <https://ricricucit.github.io/kibble-dispenser/3d/>
+- Step-by-step print guide: <https://ricricucit.github.io/kibble-dispenser/print/> (files in [`plates/`](plates/PRINT_GUIDE.md))
+- The electronics module: <https://ricricucit.github.io/kibble-dispenser/module/>
+- Bought parts, chassis and module: <https://ricricucit.github.io/kibble-dispenser/parts/> (also [docs/BOM.md](../docs/BOM.md))
+- Assembly guide, "Install the kit" and "Build it yourself", with a module chapter: <https://ricricucit.github.io/kibble-dispenser/assembly/>
+- Manual (A6 booklet and A4 print version per language) and drilling template: <https://ricricucit.github.io/kibble-dispenser/manual/>
+
+All dimensions are in mm. Frame: Z up, shaft axis at x = y = 0, Z = 0 at the underside of the bowl base, bayonet locked, gate open, module in place.
 
 ## Folders
 
-- `v6/`: design v6 (current), with its own `cad/`, `stl/`, `3mf/` and `assembly/` folders and [README](v6/README.md)
-- `cad/`: generator scripts and assembly data (prototype 1, drivetrain v3)
-  - `build_drivetrain.py`: drivetrain v3: disc with labyrinth cap, shaft and hub, sealed bushing with the servo cradle (`passante_culla`), spline test coupons
-  - `build_disc_v2_chute.py`: chute, plus the legacy disc v2 (superseded by disco_v3, kept for reference)
-  - `layout_v3.json`: assembly frame, box size, key heights and positions (notes in Italian)
-  - `drivetrain.json`: generated by `build_drivetrain.py` (parameters, z-stack, hardware list, lid drilling, fit, seal and wall checks)
-  - `build_assembly.py`: assembly-frame meshes and `assembly.json` for the 3D viewer on the project site
-  - `check_meshes.py`: watertightness check for all exported meshes
-- `stl/`: print-ready STLs, already oriented for the bed
-- `3mf/`: the same parts at assembled height in the frame above. Rotate them to the print orientation in the slicer.
-- `assembly/`: generated by `build_assembly.py` for the 3D viewer, not for printing. Drivetrain parts are in the shaft-axis frame (X=Y=0 on the shaft axis) and the chute is already placed in the assembly frame. `assembly.json` lists every part with its colour, material, spool, status and explode vector, plus the layout numbers used to draw the bought, reused and not-yet-designed parts.
+- `cad/`: generator scripts and design data
+  - `build_v64.py`: builds the chassis parts and the module case 1.0 parts, runs the checks (`build_v64_checks.py`, which runs `build_v64_report.py`) and publishes with `publish_v64.py`. It first runs the stages it builds on, each into `cad/build/` (not committed): `build_v6.py` (with `build_dosing.py` and `build_v5.py`, which take their drivetrain geometry from `build_drivetrain.py`), `build_v61.py`, `build_v611.py`, `build_v62.py` and `build_v63.py`, each with its checks. The stages make most of the chassis parts; only `build_v64.py` publishes.
+  - `los.py`, `toolaccess.py`: check helpers; `ref/`: reference measurements and part data the stage checks compare against.
+  - `v64.json`: design data (split, decisions, interface with the harness, module, parts with the hashes of the print files, build order, checks, load case, grams, hardware, print notes, open risks, review answers); `check_v64.png`: section and check image.
+- `assembly/`: meshes at the assembled position for the 3D viewer, chassis and module, with simple placeholders of the bought parts, and `v64_viewer.json` in English, Italian and German. Not for printing.
+- `plates/`: the print package for a Bambu Lab A1 with AMS lite, for both products: five Bambu Studio projects (chassis PETG, chassis IP66 PETG, chassis TPU, module PETG, module TPU), a plain 3MF per plate, every part as an STL in print orientation, previews, slicer statistics, `summary.json` (products, plates, parts, times, grams, bought parts) and the step-by-step procedure [`PRINT_GUIDE.md`](plates/PRINT_GUIDE.md); generator scripts in `plates/tools/`. Validated by slicing every plate with OrcaSlicer 2.5 (not opened in Bambu Studio yet). Two parts need supports, both set up in the projects: tree supports under the three bowl tabs of the shell, and two tiny columns under the upper corners of the button recess of the module tub.
+- `template/`: the 1:1 drilling template for the shelf (A4, SVG and PDF), with the panel direction.
+- `bom.json`: the bought parts in three languages, grouped by product, checked against `plates/summary.json` by `site/bom.py`.
+- `module/`: the electronics module line; the module parts as exported by the CAD and the interface drawing are in [`module/case-1.0/`](module/case-1.0/README.md).
 
-## Printed parts (prototype 1, superseded by v6)
+## Print review
 
-Status: superseded as the design by v6; test_scanalato is still the spline test to print first. The drivetrain v3 parts below (disco_v3, albero_mozzo, passante_culla, test_scanalato) are **designed only**: not printed, fitted or tested yet. The as-built prototype still holds the servo in a wall bracket. That bracket is a third-party design ("Standard Servo Mounts - Horizontal and Vertical" by Tonym on MakerWorld, CC BY-NC-SA, non-commercial), so it and any derivative of it (such as the spacer) stay out of this repository. It is fine for the prototype but cannot go into a product, which is one reason for the lid-mounted cradle in passante_culla. See [the as-built baseline](../docs/AS_BUILT_BASELINE.it.md).
+An independent print review of every part was made before the first print: [docs/reviews/2026-11-15-v6.4-print-review/](../docs/reviews/2026-11-15-v6.4-print-review/README.md) (0 blocker, 3 major, 19 minor). The CAD answers every finding (`v64.json`, `review_2026_11_15`): the holder posts grow from the bed, the bottom edges of the cap and the tub start with a 45° chamfer, the module has a defined vertical stop, the lid takes PT K30 × 10 screws (5), the J1 bore is Ø16.5, and more. One major point stays partly open by design: the inner 12 mm of the three bowl tabs of the shell still need tree supports from the build plate.
 
-### disco_v3: rotating disc
+## Assembly order (design, not tested)
 
-- Purpose: a 103 x 4 mm disc in the bowl with a trapezoid opening. Turning it 180° releases one portion. Under the disc, a 16 mm sleeve (12.4 mm bore) runs down around the shaft and ends in a labyrinth cap: its skirt hangs 1.5 mm below the top of the bushing collar, 1.25 mm away from it and 0.5 mm above the bowl floor, so crumbs and splashes do not reach the shaft seal. An 8 mm hex pocket sits on the shaft, and an M3x50 screw through the centre clamps disc, shaft and servo spline together.
-- Material: PETG, orange spool. It touches the food.
-- Print orientation: flipped, with the top face of the disc on the bed and the sleeve and cap pointing up (45° flare). No supports.
+From `v64.json`, `build_order`:
 
-### albero_mozzo: shaft and hub
+1. Latch, tower module, chute, shell.
+2. Servo bay onto the tower: 3 × M3 × 40 from below.
+3. Harness: servo branch through the gland, JR female crimped on and plugged to the servo; 12 V branch to the M8 connector in the pod top; tail tied to the bay lug with a 2.5 × 100 cable tie.
+4. Cap: push on, 4 × PT K30 × 12 with an O-ring 3 × 1 from below (T10); the M8 plug hangs out of the opening on its tail.
+5. Rim seal, comb lips, plates and disc from the top.
+6. Module: plug J1 with the module below the pod, lay the tail loop on the lid, slide it up, 2 × M3 × 16 from below (0.5 N·m).
 
-- Purpose: a 22 mm hub at the bottom with a 25-tooth socket for the servo spline and a 45° top cone (support-free). The 12 mm shaft passes through the bushing, with two grooves for NBR 9x2 O-rings (the lower one is enough, the upper one is optional). An 8 mm hex at the top drives the disc.
-- Material: PETG, black spool.
-- Print orientation: hub on the bed, hex up. Print it at **100 % infill**: the core at the grooves is only 9 mm around the 3.4 mm screw bore, which sees about 18 MPa of shear when the servo stalls (2.5 N·m).
+## Checks in CAD
 
-### passante_culla: sealed bushing and servo cradle
+`build_v64_checks.py` verifies, among others: every part watertight after export; no interference in 1457 pairs of parts; the module removal sweep (free all the way out); the servo bay and the module each one closed dry volume, separate from each other, the pod and the outside (voxel flood fill); seal continuity; a straight key reaching every screw; the panel probes (a paw pad or a snout does not reach the button, a fingertip does); knock-out skins and LED flushness; the pod seams; the load case. The print files of the parts made by the stages are checked against their hashes. CI checks the committed meshes on every push and regenerates the whole chain when the CAD scripts change (`.github/workflows/cad.yml`).
 
-- Purpose: one part that replaces the earlier passante_stagno. The bushing carries the shaft through the lid: a 53 mm flange under the lid with a groove for a 45x2 face O-ring that encloses the centre hole and the three lid screws, a 21.5 mm collar that rises to 5 mm above the lid, and a 12.4 mm bore. Three blind M3 heat-set inserts in the flange face take the lid screws. Below the flange, the cradle hangs the servo from the lid: four pads with M3 inserts take the servo tabs from below, and the hub turns in a cavity with 1.5 mm of clearance. Everything under the lid stays at least 2 mm (here 2.5 mm) inside the box walls.
-- Material: PETG, black spool.
-- Print orientation: as assembled, with the servo-pad face on the bed and the collar up. The seal face and the O-ring groove print as top surfaces. No supports: the cavity ceilings are 45°, and the only bridges are a 2.5 mm strip and the four insert-hole ceilings.
+## Firmware
 
-### test_scanalato: spline fit test
-
-- Purpose: three short coupons with the 25-tooth socket at a radial clearance of 0.05, 0.10 and 0.20 mm (marked with 1, 2 and 3 notches). Print them first and try them on the servo. Then set `SPL_CLEAR` in `build_drivetrain.py` and regenerate.
-- Material: PETG, black spool (the same spool as the shaft, so the fit carries over).
-- Print orientation: as exported, socket on the bed.
-
-### scivolo_v1: chute
-
-- Purpose: a curved hollow duct (2.6 mm wall) that carries the portion out of the bowl. It has a 4 mm bolt-on flange with four 3.4 mm holes.
-- Material: PETG, green spool.
-- Print orientation: the STL is exported with the flange on top and the outside of the bend on the bed, so it needs supports. Not validated yet; flange-down is an alternative worth testing.
-
-## Bought parts (prototype 1; for v6.2 see [docs/BOM.md](../docs/BOM.md))
-
-- 1 x M3x50 DIN 912 / ISO 4762 socket head screw, A2: disc and shaft into the thread of the servo spline
-- 3 x M3x12 ISO 10642 (DIN 7991) countersunk screw, A2: from above through the bowl floor and the lid into the flange inserts (5.3 mm engagement)
-- 4 x M3x8 DIN 912 / ISO 4762 socket head screw, A2, with 4 x M3 washer DIN 125-A / ISO 7089 (3.2 x 7 x 0.5): servo tabs, from below into the pad inserts
-- 7 x M3 brass heat-set insert, 5.7 mm long, for a 4.0 mm hole (for example Ruthex RX-M3x5.7): 3 in the flange face (blind, 7.5 mm deep), 4 in the servo pads (blind, 8 mm deep)
-- 1-2 x O-ring NBR70 9x2: shaft, lower groove (a second one in the upper groove is optional)
-- 1 x O-ring NBR70 45x2: face seal between the flange and the lid underside
-- Food-grade silicone grease, NSF H1 (for example Molykote 111), about 0.2 g: a thin film on the shaft O-ring and the bore, a light film on the face O-ring
-- Servo: 25 kg·cm digital servo with a 25-tooth spline (DS3218 / DS3225 class)
-- Waterproof box, 265 x 185 mm
-- Bowl: a reused part
-
-## Lid drilling (prototype 1)
-
-Axis frame: X along the long side of the box, Y along the short side, origin on the shaft axis, angles from +X.
-
-- Shaft axis: 32.5 mm from the outer edge of the long side and 32.5 mm from the outer edge of the short side (29 mm plus the 3.5 mm wall)
-- Centre hole: 22.5 mm
-- 3 x 3.4 mm holes on a 17.5 mm radius, at 90°, 210° and 330°
-- Bowl floor: the same three holes with a 90° countersink to 6.5 mm from the top, so the screw heads sit flush; centre hole 22.5 mm
-- Keep the lid underside flat and free of ribs inside the 53 mm flange, where the face seal sits
-
-## Assembly order (prototype 1 design, not tested yet)
-
-1. Press the 3 inserts into the flange face and the 4 inserts into the pads of passante_culla.
-2. Grease the 9x2 O-ring(s), fit them on albero_mozzo and push the shaft up from below through the cradle into the bore.
-3. Push the servo up from below, spline into the hub socket, and fix it with 4 x M3x8 and washers.
-4. Put the 45x2 O-ring in the face groove, offer the sub-assembly to the lid from below, put the bowl on top and fix it with 3 x M3x12 countersunk screws from above.
-5. Slide the disc sleeve over the shaft from above (hex into the pocket) and fix it with the M3x50 from the top of the disc into the spline.
-
-## Regenerating the parts
-
-```
-pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib
-python hardware/cad/build_drivetrain.py
-python hardware/cad/build_disc_v2_chute.py
-python hardware/cad/build_assembly.py
-python hardware/cad/check_meshes.py
-```
-
-- Regenerate with `python hardware/cad/build_drivetrain.py`.
-- `check_meshes.py` checks that every STL and 3MF is a closed solid (watertight, or closed with bodies touching along an edge, such as raised lettering). CI runs it on every push, for this folder and for `v6/` (`python hardware/cad/check_meshes.py hardware/v6`). It rewrites `stl/` and `3mf/` for the drivetrain parts and refreshes `cad/drivetrain.json`.
-- `build_disc_v2_chute.py` does the same for the chute.
-- `build_assembly.py` reads the 3MF files and `layout_v3.json` and rewrites `assembly/`. Run it after the other two.
-- Both scripts work from any folder and write intermediate files to `cad/build/`, which is not committed.
-- trimesh needs scipy, networkx and lxml for these scripts, and matplotlib draws the section check image.
+The control panel needs the one-button firmware of [issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2): single press = one portion (only while ON), double press = ON/OFF, long press 5 s = reset all but Wi-Fi, 10 s = full reset, never a portion at power-on. The bench prototype keeps its two buttons and `fw-v0.1.0+dev.20260324` until then, and nothing is flashed for 6.4. Note for the firmware: the camera of the WROVER board uses GPIO 26 and 27, which the bench firmware uses for the speaker and the dispense button ([issue #3](https://github.com/ricricucit/kibble-dispenser/issues/3)); prototype 1 has no camera.
 
 ## Open points
 
-- The drivetrain v3 parts are designed only. Print the spline test first, then the parts, and record what is printed and what is mounted.
-- The shaft O-ring 9x2 sits in a 9.0 mm groove with no stretch (15 % squeeze). A ring at the low end of the inner-diameter tolerance will be slightly loose, but it cannot fall out in the bore.
-- The servo in the design checks is simplified, with no raised output boss on the case top: the hub bottom is 1.5 mm above the case top. Check the real servo.
-- The firmware's current servo travel (10° to 100° in the MicroPython source) does not match the 180° disc; calibrate on the mounted disc.
-- If the printed spline strips at full torque, the research notes (section 2) suggest an aluminium 25-tooth horn screwed to the printed shaft.
+From `v64.json`, `open_risks`:
+
+- The panel is not on the room side; the alternative would be a module without the panel plus a panel in the cap.
+- A second full board fits only with a low ESP32 stack; an 80 × 60 × 45 mm box is not reachable in this pod.
+- J1 (M8 5-pin) is a 3 A connector: fine for a standard servo, not for a high-torque one.
+- Lid: about 105 mm of the gasket along the back and notch edges has no screw; water-test the module before trusting IP66.
+- The J1 socket and its nut size are assumed: verify the bought part before printing the lid.
+- PT screws in the lid bosses allow about 5 to 10 openings; a development module can take M3 inserts instead.
+- The pod seams are 0.35 mm gaps without a seal: dust and insects are stopped by the ribs; everything behind them is sealed or drains.
+- The module hangs on two M3 inserts in printed posts (safety factor 4.8 at 250 N): do not hang anything from it.
+
+## Regenerating
+
+```
+pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib fast_simplification
+python hardware/cad/build_v64.py
+python hardware/cad/check_meshes.py hardware
+python hardware/cad/check_meshes.py hardware/plates
+python hardware/cad/check_meshes.py hardware/module/case-1.0
+```
+
+A full run from a clean checkout takes about 16 minutes (later runs only the last stage, about 4 minutes). Everything is written to `cad/build/` first; then `assembly/`, `template/`, `cad/v64.json`, `cad/check_v64.png` and the module folder are published. The PDFs are written without a timestamp. The clearance figures in `v64.json` come from sampled surface points, the 3MF files carry random UUIDs and the SVG drawings random clip ids, so those change slightly on every run; every mesh and image is reproduced byte for byte. Change the scripts, not the meshes; then rebuild the print package with `plates/tools/run_all.sh` (it needs the OrcaSlicer 2.5 command line).

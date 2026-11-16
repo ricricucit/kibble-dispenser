@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-Drivetrain v3 for the kibble dispenser (script revision 4: lid-mounted servo cradle, labyrinth cap).
+Drivetrain v4 for the kibble dispenser, kept as a geometry library of the CAD chain.
+
+The chain uses it only as a library (build_dosing.py and build_v5.py import it); the later stages replace these
+parts with albero_v6, mozzo_v6, colonna_v6 and the servo cradle of the bay.
+Run on its own, it writes to build/ next to this script (not committed). Input: layout_v4.json (read-only).
 
 Parts
   disco_v3        disc + underside boss extended into a sleeve with a downward labyrinth cap over the collar
@@ -11,27 +15,18 @@ Parts
 Frame: Z-up, mm. Z=0 = top face of the box lid. X=Y=0 on the shaft axis (axis frame of layout_v3).
 Main files are at assembled height; *_print.stl are re-oriented on z=0 in the print orientation.
 Booleans: trimesh + manifold3d (engine='manifold').
-
-Run from anywhere:  python hardware/cad/build_drivetrain.py
-Outputs (paths relative to this script's folder):
-  ../stl/<part>.stl        print-ready, oriented for the bed
-  ../3mf/<part>.3mf        at assembled height (frame above)
-  build/<part>.stl         at assembled height, plus build/check_section.png (not committed)
-  drivetrain.json          parameters, z-stack, hardware list, lid drilling, checks
-Input: layout_v3.json (read-only).
 """
 import json
 import math
-from pathlib import Path
+import os
 import numpy as np
 import trimesh
 from shapely.geometry import Polygon
 
-HERE = Path(__file__).resolve().parent
-STL_DIR, MF_DIR, BUILD = HERE.parent / 'stl', HERE.parent / '3mf', HERE / 'build'
-for _d in (STL_DIR, MF_DIR, BUILD):
-    _d.mkdir(parents=True, exist_ok=True)
-LAYOUT = json.load(open(HERE / 'layout_v3.json'))        # read-only
+HERE = os.path.dirname(os.path.abspath(__file__)) + os.sep
+OUT = HERE + 'build' + os.sep                                      # every generated file of the v6 chain lands here
+os.makedirs(OUT, exist_ok=True)
+LAYOUT = json.load(open(HERE + 'layout_v4.json'))                  # read-only
 
 # =====================================================================================
 # PARAMETERS
@@ -44,7 +39,7 @@ AX_X, AX_Y = LAYOUT['shaft_axis_xy']
 WALL_X = (BX['outer_x'][0] + BX['wall']) - AX_X      # -29: -X (short side) inner wall plane
 WALL_Y = (BX['outer_y'][0] + BX['wall']) - AX_Y      # -29: -Y (long side) inner wall plane
 WALL_MIN_GAP = 2.0                                   # everything under the lid stays >= 2 mm inside
-LID_T = BX['lid_plate_t']                            # lid plate z = -3.5..0
+LID_T = BX['lid_plate_t']                            # lid plate z = -3.0..0 (measured 3.0)
 FLOOR_Z0, FLOOR_Z1 = LAYOUT['camera']['floor_z']     # bowl floor z = 0..3 (sits on the lid)
 FLOOR_HOLE_D = LAYOUT['camera']['floor_hole_d']
 SV = LAYOUT['servo']
@@ -89,13 +84,15 @@ SHAFT_D, SHAFT_Z1 = 12.0, 24.0          # round shaft up to the shoulder at z=24
 HEX_AF = 8.0
 HEX_LEN = POCKET_DEPTH - 0.5            # 0.5 mm air above the hex in the pocket
 HEX_CHAMFER = 0.5
+HEX_KEY_W, HEX_KEY_H = 1.2, 0.8            # key rib on the +Y flat: the disc fits in ONE orientation
 OR_SIZE = (9.0, 2.0)                    # shaft O-ring NBR 9x2 (rotary, low friction)
 OR_GROOVE_D = 9.0                       # groove bottom
 OR_GROOVE_W = 1.9                       # flat-bottom width; 45 deg flank above it up to the shaft OD
 OR_GROOVE_Z = (-4.5, 0.5)               # groove centres (lower one is enough, upper optional)
 
 # ---- passante_culla: bushing ----
-FL_D, FL_Z0, FL_Z1 = 53.0, -7.5, -3.5   # sealing flange, top face against the lid underside
+FL_D, FL_Z0 = 53.0, -7.5                # sealing flange bottom unchanged (servo/hub/screw z unchanged)
+FL_Z1 = -LID_T                          # flange top pressed against the lid underside (3.0 lid -> flange 4.5 thick)
 COLLAR_D = 21.5
 COLLAR_Z1_SPEC = 4.0
 BUSH_BORE_D = 12.4
@@ -332,7 +329,8 @@ disc = D(disc, [cyl(SLEEVE_BORE_D, CAP_CEIL - 1, BOSS_Z0),
                         (circle_pts(SLEEVE_BORE_D), CAP_CEIL + SLEEVE_CH)),
                 cyl(BORE_D, CAP_CEIL - 1, DISC_Z1 + 1, 48),
                 cyl(CBORE_D, CBORE_BOT, DISC_Z1 + 1, 64),
-                prism(hexagon(POCKET_AF), BOSS_Z0 - 0.5, POCKET_TOP)])
+                prism(hexagon(POCKET_AF), BOSS_Z0 - 0.5, POCKET_TOP),
+                box(-(HEX_KEY_W + 0.3) / 2, (HEX_KEY_W + 0.3) / 2, 0, POCKET_AF / 2 + HEX_KEY_H + 0.15, BOSS_Z0 - 0.5, POCKET_TOP)])
 disc.process(validate=True)
 
 # =====================================================================================
@@ -345,7 +343,8 @@ hex_body = hull_of((hx, SHAFT_Z1 - 0.2), (hx, HEX_Z1 - HEX_CHAMFER),
 hub = U([cyl(HUB_D, HUB_Z0, HUB_Z1),
          hull_of((circle_pts(HUB_D), HUB_Z1 - 0.5), (circle_pts(HUB_D), HUB_Z1),
                  (circle_pts(SHAFT_D), HUB_CONE_Z1))])
-shaft = U([hub, cyl(SHAFT_D, HUB_CONE_Z1 - 0.5, SHAFT_Z1), hex_body])
+key_rib = box(-HEX_KEY_W / 2, HEX_KEY_W / 2, HEX_AF / 2 - 0.3, HEX_AF / 2 + HEX_KEY_H, SHAFT_Z1 - 0.2, HEX_Z1 - HEX_CHAMFER)
+shaft = U([hub, cyl(SHAFT_D, HUB_CONE_Z1 - 0.5, SHAFT_Z1), hex_body, key_rib])
 rg, ro = OR_GROOVE_D / 2, SHAFT_D / 2 + 0.5
 groove_cuts = []
 for zc in OR_GROOVE_Z:
@@ -441,320 +440,318 @@ servo_screws = U([at(U([cyl(3.0, TAB_Z0 - WASHER_T - 0.01, SERVO_SCREW_TIP_Z, 32
                         cyl(7.0, TAB_Z0 - WASHER_T, TAB_Z0, 32),
                         cyl(5.5, TAB_Z0 - WASHER_T - 3.0, TAB_Z0 - WASHER_T, 32)]), x, y) for x, y in SERVO_HOLES])
 
-# =====================================================================================
-# EXPORT
-# =====================================================================================
-def to_print(m, flip=False):
-    p = m.copy()
-    if flip:
-        p.apply_transform(trimesh.transformations.rotation_matrix(np.pi, [1, 0, 0]))
-    p.apply_translation([0, 0, -p.bounds[0, 2]])
-    return p
+if __name__ == '__main__':   # exports/checks only when run directly (build_dosing imports the geometry)
+    # =====================================================================================
+    # EXPORT
+    # =====================================================================================
+    def to_print(m, flip=False):
+        p = m.copy()
+        if flip:
+            p.apply_transform(trimesh.transformations.rotation_matrix(np.pi, [1, 0, 0]))
+        p.apply_translation([0, 0, -p.bounds[0, 2]])
+        return p
 
 
-def overhang(p, lim_deg=45.0):
-    """area (mm2) of down-facing faces flatter than lim_deg from horizontal, not on the bed"""
-    nz = p.face_normals[:, 2]
-    zmin = p.triangles[:, :, 2].min(axis=1)
-    sel = (nz < -math.sin(math.radians(lim_deg + 1.0))) & (zmin > 0.05)
-    return float(p.area_faces[sel].sum())
+    def overhang(p, lim_deg=45.0):
+        """area (mm2) of down-facing faces flatter than lim_deg from horizontal, not on the bed"""
+        nz = p.face_normals[:, 2]
+        zmin = p.triangles[:, :, 2].min(axis=1)
+        sel = (nz < -math.sin(math.radians(lim_deg + 1.0))) & (zmin > 0.05)
+        return float(p.area_faces[sel].sum())
 
 
-PRINT = {'disco_v3': (disc, True, 'flipped: disc TOP face on the bed, sleeve + cap pointing up (45 deg flare)'),
-         'albero_mozzo': (albero, False, 'as assembled: hub (spline socket) on the bed, hex up; 100% infill or >=6 walls'),
-         'passante_culla': (culla, False, 'as assembled: servo-pad face (z=-32) on the bed, collar up; '
-                                          'seal face + O-ring groove print as top surfaces')}
-print('\n--- meshes ---')
-prints, ovh = {}, {}
-for name, (m, flip, _) in PRINT.items():
-    report(name, m)
-    m.export(BUILD / f'{name}.stl')
-    m.export(MF_DIR / f'{name}.3mf')
-    p = to_print(m, flip)
-    report(name + '_print', p)
-    p.export(STL_DIR / f'{name}.stl')
-    prints[name] = p
-    ovh[name] = round(overhang(p), 1)
-for c, m in zip(CP_CLEARS, coupons):
-    report(f'coupon c={c}', m)
-report('test_scanalato', test)
-test.export(BUILD / 'test_scanalato.stl')
-test.export(STL_DIR / 'test_scanalato.stl')
-ovh['test_scanalato'] = round(overhang(test), 1)
-sc = trimesh.Scene()
-for c, m in zip(CP_CLEARS, coupons):
-    sc.add_geometry(m, geom_name=f'spline_c{int(round(c*100)):03d}')
-sc.export(MF_DIR / 'test_scanalato.3mf')
-print('down-facing area flatter than 45 deg (bridges), mm2:', ovh)
+    PRINT = {'disco_v3': (disc, True, 'flipped: disc TOP face on the bed, sleeve + cap pointing up (45 deg flare)'),
+             'albero_mozzo': (albero, False, 'as assembled: hub (spline socket) on the bed, hex up; 100% infill or >=6 walls'),
+             'passante_culla': (culla, False, 'as assembled: servo-pad face (z=-32) on the bed, collar up; '
+                                              'seal face + O-ring groove print as top surfaces')}
+    print('\n--- meshes ---')
+    prints, ovh = {}, {}
+    for name, (m, flip, _) in PRINT.items():
+        report(name, m)
+        m.export(OUT + f'{name}.stl')
+        m.export(OUT + f'{name}.3mf')
+        p = to_print(m, flip)
+        report(name + '_print', p)
+        p.export(OUT + f'{name}_print.stl')
+        prints[name] = p
+        ovh[name] = round(overhang(p), 1)
+    for c, m in zip(CP_CLEARS, coupons):
+        report(f'coupon c={c}', m)
+    report('test_scanalato', test)
+    test.export(OUT + 'test_scanalato.stl')
+    test.export(OUT + 'test_scanalato_print.stl')
+    ovh['test_scanalato'] = round(overhang(test), 1)
+    sc = trimesh.Scene()
+    for c, m in zip(CP_CLEARS, coupons):
+        sc.add_geometry(m, geom_name=f'spline_c{int(round(c*100)):03d}')
+    sc.export(OUT + 'test_scanalato.3mf')
+    print('down-facing area flatter than 45 deg (bridges), mm2:', ovh)
 
-# =====================================================================================
-# CHECKS
-# =====================================================================================
-print('\n--- interference (intersection volume, mm3) ---')
-PARTS = {'disco_v3': disc, 'albero_mozzo': albero, 'passante_culla': culla}
-CTX = {'servo': servo_solid, 'lid_plate': lid, 'bowl_floor': bowl, 'wall_-X': wall_x, 'wall_-Y': wall_y,
-       'screw_M3x%d' % SCREW_LEN: screw, 'lid_screws': lid_screws, 'servo_screws': servo_screws}
-ENV = {'lid_plate', 'bowl_floor', 'wall_-X', 'wall_-Y'}
-ALL = {**PARTS, **CTX}
-names = list(ALL)
-inter = {}
-for i, a in enumerate(names):
-    for b in names[i + 1:]:
-        if a in ENV and b in ENV:
-            continue
-        v = vol(I(ALL[a], ALL[b]))
-        inter[f'{a}|{b}'] = round(v, 4)
-worst = max(inter.values())
-for k, v in inter.items():
-    if v > 1e-4:
-        print(f'  {k:40s} {v:.4f}')
-print(f'{len(inter)} pairs, max intersection {worst:.5f} mm3')
-assert worst < 1e-2
+    # =====================================================================================
+    # CHECKS
+    # =====================================================================================
+    print('\n--- interference (intersection volume, mm3) ---')
+    PARTS = {'disco_v3': disc, 'albero_mozzo': albero, 'passante_culla': culla}
+    CTX = {'servo': servo_solid, 'lid_plate': lid, 'bowl_floor': bowl, 'wall_-X': wall_x, 'wall_-Y': wall_y,
+           'screw_M3x%d' % SCREW_LEN: screw, 'lid_screws': lid_screws, 'servo_screws': servo_screws}
+    ENV = {'lid_plate', 'bowl_floor', 'wall_-X', 'wall_-Y'}
+    ALL = {**PARTS, **CTX}
+    names = list(ALL)
+    inter = {}
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            if a in ENV and b in ENV:
+                continue
+            v = vol(I(ALL[a], ALL[b]))
+            inter[f'{a}|{b}'] = round(v, 4)
+    worst = max(inter.values())
+    for k, v in inter.items():
+        if v > 1e-4:
+            print(f'  {k:40s} {v:.4f}')
+    print(f'{len(inter)} pairs, max intersection {worst:.5f} mm3')
+    assert worst < 1e-2
 
-# walls: >= 2 mm inside
-WALL_MARGIN = {}
-below_lid = box(-200, 200, -200, 200, -200, -LID_T)        # the rule is for everything under the lid
-for n, m in {'albero_mozzo': albero, 'passante_culla': culla, 'servo': servo_solid,
-             'servo_screws': servo_screws}.items():
-    mb = I(m, below_lid)
-    WALL_MARGIN[n] = {'-X': round(mb.bounds[0, 0] - WALL_X, 2), '-Y': round(mb.bounds[0, 1] - WALL_Y, 2)}
-    assert min(WALL_MARGIN[n].values()) >= WALL_MIN_GAP, n
-print('distance to inner walls (mm):', WALL_MARGIN)
+    # walls: >= 2 mm inside
+    WALL_MARGIN = {}
+    below_lid = box(-200, 200, -200, 200, -200, -LID_T)        # the rule is for everything under the lid
+    for n, m in {'albero_mozzo': albero, 'passante_culla': culla, 'servo': servo_solid,
+                 'servo_screws': servo_screws}.items():
+        mb = I(m, below_lid)
+        WALL_MARGIN[n] = {'-X': round(mb.bounds[0, 0] - WALL_X, 2), '-Y': round(mb.bounds[0, 1] - WALL_Y, 2)}
+        assert min(WALL_MARGIN[n].values()) >= WALL_MIN_GAP, n
+    print('distance to inner walls (mm):', WALL_MARGIN)
 
-# hub clearance envelope (1.5 radial / 1.0 axial, 1.5 on the cones), small numeric tolerance
-tol = 0.02
-env = hull_of((circle_pts(HUB_D + 2 * (HUB_CLR_R - tol)), HUB_Z0 - HUB_CLR_AX + tol),
-              (circle_pts(HUB_D + 2 * (HUB_CLR_R - tol)), HUB_Z1),
-              (circle_pts(SHAFT_D + 2 * (HUB_CLR_CONE - tol)), HUB_CONE_Z1))
-servo_body_only = U([box(SERVO_CX - SERVO_L / 2, SERVO_CX + SERVO_L / 2, -SERVO_W / 2, SERVO_W / 2, SERVO_BOT, SERVO_TOP),
-                     box(SERVO_CX - TAB_L / 2, SERVO_CX + TAB_L / 2, -TAB_W / 2, TAB_W / 2, TAB_Z0, TAB_Z1)])
-HUB_ENV = {'culla': round(vol(I(env, culla)), 5), 'servo_body': round(vol(I(env, servo_body_only)), 5)}
-HUB_CLEAR = {'radial_to_cavity': HUB_CAV_R - HUB_D / 2,
-             'cone_to_cavity_cone_axial_and_radial': round(CAV_C0 - HUB_Z1 + HUB_CAV_R - HUB_D / 2, 3),
-             'top_axial_to_cradle': None,
-             'bottom_to_servo_top': round(HUB_Z0 - SERVO_TOP, 3),
-             'bottom_to_-X_ledge': round(HUB_Z0 - SERVO_ZONE_TOP, 3),
-             'envelope_intersection_mm3': HUB_ENV}
-HUB_CLEAR.pop('top_axial_to_cradle')
-print('hub clearance:', HUB_CLEAR)
-assert max(HUB_ENV.values()) < 1e-2
-
-
-# material under the lid inserts (ray down from points on/inside the blind hole bottom)
-def floor_under(m, x, y, z):
-    loc, _, _ = m.ray.intersects_location([[x, y, z - 0.01]], [[0, 0, -1]])
-    return min(z - p[2] for p in loc) if len(loc) else float('inf')
+    # hub clearance envelope (1.5 radial / 1.0 axial, 1.5 on the cones), small numeric tolerance
+    tol = 0.02
+    env = hull_of((circle_pts(HUB_D + 2 * (HUB_CLR_R - tol)), HUB_Z0 - HUB_CLR_AX + tol),
+                  (circle_pts(HUB_D + 2 * (HUB_CLR_R - tol)), HUB_Z1),
+                  (circle_pts(SHAFT_D + 2 * (HUB_CLR_CONE - tol)), HUB_CONE_Z1))
+    servo_body_only = U([box(SERVO_CX - SERVO_L / 2, SERVO_CX + SERVO_L / 2, -SERVO_W / 2, SERVO_W / 2, SERVO_BOT, SERVO_TOP),
+                         box(SERVO_CX - TAB_L / 2, SERVO_CX + TAB_L / 2, -TAB_W / 2, TAB_W / 2, TAB_Z0, TAB_Z1)])
+    HUB_ENV = {'culla': round(vol(I(env, culla)), 5), 'servo_body': round(vol(I(env, servo_body_only)), 5)}
+    HUB_CLEAR = {'radial_to_cavity': HUB_CAV_R - HUB_D / 2,
+                 'cone_to_cavity_cone_axial_and_radial': round(CAV_C0 - HUB_Z1 + HUB_CAV_R - HUB_D / 2, 3),
+                 'top_axial_to_cradle': None,
+                 'bottom_to_servo_top': round(HUB_Z0 - SERVO_TOP, 3),
+                 'bottom_to_-X_ledge': round(HUB_Z0 - SERVO_ZONE_TOP, 3),
+                 'envelope_intersection_mm3': HUB_ENV}
+    HUB_CLEAR.pop('top_axial_to_cradle')
+    print('hub clearance:', HUB_CLEAR)
+    assert max(HUB_ENV.values()) < 1e-2
 
 
-INS_FLOOR = {}
-for ang, (x, y) in zip(LID_SCREW_ANG, LID_HOLES):
-    pts = [(x, y)] + [(x + (INS_D / 2 + 0.05) * math.cos(t), y + (INS_D / 2 + 0.05) * math.sin(t))
-                      for t in np.linspace(0, 2 * np.pi, 12, endpoint=False)]
-    INS_FLOOR[int(ang)] = round(min(floor_under(culla, px, py, LID_INS_BOT) for px, py in pts), 2)
-print('solid under lid insert holes (mm):', INS_FLOOR)
-assert min(INS_FLOOR.values()) >= 1.5
-
-# O-ring glands
-from shapely.geometry import Polygon as SP
-z_lo, z_hi = -OR_GROOVE_W / 2, OR_GROOVE_W / 2
-gland = SP([(rg, z_lo), (BUSH_BORE_D / 2, z_lo), (BUSH_BORE_D / 2, z_hi + (SHAFT_D / 2 - rg)),
-            (SHAFT_D / 2, z_hi + (SHAFT_D / 2 - rg)), (rg, z_hi)])
-SH_GLAND = (BUSH_BORE_D - OR_GROOVE_D) / 2
-SH_SQUEEZE = (OR_SIZE[1] - SH_GLAND) / OR_SIZE[1]
-SH_FILL = math.pi * (OR_SIZE[1] / 2) ** 2 / gland.area
-SH_STRETCH = OR_GROOVE_D / OR_SIZE[0] - 1
-SH_FILL_RECT = math.pi * (OR_SIZE[1] / 2) ** 2 / ((OR_GROOVE_W + SH_GLAND) * SH_GLAND)
-print(f'shaft O-ring {OR_SIZE[0]:.0f}x{OR_SIZE[1]:.0f}: groove Ø{OR_GROOVE_D} in bore Ø{BUSH_BORE_D}: gland {SH_GLAND:.2f}, '
-      f'squeeze {SH_SQUEEZE*100:.0f}%, fill {SH_FILL*100:.0f}% (true gland incl. 45 deg flank), stretch {SH_STRETCH*100:.1f}%')
-f_id, f_cs = FACE_OR_SIZE
-FACE_OD_COMP = 1 - FACE_OR_OD / (f_id + 2 * f_cs)
-FACE_SQUEEZE = (f_cs - FACE_OR_DEPTH) / f_cs
-FACE_FILL = math.pi * (f_cs / 2) ** 2 / (FACE_OR_W * FACE_OR_DEPTH)
-WALL_INS_GROOVE = FACE_OR_ID / 2 - (LID_SCREW_R + INS_D / 2)
-WALL_GROOVE_EDGE = FL_D / 2 - FACE_OR_OD / 2
-WALL_INS_CAV = LID_SCREW_R - INS_D / 2 - HUB_CAV_R
-WALL_LIDHOLE = LID_SCREW_R - LID_SCREW_HOLE_D / 2 - LID_HOLE_D / 2
-print(f'face O-ring {f_id:.0f}x{f_cs:.0f}: groove ID {FACE_OR_ID:.1f} OD {FACE_OR_OD} (w {FACE_OR_W}) depth {FACE_OR_DEPTH}, '
-      f'OD seat {FACE_OD_COMP*100:.1f}% compressed, squeeze {FACE_SQUEEZE*100:.0f}%, fill {FACE_FILL*100:.0f}%')
-print(f'walls: insert->groove {WALL_INS_GROOVE:.2f}, groove->flange edge {WALL_GROOVE_EDGE:.2f}, '
-      f'insert->hub cavity {WALL_INS_CAV:.2f}, lid: centre hole->screw hole {WALL_LIDHOLE:.2f}')
-assert WALL_INS_GROOVE >= MIN_WALL_INS and WALL_GROOVE_EDGE >= MIN_WALL_EDGE and WALL_INS_CAV >= MIN_WALL_INS
-assert 0.20 <= FACE_SQUEEZE <= 0.30 and FACE_FILL < 0.85 and 0.12 <= SH_SQUEEZE <= 0.18 and SH_FILL < 0.85
-assert FL_D / 2 <= -WALL_X - WALL_MIN_GAP and FL_D / 2 <= -WALL_Y - WALL_MIN_GAP
-CAP = {'skirt_inner_r': CAP_RI, 'skirt_outer_r': CAP_RO, 'radial_gap_to_collar': CAP_GAP_R,
-       'skirt_bottom_z': CAP_Z0, 'gap_to_bowl_floor': CAP_FLOOR_GAP, 'overlap_below_collar_top': COLLAR_Z1 - CAP_Z0,
-       'cap_ceiling_z': CAP_CEIL, 'flare_z': [CAP_ZS, CAP_ZF], 'sleeve_bore_d': SLEEVE_BORE_D, 'sleeve_od': BOSS_D}
-print('cap:', CAP)
-TORQUE = {'stall_Nm': 2.5, 'tab_screw_force_N': round(2500 / (2 * TAB_HOLE_DX) / 2, 1),
-          'lid_screw_shear_N': round(2500 / (3 * LID_SCREW_R), 1),
-          'shaft_core_shear_MPa_at_groove': round(2500 * (OR_GROOVE_D / 2) / (math.pi * (OR_GROOVE_D ** 4 - BORE_D ** 4) / 32), 1)}
-print('torque path:', TORQUE)
-
-# =====================================================================================
-# SECTION RENDER
-# =====================================================================================
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-from matplotlib.patches import Polygon as MPoly, Rectangle
-
-DRAW = [('wall_-X', wall_x, '#F2B8B8', '#B03030', '///'), ('wall_-Y', wall_y, '#F2B8B8', '#B03030', '///'),
-        ('lid_plate', lid, '#D8D8D8', '#808080', '///'), ('bowl_floor', bowl, '#E6E1D3', '#9A8F70', '\\\\\\'),
-        ('servo', servo_solid, '#8FB3E0', '#2F5D8A', None),
-        ('passante_culla', culla, '#3A3A3A', 'k', None), ('albero_mozzo', albero, '#9A9A9A', 'k', None),
-        ('disco_v3', disc, COLORS['disco_v3'], 'k', None),
-        ('screws', U([screw, lid_screws, servo_screws]), '#C9A227', '#6B5410', None)]
+    # material under the lid inserts (ray down from points on/inside the blind hole bottom)
+    def floor_under(m, x, y, z):
+        loc, _, _ = m.ray.intersects_location([[x, y, z - 0.01]], [[0, 0, -1]])
+        return min(z - p[2] for p in loc) if len(loc) else float('inf')
 
 
-def draw_section(ax, origin, normal, T, title, xlim, ylim, xl, yl):
-    for name, m, fc, ec, hatch in DRAW:
-        s = m.section(plane_origin=origin, plane_normal=normal)
-        if s is None:
-            continue
-        p2, _ = s.to_2D(to_2D=T)
-        for poly in p2.polygons_full:
-            ax.add_patch(MPoly(np.array(poly.exterior.coords), closed=True, fc=fc, ec=ec, lw=0.5,
-                               hatch=hatch, alpha=0.95 if hatch is None else 0.6, zorder=3 if hatch is None else 1))
-            for hole in poly.interiors:
-                ax.add_patch(MPoly(np.array(hole.coords), closed=True, fc='white', ec=ec, lw=0.5,
-                                   zorder=4 if hatch is None else 2))
-    ax.set_xlim(*xlim); ax.set_ylim(*ylim); ax.set_aspect('equal')
-    ax.set_xlabel(xl); ax.set_ylabel(yl); ax.grid(alpha=0.25); ax.set_title(title, fontsize=10)
+    INS_FLOOR = {}
+    for ang, (x, y) in zip(LID_SCREW_ANG, LID_HOLES):
+        pts = [(x, y)] + [(x + (INS_D / 2 + 0.05) * math.cos(t), y + (INS_D / 2 + 0.05) * math.sin(t))
+                          for t in np.linspace(0, 2 * np.pi, 12, endpoint=False)]
+        INS_FLOOR[int(ang)] = round(min(floor_under(culla, px, py, LID_INS_BOT) for px, py in pts), 2)
+    print('solid under lid insert holes (mm):', INS_FLOOR)
+    assert min(INS_FLOOR.values()) >= 1.5
+
+    # O-ring glands
+    from shapely.geometry import Polygon as SP
+    z_lo, z_hi = -OR_GROOVE_W / 2, OR_GROOVE_W / 2
+    gland = SP([(rg, z_lo), (BUSH_BORE_D / 2, z_lo), (BUSH_BORE_D / 2, z_hi + (SHAFT_D / 2 - rg)),
+                (SHAFT_D / 2, z_hi + (SHAFT_D / 2 - rg)), (rg, z_hi)])
+    SH_GLAND = (BUSH_BORE_D - OR_GROOVE_D) / 2
+    SH_SQUEEZE = (OR_SIZE[1] - SH_GLAND) / OR_SIZE[1]
+    SH_FILL = math.pi * (OR_SIZE[1] / 2) ** 2 / gland.area
+    SH_STRETCH = OR_GROOVE_D / OR_SIZE[0] - 1
+    SH_FILL_RECT = math.pi * (OR_SIZE[1] / 2) ** 2 / ((OR_GROOVE_W + SH_GLAND) * SH_GLAND)
+    print(f'shaft O-ring {OR_SIZE[0]:.0f}x{OR_SIZE[1]:.0f}: groove Ø{OR_GROOVE_D} in bore Ø{BUSH_BORE_D}: gland {SH_GLAND:.2f}, '
+          f'squeeze {SH_SQUEEZE*100:.0f}%, fill {SH_FILL*100:.0f}% (true gland incl. 45 deg flank), stretch {SH_STRETCH*100:.1f}%')
+    f_id, f_cs = FACE_OR_SIZE
+    FACE_OD_COMP = 1 - FACE_OR_OD / (f_id + 2 * f_cs)
+    FACE_SQUEEZE = (f_cs - FACE_OR_DEPTH) / f_cs
+    FACE_FILL = math.pi * (f_cs / 2) ** 2 / (FACE_OR_W * FACE_OR_DEPTH)
+    WALL_INS_GROOVE = FACE_OR_ID / 2 - (LID_SCREW_R + INS_D / 2)
+    WALL_GROOVE_EDGE = FL_D / 2 - FACE_OR_OD / 2
+    WALL_INS_CAV = LID_SCREW_R - INS_D / 2 - HUB_CAV_R
+    WALL_LIDHOLE = LID_SCREW_R - LID_SCREW_HOLE_D / 2 - LID_HOLE_D / 2
+    print(f'face O-ring {f_id:.0f}x{f_cs:.0f}: groove ID {FACE_OR_ID:.1f} OD {FACE_OR_OD} (w {FACE_OR_W}) depth {FACE_OR_DEPTH}, '
+          f'OD seat {FACE_OD_COMP*100:.1f}% compressed, squeeze {FACE_SQUEEZE*100:.0f}%, fill {FACE_FILL*100:.0f}%')
+    print(f'walls: insert->groove {WALL_INS_GROOVE:.2f}, groove->flange edge {WALL_GROOVE_EDGE:.2f}, '
+          f'insert->hub cavity {WALL_INS_CAV:.2f}, lid: centre hole->screw hole {WALL_LIDHOLE:.2f}')
+    assert WALL_INS_GROOVE >= MIN_WALL_INS and WALL_GROOVE_EDGE >= MIN_WALL_EDGE and WALL_INS_CAV >= MIN_WALL_INS
+    assert 0.20 <= FACE_SQUEEZE <= 0.30 and FACE_FILL < 0.85 and 0.12 <= SH_SQUEEZE <= 0.18 and SH_FILL < 0.85
+    assert FL_D / 2 <= -WALL_X - WALL_MIN_GAP and FL_D / 2 <= -WALL_Y - WALL_MIN_GAP
+    CAP = {'skirt_inner_r': CAP_RI, 'skirt_outer_r': CAP_RO, 'radial_gap_to_collar': CAP_GAP_R,
+           'skirt_bottom_z': CAP_Z0, 'gap_to_bowl_floor': CAP_FLOOR_GAP, 'overlap_below_collar_top': COLLAR_Z1 - CAP_Z0,
+           'cap_ceiling_z': CAP_CEIL, 'flare_z': [CAP_ZS, CAP_ZF], 'sleeve_bore_d': SLEEVE_BORE_D, 'sleeve_od': BOSS_D}
+    print('cap:', CAP)
+    TORQUE = {'stall_Nm': 2.5, 'tab_screw_force_N': round(2500 / (2 * TAB_HOLE_DX) / 2, 1),
+              'lid_screw_shear_N': round(2500 / (3 * LID_SCREW_R), 1),
+              'shaft_core_shear_MPa_at_groove': round(2500 * (OR_GROOVE_D / 2) / (math.pi * (OR_GROOVE_D ** 4 - BORE_D ** 4) / 32), 1)}
+    print('torque path:', TORQUE)
+
+    # =====================================================================================
+    # SECTION RENDER
+    # =====================================================================================
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Polygon as MPoly, Rectangle
+
+    DRAW = [('wall_-X', wall_x, '#F2B8B8', '#B03030', '///'), ('wall_-Y', wall_y, '#F2B8B8', '#B03030', '///'),
+            ('lid_plate', lid, '#D8D8D8', '#808080', '///'), ('bowl_floor', bowl, '#E6E1D3', '#9A8F70', '\\\\\\'),
+            ('servo', servo_solid, '#8FB3E0', '#2F5D8A', None),
+            ('passante_culla', culla, '#3A3A3A', 'k', None), ('albero_mozzo', albero, '#9A9A9A', 'k', None),
+            ('disco_v3', disc, COLORS['disco_v3'], 'k', None),
+            ('screws', U([screw, lid_screws, servo_screws]), '#C9A227', '#6B5410', None)]
 
 
-fig, axs = plt.subplots(2, 2, figsize=(17, 14), facecolor='white')
-Txz = np.array([[1, 0, 0, 0], [0, 0, 1, 0], [0, -1, 0, 0], [0, 0, 0, 1]], float)
-Tyz = np.array([[0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 0, 1]], float)
-draw_section(axs[0, 0], [0, 0, 0], [0, 1, 0], Txz, 'Section Y=0 (XZ): servo, cradle pads, hub, bushing, disc + cap',
-             (-36, 52), (-64, 40), 'X [mm]', 'Z [mm]')
-draw_section(axs[0, 1], [0, 0, 0], [1, 0, 0], Tyz, 'Section X=0 (YZ): -Y wall, side walls, lid screw at 90 deg',
-             (-36, 52), (-64, 40), 'Y [mm]', 'Z [mm]')
-for ax in axs[0]:
-    ax.axhline(SPLINE_TIP_Z, color='r', lw=0.6, ls='--')
-    ax.text(ax.get_xlim()[1] - 1, SPLINE_TIP_Z + 0.5, f'spline tip {SPLINE_TIP_Z}', color='r', fontsize=7, ha='right')
-    ax.axhline(SCREW_TIP_Z, color='m', lw=0.6, ls=':')
-    ax.text(ax.get_xlim()[1] - 1, SCREW_TIP_Z - 2.0, f'M3x{SCREW_LEN} tip {SCREW_TIP_Z:.1f}', color='m', fontsize=7,
-            ha='right')
-    for z, lab in ((COLLAR_Z1, f'collar top {COLLAR_Z1}'), (CAP_Z0, f'skirt bottom {CAP_Z0}'),
-                   (CAGE_Z0, f'pads / tab top {CAGE_Z0}')):
-        ax.text(ax.get_xlim()[0] + 1, z + 0.4, lab, fontsize=7, color='#555')
-for ax, zc in ((axs[1, 0], -10.0), (axs[1, 1], -27.0)):
-    Tp = np.eye(4); Tp[2, 3] = -zc
-    draw_section(ax, [0, 0, zc], [0, 0, 1], Tp, f'Plan section Z={zc} (XY), walls at x,y = {WALL_X:.0f}',
-                 (-36, 52), (-36, 36), 'X [mm]', 'Y [mm]')
-    ax.axvline(WALL_X + WALL_MIN_GAP, color='#B03030', lw=0.5, ls=':')
-    ax.axhline(WALL_Y + WALL_MIN_GAP, color='#B03030', lw=0.5, ls=':')
-handles = [Rectangle((0, 0), 1, 1, fc=d[2], ec=d[3]) for d in DRAW]
-axs[0, 0].legend(handles, [d[0] for d in DRAW], loc='lower right', fontsize=7)
-plt.tight_layout()
-plt.savefig(BUILD / 'check_section.png', dpi=100)
-plt.close(fig)
+    def draw_section(ax, origin, normal, T, title, xlim, ylim, xl, yl):
+        for name, m, fc, ec, hatch in DRAW:
+            s = m.section(plane_origin=origin, plane_normal=normal)
+            if s is None:
+                continue
+            p2, _ = s.to_2D(to_2D=T)
+            for poly in p2.polygons_full:
+                ax.add_patch(MPoly(np.array(poly.exterior.coords), closed=True, fc=fc, ec=ec, lw=0.5,
+                                   hatch=hatch, alpha=0.95 if hatch is None else 0.6, zorder=3 if hatch is None else 1))
+                for hole in poly.interiors:
+                    ax.add_patch(MPoly(np.array(hole.coords), closed=True, fc='white', ec=ec, lw=0.5,
+                                       zorder=4 if hatch is None else 2))
+        ax.set_xlim(*xlim); ax.set_ylim(*ylim); ax.set_aspect('equal')
+        ax.set_xlabel(xl); ax.set_ylabel(yl); ax.grid(alpha=0.25); ax.set_title(title, fontsize=10)
 
-# =====================================================================================
-# JSON
-# =====================================================================================
-params = {k: v for k, v in globals().items()
-          if k.isupper() and len(k) > 1 and isinstance(v, (int, float, tuple)) and not isinstance(v, bool)
-          and k not in ('SEG',)}
-rnd = lambda v: round(v, 4) if isinstance(v, float) else v
-params = {k: ([rnd(x) for x in v] if isinstance(v, tuple) else rnd(v)) for k, v in params.items()}
-lid_xy = [[round(x, 3), round(y, 3)] for x, y in LID_HOLES]
-doc = {
-    'frame': 'Z-up mm, Z=0 = lid top face, X=Y=0 = shaft axis; main files at assembled height',
-    'shaft_axis_world_xy': LAYOUT['shaft_axis_xy'],
-    'axis_from_box_outer_edges_mm': {'-X (short side)': round(-WALL_X + BX['wall'], 2),
-                                     '-Y (long side)': round(-WALL_Y + BX['wall'], 2)},
-    'parameters': params,
-    'z_stack': {'servo_body': [SERVO_BOT, SERVO_TOP], 'servo_tabs': [TAB_Z0, TAB_Z1], 'spline_tip': SPLINE_TIP_Z,
-                'hub_cyl': [HUB_Z0, HUB_Z1], 'hub_cone_to_shaft': [HUB_Z1, HUB_CONE_Z1],
-                'cradle_pads_bottom': CAGE_Z0, 'hub_cavity': [SERVO_ZONE_TOP, CAV_C0], 'bore': [BORE_START_Z, COLLAR_Z1],
-                'flange_disc': [FL_Z0, FL_Z1], 'lid': [-LID_T, 0], 'bowl_floor': [FLOOR_Z0, FLOOR_Z1],
-                'collar_top': COLLAR_Z1, 'cap_skirt_bottom': CAP_Z0, 'cap_ceiling': CAP_CEIL,
-                'shaft_shoulder_disc_seat': SHAFT_Z1, 'disc': [DISC_Z0, DISC_Z1],
-                'note': 'servo, spline, disc and main screw z unchanged; only the hub top and collar top moved'},
-    'screw': {'spec': f'M3x{SCREW_LEN} DIN912 (ISO 4762)', 'head_z': [CBORE_BOT, CBORE_BOT + SCREW_HEAD_H],
-              'tip_z': round(SCREW_TIP_Z, 3), 'tip_below_spline_tip_mm': round(SPLINE_TIP_Z - SCREW_TIP_Z, 3),
-              'solid_under_head_mm': round(CBORE_BOT - POCKET_TOP, 3), 'pocket_depth': POCKET_DEPTH, 'hex_len': HEX_LEN},
-    'hardware': [
-        {'qty': 1, 'item': f'M3x{SCREW_LEN} DIN912 / ISO 4762 socket head, A2', 'use': 'disc + shaft into the servo spline thread'},
-        {'qty': 3, 'item': f'M3x{LID_SCREW_LEN} ISO 10642 (DIN 7991) countersunk socket, A2',
-         'use': f'from above through bowl floor (countersunk) + lid into blind inserts; engagement {LID_SCREW_ENG:.1f} mm'},
-        {'qty': 4, 'item': f'M3x{SERVO_SCREW_LEN} DIN912 / ISO 4762 socket head, A2', 'use': 'servo tabs, from below'},
-        {'qty': 4, 'item': 'M3 washer DIN 125-A / ISO 7089 (3.2 x 7 x 0.5), A2', 'use': 'under the servo screw heads'},
-        {'qty': 7, 'item': f'M3 brass heat-set insert, L {INS_L} mm, for Ø{INS_D} hole (e.g. Ruthex RX-M3x5.7)',
-         'use': f'3 lid (blind, {LID_INS_DEPTH} deep from the seal face) + 4 servo pads (blind, {SERVO_INS_DEPTH} deep from below)'},
-        {'qty': 1, 'item': 'O-ring NBR70 9x2 (ID 9, CS 2)', 'use': 'shaft, lower groove (+1 optional for the upper groove)'},
-        {'qty': 1, 'item': 'O-ring NBR70 45x2 (ID 45, CS 2)', 'use': 'face seal flange <-> lid underside'},
-        {'qty': 1, 'item': 'food-grade silicone grease NSF H1 (e.g. Molykote 111), ~0.2 g',
-         'use': 'thin film on shaft O-ring and bore; light film on the face O-ring'}],
-    'lid_drilling': {
-        'frame': 'axis frame: X along the long side, Y along the short side, origin on the shaft axis',
-        'axis_position': f'{-WALL_X + BX["wall"]:.1f} mm from the -X outer edge and {-WALL_Y + BX["wall"]:.1f} mm from '
-                         f'the -Y outer edge (29 + 3.5 wall); world {LAYOUT["shaft_axis_xy"]}',
-        'centre_hole_d': LID_HOLE_D,
-        'screw_holes': {'qty': 3, 'd': LID_SCREW_HOLE_D, 'r': LID_SCREW_R, 'angles_deg': list(LID_SCREW_ANG),
-                        'xy_axis_frame': lid_xy,
-                        'xy_world': [[round(AX_X + x, 3), round(AX_Y + y, 3)] for x, y in lid_xy]},
-        'bowl_floor_same_pattern': f'3x Ø{LID_SCREW_HOLE_D} at the same r/angles with 90 deg countersink Ø{LID_CSK_D} '
-                                   f'from the top (heads flush); centre hole: layout Ø{FLOOR_HOLE_D} works, Ø{LID_HOLE_D} proposed',
-        'seal_zone': f'flange face O-ring groove ID {FACE_OR_ID:.1f} / OD {FACE_OR_OD} encloses the centre hole and the 3 screw holes; '
-                     f'keep the lid underside flat and rib-free inside Ø{FL_D}'},
-    'face_seal': {'oring': '%dx%d NBR70' % FACE_OR_SIZE, 'groove_id': round(FACE_OR_ID, 2), 'groove_od': FACE_OR_OD,
-                  'groove_width': FACE_OR_W, 'groove_depth': FACE_OR_DEPTH,
-                  'seat': f'O-ring OD on the groove OD ({FACE_OD_COMP*100:.1f}% compression), no stretch',
-                  'squeeze_pct': round(FACE_SQUEEZE * 100, 1), 'fill_pct': round(FACE_FILL * 100, 1),
-                  'walls_mm': {'insert_hole_to_groove': round(WALL_INS_GROOVE, 2),
-                               'groove_to_flange_edge': round(WALL_GROOVE_EDGE, 2),
-                               'insert_hole_to_hub_cavity': round(WALL_INS_CAV, 2)}},
-    'shaft_seal': {'oring': '%dx%d NBR70' % OR_SIZE, 'groove_bottom_d': OR_GROOVE_D, 'groove_flat_w': OR_GROOVE_W,
-                   'upper_flank': '45 deg to the shaft OD (support-free)', 'groove_centres_z': list(OR_GROOVE_Z),
-                   'bore_d': BUSH_BORE_D, 'squeeze_pct': round(SH_SQUEEZE * 100, 1), 'fill_pct': round(SH_FILL * 100, 1),
-                   'fill_pct_rectangular_equiv': round(SH_FILL_RECT * 100, 1), 'stretch_pct': round(SH_STRETCH * 100, 1)},
-    'labyrinth_cap': CAP,
-    'files_note': 'paths relative to hardware/: stl/ = print-ready, 3mf/ = assembled height',
-    'parts': {
-        'disco_v3': {'files': ['stl/disco_v3.stl', '3mf/disco_v3.3mf'], 'filament': FILAMENT['disco_v3'],
-                     'print': PRINT['disco_v3'][2], 'supports': 'none', 'volume_cm3': round(disc.volume / 1000, 3)},
-        'albero_mozzo': {'files': ['stl/albero_mozzo.stl', '3mf/albero_mozzo.3mf'],
-                         'filament': FILAMENT['albero_mozzo'], 'print': PRINT['albero_mozzo'][2],
-                         'supports': 'none (Ø6 socket ceiling bridges)', 'volume_cm3': round(albero.volume / 1000, 3)},
-        'passante_culla': {'files': ['stl/passante_culla.stl', '3mf/passante_culla.3mf'],
-                           'filament': FILAMENT['passante_culla'], 'print': PRINT['passante_culla'][2],
-                           'supports': 'none: hip-roof and hub-cavity ceilings are 45 deg; only bridges are a 2.5 mm '
-                                       'strip at z=-8 and the 4 servo-insert hole ceilings',
-                           'volume_cm3': round(culla.volume / 1000, 3)},
-        'test_scanalato': {'files': ['stl/test_scanalato.stl', '3mf/test_scanalato.3mf'],
-                           'filament': FILAMENT['test_scanalato'], 'print': 'as is, socket on the bed', 'supports': 'none',
-                           'coupons': {f'{n+1} notch(es)': c for n, c in enumerate(CP_CLEARS)}},
-    },
-    'assembly': [
-        'press 3 inserts into the flange face and 4 into the pad faces of passante_culla',
-        'grease, fit 9x2 O-ring(s) on albero_mozzo, push it up from below through the cradle into the bore',
-        'push the servo up from below (spline into the hub socket), 4x M3x%d + washers into the pads' % SERVO_SCREW_LEN,
-        'face O-ring 45x2 in the groove; offer the sub-assembly to the lid from below, bowl on top, 3x M3x%d countersunk from above' % LID_SCREW_LEN,
-        'slide disco_v3 sleeve over the shaft from above (hex into pocket), M3x%d from the disc top into the spline' % SCREW_LEN],
-    'checks': {'watertight': {n: bool(m.is_watertight) for n, m in PARTS.items()} | {'test_scanalato': bool(test.is_watertight)},
-               'intersection_mm3_max': round(worst, 5), 'intersection_mm3': inter,
-               'wall_distance_mm': WALL_MARGIN, 'hub_clearance': HUB_CLEAR, 'solid_under_lid_inserts_mm': INS_FLOOR,
-               'print_downfacing_area_flatter_than_45deg_mm2': ovh, 'torque_path': TORQUE},
-    'proposed_layout_v3_changes': {
-        'bushing.flange_d': f'44 -> {FL_D} (face O-ring 45x2 outside the screws; r {FL_D/2} = {-WALL_X-FL_D/2:.1f} mm from the walls)',
-        'bushing.collar_top_z': f'4 -> {COLLAR_Z1} (E needs skirt bottom 3.5 AND >=1.5 overlap below the collar top; 4 gives 0.5)',
-        'bushing.cradle': f'integrated servo cradle, pads z={CAGE_Z0}, footprint x {CAGE_X_OUT0}..{CAGE_X_OUT1}, y +-{CAGE_OUT_HALF_Y} (+fins to y +-{FIN_FOOT+CAGE_OUT_HALF_Y})',
-        'hub': f'd 24 -> {HUB_D}; z [-18.5,-8.5] -> cylinder [{HUB_Z0},{HUB_Z1}] + 45 deg cone to Ø{SHAFT_D} at {HUB_CONE_Z1}',
-        'shaft.round_z': f'[-8.5, 24] -> [{HUB_CONE_Z1}, {SHAFT_Z1}]',
-        'disc_v3': f'add sleeve Ø{BOSS_D}/bore Ø{SLEEVE_BORE_D} from z=24 down to the cap; cap skirt r {CAP_RI}..{CAP_RO}, z {CAP_Z0}..{CAP_ZS}, flare to z {CAP_ZF}',
-        'lid': f'centre hole Ø{LID_HOLE_D} + 3x Ø{LID_SCREW_HOLE_D} at r {LID_SCREW_R}, {list(LID_SCREW_ANG)} deg; flat inside Ø{FL_D}',
-        'camera.floor': f'3x Ø{LID_SCREW_HOLE_D} countersunk Ø{LID_CSK_D} at the same pattern; floor_hole_d 22 -> {LID_HOLE_D} (optional)',
-        'servo.mounting': f'4x M3x{SERVO_SCREW_LEN} DIN912 + washers from below into heat-set inserts in the cradle pads'},
-    'superseded_files': ['passante_stagno.* (now passante_culla)',
-                         'wall-mounted servo brackets (never in this repository): replaced by the cradle in the design; '
-                         'the as-built prototype still uses a third-party CC BY-NC-SA wall bracket'],
-    'notes': ['SPL_CLEAR is radial (tip and root radii both +c); print test_scanalato first and set SPL_CLEAR.',
-              f'Shaft core at the grooves is Ø{OR_GROOVE_D} with the Ø{BORE_D} bore: ~{TORQUE["shaft_core_shear_MPa_at_groove"]} MPa '
-              'shear at 2.5 N.m stall -> print albero_mozzo 100% infill.',
-              'Shaft O-ring 9x2 on a Ø9.0 groove has 0% stretch (as specified); a ring at the low end of the ID tolerance will be slightly loose but cannot fall out in the bore.',
-              'Servo solid is simplified (no output boss on the case top): hub bottom is 1.5 above the case top; check the real servo for a raised boss.'],
-}
-json.dump(doc, open(HERE / 'drivetrain.json', 'w'), indent=2)
-print('\nwrote', HERE / 'drivetrain.json')
+
+    fig, axs = plt.subplots(2, 2, figsize=(17, 14), facecolor='white')
+    Txz = np.array([[1, 0, 0, 0], [0, 0, 1, 0], [0, -1, 0, 0], [0, 0, 0, 1]], float)
+    Tyz = np.array([[0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 0, 1]], float)
+    draw_section(axs[0, 0], [0, 0, 0], [0, 1, 0], Txz, 'Section Y=0 (XZ): servo, cradle pads, hub, bushing, disc + cap',
+                 (-36, 52), (-64, 40), 'X [mm]', 'Z [mm]')
+    draw_section(axs[0, 1], [0, 0, 0], [1, 0, 0], Tyz, 'Section X=0 (YZ): -Y wall, side walls, lid screw at 90 deg',
+                 (-36, 52), (-64, 40), 'Y [mm]', 'Z [mm]')
+    for ax in axs[0]:
+        ax.axhline(SPLINE_TIP_Z, color='r', lw=0.6, ls='--')
+        ax.text(ax.get_xlim()[1] - 1, SPLINE_TIP_Z + 0.5, f'spline tip {SPLINE_TIP_Z}', color='r', fontsize=7, ha='right')
+        ax.axhline(SCREW_TIP_Z, color='m', lw=0.6, ls=':')
+        ax.text(ax.get_xlim()[1] - 1, SCREW_TIP_Z - 2.0, f'M3x{SCREW_LEN} tip {SCREW_TIP_Z:.1f}', color='m', fontsize=7,
+                ha='right')
+        for z, lab in ((COLLAR_Z1, f'collar top {COLLAR_Z1}'), (CAP_Z0, f'skirt bottom {CAP_Z0}'),
+                       (CAGE_Z0, f'pads / tab top {CAGE_Z0}')):
+            ax.text(ax.get_xlim()[0] + 1, z + 0.4, lab, fontsize=7, color='#555')
+    for ax, zc in ((axs[1, 0], -10.0), (axs[1, 1], -27.0)):
+        Tp = np.eye(4); Tp[2, 3] = -zc
+        draw_section(ax, [0, 0, zc], [0, 0, 1], Tp, f'Plan section Z={zc} (XY), walls at x,y = {WALL_X:.0f}',
+                     (-36, 52), (-36, 36), 'X [mm]', 'Y [mm]')
+        ax.axvline(WALL_X + WALL_MIN_GAP, color='#B03030', lw=0.5, ls=':')
+        ax.axhline(WALL_Y + WALL_MIN_GAP, color='#B03030', lw=0.5, ls=':')
+    handles = [Rectangle((0, 0), 1, 1, fc=d[2], ec=d[3]) for d in DRAW]
+    axs[0, 0].legend(handles, [d[0] for d in DRAW], loc='lower right', fontsize=7)
+    plt.tight_layout()
+    plt.savefig(OUT + 'check_section.png', dpi=100)
+    plt.close(fig)
+
+    # =====================================================================================
+    # JSON
+    # =====================================================================================
+    params = {k: v for k, v in globals().items()
+              if k.isupper() and len(k) > 1 and isinstance(v, (int, float, tuple)) and not isinstance(v, bool)
+              and k not in ('SEG',)}
+    rnd = lambda v: round(v, 4) if isinstance(v, float) else v
+    params = {k: ([rnd(x) for x in v] if isinstance(v, tuple) else rnd(v)) for k, v in params.items()}
+    lid_xy = [[round(x, 3), round(y, 3)] for x, y in LID_HOLES]
+    doc = {
+        'frame': 'Z-up mm, Z=0 = lid top face, X=Y=0 = shaft axis; main files at assembled height',
+        'shaft_axis_world_xy': LAYOUT['shaft_axis_xy'],
+        'axis_from_box_outer_edges_mm': {'-X (short side)': round(-WALL_X + BX['wall'], 2),
+                                         '-Y (long side)': round(-WALL_Y + BX['wall'], 2)},
+        'parameters': params,
+        'z_stack': {'servo_body': [SERVO_BOT, SERVO_TOP], 'servo_tabs': [TAB_Z0, TAB_Z1], 'spline_tip': SPLINE_TIP_Z,
+                    'hub_cyl': [HUB_Z0, HUB_Z1], 'hub_cone_to_shaft': [HUB_Z1, HUB_CONE_Z1],
+                    'cradle_pads_bottom': CAGE_Z0, 'hub_cavity': [SERVO_ZONE_TOP, CAV_C0], 'bore': [BORE_START_Z, COLLAR_Z1],
+                    'flange_disc': [FL_Z0, FL_Z1], 'lid': [-LID_T, 0], 'bowl_floor': [FLOOR_Z0, FLOOR_Z1],
+                    'collar_top': COLLAR_Z1, 'cap_skirt_bottom': CAP_Z0, 'cap_ceiling': CAP_CEIL,
+                    'shaft_shoulder_disc_seat': SHAFT_Z1, 'disc': [DISC_Z0, DISC_Z1],
+                    'note': 'servo, spline, disc and main screw z unchanged; only the hub top and collar top moved'},
+        'screw': {'spec': f'M3x{SCREW_LEN} DIN912 (ISO 4762)', 'head_z': [CBORE_BOT, CBORE_BOT + SCREW_HEAD_H],
+                  'tip_z': round(SCREW_TIP_Z, 3), 'tip_below_spline_tip_mm': round(SPLINE_TIP_Z - SCREW_TIP_Z, 3),
+                  'solid_under_head_mm': round(CBORE_BOT - POCKET_TOP, 3), 'pocket_depth': POCKET_DEPTH, 'hex_len': HEX_LEN},
+        'hardware': [
+            {'qty': 1, 'item': f'M3x{SCREW_LEN} DIN912 / ISO 4762 socket head, A2', 'use': 'disc + shaft into the servo spline thread'},
+            {'qty': 3, 'item': f'M3x{LID_SCREW_LEN} ISO 10642 (DIN 7991) countersunk socket, A2',
+             'use': f'from above through bowl floor (countersunk) + lid into blind inserts; engagement {LID_SCREW_ENG:.1f} mm'},
+            {'qty': 4, 'item': f'M3x{SERVO_SCREW_LEN} DIN912 / ISO 4762 socket head, A2', 'use': 'servo tabs, from below'},
+            {'qty': 4, 'item': 'M3 washer DIN 125-A / ISO 7089 (3.2 x 7 x 0.5), A2', 'use': 'under the servo screw heads'},
+            {'qty': 7, 'item': f'M3 brass heat-set insert, L {INS_L} mm, for Ø{INS_D} hole (e.g. Ruthex RX-M3x5.7)',
+             'use': f'3 lid (blind, {LID_INS_DEPTH} deep from the seal face) + 4 servo pads (blind, {SERVO_INS_DEPTH} deep from below)'},
+            {'qty': 1, 'item': 'O-ring NBR70 9x2 (ID 9, CS 2)', 'use': 'shaft, lower groove (+1 optional for the upper groove)'},
+            {'qty': 1, 'item': 'O-ring NBR70 45x2 (ID 45, CS 2)', 'use': 'face seal flange <-> lid underside'},
+            {'qty': 1, 'item': 'food-grade silicone grease NSF H1 (e.g. Molykote 111), ~0.2 g',
+             'use': 'thin film on shaft O-ring and bore; light film on the face O-ring'}],
+        'lid_drilling': {
+            'frame': 'axis frame: X along the long side, Y along the short side, origin on the shaft axis',
+            'axis_position': f'{-WALL_X + BX["wall"]:.1f} mm from the -X outer edge and {-WALL_Y + BX["wall"]:.1f} mm from '
+                             f'the -Y outer edge (inner wall + {BX["wall"]} wall); world {LAYOUT["shaft_axis_xy"]}',
+            'centre_hole_d': LID_HOLE_D,
+            'screw_holes': {'qty': 3, 'd': LID_SCREW_HOLE_D, 'r': LID_SCREW_R, 'angles_deg': list(LID_SCREW_ANG),
+                            'xy_axis_frame': lid_xy,
+                            'xy_world': [[round(AX_X + x, 3), round(AX_Y + y, 3)] for x, y in lid_xy]},
+            'bowl_floor_same_pattern': f'3x Ø{LID_SCREW_HOLE_D} at the same r/angles with 90 deg countersink Ø{LID_CSK_D} '
+                                       f'from the top (heads flush); centre hole: layout Ø{FLOOR_HOLE_D} works, Ø{LID_HOLE_D} proposed',
+            'seal_zone': f'flange face O-ring groove ID {FACE_OR_ID:.1f} / OD {FACE_OR_OD} encloses the centre hole and the 3 screw holes; '
+                         f'keep the lid underside flat and rib-free inside Ø{FL_D}'},
+        'face_seal': {'oring': '%dx%d NBR70' % FACE_OR_SIZE, 'groove_id': round(FACE_OR_ID, 2), 'groove_od': FACE_OR_OD,
+                      'groove_width': FACE_OR_W, 'groove_depth': FACE_OR_DEPTH,
+                      'seat': f'O-ring OD on the groove OD ({FACE_OD_COMP*100:.1f}% compression), no stretch',
+                      'squeeze_pct': round(FACE_SQUEEZE * 100, 1), 'fill_pct': round(FACE_FILL * 100, 1),
+                      'walls_mm': {'insert_hole_to_groove': round(WALL_INS_GROOVE, 2),
+                                   'groove_to_flange_edge': round(WALL_GROOVE_EDGE, 2),
+                                   'insert_hole_to_hub_cavity': round(WALL_INS_CAV, 2)}},
+        'shaft_seal': {'oring': '%dx%d NBR70' % OR_SIZE, 'groove_bottom_d': OR_GROOVE_D, 'groove_flat_w': OR_GROOVE_W,
+                       'upper_flank': '45 deg to the shaft OD (support-free)', 'groove_centres_z': list(OR_GROOVE_Z),
+                       'bore_d': BUSH_BORE_D, 'squeeze_pct': round(SH_SQUEEZE * 100, 1), 'fill_pct': round(SH_FILL * 100, 1),
+                       'fill_pct_rectangular_equiv': round(SH_FILL_RECT * 100, 1), 'stretch_pct': round(SH_STRETCH * 100, 1)},
+        'labyrinth_cap': CAP,
+        'parts': {
+            'disco_v3': {'files': ['disco_v3.stl', 'disco_v3.3mf', 'disco_v3_print.stl'], 'filament': FILAMENT['disco_v3'],
+                         'print': PRINT['disco_v3'][2], 'supports': 'none', 'volume_cm3': round(disc.volume / 1000, 3)},
+            'albero_mozzo': {'files': ['albero_mozzo.stl', 'albero_mozzo.3mf', 'albero_mozzo_print.stl'],
+                             'filament': FILAMENT['albero_mozzo'], 'print': PRINT['albero_mozzo'][2],
+                             'supports': 'none (Ø6 socket ceiling bridges)', 'volume_cm3': round(albero.volume / 1000, 3)},
+            'passante_culla': {'files': ['passante_culla.stl', 'passante_culla.3mf', 'passante_culla_print.stl'],
+                               'filament': FILAMENT['passante_culla'], 'print': PRINT['passante_culla'][2],
+                               'supports': 'none: hip-roof and hub-cavity ceilings are 45 deg; only bridges are a 2.5 mm '
+                                           'strip at z=-8 and the 4 servo-insert hole ceilings',
+                               'volume_cm3': round(culla.volume / 1000, 3)},
+            'test_scanalato': {'files': ['test_scanalato.stl', 'test_scanalato.3mf', 'test_scanalato_print.stl'],
+                               'filament': FILAMENT['test_scanalato'], 'print': 'as is, socket on the bed', 'supports': 'none',
+                               'coupons': {f'{n+1} notch(es)': c for n, c in enumerate(CP_CLEARS)}},
+        },
+        'assembly': [
+            'press 3 inserts into the flange face and 4 into the pad faces of passante_culla',
+            'grease, fit 9x2 O-ring(s) on albero_mozzo, push it up from below through the cradle into the bore',
+            'push the servo up from below (spline into the hub socket), 4x M3x%d + washers into the pads' % SERVO_SCREW_LEN,
+            'face O-ring 45x2 in the groove; offer the sub-assembly to the lid from below, bowl on top, 3x M3x%d countersunk from above' % LID_SCREW_LEN,
+            'slide disco_v3 sleeve over the shaft from above (hex into pocket), M3x%d from the disc top into the spline' % SCREW_LEN],
+        'checks': {'watertight': {n: bool(m.is_watertight) for n, m in PARTS.items()} | {'test_scanalato': bool(test.is_watertight)},
+                   'intersection_mm3_max': round(worst, 5), 'intersection_mm3': inter,
+                   'wall_distance_mm': WALL_MARGIN, 'hub_clearance': HUB_CLEAR, 'solid_under_lid_inserts_mm': INS_FLOOR,
+                   'print_downfacing_area_flatter_than_45deg_mm2': ovh, 'torque_path': TORQUE},
+        'proposed_layout_v3_changes': {
+            'bushing.flange_d': f'44 -> {FL_D} (face O-ring 45x2 outside the screws; r {FL_D/2} = {-WALL_X-FL_D/2:.1f} mm from the walls)',
+            'bushing.collar_top_z': f'4 -> {COLLAR_Z1} (E needs skirt bottom 3.5 AND >=1.5 overlap below the collar top; 4 gives 0.5)',
+            'bushing.cradle': f'integrated servo cradle, pads z={CAGE_Z0}, footprint x {CAGE_X_OUT0}..{CAGE_X_OUT1}, y +-{CAGE_OUT_HALF_Y} (+fins to y +-{FIN_FOOT+CAGE_OUT_HALF_Y})',
+            'hub': f'd 24 -> {HUB_D}; z [-18.5,-8.5] -> cylinder [{HUB_Z0},{HUB_Z1}] + 45 deg cone to Ø{SHAFT_D} at {HUB_CONE_Z1}',
+            'shaft.round_z': f'[-8.5, 24] -> [{HUB_CONE_Z1}, {SHAFT_Z1}]',
+            'disc_v3': f'add sleeve Ø{BOSS_D}/bore Ø{SLEEVE_BORE_D} from z=24 down to the cap; cap skirt r {CAP_RI}..{CAP_RO}, z {CAP_Z0}..{CAP_ZS}, flare to z {CAP_ZF}',
+            'lid': f'centre hole Ø{LID_HOLE_D} + 3x Ø{LID_SCREW_HOLE_D} at r {LID_SCREW_R}, {list(LID_SCREW_ANG)} deg; flat inside Ø{FL_D}',
+            'camera.floor': f'3x Ø{LID_SCREW_HOLE_D} countersunk Ø{LID_CSK_D} at the same pattern; floor_hole_d 22 -> {LID_HOLE_D} (optional)',
+            'servo.mounting': f'4x M3x{SERVO_SCREW_LEN} DIN912 + washers from below into heat-set inserts in the cradle pads'},
+        'superseded_files': ['passante_stagno.* (now passante_culla)', 'servo_mount_v2_print.*, w_servo_mount_v2.stl (wall mount, replaced by the cradle)'],
+        'notes': ['SPL_CLEAR is radial (tip and root radii both +c); print test_scanalato first and set SPL_CLEAR.',
+                  f'Shaft core at the grooves is Ø{OR_GROOVE_D} with the Ø{BORE_D} bore: ~{TORQUE["shaft_core_shear_MPa_at_groove"]} MPa '
+                  'shear at 2.5 N.m stall -> print albero_mozzo 100% infill.',
+                  'Shaft O-ring 9x2 on a Ø9.0 groove has 0% stretch (as specified); a ring at the low end of the ID tolerance will be slightly loose but cannot fall out in the bore.',
+                  'Servo solid is simplified (no output boss on the case top): hub bottom is 1.5 above the case top; check the real servo for a raised boss.'],
+    }
+    json.dump(doc, open(OUT + 'drivetrain.json', 'w'), indent=2)
+    print('\nwrote', OUT + 'drivetrain.json')

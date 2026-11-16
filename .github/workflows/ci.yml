@@ -8,60 +8,8 @@ permissions:
   contents: read
 
 jobs:
-  cad:
-    name: Regenerate parts and check meshes
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install CAD dependencies
-        run: pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib
-
-      - name: Build the parts in a temporary copy of hardware/
-        run: |
-          tmp="$(mktemp -d)"
-          cp -r hardware "$tmp/"
-          python "$tmp/hardware/cad/build_drivetrain.py"
-          python "$tmp/hardware/cad/build_disc_v2_chute.py"
-          python "$tmp/hardware/cad/build_assembly.py"
-          echo "HW_TMP=$tmp/hardware" >> "$GITHUB_ENV"
-
-      - name: Check every mesh is closed
-        run: python hardware/cad/check_meshes.py "$HW_TMP"
-
-  cad-v6:
-    name: Regenerate design v6 and check meshes
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install CAD dependencies
-        run: pip install trimesh manifold3d shapely mapbox_earcut rtree numpy scipy networkx lxml matplotlib
-
-      # build_v6.py also runs build_dosing.py and build_v5.py (reused parts) and publishes stl/, 3mf/, assembly/
-      - name: Build v6 in a temporary copy of hardware/v6
-        run: |
-          tmp="$(mktemp -d)"
-          cp -r hardware/v6 "$tmp/"
-          python "$tmp/v6/cad/build_v6.py"
-          echo "V6_TMP=$tmp/v6" >> "$GITHUB_ENV"
-
-      - name: Check every v6 mesh is closed
-        run: python hardware/cad/check_meshes.py "$V6_TMP"
-
-      - name: Check every STL of the v6 print plates is closed
-        run: python hardware/cad/check_meshes.py hardware/v6/plates
-
-  meshes-v62:
-    name: Check the committed meshes of design v6.2
+  meshes:
+    name: Check the committed meshes of the chassis and the module
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -73,49 +21,11 @@ jobs:
       - name: Install trimesh
         run: pip install trimesh numpy scipy networkx lxml
 
-      # The full regeneration of v6.2 (about 10 to 20 minutes) runs in cad-v62.yml when hardware/v6.2/cad changes.
-      - name: Check the viewer meshes (hardware/v6.2/assembly) and every STL of the v6.2 print package
+      # The full regeneration (about 15 to 25 minutes) runs in cad.yml when hardware/cad changes.
+      - name: Check the viewer meshes, the module parts and every STL of the print package
         run: |
-          python hardware/cad/check_meshes.py hardware/v6.2
-          python hardware/cad/check_meshes.py hardware/v6.2/plates
-
-  meshes-v63:
-    name: Check the committed meshes of design v6.3
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install trimesh
-        run: pip install trimesh numpy scipy networkx lxml
-
-      # The full regeneration of v6.3 (about 15 to 25 minutes) runs in cad-v63.yml when hardware/v6.3/cad changes.
-      - name: Check the viewer meshes (hardware/v6.3/assembly) and every STL of the v6.3 print package
-        run: |
-          python hardware/cad/check_meshes.py hardware/v6.3
-          python hardware/cad/check_meshes.py hardware/v6.3/plates
-
-  meshes-v64:
-    name: Check the committed meshes of hardware 6.4 and the module case 1.0
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install trimesh
-        run: pip install trimesh numpy scipy networkx lxml
-
-      # The full regeneration of 6.4 (about 15 to 25 minutes) runs in cad-v64.yml when hardware/v6.4/cad changes.
-      - name: Check the viewer meshes, the module parts and every STL of the 6.4 print package
-        run: |
-          python hardware/cad/check_meshes.py hardware/v6.4
-          python hardware/cad/check_meshes.py hardware/v6.4/plates
+          python hardware/cad/check_meshes.py hardware
+          python hardware/cad/check_meshes.py hardware/plates
           python hardware/cad/check_meshes.py hardware/module/case-1.0
 
   site:
@@ -128,13 +38,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install the site dependencies (v6 3D page, plate previews and photo thumbnails)
+      - name: Install the site dependencies (3D page, plate previews and photo thumbnails)
         run: pip install numpy fast_simplification pillow
 
       - name: Build the site from the repository
         run: python site/build.py
 
-      - name: docs/BOM.md and the archived BOM files match the bom.json files and their design data
+      - name: docs/BOM.md matches hardware/bom.json and the print package
         run: python site/bom.py --check
 
   firmware:

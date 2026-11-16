@@ -1,6 +1,6 @@
 # Home page text in English, Italian and German. Rendered by site/pages.py (python site/build.py).
 # Every text is a table with en, it and de. Grams, times and counts are filled in by pages.py from
-# hardware/v6.4/plates/summary.json (plates, grams, bought parts), so they are not written here.
+# hardware/plates/summary.json (plates, grams, bought parts), so they are not written here.
 
 [meta.title]
 en = "Kibble Dispenser: an outdoor kibble dispenser you print yourself"
@@ -205,21 +205,21 @@ it = "Il cavo esce dietro, trattenuto da una fascetta"
 de = "Das Kabel geht hinten raus, von einem Kabelbinder gehalten"
 
 [how.steps.body]
-en = "No channel and no second hole in the shelf: the 12 V cable leaves at the back of the flange through a curved tunnel, and you clip it along the shelf. A UV-stable cable tie cinched in a window of the flange takes any pull or bite, so nothing reaches the waterproof M8 connector inside the top of the pod."
-it = "Niente canalina e nessun secondo foro nel ripiano: il cavo a 12 V esce dietro la flangia da un tunnel curvo, e lo fissate lungo il ripiano con delle clip. Una fascetta resistente ai raggi UV, stretta in una finestra della flangia, prende ogni strappo o morso, così niente arriva al connettore M8 stagno dentro la parte alta del guscio."
-de = "Kein Kanal und kein zweites Loch im Brett: das 12-V-Kabel verlässt den Flansch hinten durch einen gebogenen Tunnel, und ihr clipst es am Brett entlang. Ein UV-beständiger Kabelbinder in einem Fenster des Flanschs nimmt jeden Zug oder Biss auf, so erreicht nichts den wasserdichten M8-Steckverbinder oben in der Hülle."
+en = "No second hole in the shelf: the 12 V cable leaves at the back of the flange through a curved tunnel, and you clip it along the shelf. A UV-stable cable tie cinched in a window of the flange takes any pull or bite, so nothing reaches the waterproof M8 connector inside the top of the pod."
+it = "Nessun secondo foro nel ripiano: il cavo a 12 V esce dietro la flangia da un tunnel curvo, e lo fissate lungo il ripiano con delle clip. Una fascetta resistente ai raggi UV, stretta in una finestra della flangia, prende ogni strappo o morso, così niente arriva al connettore M8 stagno dentro la parte alta del guscio."
+de = "Kein zweites Loch im Brett: das 12-V-Kabel verlässt den Flansch hinten durch einen gebogenen Tunnel, und ihr clipst es am Brett entlang. Ein UV-beständiger Kabelbinder in einem Fenster des Flanschs nimmt jeden Zug oder Biss auf, so erreicht nichts den wasserdichten M8-Steckverbinder oben in der Hülle."
 
 [[how.steps]]
 key = "care"
 [how.steps.title]
-en = "Fewer parts, almost no maintenance"
-it = "Meno pezzi, quasi nessuna manutenzione"
-de = "Weniger Teile, fast wartungsfrei"
+en = "Almost no maintenance"
+it = "Quasi nessuna manutenzione"
+de = "Fast wartungsfrei"
 
 [how.steps.body]
-en = "21 of the printed parts are the 6.3.0 files unchanged, so plates already printed stay valid. No grease and no oil, ever: the drive is sealed and greased for life. No silica gel: the servo bay breathes through a membrane vent. Ribs under the disc sweep crumbs away at every turn. Clean the food path every few months and keep the drain holes clear."
-it = "21 pezzi stampati sono i file della 6.3.0 senza modifiche, quindi i piatti già stampati restano validi. Mai grasso né olio: la trasmissione è sigillata e lubrificata a vita. Niente gel di silice: il vano servo respira attraverso una membrana. Nervature sotto il disco spazzano via le briciole a ogni giro. Pulite il percorso del cibo ogni pochi mesi e tenete liberi i fori di scarico."
-de = "21 Druckteile sind die 6.3.0-Dateien unverändert, schon gedruckte Platten bleiben also gültig. Nie Fett, nie Öl: der Antrieb ist abgedichtet und dauergeschmiert. Kein Silicagel: das Servofach atmet über eine Membran. Rippen unter der Scheibe fegen bei jeder Drehung Krümel weg. Den Futterweg alle paar Monate reinigen und die Ablauflöcher frei halten."
+en = "No grease and no oil, ever: the drive is sealed and greased for life. No silica gel: the servo bay breathes through a membrane vent. Ribs under the disc sweep crumbs away at every turn. Clean the food path every few months and keep the drain holes clear."
+it = "Mai grasso né olio: la trasmissione è sigillata e lubrificata a vita. Niente gel di silice: il vano servo respira attraverso una membrana. Nervature sotto il disco spazzano via le briciole a ogni giro. Pulite il percorso del cibo ogni pochi mesi e tenete liberi i fori di scarico."
+de = "Nie Fett, nie Öl: der Antrieb ist abgedichtet und dauergeschmiert. Kein Silicagel: das Servofach atmet über eine Membran. Rippen unter der Scheibe fegen bei jeder Drehung Krümel weg. Den Futterweg alle paar Monate reinigen und die Ablauflöcher frei halten."
 
 [how.cta_module]
 en = "The electronics module"
@@ -285,7 +285,7 @@ de = "Alles, was ihr braucht, ist hier, kostenlos: Druckdateien, die Liste der Z
 
 [build.print]
 title = { en = "Print guide", it = "Guida di stampa", de = "Druckanleitung" }
-body = { en = "Step by step on a Bambu Lab A1 with AMS lite: test coupons first, then one plate per step. Chassis and module have their own files. Already printed 6.3.0? The guide shows what is left.", it = "Passo per passo su una Bambu Lab A1 con AMS lite: prima i provini, poi un piatto per passo. Telaio e modulo hanno i loro file. Avete già stampato la 6.3.0? La guida mostra cosa manca.", de = "Schritt für Schritt auf einem Bambu Lab A1 mit AMS lite: zuerst die Testproben, dann eine Platte pro Schritt. Gehäuse und Modul haben eigene Dateien. Schon 6.3.0 gedruckt? Die Anleitung zeigt, was fehlt." }
+body = { en = "Step by step on a Bambu Lab A1 with AMS lite: test coupons first, then one plate per step. Chassis and module have their own files.", it = "Passo per passo su una Bambu Lab A1 con AMS lite: prima i provini, poi un piatto per passo. Telaio e modulo hanno i loro file.", de = "Schritt für Schritt auf einem Bambu Lab A1 mit AMS lite: zuerst die Testproben, dann eine Platte pro Schritt. Gehäuse und Modul haben eigene Dateien." }
 cta = { en = "Open the print guide", it = "Apri la guida di stampa", de = "Druckanleitung öffnen" }
 plates = { en = "plates", it = "piatti", de = "Platten" }
 hours = { en = "printing", it = "di stampa", de = "Druckzeit" }
@@ -339,7 +339,7 @@ de = "Hardware 6.4: konstruiert, noch nicht gedruckt oder getestet"
 
 [status.v6]
 title = { en = "Hardware 6.4, in CAD", it = "Hardware 6.4, in CAD", de = "Hardware 6.4, im CAD" }
-body = { en = "Every part is generated by Python scripts and checked automatically: closed meshes, no interference in 1457 pairs of parts, the module sliding out freely, the servo bay and the module each sealed on its own, a straight key reaching every screw, paw and fingertip probes on the panel. 21 parts are the 6.3.0 files byte for byte. An independent print review found 3 major and 19 minor points, now answered in the CAD. Nothing of 6.4 has been printed yet.", it = "Ogni pezzo è generato da script Python e verificato in automatico: mesh chiuse, nessuna interferenza in 1457 coppie di pezzi, il modulo che esce libero, vano servo e modulo stagni ciascuno per conto suo, una chiave dritta che arriva a ogni vite, prove con zampa e polpastrello sul pannello. 21 pezzi sono i file della 6.3.0 byte per byte. Una revisione di stampa indipendente ha trovato 3 punti importanti e 19 minori, ora risolti nel CAD. Della 6.4 non è ancora stato stampato nulla.", de = "Jedes Teil wird von Python-Skripten erzeugt und automatisch geprüft: geschlossene Netze, keine Überschneidung in 1457 Teilepaaren, das Modul läuft frei heraus, Servofach und Modul sind jeweils für sich dicht, ein gerader Schlüssel erreicht jede Schraube, Pfoten- und Fingerkuppenproben am Bedienfeld. 21 Teile sind die 6.3.0-Dateien Byte für Byte. Eine unabhängige Druckprüfung fand 3 wichtige und 19 kleine Punkte, jetzt im CAD beantwortet. Von 6.4 ist noch nichts gedruckt." }
+body = { en = "Every part is generated by Python scripts and checked automatically: closed meshes, no interference in 1457 pairs of parts, the module sliding out freely, the servo bay and the module each sealed on its own, a straight key reaching every screw, paw and fingertip probes on the panel. An independent print review found 3 major and 19 minor points, now answered in the CAD. Nothing of 6.4 has been printed yet.", it = "Ogni pezzo è generato da script Python e verificato in automatico: mesh chiuse, nessuna interferenza in 1457 coppie di pezzi, il modulo che esce libero, vano servo e modulo stagni ciascuno per conto suo, una chiave dritta che arriva a ogni vite, prove con zampa e polpastrello sul pannello. Una revisione di stampa indipendente ha trovato 3 punti importanti e 19 minori, ora risolti nel CAD. Della 6.4 non è ancora stato stampato nulla.", de = "Jedes Teil wird von Python-Skripten erzeugt und automatisch geprüft: geschlossene Netze, keine Überschneidung in 1457 Teilepaaren, das Modul läuft frei heraus, Servofach und Modul sind jeweils für sich dicht, ein gerader Schlüssel erreicht jede Schraube, Pfoten- und Fingerkuppenproben am Bedienfeld. Eine unabhängige Druckprüfung fand 3 wichtige und 19 kleine Punkte, jetzt im CAD beantwortet. Von 6.4 ist noch nichts gedruckt." }
 
 [status.bench]
 title = { en = "The prototype on the bench", it = "Il prototipo sul banco", de = "Der Prototyp auf der Werkbank" }
@@ -414,11 +414,6 @@ de = "Kibble Dispenser Outdoor"
 en = "hardware 6.4 · designed, not yet printed or tested"
 it = "hardware 6.4 · disegnato, non ancora stampato né provato"
 de = "Hardware 6.4 · konstruiert, noch nicht gedruckt oder getestet"
-
-[footer.earlier]
-en = "Earlier versions"
-it = "Versioni precedenti"
-de = "Frühere Versionen"
 
 [footer.privacy]
 en = "No cookies, no trackers, no third-party scripts or fonts."
@@ -495,71 +490,3 @@ de = "Lieber Schritt für Schritt mit dem 3D-Modell? Die Montageanleitung hat di
 en = "Manuals CC BY 4.0, drilling template CERN-OHL-P-2.0."
 it = "Manuali CC BY 4.0, dima di foratura CERN-OHL-P-2.0."
 de = "Handbücher CC BY 4.0, Bohrschablone CERN-OHL-P-2.0."
-
-# ------------------------------------------------------------------ archive of design v6 (v6/)
-[manual.archived_title]
-en = "Archived: manual of design {v}"
-it = "Archivio: manuale del progetto {v}"
-de = "Archiv: Handbuch von Entwurf {v}"
-
-[manual.archived_body]
-en = "These PDFs belong to design {v}; they are downloaded from its GitHub release. The current design is {c}."
-it = "Questi PDF sono del progetto {v}; si scaricano dalla sua release su GitHub. Il progetto attuale è la {c}."
-de = "Diese PDFs gehören zu Entwurf {v}; sie kommen aus seinem GitHub-Release. Der aktuelle Entwurf ist {c}."
-
-[manual.archived_link]
-en = "Manual of {c}"
-it = "Manuale della {c}"
-de = "Handbuch von {c}"
-
-[archive.meta]
-en = "Design v6 (archive) · Kibble Dispenser"
-it = "Progetto v6 (archivio) · Kibble Dispenser"
-de = "Entwurf v6 (Archiv) · Kibble Dispenser"
-
-[archive.title]
-en = "Design v6, the one-twist unit (archive)"
-it = "Progetto v6, l'unità a una rotazione (archivio)"
-de = "Entwurf v6, die Ein-Dreh-Einheit (Archiv)"
-
-[archive.lead]
-en = "Hardware 6.0.0, designed and checked in CAD in November 2026 and never printed. Designs v6.2, v6.3 and 6.4 replaced it: they close the unit in a claw-proof pod with a shut-off gate, and 6.4 adds a detachable electronics module. These pages stay online so that old links keep working."
-it = "Hardware 6.0.0, disegnato e verificato in CAD a novembre 2026 e mai stampato. I progetti v6.2, v6.3 e 6.4 l'hanno sostituito: chiudono l'unità in un guscio a prova di unghie con saracinesca, e la 6.4 aggiunge un modulo elettronica estraibile. Queste pagine restano online perché i vecchi link continuino a funzionare."
-de = "Hardware 6.0.0, im November 2026 konstruiert und im CAD geprüft, nie gedruckt. Die Entwürfe v6.2, v6.3 und 6.4 haben ihn ersetzt: sie schließen die Einheit in eine kratzfeste Hülle mit Absperrschieber, und 6.4 bringt ein abnehmbares Elektronikmodul. Diese Seiten bleiben online, damit alte Links funktionieren."
-
-[archive_current]
-en = "Go to the current design, {c}"
-it = "Vai al progetto attuale, la {c}"
-de = "Zum aktuellen Entwurf, {c}"
-
-# ------------------------------------------------------------------ archive of design v6.2 (v6.2/)
-[archive_v62.meta]
-en = "Design v6.2 (archive) · Kibble Dispenser"
-it = "Progetto v6.2 (archivio) · Kibble Dispenser"
-de = "Entwurf v6.2 (Archiv) · Kibble Dispenser"
-
-[archive_v62.title]
-en = "Design v6.2, closed pod with shut-off gate (archive)"
-it = "Progetto v6.2, guscio chiuso con saracinesca (archivio)"
-de = "Entwurf v6.2, geschlossene Hülle mit Absperrschieber (Archiv)"
-
-[archive_v62.lead]
-en = "Hardware 6.2.0, designed and checked in CAD in November 2026 and never printed. Designs v6.3 and 6.4 replaced it: no cable channel, fewer parts, the print corrections folded into the CAD, and in 6.4 a detachable electronics module. These pages stay online so that old links keep working."
-it = "Hardware 6.2.0, disegnato e verificato in CAD a novembre 2026 e mai stampato. I progetti v6.3 e 6.4 l'hanno sostituito: niente canalina, meno pezzi, le correzioni di stampa riportate nel CAD e, nella 6.4, un modulo elettronica estraibile. Queste pagine restano online perché i vecchi link continuino a funzionare."
-de = "Hardware 6.2.0, im November 2026 konstruiert und im CAD geprüft, nie gedruckt. Die Entwürfe v6.3 und 6.4 haben ihn ersetzt: kein Kabelkanal, weniger Teile, die Druckkorrekturen im CAD und in 6.4 ein abnehmbares Elektronikmodul. Diese Seiten bleiben online, damit alte Links funktionieren."
-
-# ------------------------------------------------------------------ archive of design v6.3 (v6.3/)
-[archive_v63.meta]
-en = "Design v6.3 (archive) · Kibble Dispenser"
-it = "Progetto v6.3 (archivio) · Kibble Dispenser"
-de = "Entwurf v6.3 (Archiv) · Kibble Dispenser"
-
-[archive_v63.title]
-en = "Design v6.3, pod with a control panel in the cap (archive)"
-it = "Progetto v6.3, guscio con il pannello comandi nel fondello (archivio)"
-de = "Entwurf v6.3, Hülle mit Bedienfeld im Boden (Archiv)"
-
-[archive_v63.lead]
-en = "Hardware 6.3.0, designed and checked in CAD in November 2026 and never printed. Hardware 6.4 replaced it: the electronics move into a detachable module with its own version line, the servo stays in the chassis, and 21 of the 6.3.0 part files are used unchanged. These pages stay online so that old links keep working."
-it = "Hardware 6.3.0, disegnato e verificato in CAD a novembre 2026 e mai stampato. L'hardware 6.4 l'ha sostituito: l'elettronica passa in un modulo estraibile con una sua linea di versioni, il servo resta nel telaio, e 21 file di pezzi della 6.3.0 restano identici. Queste pagine restano online perché i vecchi link continuino a funzionare."
-de = "Hardware 6.3.0, im November 2026 konstruiert und im CAD geprüft, nie gedruckt. Hardware 6.4 hat ihn ersetzt: die Elektronik wandert in ein abnehmbares Modul mit eigener Versionslinie, der Servo bleibt im Gehäuse, und 21 Teiledateien von 6.3.0 bleiben unverändert. Diese Seiten bleiben online, damit alte Links funktionieren."

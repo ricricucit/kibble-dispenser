@@ -1,21 +1,17 @@
 #!/usr/bin/env python3
 """
-Bought parts ("Pezzi extra") in English, Italian and German, for the current design (hardware 6.4: chassis 6.4 and
-electronics module case 1.0) and the archived v6.3, v6.2 and v6.
+Bought parts ("Pezzi extra") of the current design (hardware 6.4: chassis 6.4 and electronics module case 1.0), in
+English, Italian and German.
 
-Sources, one per design (DESIGNS below):
-  v6.4  hardware/v6.4/bom.json (texts and quantities, grouped by product: chassis and module), checked per product against
-        the bought-parts list of the print package, hardware/v6.4/plates/summary.json (bought_parts)
-  v6.3  hardware/v6.3/bom.json, checked against hardware/v6.3/plates/summary.json (archived)
-  v6.2  hardware/v6.2/bom.json, checked against hardware/v6.2/plates/summary.json (archived)
-  v6    hardware/v6/bom.json, checked against the hardware list of hardware/v6/cad/v6.json (archived)
-Every line of the source list must appear in some item's "match", and an item's quantity must equal the sum of the
-source lines it matches. Items without "match" (electronics, tools) are not in the design data.
+Source: hardware/bom.json (texts and quantities, grouped by product: chassis and module), checked per product against
+the bought-parts list of the print package, hardware/plates/summary.json (bought_parts). Every line of the source list
+must appear in some item's "match", and an item's quantity must equal the sum of the source lines it matches. Items
+without "match" (electronics, tools) are not in the design data.
 
-    python site/bom.py           rewrite docs/BOM.md (6.4), docs/BOM-v6.3.md, docs/BOM-v6.2.md and docs/BOM-v6.md
-    python site/bom.py --check   exit 1 if one of them is out of date (CI runs this)
+    python site/bom.py           rewrite docs/BOM.md
+    python site/bom.py --check   exit 1 if it is out of date (CI runs this)
 
-site/build.py imports load() and render_page() to write the site pages parts/ (6.4), v6.3/parts/, v6.2/parts/ and v6/parts/.
+site/build.py imports load() and render_page() to write the site page parts/.
 Only the Python standard library is required.
 """
 import html
@@ -31,27 +27,14 @@ LANGS = ('en', 'it', 'de')
 LANG_NAMES = {'en': 'English', 'it': 'Italiano', 'de': 'Deutsch'}
 
 
-def _hw_v6():
-    return json.loads((ROOT / 'hardware/v6/cad/v6.json').read_text(encoding='utf-8'))['hardware']
-
-
-def _bought(design):
-    return lambda: json.loads((ROOT / f'hardware/{design}/plates/summary.json').read_text(encoding='utf-8'))['bought_parts']
+def _bought():
+    return json.loads((ROOT / 'hardware/plates/summary.json').read_text(encoding='utf-8'))['bought_parts']
 
 
 DESIGNS = {
-    'v6.4': dict(label='v6.4', bom='hardware/v6.4/bom.json', source=_bought('v6.4'), source_name='plates/summary.json (bought_parts)',
-                 md='docs/BOM.md', page='parts/', root='../', model='../3d/', print='../print/', archived=False,
-                 printed_md='../hardware/v6.4/plates/PRINT_GUIDE.md', folder='hardware/v6.4'),
-    'v6.3': dict(label='v6.3', bom='hardware/v6.3/bom.json', source=_bought('v6.3'), source_name='plates/summary.json (bought_parts)',
-                 md='docs/BOM-v6.3.md', page='v6.3/parts/', root='../../', model='../3d/', print='../print/', archived=True,
-                 printed_md='../hardware/v6.3/plates/README.md', folder='hardware/v6.3'),
-    'v6.2': dict(label='v6.2', bom='hardware/v6.2/bom.json', source=_bought('v6.2'), source_name='plates/summary.json (bought_parts)',
-                 md='docs/BOM-v6.2.md', page='v6.2/parts/', root='../../', model='../3d/', print='../print/', archived=True,
-                 printed_md='../hardware/v6.2/plates/README.md', folder='hardware/v6.2'),
-    'v6': dict(label='v6', bom='hardware/v6/bom.json', source=_hw_v6, source_name='cad/v6.json (hardware)',
-               md='docs/BOM-v6.md', page='v6/parts/', root='../../', model='../3d/', print='../print/', archived=True,
-               printed_md='../hardware/v6/README.md', folder='hardware/v6'),
+    'v6.4': dict(label='v6.4', bom='hardware/bom.json', source=_bought, source_name='plates/summary.json (bought_parts)',
+                 md='docs/BOM.md', page='parts/', root='../', model='../3d/', print='../print/',
+                 printed_md='../hardware/plates/PRINT_GUIDE.md', folder='hardware/plates'),
 }
 CURRENT = 'v6.4'
 
@@ -77,12 +60,6 @@ def ui(cfg):
                     'it': 'Testo CC BY 4.0, dati di progetto CERN-OHL-P-2.0.',
                     'de': 'Text CC BY 4.0, Konstruktionsdaten CERN-OHL-P-2.0.'},
     }
-    if cfg['archived']:
-        c = DESIGNS[CURRENT]['label']
-        t['archived'] = {'en': f'Archived page: design {v}. The current design is {c}, with its own list of bought parts.',
-                         'it': f'Pagina archiviata: progetto {v}. Il progetto attuale è la {c}, con il suo elenco di pezzi extra.',
-                         'de': f'Archivseite: Entwurf {v}. Der aktuelle Entwurf ist {c}, mit eigener Zukaufteile-Liste.'}
-        t['current'] = {'en': f'Bought parts of {c}', 'it': f'Pezzi extra della {c}', 'de': f'Zukaufteile von {c}'}
     return t
 
 
@@ -90,7 +67,7 @@ def load(design=CURRENT):
     """Read the design's bom.json and check it against its source list."""
     cfg = DESIGNS[design]
     bom = json.loads((ROOT / cfg['bom']).read_text(encoding='utf-8'))
-    by_product = 'products' in bom                 # 6.4: two products, each line of the source list belongs to one
+    by_product = 'products' in bom                 # two products: each line of the source list belongs to one
     qty_of = {}
     for h in cfg['source']():
         k = (h['product'], h['item']) if by_product else h['item']
@@ -137,8 +114,6 @@ def render_markdown(bom):
            '',
            f"Website: <{SITE_URL}{cfg['page']}>",
            '']
-    if cfg['archived']:
-        out += [f"Archived: this is design {cfg['label']}. The current design is {DESIGNS[CURRENT]['label']}: [docs/BOM.md](BOM.md).", '']
     for lang in LANGS:
         out += [f'## {LANG_NAMES[lang]}', '', f"**{U['status'][lang]}**", '',
                 f"{U['lead'][lang]} {U['source'][lang]}", '']
@@ -178,7 +153,7 @@ def render_page(bom, versions_html=''):
         seen = set()
         for g in bom['groups']:
             pr = g.get('product')
-            if pr and pr not in seen:              # product heading (6.4: chassis, electronics module)
+            if pr and pr not in seen:              # product heading (chassis, electronics module)
                 seen.add(pr)
                 bands.append(f'<section class="band prod" id="{e(pr)}-{lang}"><div class="band-head"><h2>{e(prods[pr]["title"][lang])}</h2>'
                              f'<p>{e(prods[pr]["note"][lang])}</p></div></section>')
@@ -196,8 +171,6 @@ def render_page(bom, versions_html=''):
     titles = ' '.join(f'data-title-{lang}="{e(U["title"][lang])} · Kibble Dispenser {label}"' for lang in LANGS)
     switch = ''.join(f'<button type="button" data-set-lang="{lang}" lang="{lang}" aria-pressed="{str(lang == "en").lower()}">'
                      f'{lang.upper()}</button>' for lang in LANGS)
-    archived = (f'<p class="stamp archived">{_spans(U["archived"])} <a href="{root}parts/" data-keep-lang>{_spans(U["current"])} →</a></p>'
-                if cfg['archived'] else '')
     return f'''<!doctype html>
 <html lang="en" data-lang="en" {titles}>
 <head>
@@ -228,7 +201,6 @@ def render_page(bom, versions_html=''):
     <section class="parts-head">
       <div class="lang-switch" role="group" aria-label="Language / Lingua / Sprache">{switch}</div>
       <h1>{_spans(U['title'])}</h1>
-      {archived}
       <p class="lead">{_spans(U['lead'])}</p>
       <p class="stamp">{_spans(U['status'])}</p>
       <p class="source">{_spans(U['source'])}</p>
@@ -260,7 +232,7 @@ def main():
     if check:
         if stale:
             sys.exit(f'out of date: {", ".join(stale)}: run python site/bom.py')
-        print('docs/BOM.md, docs/BOM-v6.3.md, docs/BOM-v6.2.md and docs/BOM-v6.md are up to date')
+        print('docs/BOM.md is up to date')
 
 
 if __name__ == '__main__':

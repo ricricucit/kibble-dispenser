@@ -1,7 +1,6 @@
 # Step-by-step print guide of hardware 6.4 (print/): chassis 6.4 and electronics module case 1.0, in English, Italian and
-# German. Rendered by site/printguide.py from hardware/v6.4/plates/PRINT_GUIDE.md (the detailed checks of each plate, in
-# English) and hardware/v6.4/plates/summary.json (plates, parts, times, grams, status); only the words are here.
-# Archived print pages: v6.3 (print_v63.toml), v6.2 (print_v62.toml), v6 (print_v6.toml).
+# German. Rendered by site/printguide.py from hardware/plates/PRINT_GUIDE.md (the detailed checks of each plate, in
+# English) and hardware/plates/summary.json (plates, parts, times, grams); only the words are here.
 
 [meta.title]
 en = "Print guide · Kibble Dispenser 6.4"
@@ -9,7 +8,7 @@ it = "Guida di stampa · Kibble Dispenser 6.4"
 de = "Druckanleitung · Kibble Dispenser 6.4"
 
 [meta.description]
-en = "Step-by-step print guide for the Kibble Dispenser Outdoor hardware 6.4 (chassis and electronics module case 1.0) on a Bambu Lab A1 with AMS lite: test coupons, one step per plate, final checks, and what is left if you already printed 6.3.0. Designed, not yet printed or tested."
+en = "Step-by-step print guide for the Kibble Dispenser Outdoor hardware 6.4 (chassis and electronics module case 1.0) on a Bambu Lab A1 with AMS lite: test coupons, one step per plate and final checks. Designed, not yet printed or tested."
 
 [nav]
 model = { en = "3D model", it = "Modello 3D", de = "3D-Modell" }
@@ -36,7 +35,6 @@ tpu = { en = "TPU 95A", it = "TPU 95A", de = "TPU 95A" }
 swaps = { en = "colour swaps", it = "cambi colore", de = "Farbwechsel" }
 
 [toc]
-done63 = { en = "Printed 6.3.0 already?", it = "Avete già stampato la 6.3.0?", de = "Schon 6.3.0 gedruckt?" }
 downloads = { en = "Downloads", it = "Download", de = "Downloads" }
 ams = { en = "AMS lite", it = "AMS lite", de = "AMS lite" }
 step0 = { en = "Step 0: prepare", it = "Passo 0: preparazione", de = "Schritt 0: Vorbereitung" }
@@ -44,15 +42,6 @@ step1 = { en = "Step 1: test coupons", it = "Passo 1: provini", de = "Schritt 1:
 plates = { en = "The plates", it = "I piatti", de = "Die Platten" }
 final = { en = "Final checks", it = "Controlli finali", de = "Schlusskontrollen" }
 checklist = { en = "Check list", it = "Lista di controllo", de = "Checkliste" }
-
-[done63]
-title = { en = "Already printed 6.3.0? Here is what's left", it = "Avete già stampato la 6.3.0? Ecco cosa manca", de = "Schon 6.3.0 gedruckt? Das fehlt noch" }
-lead = { en = "The 21 unchanged part files are byte-identical to 6.3.0, and their plates here have the same parts at the same positions with the same settings. Parts you printed from the 6.3.0 package stay valid.", it = "I 21 file dei pezzi invariati sono identici byte per byte alla 6.3.0, e i loro piatti qui hanno gli stessi pezzi nelle stesse posizioni con le stesse impostazioni. I pezzi stampati dal pacchetto 6.3.0 restano validi.", de = "Die 21 unveränderten Teiledateien sind Byte für Byte gleich wie in 6.3.0, und ihre Platten hier haben dieselben Teile an denselben Stellen mit denselben Einstellungen. Teile aus dem 6.3.0-Paket bleiben gültig." }
-keep = { en = "Keep: everything from the 6.3.0 plates PETG-3, PETG-4, PETG-5 and PETG-6, the bowl from PETG-2, the test pieces from PETG-0 and TPU-0, and every seal from TPU-1 except the cap lip seal.", it = "Tenete: tutto quello dei piatti 6.3.0 PETG-3, PETG-4, PETG-5 e PETG-6, la vasca del PETG-2, i pezzi di prova di PETG-0 e TPU-0 e tutte le guarnizioni del TPU-1 tranne il labbro del fondello.", de = "Behaltet: alles von den 6.3.0-Platten PETG-3, PETG-4, PETG-5 und PETG-6, die Schale von PETG-2, die Testteile von PETG-0 und TPU-0 und alle Dichtungen von TPU-1 außer der Bodenlippe." }
-drop = { en = "Set aside (obsolete 6.3 parts): the shell and the electronics box (6.3.0 PETG-1), the cap (6.3.0 PETG-2) and the cap lip seal (6.3.0 TPU-1).", it = "Mettete da parte (pezzi 6.3 superati): il guscio e la scatola elettronica (PETG-1 della 6.3.0), il fondello (PETG-2 della 6.3.0) e il labbro del fondello (TPU-1 della 6.3.0).", de = "Legt beiseite (überholte 6.3-Teile): die Hülle und das Elektronikgehäuse (6.3.0 PETG-1), den Boden (6.3.0 PETG-2) und die Bodenlippe (6.3.0 TPU-1)." }
-todo = { en = "Still to print: {plates}. That is {time} of printing, {petg} of PETG and {tpu} of TPU.", it = "Restano da stampare: {plates}. Sono {time} di stampa, {petg} di PETG e {tpu} di TPU.", de = "Noch zu drucken: {plates}. Das sind {time} Druckzeit, {petg} PETG und {tpu} TPU." }
-skip = { en = "In the steps below, plates marked “unchanged since 6.3.0” can be skipped when you already have their parts.", it = "Nei passi qui sotto potete saltare i piatti segnati “invariato dalla 6.3.0” se avete già i loro pezzi.", de = "In den Schritten unten könnt ihr Platten mit „unverändert seit 6.3.0“ überspringen, wenn ihr ihre Teile schon habt." }
-jump = { en = "Go to the plates", it = "Vai ai piatti", de = "Zu den Platten" }
 
 [dl]
 title = { en = "Downloads", it = "Download", de = "Downloads" }
@@ -66,7 +55,7 @@ check = { en = "The projects were generated by a script and sliced with OrcaSlic
 [dl.project]
 "Kibble_Dispenser_v64_chassis_PETG.bambu.3mf" = { en = "Chassis PETG: plates PETG-0 to PETG-6, three colours from the AMS lite", it = "Telaio PETG: piatti da PETG-0 a PETG-6, tre colori dall'AMS lite", de = "Gehäuse PETG: Platten PETG-0 bis PETG-6, drei Farben aus dem AMS lite" }
 "Kibble_Dispenser_v64_chassis_IP66_PETG.bambu.3mf" = { en = "Chassis IP66 PETG: plate PETG-7, servo bay and cap, black, low-fan settings stored in the project", it = "Telaio PETG IP66: piatto PETG-7, vano servo e fondello, nero, impostazioni con ventola bassa salvate nel progetto", de = "Gehäuse PETG IP66: Platte PETG-7, Servofach und Boden, schwarz, Einstellungen mit wenig Lüfter im Projekt" }
-"Kibble_Dispenser_v64_chassis_TPU.bambu.3mf" = { en = "Chassis TPU: TPU-0 (test), TPU-1 (unchanged seals), TPU-2 (the two 6.4 seals)", it = "Telaio TPU: TPU-0 (prova), TPU-1 (guarnizioni invariate), TPU-2 (le due guarnizioni 6.4)", de = "Gehäuse TPU: TPU-0 (Test), TPU-1 (unveränderte Dichtungen), TPU-2 (die zwei 6.4-Dichtungen)" }
+"Kibble_Dispenser_v64_chassis_TPU.bambu.3mf" = { en = "Chassis TPU: TPU-0 (test), TPU-1 (seals), TPU-2 (servo-bay lip seal and module gasket)", it = "Telaio TPU: TPU-0 (prova), TPU-1 (guarnizioni), TPU-2 (labbro del vano servo e guarnizione del modulo)", de = "Gehäuse TPU: TPU-0 (Test), TPU-1 (Dichtungen), TPU-2 (Servofachlippe und Moduldichtung)" }
 "Kibble_Module_case_1.0_PETG.bambu.3mf" = { en = "Module PETG: MOD-1 (tub and speaker ring), MOD-2 (lid), black, low-fan settings", it = "Modulo PETG: MOD-1 (vasca e anello dell'altoparlante), MOD-2 (coperchio), nero, ventola bassa", de = "Modul PETG: MOD-1 (Wanne und Lautsprecherring), MOD-2 (Deckel), schwarz, wenig Lüfter" }
 "Kibble_Module_case_1.0_TPU.bambu.3mf" = { en = "Module TPU: MOD-TPU-1, the lid gasket alone, only when you reprint the module later", it = "Modulo TPU: MOD-TPU-1, solo la guarnizione del coperchio, solo quando ristampate il modulo più tardi", de = "Modul TPU: MOD-TPU-1, nur die Deckeldichtung, nur wenn ihr das Modul später neu druckt" }
 
@@ -109,23 +98,20 @@ swaps = { en = "colour swaps", it = "cambi colore", de = "Farbwechsel" }
 download = { en = "Plain 3MF of this plate", it = "3MF semplice di questo piatto", de = "Einfache 3MF dieser Platte" }
 chassis = { en = "chassis", it = "telaio", de = "Gehäuse" }
 module = { en = "module case 1.0", it = "modulo case 1.0", de = "Modul case 1.0" }
-unchanged = { en = "unchanged since 6.3.0", it = "invariato dalla 6.3.0", de = "unverändert seit 6.3.0" }
-changed = { en = "changed in 6.4", it = "cambiato nella 6.4", de = "geändert in 6.4" }
-new = { en = "new in 6.4", it = "nuovo nella 6.4", de = "neu in 6.4" }
 only_alone = { en = "Only when the module is printed again on its own: the same gasket is already on TPU-2.", it = "Solo quando il modulo si ristampa da solo: la stessa guarnizione è già sul TPU-2.", de = "Nur wenn das Modul später allein neu gedruckt wird: dieselbe Dichtung ist schon auf TPU-2." }
 
 [plate]
 "PETG-0" = { en = "Test: spline, rim, cap and skirt grooves", it = "Prova: scanalato, gole di bordo, fondello e bordino", de = "Test: Verzahnung, Rand-, Boden- und Schürzennut" }
 "TPU-0" = { en = "Test: rim, cap, skirt and comb lips", it = "Prova: labbri di bordo, fondello, bordino e pettine", de = "Test: Rand-, Boden-, Schürzen- und Kammlippen" }
-"PETG-1" = { en = "Pod shell 6.4", it = "Guscio 6.4", de = "Hülle 6.4" }
+"PETG-1" = { en = "Pod shell", it = "Guscio", de = "Hülle" }
 "PETG-2" = { en = "Bowl", it = "Vasca dosatore", de = "Schale" }
 "PETG-3" = { en = "Lower flange, tower, shaft and hub", it = "Flangia inferiore, torre, albero e mozzo", de = "Unterer Flansch, Turm, Welle und Nabe" }
 "PETG-4" = { en = "Upper flange", it = "Flangia superiore", de = "Oberer Flansch" }
 "PETG-5" = { en = "Chute, collar, gate blade, outlet and window plates", it = "Scivolo, colletto, lama della saracinesca, piastre gate e finestra", de = "Rutsche, Kragen, Schieberblatt, Auslass- und Fensterplatte" }
 "PETG-6" = { en = "Gate ring, disc, latch and button", it = "Anello della saracinesca, disco, linguetta e pulsante", de = "Schieberring, Scheibe, Lasche und Knopf" }
-"PETG-7" = { en = "Servo bay and pod cap 6.4", it = "Vano servo e fondello 6.4", de = "Servofach und Boden 6.4" }
-"TPU-1" = { en = "Seals unchanged since 6.3.0", it = "Guarnizioni invariate dalla 6.3.0", de = "Dichtungen unverändert seit 6.3.0" }
-"TPU-2" = { en = "The 6.4 seals: servo-bay lip and module gasket", it = "Le guarnizioni 6.4: labbro del vano servo e guarnizione del modulo", de = "Die 6.4-Dichtungen: Servofachlippe und Moduldichtung" }
+"PETG-7" = { en = "Servo bay and pod cap", it = "Vano servo e fondello", de = "Servofach und Boden" }
+"TPU-1" = { en = "Seals", it = "Guarnizioni", de = "Dichtungen" }
+"TPU-2" = { en = "Servo-bay lip seal and module gasket", it = "Labbro del vano servo e guarnizione del modulo", de = "Servofachlippe und Moduldichtung" }
 "MOD-1" = { en = "Module tub and speaker ring", it = "Vasca del modulo e anello dell'altoparlante", de = "Modulwanne und Lautsprecherring" }
 "MOD-2" = { en = "Module lid", it = "Coperchio del modulo", de = "Moduldeckel" }
 "MOD-TPU-1" = { en = "Module gasket", it = "Guarnizione del modulo", de = "Moduldichtung" }

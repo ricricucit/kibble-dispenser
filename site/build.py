@@ -3,32 +3,21 @@
 Build the static site so it always reflects the repository.
 
 Run from anywhere:  python site/build.py [OUTPUT_DIR]
-OUTPUT_DIR defaults to site/_build (not committed). The script:
-  - copies site/ (css, js, img, vendored three.js, the earlier-versions page) into the output folder
-  - stable URLs for the current design (hardware 6.4: chassis 6.4 and electronics module case 1.0): home page
-    <out>/index.html, 3d/, print/ (the step-by-step print guide), parts/, module/, assembly/ (the assembly wizard,
-    copied as built from site/assembly/) and manual/; earlier designs keep versioned pages (v6.3/..., v6.2/..., v6/...;
-    their wizards are site/v6.3/assembly/ and site/v6.2/assembly/)
-  - home page, print guide (site/printguide.py, from hardware/v6.4/plates/), module page (site/modulepage.py),
-    archived print pages (v6.3/print/, v6.2/print/, v6/print/), manual pages (docs/manual/ and hardware/v6.4/template/;
-    v6.3/manual/ and v6.2/manual/ link their releases) and the archive pages v6.3/, v6.2/ and v6/, in English, Italian
-    and German: site/pages.py with the texts in site/content/
-  - earlier versions (prototype 1, drivetrain v3) at <out>/earlier/: copies hardware/assembly/* (meshes
-    and assembly.json) into <out>/earlier/assembly/ and fills the printed-parts list and the photo strip
-    of earlier/index.html from assembly.json and the captions in docs/photos/README.md
-  - copies the selected process photos from docs/photos/ into <out>/photos/, with smaller
-    previews in <out>/photos/thumb/ when Pillow is installed (the originals otherwise)
+OUTPUT_DIR defaults to site/_build (not committed). The site shows only the current design (hardware 6.4: chassis
+6.4 and electronics module case 1.0), at stable URLs. The script:
+  - copies site/ (css, js, img, vendored three.js, the assembly wizard site/assembly/) into the output folder
+  - home page <out>/index.html, print guide print/ (site/printguide.py, from hardware/plates/), module page module/
+    (site/modulepage.py) and manual page manual/ (docs/manual/ and hardware/template/), in English, Italian and
+    German: site/pages.py with the texts in site/content/
+  - copies the bench photos of the home page from docs/photos/ into <out>/photos/, with smaller previews in
+    <out>/photos/thumb/ when Pillow is installed (the originals otherwise)
   - every footer shows the hardware, firmware and product versions (site/versions.py) and the build commit
-  - full-screen 3D pages with site/viewer/make_viewer.py (decimated meshes as separate STL files, three.js r128 from
-    site/vendor/three-r128/): <out>/3d/ from hardware/v6.4/assembly/, <out>/v6.3/3d/, <out>/v6.2/3d/ and <out>/v6/3d/
-    from theirs; bought-parts pages <out>/parts/ (hardware/v6.4/bom.json, chassis and module), <out>/v6.3/parts/,
-    <out>/v6.2/parts/ and <out>/v6/parts/ with site/bom.py
-The 3D pages need numpy, and fast_simplification to decimate the meshes (without it the full
+  - full-screen 3D page <out>/3d/ from hardware/assembly/ with site/viewer/make_viewer.py (decimated meshes as
+    separate STL files, three.js r128 from site/vendor/three-r128/); bought-parts page <out>/parts/
+    (hardware/bom.json, chassis and module) with site/bom.py
+The 3D page needs numpy, and fast_simplification to decimate the meshes (without it the full
 meshes are used): pip install numpy fast_simplification. Everything else is standard library.
 """
-import html
-import json
-import re
 import shutil
 import sys
 from pathlib import Path
@@ -37,98 +26,28 @@ SITE = Path(__file__).resolve().parent
 ROOT = SITE.parent
 OUT = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else SITE / '_build'
 REPO = 'https://github.com/ricricucit/kibble-dispenser'
-STATUS = {'designed': 'Designed, ready to print', 'bought': 'Bought', 'reused': 'Reused',
-          'to design': 'Not designed yet'}
-
-# Photos for the strip, in story order. Captions come from docs/photos/README.md.
-PHOTOS = [
-    '2026-07-04-servo-25kg-front.jpg',
-    '2026-07-04-servo-25kg-three-quarter.jpg',
-    '2026-07-04-aluminium-25t-clamp-horn.jpg',
-    '2026-07-04-disc-v1-mockup-with-star-horn.jpg',
-    'freenove-esp32-cam-board-breadboard-wiring.jpg',
-    '2026-11-08-bench-wrover-breadboard-servo-overview.jpg',
-    '2026-11-08-breadboard-servo-speaker-buttons.jpg',
-    'bowl-upside-down-with-spout-on-plywood.jpg',
-    '2026-10-04-bowl-with-spout-cover-removed.jpg',
-    '2026-10-04-bowl-top-view-spout-opened.jpg',
-    '2026-10-04-empty-bowl-on-box-lid.jpg',
-    '2026-10-04-orange-disc-in-bowl-on-box.jpg',
-    '2026-10-04-box-disc-and-bowl-laid-out.jpg',
-    '2026-10-04-disc-lifted-out-cat-inspecting.jpg',
-]
-
-esc = html.escape
 
 
-def captions():
-    text = (ROOT / 'docs/photos/README.md').read_text(encoding='utf-8')
-    out = {}
-    for m in re.finditer(r'^- `([^`]+)`: (.+)$', text, flags=re.M):
-        cap = m.group(2).strip()
-        out[m.group(1)] = cap[:1].upper() + cap[1:]
-    return out
-
-
-def photos_html(prefix=''):
-    caps = captions()
+def copy_photos(names):
+    """Copy the photos to <out>/photos/ and write previews to <out>/photos/thumb/ (Pillow) or copy them there."""
     src, dst, thumbs = ROOT / 'docs/photos', OUT / 'photos', OUT / 'photos/thumb'
     thumbs.mkdir(parents=True, exist_ok=True)
     try:
         from PIL import Image
     except ImportError:
         Image = None
-        print('Pillow not installed: the photo strip uses the full-size images')
-    items = []
-    for name in PHOTOS:
+        print('Pillow not installed: the photos use the full-size images')
+    for name in names:
         f = src / name
         if not f.exists():
-            print(f'warning: {f.relative_to(ROOT)} not found, skipped')
-            continue
+            sys.exit(f'{f.relative_to(ROOT)} not found')
         shutil.copy2(f, dst / name)
-        w = h = None
         if Image:
             with Image.open(f) as im:
                 im.thumbnail((640, 640))
                 im.save(thumbs / name, quality=80, optimize=True, progressive=True)
-                w, h = im.size
         else:
             shutil.copy2(f, thumbs / name)
-        cap = esc(caps.get(name, name))
-        size = f' width="{w}" height="{h}"' if w else ''
-        items.append(
-            f'<li><figure><a href="{prefix}photos/{esc(name)}" data-lightbox>'
-            f'<img src="{prefix}photos/thumb/{esc(name)}"{size} loading="lazy" decoding="async" alt="{cap}"></a>'
-            f'<figcaption>{cap}</figcaption></figure></li>')
-    return '<ul class="photos">\n' + '\n'.join(items) + '\n</ul>'
-
-
-def parts_html(data):
-    spool_colour = {p['spool']: p['colour'] for p in data['parts'] if p.get('spool')}
-    rows = []
-    for p in sorted(data['parts'], key=lambda q: q['bom']) + data.get('not_shown', []):
-        in_view = 'file' in p
-        colour = p.get('colour') or spool_colour.get(p.get('spool'), '#26282c')
-        badge = (f'<span class="balloon static" title="Item {p["bom"]} in the model" aria-hidden="true">{p["bom"]}</span>'
-                 if in_view else '<span class="no-balloon" aria-hidden="true"></span>')
-        links = []
-        for kind, folder in (('STL for printing', 'stl'), ('3MF', '3mf')):
-            ext = 'stl' if folder == 'stl' else '3mf'
-            if (ROOT / 'hardware' / folder / f"{p['id']}.{ext}").exists():
-                links.append(f'<a href="{REPO}/blob/main/hardware/{folder}/{esc(p["id"])}.{ext}">{kind}</a>')
-        if in_view:
-            links.append(f'<button type="button" class="show" data-show="{esc(p["id"])}">Show in model</button>')
-        if not links:
-            links.append('<span>No files yet</span>')
-        rows.append(
-            f'<li class="bom-row">{badge}'
-            f'<div class="bom-name"><h3>{esc(p["name"])}</h3><code>{esc(p["id"])}</code></div>'
-            f'<p class="bom-spool"><span class="spool" style="--c:{esc(colour)}" aria-hidden="true"></span>'
-            f'{esc(p.get("material", ""))}, {esc(p.get("spool", ""))} spool</p>'
-            f'<p class="bom-desc">{esc(p["description"])}</p>'
-            f'<p class="bom-status">{esc(STATUS.get(p["status"], p["status"]))}</p>'
-            f'<p class="bom-files">{" ".join(links)}</p></li>')
-    return '<ol class="bom">\n' + '\n'.join(rows) + '\n</ol>'
 
 
 LINKS_CURRENT = [
@@ -138,48 +57,16 @@ LINKS_CURRENT = [
     {'href': '../module/', 'label': {'en': 'Electronics module', 'it': 'Modulo elettronica', 'de': 'Elektronikmodul'}},
     {'href': '../assembly/', 'label': {'en': 'Assembly guide', 'it': 'Guida al montaggio', 'de': 'Montageanleitung'}},
     {'href': '../manual/', 'label': {'en': 'Manual', 'it': 'Manuale', 'de': 'Handbuch'}},
-    {'href': f'{REPO}/tree/main/hardware/v6.4', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
+    {'href': f'{REPO}/tree/main/hardware', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
 ]
-LINKS_V63 = [
-    {'href': '../../3d/', 'label': {'en': 'Current hardware 6.4', 'it': 'Hardware attuale 6.4', 'de': 'Aktuelle Hardware 6.4'}},
-    {'href': '../', 'label': {'en': 'Design v6.3 (archive)', 'it': 'Progetto v6.3 (archivio)', 'de': 'Entwurf v6.3 (Archiv)'}},
-    {'href': '../print/', 'label': {'en': 'Print files v6.3', 'it': 'File di stampa v6.3', 'de': 'Druckdateien v6.3'}},
-    {'href': '../parts/', 'label': {'en': 'Bought parts v6.3', 'it': 'Pezzi extra v6.3', 'de': 'Zukaufteile v6.3'}},
-    {'href': '../assembly/', 'label': {'en': 'Assembly guide v6.3', 'it': 'Guida al montaggio v6.3', 'de': 'Montageanleitung v6.3'}},
-    {'href': f'{REPO}/tree/main/hardware/v6.3', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
-]
-LINKS_V62 = [
-    {'href': '../../3d/', 'label': {'en': 'Current hardware 6.4', 'it': 'Hardware attuale 6.4', 'de': 'Aktuelle Hardware 6.4'}},
-    {'href': '../', 'label': {'en': 'Design v6.2 (archive)', 'it': 'Progetto v6.2 (archivio)', 'de': 'Entwurf v6.2 (Archiv)'}},
-    {'href': '../print/', 'label': {'en': 'Print files v6.2', 'it': 'File di stampa v6.2', 'de': 'Druckdateien v6.2'}},
-    {'href': '../parts/', 'label': {'en': 'Bought parts v6.2', 'it': 'Pezzi extra v6.2', 'de': 'Zukaufteile v6.2'}},
-    {'href': '../assembly/', 'label': {'en': 'Assembly guide v6.2', 'it': 'Guida al montaggio v6.2', 'de': 'Montageanleitung v6.2'}},
-    {'href': f'{REPO}/tree/main/hardware/v6.2', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
-]
-LINKS_V6 = [
-    {'href': '../../3d/', 'label': {'en': 'Current hardware 6.4', 'it': 'Hardware attuale 6.4', 'de': 'Aktuelle Hardware 6.4'}},
-    {'href': '../', 'label': {'en': 'Design v6 (archive)', 'it': 'Progetto v6 (archivio)', 'de': 'Entwurf v6 (Archiv)'}},
-    {'href': '../print/', 'label': {'en': 'Print files v6', 'it': 'File di stampa v6', 'de': 'Druckdateien v6'}},
-    {'href': '../parts/', 'label': {'en': 'Bought parts v6', 'it': 'Pezzi extra v6', 'de': 'Zukaufteile v6'}},
-    {'href': f'{REPO}/tree/main/hardware/v6', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
-]
-ARCHIVED_V63 = {'en': 'Design v6.3 (archive) · replaced by hardware 6.4', 'it': 'Progetto v6.3 (archivio) · sostituito dall\'hardware 6.4',
-                'de': 'Entwurf v6.3 (Archiv) · ersetzt durch Hardware 6.4'}
-ARCHIVED_V62 = {'en': 'Design v6.2 (archive) · replaced by v6.3 and 6.4', 'it': 'Progetto v6.2 (archivio) · sostituito dalla v6.3 e dalla 6.4',
-                'de': 'Entwurf v6.2 (Archiv) · ersetzt durch v6.3 und 6.4'}
-ARCHIVED_V6 = {'en': 'Design v6 (archive) · replaced by v6.2, v6.3 and 6.4', 'it': 'Progetto v6 (archivio) · sostituito dalla v6.2, v6.3 e 6.4',
-               'de': 'Entwurf v6 (Archiv) · ersetzt durch v6.2, v6.3 und 6.4'}
-# 3D pages: (manifest, output folder, path to the site root, links, face cap per part, mesh budget MB, extra page data)
+# 3D page: (manifest, output folder, path to the site root, links, face cap per part, mesh budget MB, extra page data)
 VIEWERS = [
-    ('hardware/v6.4/assembly/v64_viewer.json', '3d', '../', LINKS_CURRENT, 30000, 24.0, {}),
-    ('hardware/v6.3/assembly/v63_viewer.json', 'v6.3/3d', '../../', LINKS_V63, 10000, 9.0, {'subtitle': ARCHIVED_V63}),
-    ('hardware/v6.2/assembly/v62_viewer.json', 'v6.2/3d', '../../', LINKS_V62, 10000, 9.0, {'subtitle': ARCHIVED_V62}),
-    ('hardware/v6/assembly/v6_viewer.json', 'v6/3d', '../../', LINKS_V6, 10000, 9.0, {'subtitle': ARCHIVED_V6}),
+    ('hardware/assembly/v64_viewer.json', '3d', '../', LINKS_CURRENT, 30000, 24.0, {}),
 ]
 
 
 def design_pages():
-    """Full-screen 3D pages and bought-parts pages: the current design at 3d/ and parts/, archives at <version>/3d/ and /parts/."""
+    """Full-screen 3D page 3d/ and bought-parts page parts/."""
     sys.path.insert(0, str(SITE / 'viewer'))
     sys.path.insert(0, str(SITE))
     try:
@@ -209,26 +96,10 @@ def main():
     skip = {'build.py', 'bom.py', 'pages.py', 'printguide.py', 'modulepage.py', 'versions.py', 'content', 'viewer', '_build',
             '__pycache__', OUT.name}
     shutil.copytree(SITE, OUT, ignore=lambda d, names: [n for n in names if n in skip or n.endswith('.pyc')])
-    # earlier versions: prototype 1 assembly with its live 3D model
-    earlier = OUT / 'earlier'
-    shutil.copytree(ROOT / 'hardware/assembly', earlier / 'assembly')
-    data = json.loads((earlier / 'assembly/assembly.json').read_text(encoding='utf-8'))
-    for p in data['parts']:
-        if not (earlier / 'assembly' / p['file']).exists():
-            sys.exit(f"missing mesh hardware/assembly/{p['file']}")
-    page = earlier / 'index.html'
-    s = page.read_text(encoding='utf-8')
     sys.path.insert(0, str(SITE))
-    import versions
-    for marker, content in (('parts', parts_html(data)), ('photos', photos_html('../')),
-                            ('versions', versions.html_line(versions.load(), 'en'))):
-        token = f'<!-- @{marker} -->'
-        if token not in s:
-            sys.exit(f'{token} not found in site/earlier/index.html')
-        s = s.replace(token, content)
-    page.write_text(s, encoding='utf-8')
-    design_pages()
     import pages
+    copy_photos([name for name, _ in pages.BENCH])
+    design_pages()
     pages.build(OUT)
     n = sum(1 for f in OUT.rglob('*') if f.is_file())
     print(f'site built in {OUT} ({n} files)')

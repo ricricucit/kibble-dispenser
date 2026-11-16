@@ -2,9 +2,8 @@
 Step-by-step print guide of the current hardware (print/), in English, Italian and German.
 
 Sources:
-  hardware/v6.4/plates/summary.json    plates, parts, products (chassis, module), status against 6.3.0, times, grams,
-                                       what is left for someone who printed the 6.3.0 package
-  hardware/v6.4/plates/PRINT_GUIDE.md  the detailed checks of each plate (load, supports, slicer, look at the parts, work
+  hardware/plates/summary.json         plates, parts, products (chassis, module), times, grams
+  hardware/plates/PRINT_GUIDE.md       the detailed checks of each plate (load, supports, slicer, look at the parts, work
                                        after printing, how to judge the test coupons), in English
   site/content/print.toml              every other word of the page, in three languages
 The detailed per-plate checks stay in English in every language (the page says so in Italian and German).
@@ -19,13 +18,13 @@ import re
 import shutil
 from pathlib import Path
 
-GUIDE_STEP = re.compile(r'^### Step (\w+) - ([A-Z0-9-]+): (.*?) \[(.*?)\](.*)$')
+GUIDE_STEP = re.compile(r'^### Step (\w+) - ([A-Z0-9-]+): (.*)$')
 SKIP_LABELS = ('File', 'Parts on the plate', 'Time and filament')
 
 
 def inline(text):
     """Escape, then the little Markdown the guide uses: `code` and **bold**."""
-    t = html.escape(text.replace('print_v63', 'the 6.3.0 package'), quote=False)   # the guide's name for hardware/v6.3/plates
+    t = html.escape(text, quote=False)
     t = re.sub(r'`([^`]+)`', r'<code>\1</code>', t)
     return re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', t)
 
@@ -80,7 +79,7 @@ def build(out, pg):
     files, img = page_dir / 'files', page_dir / 'img'
     for d in (files / 'plates', files / 'preview', img):
         d.mkdir(parents=True, exist_ok=True)
-    gh = 'hardware/v6.4/plates'
+    gh = 'hardware/plates'
     raw = f'{pg.REPO}/raw/main/{gh}/'
     plates = {pl['key']: pl for pl in summary['plates']}
     stamp = tuple(int(x) for x in summary['generated'].split('-')) + (0, 0, 0)
@@ -127,7 +126,7 @@ def build(out, pg):
           <div><dt>{L(P['facts']['tpu'])}</dt><dd>{g_text(tot['grams_TPU'], 1)}</dd></div>
           <div><dt>{L(P['facts']['swaps'])}</dt><dd>{tot['colour_swaps']}</dd></div>
         </dl>'''
-    toc_keys = ['done63', 'downloads', 'ams', 'step0', 'step1', 'plates', 'final', 'checklist']
+    toc_keys = ['downloads', 'ams', 'step0', 'step1', 'plates', 'final', 'checklist']
     review = f'{pg.REPO}/blob/main/docs/reviews/2026-11-15-v6.4-print-review/REVIEW.md'
     head = f'''    <section class="phead" aria-labelledby="p-title">
       <p class="kicker">{L(P['head']['kicker'])}</p>
@@ -142,25 +141,6 @@ def build(out, pg):
       <nav class="toc" aria-label="On this page"><ul>
         {''.join(f'<li><a href="#{k}">{L(P["toc"][k])}</a></li>' for k in toc_keys)}
       </ul></nav>
-    </section>'''
-
-    # ---- already printed 6.3.0
-    todo = summary['to_print_if_print_v63_is_done']
-    tt = todo['totals']
-    todo_plates = {lang: ', '.join(f'<a href="#plate-{k}">{k}</a>' for k in todo['plates']) for lang in pg.LANGS}
-    todo_text = {lang: P['done63']['todo'][lang].replace('{plates}', todo_plates[lang]).replace('{time}', hours(tt['time_min']))
-                 .replace('{petg}', num(tt['grams_PETG'], lang) + ' g').replace('{tpu}', num(tt['grams_TPU'], lang, 1) + ' g')
-                 for lang in pg.LANGS}
-    todo_html = pg.Lh(todo_text)
-    done63 = f'''    <section class="psec" id="done63" aria-labelledby="d63-title">
-      <h2 id="d63-title">{L(P['done63']['title'])}</h2>
-      <p class="lead">{L(P['done63']['lead'])}</p>
-      <ul class="d63">
-        <li class="d63-keep">{L(P['done63']['keep'])}</li>
-        <li class="d63-drop">{L(P['done63']['drop'])}</li>
-        <li class="d63-todo"><strong>{todo_html}</strong></li>
-      </ul>
-      <p class="aside">{L(P['done63']['skip'])} <a href="#plates">{L(P['done63']['jump'])} →</a></p>
     </section>'''
 
     # ---- downloads per product
@@ -230,8 +210,6 @@ def build(out, pg):
                 load = text
             elif label == 'Supports':
                 sup = text
-            elif label == 'Status note':
-                notes.append(text)
             elif sub:
                 lab = (T['judge'] if label.startswith('How to judge') else T['slicer'] if label.startswith('Check in the slicer')
                        else T['look'] if label.startswith('Look at') else T['after'] if label.startswith('Work after') else None)
@@ -255,16 +233,15 @@ def build(out, pg):
             c = fil.split()[-1]
             fils.append(f'<li><span class="cdot" style="--c:{pg.COLOUR_VAR[c]}"></span>{L(fil_names[c])} <strong>{g_text(gg["grams"])}</strong></li>')
         load, sup, notes, lists = guide_lists(key)
-        status = pl['status']
         prod = T['chassis'] if pl['product'] == 'chassis' else T['module']
         note_html = ''.join(f'<p class="pnote" lang="en">{inline(n)}</p>' for n in notes)
         if key == 'MOD-TPU-1':
             note_html = f'<p class="pnote">{L(T["only_alone"])}</p>'
         plain = Path(pl['plain_3mf']).name
-        return f'''<li class="gstep gstep-{status}" id="plate-{esc(key)}">
+        return f'''<li class="gstep" id="plate-{esc(key)}">
           <div class="gstep-head">
             <p class="gnum">{L(T['step'])} {esc(st['step'])}</p>
-            <div><p class="pkey">{esc(key)} · {L(prod)} · <span class="gbadge gbadge-{status}">{L(T[status])}</span></p>
+            <div><p class="pkey">{esc(key)} · {L(prod)}</p>
               <h3>{L(P['plate'][key])}</h3></div>
           </div>
           <div class="gstep-body">
@@ -368,7 +345,7 @@ def build(out, pg):
     H = pg.load_toml('home.toml')
     nav = [('../', pg.NAV_HOME, True), ('../3d/', P['nav']['model'], True), ('../parts/', P['nav']['parts'], True),
            ('../module/', P['nav']['module'], True), ('../assembly/', P['nav']['assembly'], False)]
-    body = '\n'.join([head, done63, dl, ams, step0, step1, steps, final, bought, checklist, stl_html, notes_html])
+    body = '\n'.join([head, dl, ams, step0, step1, steps, final, bought, checklist, stl_html, notes_html])
     s = pg.page(root='../', titles=P['meta']['title'], description=P['meta']['description']['en'], nav=nav, body=body,
                 footer=pg.footer_html('../', H), cls='print guide')
     (page_dir / 'index.html').write_text(s, encoding='utf-8')

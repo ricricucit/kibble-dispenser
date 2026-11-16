@@ -7,10 +7,6 @@ version = 1
 path = [
   "firmware/**",
   "hardware/cad/*.py",
-  "hardware/v6/cad/*.py",
-  "hardware/v6.2/cad/*.py",
-  "hardware/v6.3/cad/*.py",
-  "hardware/v6.4/cad/*.py",
   ".github/**",
   "site/**",
   "tools/**",
@@ -24,30 +20,11 @@ SPDX-License-Identifier = "MIT"
 # Hardware design files: part geometry and design data
 [[annotations]]
 path = [
-  "hardware/stl/**",
-  "hardware/3mf/**",
   "hardware/assembly/**",
   "hardware/cad/*.json",
-  "hardware/v6/stl/**",
-  "hardware/v6/3mf/**",
-  "hardware/v6/assembly/**",
-  "hardware/v6/cad/*.json",
-  "hardware/v6/bom.json",
-  "hardware/v6.2/assembly/**",
-  "hardware/v6.2/cad/*.json",
-  "hardware/v6.2/cad/ref/**",
-  "hardware/v6.2/template/**",
-  "hardware/v6.2/bom.json",
-  "hardware/v6.3/assembly/**",
-  "hardware/v6.3/cad/*.json",
-  "hardware/v6.3/cad/ref/**",
-  "hardware/v6.3/template/**",
-  "hardware/v6.3/bom.json",
-  "hardware/v6.4/assembly/**",
-  "hardware/v6.4/cad/*.json",
-  "hardware/v6.4/cad/ref/**",
-  "hardware/v6.4/template/**",
-  "hardware/v6.4/bom.json",
+  "hardware/cad/ref/**",
+  "hardware/template/**",
+  "hardware/bom.json",
   "hardware/module/VERSION",
   "hardware/module/case-1.0/parts/**",
   "hardware/module/case-1.0/interface/**",
@@ -62,19 +39,11 @@ path = [
   "docs/**",
   "*.md",
   "hardware/README.md",
-  "hardware/v6/README.md",
-  "hardware/v6/cad/*.png",
-  "hardware/v6.2/README.md",
-  "hardware/v6.2/cad/*.png",
-  "hardware/v6.3/README.md",
-  "hardware/v6.3/cad/*.png",
-  "hardware/v6.4/README.md",
-  "hardware/v6.4/cad/*.png",
+  "hardware/cad/*.png",
   "hardware/module/README.md",
   "hardware/module/case-1.0/README.md",
   "firmware/README.md",
   "import/**/*.md",
-  "site/earlier/index.html",
   "product/**",
   "site/content/**",
   "site/img/**",
@@ -99,113 +68,57 @@ SPDX-FileCopyrightText = [
 ]
 SPDX-License-Identifier = "CC-BY-4.0"
 
-# three.js 0.160.1 (npm package "three"), vendored for the website so it loads no third-party CDN
-[[annotations]]
-path = "site/vendor/three/**"
-SPDX-FileCopyrightText = "2010-2023 three.js authors"
-SPDX-License-Identifier = "MIT"
-
-# three.js r128 (npm package "three" 0.128.0, UMD build three.min.js), vendored for the v6 3D page
+# three.js r128 (npm package "three" 0.128.0, UMD build three.min.js), vendored for the 3D page
 # (site/viewer/template.html uses the r128 API)
 [[annotations]]
 path = "site/vendor/three-r128/**"
 SPDX-FileCopyrightText = "2010-2021 three.js authors"
 SPDX-License-Identifier = "MIT"
 
-# Print package of design v6: Bambu Studio projects, plate 3MFs, STL files, slicer data
+# Print package (chassis 6.4 and module case 1.0): Bambu Studio projects, plate 3MFs, STL files, layout, slicer data
 [[annotations]]
-path = "hardware/v6/plates/**"
+path = "hardware/plates/**"
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CERN-OHL-P-2.0"
 
 # ... its generator scripts (software)
 [[annotations]]
-path = "hardware/v6/plates/tools/**"
+path = "hardware/plates/tools/**"
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "MIT"
 
-# ... and its print guide and plate preview images (documentation)
+# ... except the fixed part positions the generator reuses (design data, like layout.json)
 [[annotations]]
-path = ["hardware/v6/plates/README.md", "hardware/v6/plates/preview/**"]
-SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
-SPDX-License-Identifier = "CC-BY-4.0"
-
-# Print package of design v6.2 (the authoritative print set): Bambu Studio projects, plate 3MFs, STL files, slicer data
-[[annotations]]
-path = "hardware/v6.2/plates/**"
+path = "hardware/plates/tools/reference_layout.json"
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CERN-OHL-P-2.0"
 
-# ... its generator scripts (software)
-[[annotations]]
-path = "hardware/v6.2/plates/tools/**"
-SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
-SPDX-License-Identifier = "MIT"
-
 # ... and its print guide and plate preview images (documentation)
 [[annotations]]
-path = ["hardware/v6.2/plates/README.md", "hardware/v6.2/plates/preview/**"]
+path = ["hardware/plates/PRINT_GUIDE.md", "hardware/plates/preview/**"]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CC-BY-4.0"
 
-# Print package of design v6.3: Bambu Studio projects, plate 3MFs, STL files, slicer data
-[[annotations]]
-path = "hardware/v6.3/plates/**"
-SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
-SPDX-License-Identifier = "CERN-OHL-P-2.0"
-
-# ... its generator scripts (software)
-[[annotations]]
-path = "hardware/v6.3/plates/tools/**"
-SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
-SPDX-License-Identifier = "MIT"
-
-# ... and its print guide and plate preview images (documentation)
-[[annotations]]
-path = ["hardware/v6.3/plates/README.md", "hardware/v6.3/plates/preview/**"]
-SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
-SPDX-License-Identifier = "CC-BY-4.0"
-
-# Print package of hardware 6.4 (chassis 6.4 and module case 1.0): Bambu Studio projects, plate 3MFs, STL files, slicer data
-[[annotations]]
-path = "hardware/v6.4/plates/**"
-SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
-SPDX-License-Identifier = "CERN-OHL-P-2.0"
-
-# ... its generator scripts (software)
-[[annotations]]
-path = "hardware/v6.4/plates/tools/**"
-SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
-SPDX-License-Identifier = "MIT"
-
-# ... and its print guide and plate preview images (documentation)
-[[annotations]]
-path = ["hardware/v6.4/plates/PRINT_GUIDE.md", "hardware/v6.4/plates/preview/**"]
-SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
-SPDX-License-Identifier = "CC-BY-4.0"
-
-# The scripts of the print review of 6.4 (docs/reviews/; the report and its evidence are documentation)
+# The scripts of the print review (docs/reviews/; the report and its evidence are documentation)
 [[annotations]]
 path = "docs/reviews/**/*.py"
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "MIT"
 
-# Assembly wizards (site/assembly/ for the current design, site/v6.3/assembly/ and site/v6.2/assembly/ archived; copied
-# as built): the code stays MIT (site/**); the step texts and data are documentation, the meshes and the drilling
-# template are hardware
+# Assembly guide (site/assembly/, copied as built): the code stays MIT (site/**); the step texts and data are
+# documentation, the meshes and the drilling template are hardware
 [[annotations]]
-path = ["site/assembly/js/data.js", "site/v6.3/assembly/js/data.js", "site/v6.2/assembly/js/data.js"]
+path = "site/assembly/js/data.js"
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CC-BY-4.0"
 
 [[annotations]]
-path = ["site/assembly/models/**", "site/assembly/template/**", "site/v6.3/assembly/models/**", "site/v6.3/assembly/template/**",
-        "site/v6.2/assembly/models/**", "site/v6.2/assembly/template/**"]
+path = ["site/assembly/models/**", "site/assembly/template/**"]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CERN-OHL-P-2.0"
 
-# three.js r128 bundled again by the wizards (same file as site/vendor/three-r128/)
+# three.js r128 bundled again by the assembly guide (same file as site/vendor/three-r128/)
 [[annotations]]
-path = ["site/assembly/vendor/three-r128/**", "site/v6.3/assembly/vendor/three-r128/**", "site/v6.2/assembly/vendor/three-r128/**"]
+path = "site/assembly/vendor/three-r128/**"
 SPDX-FileCopyrightText = "2010-2021 three.js authors"
 SPDX-License-Identifier = "MIT"

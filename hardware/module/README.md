@@ -12,4 +12,4 @@ The holder side of the interface (the opening in the shell and the cap, the two 
 
 The inside of the case is generic. The electronics on the board and their wiring are a separate project that is still evolving: see [docs/PROTOTYPE_BENCH.md](../../docs/PROTOTYPE_BENCH.md) for the bench prototype and the decisions so far.
 
-The CAD scripts that make the module are part of the chassis chain (`hardware/v6.4/cad/build_v64.py`), and its print files are in the 6.4 print package (`hardware/v6.4/plates/`, projects `Kibble_Module_case_1.0_*.bambu.3mf`, plates MOD-1, MOD-2 and MOD-TPU-1), so chassis and module are always checked together.
+The CAD scripts that make the module are part of the chassis chain (`hardware/cad/build_v64.py`), and its print files are in the print package (`hardware/plates/`, projects `Kibble_Module_case_1.0_*.bambu.3mf`, plates MOD-1, MOD-2 and MOD-TPU-1), so chassis and module are always checked together.

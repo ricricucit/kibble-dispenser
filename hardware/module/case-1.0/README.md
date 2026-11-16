@@ -9,12 +9,12 @@ One sealed case that slides into the chassis from below. Its outer wall is the m
 - `modulo_guarnizione_v64`: lip gasket of the lid, TPU 95A, about 1.2 g;
 - `modulo_anello_speaker_v64`: speaker ring (for a Ø23 speaker), PETG, about 0.6 g.
 
-Files in this folder, published by `hardware/v6.4/cad/publish_v64.py` from the same CAD run as the chassis:
+Files in this folder, published by `hardware/cad/publish_v64.py` from the same CAD run as the chassis:
 
-- `parts/`: the four parts as exported by the CAD, at the assembled position (STL and 3MF). The print-ready files, oriented and on plates, are in the 6.4 print package: `hardware/v6.4/plates/` (projects `Kibble_Module_case_1.0_PETG.bambu.3mf` and `Kibble_Module_case_1.0_TPU.bambu.3mf`, plates MOD-1, MOD-2 and MOD-TPU-1, steps 11 to 13 of [PRINT_GUIDE.md](../../v6.4/plates/PRINT_GUIDE.md)).
+- `parts/`: the four parts as exported by the CAD, at the assembled position (STL and 3MF). The print-ready files, oriented and on plates, are in the print package: `hardware/plates/` (projects `Kibble_Module_case_1.0_PETG.bambu.3mf` and `Kibble_Module_case_1.0_TPU.bambu.3mf`, plates MOD-1, MOD-2 and MOD-TPU-1, steps 11 to 13 of [PRINT_GUIDE.md](../../plates/PRINT_GUIDE.md)).
 - `interface/`: the dimensioned drawing of the interface between chassis and module (PDF, SVG, PNG).
 
-All dimensions in mm, in the frame of the CAD: Z up, shaft axis at x = y = 0, Z = 0 at the underside of the bowl base. The numbers come from `hardware/v6.4/cad/v64.json` (`interface`, `module`).
+All dimensions in mm, in the frame of the CAD: Z up, shaft axis at x = y = 0, Z = 0 at the underside of the bowl base. The numbers come from `hardware/cad/v64.json` (`interface`, `module`).
 
 ## Interface to the chassis (fixed from hardware 6.4)
 

@@ -1,0 +1,346 @@
+{
+ "about": "Baseline for the grams and pieces comparison in build_v63_checks.py: the parts list and totals of the print package of design v6.2 (hardware 6.2.0), kept here because the v6.3 stage of the chain compares against it. Not a print file.",
+ "parts_checklist": [
+  {
+   "id": "guscio_v611",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "fondello_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "chiocciola_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "flangia_piano_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "flangia_alta_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "canalina_base_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 2,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "canalina_coperchio_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 2,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "canalina_tappo_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "disco_v61",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "orange",
+    "black"
+   ]
+  },
+  {
+   "id": "piastra_gate_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black",
+    "green"
+   ]
+  },
+  {
+   "id": "piastra_finestra_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black",
+    "green"
+   ]
+  },
+  {
+   "id": "saracinesca_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "green",
+    "orange"
+   ]
+  },
+  {
+   "id": "anello_saracinesca_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "orange"
+   ]
+  },
+  {
+   "id": "scivolo_v611",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "green"
+   ]
+  },
+  {
+   "id": "colletto_v6",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "green"
+   ]
+  },
+  {
+   "id": "linguetta_sicura",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "orange"
+   ]
+  },
+  {
+   "id": "pulsante_v611",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "orange"
+   ]
+  },
+  {
+   "id": "nottolino_v611",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 3,
+   "colours": [
+    "orange"
+   ]
+  },
+  {
+   "id": "colonna_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "albero_v6",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "mozzo_v6",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "scatola_v62",
+   "kind": "part",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "labbro_pettine_v62",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 4,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "guarnizione_baionetta_v61",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "guarnizione_fondello_v61",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "guarnizione_piano_v5",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "labbro_ombra_v611",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "labbro_scivolo_v611",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "passacavo_v62",
+   "kind": "part",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "test_scanalato",
+   "kind": "test",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "test_groove_rim",
+   "kind": "test",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "test_groove_cap",
+   "kind": "test",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "test_groove_skirt",
+   "kind": "test",
+   "material": "PETG",
+   "qty": 1,
+   "colours": [
+    "black"
+   ]
+  },
+  {
+   "id": "test_rim_lip",
+   "kind": "test",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "test_cap_lip",
+   "kind": "test",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "test_skirt_lip",
+   "kind": "test",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  },
+  {
+   "id": "test_comb_lip",
+   "kind": "test",
+   "material": "TPU 95A",
+   "qty": 1,
+   "colours": [
+    "yellow"
+   ]
+  }
+ ],
+ "totals": {
+  "grams_PETG": 1046.6,
+  "colour_swaps": 33
+ }
+}

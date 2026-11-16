@@ -3,8 +3,8 @@
 Check that every mesh under a hardware folder is a closed solid with a positive volume.
 
 Usage:  python hardware/cad/check_meshes.py [HARDWARE_DIR] [--skip GLOB ...]
-HARDWARE_DIR defaults to the folder above this script (prototype 1); pass hardware/v6 or hardware/v6.2 for those
-designs. --skip leaves out meshes whose path relative to HARDWARE_DIR matches a glob (listed in the output).
+HARDWARE_DIR defaults to the folder above this script (hardware/, the current design); pass hardware/module/case-1.0
+for the module. --skip leaves out meshes whose path relative to HARDWARE_DIR matches a glob (listed in the output).
 It scans stl/*.stl, 3mf/*.3mf, assembly/*.stl, parts/*.stl and parts/*.3mf (the module folders, hardware/module/<case>)
 and cad/build/*.stl (the build folder exists after running the generator scripts).
 
