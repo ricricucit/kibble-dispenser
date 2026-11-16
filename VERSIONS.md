@@ -1,22 +1,25 @@
 # Versions
 
-The project has three version lines. Each has its own tag and its own GitHub Release, so a printed unit, the firmware on its board and a sold kit can always be matched to each other.
+The project has four version lines. Each has its own tag and its own GitHub Release, so a printed unit, its electronics module, the firmware on its board and a sold kit can always be matched to each other.
 
 - **Hardware**, tag `hw-vMAJOR.MINOR.PATCH`. Source of truth: [`hardware/VERSION`](hardware/VERSION) (version, status, design folder). A release has four kinds of assets: an STL zip (the print-ready STL files), a plate 3MF zip (Bambu Studio projects and a plain 3MF per plate), both with the print guide, the bought-parts list and the licences, the drilling template (PDF) and the manuals (PDF, `docs/manual/`).
+- **Electronics module (case)**, tag `case-vMAJOR.MINOR.PATCH`, from hardware 6.4. Source of truth: [`hardware/module/VERSION`](hardware/module/VERSION) (version, name such as "case 1.0", status, folder, the print package it comes from, the hardware it fits). The module is the detachable, sealed electronics case that slides into the chassis from below; its outside fits the holder interface of the chassis, which is fixed from 6.4 on, and its inside evolves on its own. A release has an STL zip and a plate 3MF zip of the module parts (from the 6.4 print package, with the print guide and the licences), the module folder with its README, and the interface drawing (PDF).
 - **Firmware**, tag `fw-vX.Y.Z`. Source of truth: [`firmware/VERSION`](firmware/VERSION). It has to agree with `firmware/micropython/VERSION`, the firmware's own version file, which is kept byte-for-byte as it came from the owner's development folder and is never edited here. A release contains the MicroPython sources. The ESPHome draft in `firmware/esphome/` is not versioned: it stays "draft".
 - **Product**, tag `product-vX.Y.Z`. Source of truth: [`product/product.json`](product/product.json), a lock file that pins one hardware tag and one firmware tag, plus the manual, the bill of materials and the kit details (enclosure, packaging). See [`product/README.md`](product/README.md).
 
 Releases: <https://github.com/ricricucit/kibble-dispenser/releases>. The website footer shows the current versions and the commit it was built from.
 
-Planned (owner decision of 2026-11-14, nothing released yet): a fourth line for the **electronics case**, a detachable electronics module with its own version and tag, starting with hardware 6.4, whose mechanics get a holder for it. The servo stays in the chassis. See [docs/PROTOTYPE_BENCH.md](docs/PROTOTYPE_BENCH.md).
+The module line follows the owner decision of 2026-11-14: the product splits into the chassis (mechanics with a holder for the electronics, the hardware line) and a detachable electronics module (the case line); the servo stays in the chassis. See [hardware/module/README.md](hardware/module/README.md) and [docs/PROTOTYPE_BENCH.md](docs/PROTOTYPE_BENCH.md).
 
 ## Bump rules
 
 Hardware follows SemVer, read for physical parts:
 
 - MAJOR: a new architecture, or parts that no longer fit the previous version (design v6 is 6.0.0; a v7 would be 7.0.0).
-- MINOR: a compatible design change within the same architecture (v6.1 was 6.1.0, v6.2 was 6.2.0, v6.3 is 6.3.0). Its design folder may be named after the minor version (`hardware/v6.3`).
+- MINOR: a compatible design change within the same architecture (v6.1 was 6.1.0, v6.2 was 6.2.0, v6.3 was 6.3.0, 6.4 is 6.4.0). Its design folder may be named after the minor version (`hardware/v6.4`).
 - PATCH: a fix that does not change the fit, such as a print setting, a label or a tolerance inside one part.
+
+The module case follows SemVer for physical parts too: MAJOR when it no longer fits the holder interface of the chassis, MINOR for a compatible change of the case (another board slot, another panel layout), PATCH for a fix that does not change the fit. "case 1.0" is version 1.0.0. Its status follows the same scale as the hardware status below.
 
 Firmware follows SemVer too: MAJOR when the behaviour contract, the pin map or the required hardware changes in a way that breaks a working unit; MINOR for a compatible feature; PATCH for a fix. While the version starts with 0, anything may still change. Build metadata such as `+dev.20260324` marks a snapshot of a development folder that its author has not released as such.
 
@@ -35,7 +38,7 @@ The release title shows the status (for example "Hardware 6.2.0 · designed"). R
 
 ## How a release is made
 
-1. Bump the version file (`hardware/VERSION`, `firmware/VERSION` or `product/product.json`) and add a section named after the tag to [`CHANGELOG.md`](CHANGELOG.md), for example `## [hw-v6.2.0] - 2026-11-10`. Design iterations that are not released on their own (6.1.0 and 6.1.1) get a short section too, marked as not released.
+1. Bump the version file (`hardware/VERSION`, `hardware/module/VERSION`, `firmware/VERSION` or `product/product.json`) and add a section named after the tag to [`CHANGELOG.md`](CHANGELOG.md), for example `## [hw-v6.2.0] - 2026-11-10`. Design iterations that are not released on their own (6.1.0 and 6.1.1) get a short section too, marked as not released.
 2. Push to `main`. The workflow [`release.yml`](.github/workflows/release.yml) runs [`tools/release.py`](tools/release.py): for each line whose tag does not exist yet it creates an annotated tag and a GitHub Release with the assets, and takes the notes from the matching CHANGELOG section.
 3. A new tag points at the commit that brings the new version to `main` (the head of the push), and the assets are read from that commit. The release notes also name the last commit that changed the line's files (`hardware/` or `firmware/micropython/`), when that is an earlier one. The workflow cannot tag older commits: GitHub refuses to let the workflow's token create a ref on a commit whose workflow files differ from `main`.
 
@@ -46,10 +49,11 @@ Run `python tools/release.py` (a dry run: it prints the plan and builds the asse
 
 ## Compatibility
 
-| Hardware | Status | Firmware | Product |
-|---|---|---|---|
-| prototype 1 (bench, not tagged) | built | `fw-v0.1.0+dev.20260324`: the development source; the copy flashed on the board has not been read back yet | none |
-| `hw-v6.0.0` (design v6, archived) | designed | `fw-v0.1.0+dev.20260324` expected (same pins and behaviour), not run on v6; the disc zero has to be set after assembly | none |
-| 6.1.0 and 6.1.1 (design iterations, not released) | designed | as `hw-v6.2.0` | none |
-| `hw-v6.2.0` (design v6.2, archived) | designed | `fw-v0.1.0+dev.20260324` expected (same pins and behaviour contract), not run on v6.2 yet; the disc zero has to be set after assembly. **New requirement, not yet in the firmware: never dispense at power-on.** Both rest positions of the disc are closed, so the firmware must store the last commanded rest position in non-volatile memory (written only when it changes), command exactly that position at boot and enable the servo PWM only after loading it; a cold start without a stored value goes to 0°. | none |
-| `hw-v6.3.0` (design v6.3, current) | designed | **Needs new firmware that does not exist yet: the one-button control panel ([issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2)).** v6.3 has one recessed push-button and two LEDs instead of the two buttons and one LED of the bench prototype: single press = one portion (only while ON), double press = ON/OFF (switching ON dispenses one portion), long press 5 s = reset everything except Wi-Fi, long press 10 s = full reset, a sound at every portion, never dispense at power-on (store and restore the last rest position, as for v6.2). `fw-v0.1.0+dev.20260324` is two-button firmware for the bench prototype: it does not drive this panel and is not to be flashed for v6.3. The disc zero has to be set after assembly. | `product-v1.0.0` will pin the first tested hardware and firmware pair |
+| Hardware | Status | Module | Firmware | Product |
+|---|---|---|---|---|
+| prototype 1 (bench, not tagged) | built | none (breadboard) | `fw-v0.1.0+dev.20260324`: the development source; the copy flashed on the board has not been read back yet | none |
+| `hw-v6.0.0` (design v6, archived) | designed | none (electronics in the box) | `fw-v0.1.0+dev.20260324` expected (same pins and behaviour), not run on v6; the disc zero has to be set after assembly | none |
+| 6.1.0 and 6.1.1 (design iterations, not released) | designed | none (electronics in the box) | as `hw-v6.2.0` | none |
+| `hw-v6.2.0` (design v6.2, archived) | designed | none (electronics in the box) | `fw-v0.1.0+dev.20260324` expected (same pins and behaviour contract), not run on v6.2 yet; the disc zero has to be set after assembly. **New requirement, not yet in the firmware: never dispense at power-on.** Both rest positions of the disc are closed, so the firmware must store the last commanded rest position in non-volatile memory (written only when it changes), command exactly that position at boot and enable the servo PWM only after loading it; a cold start without a stored value goes to 0°. | none |
+| `hw-v6.3.0` (design v6.3, archived) | designed | none (electronics in the box) | **Needs new firmware that does not exist yet: the one-button control panel ([issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2)).** v6.3 has one recessed push-button and two LEDs instead of the two buttons and one LED of the bench prototype: single press = one portion (only while ON), double press = ON/OFF (switching ON dispenses one portion), long press 5 s = reset everything except Wi-Fi, long press 10 s = full reset, a sound at every portion, never dispense at power-on (store and restore the last rest position, as for v6.2). `fw-v0.1.0+dev.20260324` is two-button firmware for the bench prototype: it does not drive this panel and is not to be flashed for v6.3. The disc zero has to be set after assembly. | none |
+| `hw-v6.4.0` (hardware 6.4, chassis, current) | designed | `case-v1.0.0` (case 1.0, designed): the first module, it fits the holder interface of 6.4; later cases 1.x fit too | **Needs the one-button firmware of [issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2), which does not exist yet**: single press = one portion (only while ON), double press = ON/OFF (switching ON dispenses one portion), long press 5 s = reset everything except Wi-Fi, 10 s = full reset, a sound at every portion, never dispense at power-on (store and restore the last rest position). The panel (one button, two LEDs, speaker) is on the module. `fw-v0.1.0+dev.20260324` is two-button firmware for the bench prototype and is not to be flashed for 6.4. Its speaker and dispense pins (GPIO 26, 27) are camera pins of the WROVER board ([issue #3](https://github.com/ricricucit/kibble-dispenser/issues/3)); prototype 1 has no camera. The disc zero has to be set after assembly. | `product-v1.0.0` will pin the first tested hardware, module and firmware |

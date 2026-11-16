@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """
-Tag and publish the three version lines of the project (see VERSIONS.md).
+Tag and publish the version lines of the project (see VERSIONS.md).
 
     hardware  hardware/VERSION       tag hw-v<version>       STL zip, plate 3MF zip (with the print guide and the BOM),
                                                              the drilling template and the manuals (PDF), if present
+    module    hardware/module/VERSION  tag case-v<version>   the electronics module case: STL zip and plate 3MF zip of its
+                                                             parts (from the print package named in the file), its CAD
+                                                             parts and README, and the interface drawing (PDF)
     firmware  firmware/VERSION       tag fw-v<version>       zip: the MicroPython sources (tracked files only)
     product   product/product.json   tag product-v<version>  lock file plus the pinned hardware and firmware zips
 
@@ -129,7 +132,7 @@ def hardware_line():
                     f'Commit: {target}\nSource: {REPO}/tree/{tag}\n')
         docs = tracked(f'{design}/README.md', f'{design}/bom.json', 'docs/BOM.md', at=at)
         plates = tracked(f'{design}/plates', at=at)
-        guide = [f for f in plates if f.endswith(('plates/README.md', 'plates/summary.json'))]
+        guide = [f for f in plates if f.endswith(('plates/README.md', 'plates/PRINT_GUIDE.md', 'plates/summary.json'))]
         lic = {'cern': tracked('LICENSES/CERN-OHL-P-2.0.txt', at=at), 'cc': tracked('LICENSES/CC-BY-4.0.txt', at=at)}
         # print-ready STL files: the print package (plates/stl) when there is one, otherwise the design's stl/ folder
         stl = [f for f in plates if '/plates/stl/' in f and f.endswith('.stl')] or tracked(f'{design}/stl', at=at)
@@ -154,6 +157,53 @@ def hardware_line():
     rel = dict(line='hardware', tag=f'hw-v{version}', version=version, status=status, target=target, content=content, paths='hardware/ (VERSION aside)',
                 title=f'Hardware {version} · {status}', prerelease=status in ('designed', 'printed'),
                 intro=(f'Hardware line, design `{design}`. Status: **{status}**'
+                       + (' (designed and checked in CAD, not yet printed or tested).' if status == 'designed' else '.')),
+                assets=assets)
+    return rel
+
+
+def module_line():
+    """The electronics module case (hardware/module/VERSION), released on its own: tag case-v<version>."""
+    path = ROOT / 'hardware/module/VERSION'
+    if not path.exists():
+        return None
+    v = read_toml('hardware/module/VERSION')
+    version, status, name = v['version'], v['status'], v['name']
+    folder, plates_dir = v['folder'].rstrip('/'), v['plates'].rstrip('/')
+    if not SEMVER.match(version) or status not in STATUSES:
+        sys.exit(f'hardware/module/VERSION: bad version {version!r} or status {status!r}')
+    for d in (folder, plates_dir):
+        if not (ROOT / d).is_dir():
+            sys.exit(f'hardware/module/VERSION: folder {d} not found')
+    content = last_commit([folder], [])
+    target = git('rev-parse', 'HEAD')
+    tag = f'case-v{version}'
+
+    def assets(out, when):
+        """Module STL zip and plate 3MF zip (its part of the print package), the interface drawing."""
+        at = rel['target']
+        base = f'kibble-dispenser-{safe_name(tag)}'
+        summary = json.loads(blob(f'{plates_dir}/summary.json', at))
+        mod = summary['products']['module']
+        stl = sorted({f'{plates_dir}/{f}' for p in summary['parts_checklist'] if p.get('product') == 'module' for f in p.get('stl', [])})
+        plates = {p['key']: p for p in summary['plates']}
+        mf = [f'{plates_dir}/{f}' for f in mod['bambu_projects']] + [f'{plates_dir}/{plates[k]["plain_3mf"]}' for k in mod['plates']]
+        docs = tracked(folder, at=at)
+        guide = tracked(f'{plates_dir}/PRINT_GUIDE.md', f'{plates_dir}/summary.json', at=at)
+        lic = tracked('LICENSES/CERN-OHL-P-2.0.txt', 'LICENSES/CC-BY-4.0.txt', at=at)
+        manifest = (f'Kibble Dispenser Outdoor, electronics module {name} (version {version})\nStatus: {status}\n'
+                    f'Fits: {v.get("fits", "")}\nFolder: {folder}\nCommit: {target}\nSource: {REPO}/tree/{tag}\n')
+        res = [write_zip(out / f'{base}-stl.zip', f'{base}-stl', stl + docs + guide + lic, {'VERSION.txt': manifest}, when, at),
+               write_zip(out / f'{base}-plates-3mf.zip', f'{base}-plates-3mf', mf + docs + guide + lic, {'VERSION.txt': manifest}, when, at)]
+        for f in [f for f in tracked(f'{folder}/interface', at=at) if f.endswith('.pdf')][:1]:
+            dst = out / 'kibble-dispenser-module-interface.pdf'
+            dst.write_bytes(blob(f, at))
+            res.append(dst)
+        return res
+
+    rel = dict(line='module', tag=tag, version=version, status=status, target=target, content=content, paths=f'{folder}/',
+                title=f'Electronics module {name} · {status}', prerelease=status in ('designed', 'printed'),
+                intro=(f'Electronics module line, `{folder}` ({name}; fits {v.get("fits", "")}). Status: **{status}**'
                        + (' (designed and checked in CAD, not yet printed or tested).' if status == 'designed' else '.')),
                 assets=assets)
     return rel
@@ -257,6 +307,9 @@ def main():
     tags = remote_tags()
     hw, fw = hardware_line(), firmware_line()
     lines = [hw, fw]
+    mod = module_line()
+    if mod:
+        lines.insert(1, mod)
     prod = product_line(tags, hw)
     if prod:
         lines.append(prod)
@@ -270,7 +323,7 @@ def main():
             view = gh('release', 'view', tag, '--json', 'name', '--jq', '.name', check=False)
             if view.returncode == 0:
                 cur = view.stdout.strip()
-                if rel['line'] == 'hardware' and cur and cur != rel['title']:
+                if rel['line'] in ('hardware', 'module') and cur and cur != rel['title']:
                     print(f'{tag}: release title "{cur}" becomes "{rel["title"]}"')
                     if publish:
                         gh('release', 'edit', tag, '--title', rel['title'], f'--prerelease={str(rel["prerelease"]).lower()}')

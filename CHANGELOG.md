@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- 2026-11-16: The stable URLs now show hardware 6.4. `print/` is a step-by-step print guide (`site/printguide.py`, from `hardware/v6.4/plates/PRINT_GUIDE.md` and `summary.json`): preparation, test coupons with pass/fail, one step per plate with what to load, the supports, time, grams, the checks in the slicer, what to look at and the work after printing, the final checks, a "printed 6.3.0 already? here is what's left" path with the unchanged plates marked, and downloads per product (chassis, module) with a ZIP each. The page is in English, Italian and German; the detailed checks of each plate stay in English, as in the guide.
+- 2026-11-16: New page `module/` (`site/modulepage.py`, texts in `site/content/module.toml`): what the electronics module is, its version line (case 1.0), the interface drawing and its key dimensions, the pinout of J1, the harness lengths, the usable space inside and what fits.
+- 2026-11-16: `assembly/` is the 6.4 assembly guide (23 steps in "Install the kit", 43 in "Build it yourself", with a module chapter; its first DIY step links the print guide). `parts/` lists the bought parts of chassis and module separately (`hardware/v6.4/bom.json`, `docs/BOM.md`; `site/bom.py` checks each product against the print package). `manual/` has the 6.4 manuals and the 6.4 drilling template. The home page shows 6.4: new hero and section renders, the detachable module with the panel, the servo in the chassis, the print review, issues #2 and #3. Every footer also shows the module version.
+- 2026-11-16: Design v6.3 moves to an archive: `v6.3/` (index), `v6.3/3d/`, `v6.3/print/` (texts in `print_v63.toml`), `v6.3/parts/` (`docs/BOM-v6.3.md`), `v6.3/assembly/` (the v6.3 wizard, moved to `site/v6.3/assembly/`) and `v6.3/manual/`, linked from the earlier-versions page; their downloads come from GitHub and the release hw-v6.3.0.
+- 2026-11-16: The independent print review of 6.4 (2026-11-15) with its evidence in `docs/reviews/2026-11-15-v6.4-print-review/`.
+- 2026-11-16: CI: job `meshes-v64` checks the committed 6.4 meshes, the print package and the module parts on every push; the new workflow `cad-v64.yml` regenerates the whole 6.4 chain when its CAD scripts change. `check_meshes.py` also scans `parts/` (the module folders). `tools/release.py` and `release.yml` release the module line (`hardware/module/VERSION`, tag `case-v<version>`) with its own assets.
 - 2026-11-14: `docs/PROTOTYPE_BENCH.md` and five bench photos of 2026-11-14 in `docs/photos/` (metadata removed): owner measurements, what the photos show of the board and wiring (not electrically verified), the camera pin conflict ([issue #3](https://github.com/ricricucit/kibble-dispenser/issues/3)), kit and perfboards, and the decision to split the project into mechanics with a case holder (hardware 6.4, in design), a detachable electronics module with its own version line, and firmware.
 - 2026-11-11: The stable URLs `3d/`, `print/`, `parts/`, `assembly/` and `manual/` now show design v6.3. Design v6.2 moves to an archive: `v6.2/` (new index page), `v6.2/3d/`, `v6.2/print/`, `v6.2/parts/`, `v6.2/assembly/` (the v6.2 wizard, moved as it was to `site/v6.2/assembly/`) and `v6.2/manual/` stay online with an "archived" note and links to v6.3; the archived print and manual pages link the files in the repository and the assets of the release hw-v6.2.0 instead of copying them into the site. The earlier-versions page links v6.2 and v6.
 - 2026-11-11: Assembly guide `assembly/` for v6.3 (`site/assembly/`, 41 steps: 23 in "Install the kit", 40 in "Build it yourself"; English, Italian and German).
@@ -69,6 +75,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Fixed
 
 - 2026-11-08: `reuse lint` failed on `import/previous-chat/README.md`; `REUSE.toml` now covers `import/**/*.md` as documentation (CC BY 4.0).
+
+## [hw-v6.4.0] - 2026-11-16
+
+Hardware 6.4.0: the chassis 6.4, the mechanics with a holder for a detachable electronics module (the module itself is released on its own line, see case-v1.0.0). Status: designed (checked in CAD, with an independent print review; not printed, assembled or tested yet). It needs the one-button firmware of [issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2), which does not exist yet; the bench prototype keeps its two buttons and its firmware.
+
+### Added
+
+- 2026-11-16: Hardware 6.4 in `hardware/v6.4/`: `cad/` with `build_v64.py`, `build_v64_checks.py`, `build_v64_report.py` and `publish_v64.py`, plus copies of the scripts of v6.3, v6.2, v6.1.1, v6.1, v6, v5, the v4b dosing core and drivetrain v4 that it builds on (relative paths; `build_v64.py` runs the earlier stages first, about 16 minutes from a clean checkout); `v64.json` (reproducible) and `check_v64.png`; `assembly/` with the viewer meshes of chassis and module and `v64_viewer.json` in English, Italian and German; `template/`; `bom.json` grouped by product; `README.md`.
+- 2026-11-16: Servo bay `scatola_v64`: the 6.3 box cut down to the cradle width, sealed on its own (cap lip, tower face O-ring, shaft O-rings, O-ring under one stack screw, M12 gland, ePTFE vent patch), with two posts carrying M3 inserts that hold the module. The servo stays in the chassis.
+- 2026-11-16: A chassis harness: a 190 mm M8 5-pin tail to the module connector J1 with a service loop, a 12 V branch to the M8 connector in the pod top and a round servo branch through the gland to a JR connector in the bay.
+- 2026-11-16: Print package for both products in `hardware/v6.4/plates/`: five Bambu Studio projects (chassis PETG, chassis IP66 PETG, chassis TPU, module PETG, module TPU), 14 plates (one only for reprinting the module gasket), every part as an STL, previews, slicer statistics, `summary.json` with product and unchanged/changed status per plate and part, and the step-by-step procedure `PRINT_GUIDE.md`. Everything: 44 h 13 min, 1076 g of PETG and 9 g of TPU; after a complete 6.3.0 print only 5 plates are left (19 h 18 min, 470 g). Validated by slicing every plate with OrcaSlicer 2.5, not opened in Bambu Studio yet.
+
+### Changed
+
+- 2026-11-16: Shell `guscio_v64` (module opening with return ribs, 45° corbels under the bowl tabs), cap `fondello_v64` (closes the servo bay, module opening, 4 PT screws) and the bay lip seal `guarnizione_fondello_v64`. The other 21 printed parts are the 6.3.0 files byte for byte (compared by hash in `v64.json`), so plates printed from the 6.3.0 package stay valid.
+- 2026-11-16: The control panel moves from the cap to the module, and with it from the room side to the side away from the bowl (60° clockwise from the release button, seen from above): hang the dispenser with the panel facing you.
+- 2026-11-16: Answers to the print review of 2026-11-15 (0 blocker, 3 major, 19 minor; `docs/reviews/2026-11-15-v6.4-print-review/`), recorded in `v64.json` (`review_2026_11_15`): the holder posts grow from the bed, 45° chamfers under the bottom edges of the cap and the tub, a defined vertical stop for the module, PT K30 × 10 lid screws, a Ø16.5 bore for the J1 nut, and more. The inner part of the three bowl tabs of the shell still needs tree supports, set up in the project.
+- 2026-11-16: `hardware/VERSION` is 6.4.0 (status designed, design folder `hardware/v6.4`); design v6.3 is archived. `product/product.json` is unchanged (unreleased).
+
+## [case-v1.0.0] - 2026-11-16
+
+Electronics module case 1.0 (version 1.0.0), the first release of the module line: a sealed case that slides into the chassis of hardware 6.4 from below. Status: designed (checked in CAD together with the chassis; not printed, assembled or tested yet).
+
+### Added
+
+- 2026-11-16: `hardware/module/VERSION` (the source of truth of the module line) and `hardware/module/case-1.0/`: the four printed parts as exported by the CAD (`parts/`: tub with the control panel, lid with the J1 turret, lid gasket, speaker ring), the dimensioned interface drawing (`interface/`) and a README with the interface spec: opening and envelope, posts, sockets and lock screws, J1 (M8 5-pin) and its pinout, the harness lengths, the usable space inside and what fits. The inside is generic: the board wiring is documented separately and is provisional.
+- 2026-11-16: Print files of the module in the 6.4 print package (projects `Kibble_Module_case_1.0_PETG.bambu.3mf` and `Kibble_Module_case_1.0_TPU.bambu.3mf`, plates MOD-1, MOD-2, MOD-TPU-1): 5 h 01 min, 108 g of PETG. The tub needs two small support columns under the upper corners of the button recess, set up in the project.
 
 ## [hw-v6.3.0] - 2026-11-11
 
