@@ -423,7 +423,9 @@ details[open] summary { border-bottom: 1px solid var(--rule); }
 .gsteps0 li { color: var(--ink-2); padding-left: 4px; }
 .gsteps0 li::marker { font: 700 1rem/1 var(--f-draw); color: var(--orange-ink); }
 .gsteps { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
-.gstep { display: grid; border: 1.5px solid var(--ink); background: var(--sheet); min-width: 0; }
+.gstep { display: grid; grid-template-columns: minmax(0, 1fr); border: 1.5px solid var(--ink); background: var(--sheet); min-width: 0; }
+.gstep > *, .gstep .pbody > * { min-width: 0; }
+.gstep .pmeta span, .gkv dd, .glist li, .dl-prod .dl-s { overflow-wrap: anywhere; }
 .gstep-unchanged { border-style: dashed; }
 .gstep-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--ink); }
 .gnum { font: 700 1.05rem/1.1 var(--f-draw); color: var(--orange-ink); white-space: nowrap; }
@@ -432,7 +434,7 @@ details[open] summary { border-bottom: 1px solid var(--rule); }
 .gbadge-unchanged { color: var(--ink-2); }
 .gbadge-changed { color: var(--orange-ink); }
 .gbadge-new { color: #1b0d03; background: var(--orange); border-color: var(--orange); }
-.gstep-body { display: grid; min-width: 0; }
+.gstep-body { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; }
 .gstep-body .pimg { border-bottom: 1px solid var(--rule); }
 .gkv { margin: 0; display: grid; gap: 8px; }
 .gkv div { display: grid; gap: 2px; }

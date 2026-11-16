@@ -25,7 +25,7 @@ SKIP_LABELS = ('File', 'Parts on the plate', 'Time and filament')
 
 def inline(text):
     """Escape, then the little Markdown the guide uses: `code` and **bold**."""
-    t = html.escape(text, quote=False)
+    t = html.escape(text.replace('print_v63', 'the 6.3.0 package'), quote=False)   # the guide's name for hardware/v6.3/plates
     t = re.sub(r'`([^`]+)`', r'<code>\1</code>', t)
     return re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', t)
 
