@@ -88,6 +88,8 @@ Questi sono i comportamenti che l'autore richiede di preservare e che riferisce 
 
 Questi sono **artefatti digitali presenti**, non automaticamente pezzi già stampati o assemblati:
 
+*(2026-11-16: questi file del prototipo 1 non sono più nell'albero del repository, che fino al lancio tiene solo il progetto attuale; restano nella cronologia git.)*
+
 - `hardware/3mf/disco_v3.3mf` / `hardware/stl/disco_v3.stl`: disco **Ø103 × 4 mm**, apertura trapezoidale, progetto fino a **180°**.
 - `albero_mozzo`: albero Ø12 mm, esagono 8 mm, innesto servo 25T, scanalature O-ring.
 - `passante_stagno`: boccola di tenuta con flangia, O-ring frontale 40×2. *(2026-11-08: sostituito da `passante_culla`, vedi §9.)*
