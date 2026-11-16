@@ -50,6 +50,10 @@ Don't treat documentation guesses as as-built measurements. Never overwrite the 
 
 - The project splits into mechanics with an electronics case holder (hardware 6.4, in design), a detachable electronics module with its own version line, and firmware. The servo stays in the chassis; prototype 1 has no camera. The soldered prototype goes on a green 5 × 7 cm perfboard with the ESP32 on socket strips, without the extension board. Bench photos, measurements and open points: `docs/PROTOTYPE_BENCH.md` (photo readings are not electrically verified; the on-device firmware readback is still pending).
 
+## Update 2026-11-16: only the latest version until launch (owner decision)
+
+- Until public launch (owner will say when): only the latest version is kept in the repo tree, site, print guide, wizard and manuals; no upgrade paths, archives or per-version markings; bump versions normally; history lives in git.
+
 ## Restart here (firmware bench session, written 2026-11-14)
 
 If the owner opens a fresh clone and asks to restart the software tests, do this, in order. He is on the bench with the breadboard prototype connected over USB.

@@ -1,6 +1,6 @@
 # Documentation
 
-- [Bought parts, hardware 6.4](BOM.md): chassis and electronics module separately, screws, inserts, pins, O-rings, connectors, harness, control panel parts, electronics and tools, in English, Italian and German (generated from `hardware/v6.4/bom.json` by `site/bom.py`; 6.4 is designed, not yet printed or tested). The archived lists are [BOM-v6.3.md](BOM-v6.3.md) (design v6.3), [BOM-v6.2.md](BOM-v6.2.md) (design v6.2) and [BOM-v6.md](BOM-v6.md) (design v6).
+- [Bought parts, hardware 6.4](BOM.md): chassis and electronics module separately, screws, inserts, pins, O-rings, connectors, harness, control panel parts, electronics and tools, in English, Italian and German (generated from `hardware/bom.json` by `site/bom.py`; 6.4 is designed, not yet printed or tested).
 - [Manuals, hardware 6.4](manual/): the user manual (draft for hardware 6.4.0 and module case 1.0, installation, use and maintenance) as an A6 booklet and an A4 print version in English, Italian and German; also on the site at <https://ricricucit.github.io/kibble-dispenser/manual/>
 - [Build guide](BUILD_GUIDE.md): step-by-step assembly, exported from the living build guide (placeholder for now)
 - [Research: power, electronics and sealing](research/elettronica-e-tenuta.it.md): power architecture, servo torque and current, cable entry, condensation, shaft seal and the full wiring list (Italian)
@@ -9,4 +9,4 @@
 - [Print review of 6.4](reviews/2026-11-15-v6.4-print-review/README.md): the independent review of every printed part before the first print (2026-11-15), with its evidence
 - [Process photos](photos/README.md): prototype 1 from the first servo tests to the bowl and box
 
-Part-by-part print notes are in [../hardware/v6.4/plates/PRINT_GUIDE.md](../hardware/v6.4/plates/PRINT_GUIDE.md) (hardware 6.4 and module case 1.0), [../hardware/v6.3/plates/README.md](../hardware/v6.3/plates/README.md) (design v6.3), [../hardware/v6/README.md](../hardware/v6/README.md) (design v6) and [../hardware/README.md](../hardware/README.md) (prototype 1). Wiring and flashing steps are in [../firmware/README.md](../firmware/README.md).
+Part-by-part print notes are in [../hardware/plates/PRINT_GUIDE.md](../hardware/plates/PRINT_GUIDE.md) (hardware 6.4 and module case 1.0); the design notes are in [../hardware/README.md](../hardware/README.md). Wiring and flashing steps are in [../firmware/README.md](../firmware/README.md).

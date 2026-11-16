@@ -2,195 +2,36 @@
 
 All notable changes to this project are documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Releases follow three version lines, each with its own tag: hardware `hw-vX.Y.Z`, firmware `fw-vX.Y.Z` and product `product-vX.Y.Z` (see [VERSIONS.md](VERSIONS.md)). A section named after a tag holds the notes of that release; changes to the website, the docs and the tooling stay under Unreleased.
+Until the public launch the project keeps only its current state: this file has a single pre-launch entry that describes what the repository holds now, and the release notes of every version line are taken from it. Earlier design iterations (prototype drivetrains, designs v6 to v6.3) and their history are in the git history only. Version numbers keep rising as usual; see [VERSIONS.md](VERSIONS.md). After the launch the file follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), with a section named after each tag.
 
-## [Unreleased]
+## [pre-launch] - 2026-11-16
 
-### Added
+Current state before the public launch: hardware 6.4.0 (the chassis), the electronics module case 1.0 (1.0.0) and firmware 0.1.0+dev.20260324. The hardware and the module are designed and checked in CAD, with an independent print review; nothing of them has been printed, assembled or tested yet. They need the one-button firmware of [issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2), which does not exist yet; the bench prototype keeps its two buttons and its firmware. No product release yet.
 
-- 2026-11-16: The stable URLs now show hardware 6.4. `print/` is a step-by-step print guide (`site/printguide.py`, from `hardware/v6.4/plates/PRINT_GUIDE.md` and `summary.json`): preparation, test coupons with pass/fail, one step per plate with what to load, the supports, time, grams, the checks in the slicer, what to look at and the work after printing, the final checks, a "printed 6.3.0 already? here is what's left" path with the unchanged plates marked, and downloads per product (chassis, module) with a ZIP each. The page is in English, Italian and German; the detailed checks of each plate stay in English, as in the guide.
-- 2026-11-16: New page `module/` (`site/modulepage.py`, texts in `site/content/module.toml`): what the electronics module is, its version line (case 1.0), the interface drawing and its key dimensions, the pinout of J1, the harness lengths, the usable space inside and what fits.
-- 2026-11-16: `assembly/` is the 6.4 assembly guide (23 steps in "Install the kit", 43 in "Build it yourself", with a module chapter; its first DIY step links the print guide). `parts/` lists the bought parts of chassis and module separately (`hardware/v6.4/bom.json`, `docs/BOM.md`; `site/bom.py` checks each product against the print package). `manual/` has the 6.4 manuals and the 6.4 drilling template. The home page shows 6.4: new hero and section renders, the detachable module with the panel, the servo in the chassis, the print review, issues #2 and #3. Every footer also shows the module version.
-- 2026-11-16: Design v6.3 moves to an archive: `v6.3/` (index), `v6.3/3d/`, `v6.3/print/` (texts in `print_v63.toml`), `v6.3/parts/` (`docs/BOM-v6.3.md`), `v6.3/assembly/` (the v6.3 wizard, moved to `site/v6.3/assembly/`) and `v6.3/manual/`, linked from the earlier-versions page; their downloads come from GitHub and the release hw-v6.3.0.
-- 2026-11-16: The independent print review of 6.4 (2026-11-15) with its evidence in `docs/reviews/2026-11-15-v6.4-print-review/`.
-- 2026-11-16: CI: job `meshes-v64` checks the committed 6.4 meshes, the print package and the module parts on every push; the new workflow `cad-v64.yml` regenerates the whole 6.4 chain when its CAD scripts change. `check_meshes.py` also scans `parts/` (the module folders). `tools/release.py` and `release.yml` release the module line (`hardware/module/VERSION`, tag `case-v<version>`) with its own assets.
-- 2026-11-14: `docs/PROTOTYPE_BENCH.md` and five bench photos of 2026-11-14 in `docs/photos/` (metadata removed): owner measurements, what the photos show of the board and wiring (not electrically verified), the camera pin conflict ([issue #3](https://github.com/ricricucit/kibble-dispenser/issues/3)), kit and perfboards, and the decision to split the project into mechanics with a case holder (hardware 6.4, in design), a detachable electronics module with its own version line, and firmware.
-- 2026-11-11: The stable URLs `3d/`, `print/`, `parts/`, `assembly/` and `manual/` now show design v6.3. Design v6.2 moves to an archive: `v6.2/` (new index page), `v6.2/3d/`, `v6.2/print/`, `v6.2/parts/`, `v6.2/assembly/` (the v6.2 wizard, moved as it was to `site/v6.2/assembly/`) and `v6.2/manual/` stay online with an "archived" note and links to v6.3; the archived print and manual pages link the files in the repository and the assets of the release hw-v6.2.0 instead of copying them into the site. The earlier-versions page links v6.2 and v6.
-- 2026-11-11: Assembly guide `assembly/` for v6.3 (`site/assembly/`, 41 steps: 23 in "Install the kit", 40 in "Build it yourself"; English, Italian and German).
-- 2026-11-11: Manual page `manual/` with the v6.3 manuals (A6 booklet and A4 print version in English, Italian and German, `docs/manual/`) and the 1:1 drilling template (`hardware/v6.3/template/`); the v6.2 PDFs stay as assets of hw-v6.2.0.
-- 2026-11-11: Home page for v6.3: hero re-rendered from the v6.3 forest view, a section drawing of v6.3, the control panel (one recessed push-button, two LEDs, sealed speaker opening), 28 printed pieces instead of 36, no cable channel; status designed (not printed or tested) and the one-button firmware pending ([issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2)).
-- 2026-11-11: Print-files page `print/` for v6.3 from `site/content/print.toml` and `hardware/v6.3/plates/`; the v6.2 texts move to `print_v62.toml`. Bought-parts page `parts/` and `docs/BOM.md` for v6.3 from `hardware/v6.3/bom.json`, checked against the bought-parts list of the print package; the v6.2 list moves to `docs/BOM-v6.2.md` and `v6.2/parts/`.
-- 2026-11-11: CI: job `meshes-v63` checks the committed v6.3 meshes on every push; the new workflow `cad-v63.yml` regenerates the whole v6.3 chain in a temporary copy when its CAD scripts change and checks every mesh and the main results of `v63.json` (watertight, no hard interference, strict interlock, control panel).
-- 2026-11-10: Stable URLs for the current design on the site: `3d/`, `print/`, `parts/`, `assembly/` and `manual/` always show the current design (now v6.2); earlier designs keep versioned pages. Design v6 moves to an archive: `v6/` (new index page), `v6/3d/`, `v6/print/` and `v6/parts/` stay online with an "archived" note and links to v6.2, and the earlier-versions page links them. Every internal link, the home page buttons, the footers and the README point to the stable URLs.
-- 2026-11-10: Assembly guide `assembly/` (the v6.2 wizard, copied as built into `site/assembly/`): step by step with the 3D model, two flows ("Install the kit", the default, and "Build it yourself"), English, Italian and German, deep links `#step-N` and `#diy-N`.
-- 2026-11-10: Manual page `manual/`: the v6.2 user manual (0.6.2 draft) as an A6 booklet and an A4 print version in English, Italian and German (`docs/manual/`), and the 1:1 drilling template (`hardware/v6.2/template/`).
-- 2026-11-10: Print-files page `print/` for v6.2 from `site/content/print.toml` and `hardware/v6.2/plates/`: status banner, downloads with a ZIP of everything, AMS lite slots (1 black, 2 orange, 3 green, 4 spare black; TPU from the external spool), test pieces first, a card per plate, settings, the IP66 settings of the box and the cap with the drain holes to clear, the bought parts, the check list, the Bambu Studio check note and the deviations of the print package. The v6 texts move to `print_v6.toml`.
-- 2026-11-10: Bought-parts page `parts/` and `docs/BOM.md` for v6.2 from `hardware/v6.2/bom.json`, checked against the bought-parts list of the print package; the v6 list moves to `docs/BOM-v6.md` and `v6/parts/`. `site/bom.py` handles both designs.
-- 2026-11-10: CI: job `meshes-v62` checks the committed v6.2 meshes on every push; the new workflow `cad-v62.yml` regenerates the whole v6.2 chain in a temporary copy when its CAD scripts change (about 10 minutes locally), checks every mesh and the main results of `v62.json`. `check_meshes.py` takes `--skip GLOB`.
+### Hardware 6.4.0 (chassis)
 
-- 2026-11-09: Version lines and automatic releases ([VERSIONS.md](VERSIONS.md)): hardware `hw-vX.Y.Z` from `hardware/VERSION` (6.0.0, status designed), firmware `fw-vX.Y.Z` from `firmware/VERSION` (0.1.0+dev.20260324, checked against `firmware/micropython/VERSION`, which stays untouched), product `product-vX.Y.Z` from the lock file `product/product.json` (unreleased) with `product/README.md`. `tools/release.py` (dry run by default) and the workflow `release.yml` create an annotated tag and a GitHub Release with assets for each new version, with the notes from the matching CHANGELOG section; the hardware and firmware releases above were backfilled this way. Every site footer, the 3D page and the bought-parts page show the versions and the build commit.
-- 2026-11-09: New home page in English, Italian and German, generated by `site/pages.py` from `site/content/home.toml`: hero with a still from the 3D page ("In the woods"), the idea (with a side-view drawing of the food path), how it works, materials and colour language with grams per colour, build cards (print files, bought parts, assembly wizard and PDF manual coming soon), what's next (v6.1 in design; the v6 files are a preview), project status with the bench prototype and roadmap, open source. Numbers come from `hardware/v6/plates/summary.json` and `hardware/v6/cad/v6.json` at build time.
-- 2026-11-09: Print-files page `v6/print/` (English, Italian, German) from `site/content/print.toml`: preview banner, downloads served by the site (ZIP with everything, both projects, plate 3MFs, STL files), AMS lite setup, test pieces first, one card per plate (preview, parts, colours, time, grams, swaps), settings, a check list kept in the browser, notes. The 3D and bought-parts pages link to it.
+- The chassis: flange set with a shut-off gate and an interlock ring, dosing bowl with a two-pocket disc, drive tower with a sealed shaft, the servo in its own sealed bay (cap lip seal, tower face O-ring, shaft O-rings, M12 gland, ePTFE vent patch), a closed claw-proof pod with a hidden chute, and two posts that hold the electronics module. The servo stays in the chassis.
+- A chassis harness: a 190 mm M8 5-pin tail to the module connector J1 with a service loop, a 12 V branch to the M8 connector in the pod top and a round servo branch through the gland to a JR connector in the bay.
+- CAD in `hardware/cad/`: Python scripts that build every part (`build_v64.py` runs the stages it builds on, about 16 minutes from a clean checkout), check them (closed meshes, no hard interference, free module removal, seals, dry volumes, tool access, control panel) and publish `assembly/` (viewer meshes and `v64_viewer.json`), `template/` (the 1:1 drilling template), `cad/v64.json` and `cad/check_v64.png`.
+- Print package in `hardware/plates/` for a Bambu Lab A1 with AMS lite: five Bambu Studio projects (chassis PETG, chassis IP66 PETG, chassis TPU, module PETG, module TPU), 14 plates (one only for reprinting the module gasket), every part as an STL, previews, slicer statistics, `summary.json` and the step-by-step procedure `PRINT_GUIDE.md`. Everything: 44 h 13 min, 1076 g of PETG and 9 g of TPU. Validated by slicing every plate with OrcaSlicer 2.5, not opened in Bambu Studio yet. Two parts need supports, both set up in the projects: tree supports under the three bowl tabs of the shell and two small columns under the button recess of the module tub.
+- Bought parts in `hardware/bom.json` (chassis and module), rendered to `docs/BOM.md`.
+- The independent print review of 2026-11-15 (0 blocker, 3 major, 19 minor) and its answers: `docs/reviews/2026-11-15-v6.4-print-review/`, recorded in `v64.json` (`review_2026_11_15`).
 
-- 2026-11-09: Full-screen 3D page for v6 on the site (`v6/3d/`), with the "Workshop" and "In the woods" modes, exploded view, disc, section, transparency and part list.
-  - Viewer generator moved into the repository as `site/viewer/make_viewer.py` and `template.html`. New: meshes decimated into separate binary STL files fetched by URL (the site; the single-file embedded mode stays for previews), a full-screen button (Fullscreen API, with a CSS fallback that hides the controls where the API is missing, as on iPhone Safari; key F), interface text in English, Italian and German (`?lang=`, last choice, browser language) and links back to the site.
-  - three.js r128 (`three.min.js` of npm three 0.128.0) bundled in `site/vendor/three-r128/` for it; the home page keeps three.js 0.160.1.
-- 2026-11-09: Home page section "Design v6" with links to the 3D page, the bought parts and the files; print plates, assembly wizard and A6 manual marked as coming soon. README, `hardware/README.md` and `docs/README.md` point to v6 and mark the drivetrain v3 design as superseded.
-- 2026-11-09: CI job `cad-v6` regenerates v6 in a temporary copy and checks every mesh; the site job installs numpy and fast_simplification for the 3D page and checks that `docs/BOM.md` is up to date. The Pages workflow installs them too.
+### Electronics module case 1.0 (1.0.0)
 
-- 2026-11-08: Drivetrain v3 with a lid-mounted servo cradle and a labyrinth cap (designed; not printed or mounted yet).
-  - `passante_culla`: sealed bushing and servo cradle in one part, replacing `passante_stagno`: 53 mm flange with a 45x2 face O-ring around the collar and the three lid screws, collar up to z = 5, four servo pads with heat-set inserts, at least 2 mm inside the box walls.
-  - `disco_v3`: sleeve around the shaft ending in a labyrinth cap over the collar. `albero_mozzo`: 22 mm hub with a 45° top cone, grooves for 9x2 O-rings (15 % squeeze); print at 100 % infill.
-  - Single parametric `build_drivetrain.py` (paths relative to the repository), regenerated STL, 3MF, assembly meshes, `drivetrain.json` (z-stack, hardware list, lid drilling, checks) and the updated `layout_v3.json` (flange 53, collar top 5, hub 22, disc `hole_r`).
-  - `hardware/README.md`: hardware list, lid drilling pattern and assembly order. The site, README and as-built notes say the parts are designed only and the prototype still uses the third-party wall bracket.
-- 2026-11-08: As-built baseline (`docs/AS_BUILT_BASELINE.it.md`), collaboration notes (`CLAUDE.md`), import area for the on-device firmware (`import/previous-chat/`) and a "physical prototype first" section in the README, from the ChatGPT contributor; extended with the firmware import, the board correction and the licence of the third-party wall bracket (CC BY-NC-SA, prototype only, not in the repository).
-- 2026-11-08: Project website with a live 3D model of the assembly (orbit, full screen, section, exploded view, servo angle, part isolation), published to GitHub Pages.
-  - `site/`: static page, CSS and JavaScript modules, with three.js 0.160.1 bundled in `site/vendor/three/`; `site/build.py` builds it from the repository.
-  - `hardware/cad/build_assembly.py` and `hardware/assembly/`: assembly-frame meshes and `assembly.json` for the viewer.
-  - `.github/workflows/pages.yml`, plus a site build check in CI. `check_meshes.py` also checks the assembly meshes.
-- 2026-11-08: Initial import of prototype 1.
-  - Drivetrain parts: rotating disc (disco_v3), shaft and hub (albero_mozzo), sealed bushing (passante_stagno), spline fit test (test_scanalato), with the `build_drivetrain.py` generator, `layout_v3.json` and `drivetrain.json`.
-  - Chute (scivolo_v1) with the `build_disc_v2_chute.py` generator.
-  - Print-ready STLs, 3MF files and per-part print notes.
-  - Mesh check script (`check_meshes.py`).
-  - First ESPHome draft, with the wiring summary and flashing steps (aimed at a Freenove ESP32-S3 WROOM CAM by mistake; see Changed).
-  - Research notes on power, servo and sealing (Italian), and process photos with location data removed.
-  - Licensing: MIT (software), CERN-OHL-P-2.0 (hardware), CC BY 4.0 (docs and photos), following the REUSE specification.
-  - Contributing guide, Code of Conduct (Contributor Covenant 2.1), security policy, issue and pull request templates, CI workflow.
+- A sealed case that slides into the chassis from below and locks with two M3 screws; one M8 5-pin plug (J1) connects it. Its outer wall carries the control panel: one push-button in a recessed, paw-proof seat, two light pipes, a speaker grille facing down and three blind knock-outs.
+- `hardware/module/VERSION` (the source of truth of the module line) and `hardware/module/case-1.0/`: the four printed parts (tub with the control panel, lid with the J1 turret, lid gasket, speaker ring), the dimensioned interface drawing and a README with the interface spec (opening and envelope, posts, sockets and lock screws, J1 and its pinout, harness lengths, usable space inside). The inside is generic; the board wiring is provisional.
+- Print files in the print package (projects `Kibble_Module_case_1.0_PETG.bambu.3mf` and `Kibble_Module_case_1.0_TPU.bambu.3mf`, plates MOD-1, MOD-2, MOD-TPU-1): 5 h 01 min, 108 g of PETG.
 
-### Changed
+### Firmware 0.1.0+dev.20260324
 
-- 2026-11-10: Home page for v6.2: hero re-rendered from the v6.2 3D page ("In the woods", 2x), a new side-view drawing with the closed pod and the cable channel, "How it works" with the shut-off gate and its ring interlock, the closed claw-proof pod with the hidden chute, the cable channel under the shelf and the near-zero maintenance, a v6.2 section image, materials and grams from `hardware/v6.2/plates/summary.json`, live cards for the assembly guide and the manual, the planned kit (pre-assembled unit, flange set, cable channel), status and roadmap with the firmware requirement. The "v6.1 in design" section is gone.
-- 2026-11-10: `tools/release.py`: a hardware release now has separate assets: an STL zip (the print package's STL files when there is one), a plate 3MF zip (Bambu projects and plate 3MFs), both with the print guide, the BOM and the licences, the drilling template PDF and the manual PDFs of `docs/manual/`. A design folder named after the minor version (`hardware/v6.2`) is accepted.
-- 2026-11-09: The old home page (prototype 1 and drivetrain v3, with its live 3D model) moved to `site/earlier/` ("Earlier versions", linked from the footer); its assembly meshes are now served from `earlier/assembly/`. The language rules and switch of the multilingual pages moved from `parts.css` to `site.css`; `lang.js` also swaps image alt texts. The site CI job installs Pillow, like the Pages workflow.
-- 2026-11-09: `check_meshes.py` accepts a closed mesh whose bodies touch along an edge (every edge shared by an even number of faces, as with raised lettering on the reused v4b plates) and reports it; open edges or a non-positive volume still fail. It takes `hardware/v6` as its folder for design v6.
-- 2026-11-08: `build_assembly.py` lists `passante_culla` instead of `passante_stagno` and no longer adds a separate cradle part; the servo cradle placeholder is gone from `assembly.json`.
-- 2026-11-08: Board corrected to the Freenove ESP32-WROVER (classic ESP32), as documented in the owner's `PROJECT.md` and still to be verified on the device. Earlier text said Freenove ESP32-S3 WROOM CAM.
-  - ESPHome draft: `board: esp32dev`, 4 MB flash, servo on GPIO14 (as in the MicroPython source) and regulator enable on GPIO32 (was GPIO21, a camera pin on the WROVER CAM board). Labelled as the alternative firmware and an unflashed draft, not the baseline.
-  - `firmware/README.md`: two firmwares, MicroPython first; classic ESP32 pin rules; the optional 12 V monitor moves to GPIO33.
-  - README, site text, assembly data (`build_assembly.py`, `assembly.json`), issue templates, `SECURITY.md` and `LICENSE` updated to match.
-  - Photo renamed from `esp32-s3-cam-board-breadboard-wiring.jpg` to `freenove-esp32-cam-board-breadboard-wiring.jpg`, with a corrected caption.
-- 2026-11-08: `CONTRIBUTING.md` adopts the owner's conventions: Conventional Commits, SemVer tags, `main` always deployable, feature branches.
+- MicroPython firmware for the bench prototype in `firmware/micropython/`, imported byte-for-byte from a snapshot of the owner's development folder for "feedr-outdoor" (0.1.0 of 2026-03-24 plus the uncommitted edits of the same day). It is not a readback of the board: the firmware actually flashed on the bench prototype may differ.
+- Behaviour: two buttons (ON/OFF and dispense), one LED, boots OFF (a reset does not dispense), one portion on a commanded ON and one per press while ON, no repeats on hold, an arcade "feeding fanfare" at every portion. Pins as defined in the source (not yet electrically verified): LED 2, ON/OFF 13, servo 14, speaker 26, dispense 27.
+- Modular `src/`, the original single-file prototype as `legacy/CatFeeder.py`, `PROJECT.md`, `Makefile` (mpremote), `VERSION`. The ESPHome draft in `firmware/esphome/` is an unflashed alternative and is not versioned.
 
-### Fixed
+### Website, docs and tooling
 
-- 2026-11-08: `reuse lint` failed on `import/previous-chat/README.md`; `REUSE.toml` now covers `import/**/*.md` as documentation (CC BY 4.0).
-
-## [hw-v6.4.0] - 2026-11-16
-
-Hardware 6.4.0: the chassis 6.4, the mechanics with a holder for a detachable electronics module (the module itself is released on its own line, see case-v1.0.0). Status: designed (checked in CAD, with an independent print review; not printed, assembled or tested yet). It needs the one-button firmware of [issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2), which does not exist yet; the bench prototype keeps its two buttons and its firmware.
-
-### Added
-
-- 2026-11-16: Hardware 6.4 in `hardware/v6.4/`: `cad/` with `build_v64.py`, `build_v64_checks.py`, `build_v64_report.py` and `publish_v64.py`, plus copies of the scripts of v6.3, v6.2, v6.1.1, v6.1, v6, v5, the v4b dosing core and drivetrain v4 that it builds on (relative paths; `build_v64.py` runs the earlier stages first, about 16 minutes from a clean checkout); `v64.json` (reproducible) and `check_v64.png`; `assembly/` with the viewer meshes of chassis and module and `v64_viewer.json` in English, Italian and German; `template/`; `bom.json` grouped by product; `README.md`.
-- 2026-11-16: Servo bay `scatola_v64`: the 6.3 box cut down to the cradle width, sealed on its own (cap lip, tower face O-ring, shaft O-rings, O-ring under one stack screw, M12 gland, ePTFE vent patch), with two posts carrying M3 inserts that hold the module. The servo stays in the chassis.
-- 2026-11-16: A chassis harness: a 190 mm M8 5-pin tail to the module connector J1 with a service loop, a 12 V branch to the M8 connector in the pod top and a round servo branch through the gland to a JR connector in the bay.
-- 2026-11-16: Print package for both products in `hardware/v6.4/plates/`: five Bambu Studio projects (chassis PETG, chassis IP66 PETG, chassis TPU, module PETG, module TPU), 14 plates (one only for reprinting the module gasket), every part as an STL, previews, slicer statistics, `summary.json` with product and unchanged/changed status per plate and part, and the step-by-step procedure `PRINT_GUIDE.md`. Everything: 44 h 13 min, 1076 g of PETG and 9 g of TPU; after a complete 6.3.0 print only 5 plates are left (19 h 18 min, 470 g). Validated by slicing every plate with OrcaSlicer 2.5, not opened in Bambu Studio yet.
-
-### Changed
-
-- 2026-11-16: Shell `guscio_v64` (module opening with return ribs, 45° corbels under the bowl tabs), cap `fondello_v64` (closes the servo bay, module opening, 4 PT screws) and the bay lip seal `guarnizione_fondello_v64`. The other 21 printed parts are the 6.3.0 files byte for byte (compared by hash in `v64.json`), so plates printed from the 6.3.0 package stay valid.
-- 2026-11-16: The control panel moves from the cap to the module, and with it from the room side to the side away from the bowl (60° clockwise from the release button, seen from above): hang the dispenser with the panel facing you.
-- 2026-11-16: Answers to the print review of 2026-11-15 (0 blocker, 3 major, 19 minor; `docs/reviews/2026-11-15-v6.4-print-review/`), recorded in `v64.json` (`review_2026_11_15`): the holder posts grow from the bed, 45° chamfers under the bottom edges of the cap and the tub, a defined vertical stop for the module, PT K30 × 10 lid screws, a Ø16.5 bore for the J1 nut, and more. The inner part of the three bowl tabs of the shell still needs tree supports, set up in the project.
-- 2026-11-16: `hardware/VERSION` is 6.4.0 (status designed, design folder `hardware/v6.4`); design v6.3 is archived. `product/product.json` is unchanged (unreleased).
-
-## [case-v1.0.0] - 2026-11-16
-
-Electronics module case 1.0 (version 1.0.0), the first release of the module line: a sealed case that slides into the chassis of hardware 6.4 from below. Status: designed (checked in CAD together with the chassis; not printed, assembled or tested yet).
-
-### Added
-
-- 2026-11-16: `hardware/module/VERSION` (the source of truth of the module line) and `hardware/module/case-1.0/`: the four printed parts as exported by the CAD (`parts/`: tub with the control panel, lid with the J1 turret, lid gasket, speaker ring), the dimensioned interface drawing (`interface/`) and a README with the interface spec: opening and envelope, posts, sockets and lock screws, J1 (M8 5-pin) and its pinout, the harness lengths, the usable space inside and what fits. The inside is generic: the board wiring is documented separately and is provisional.
-- 2026-11-16: Print files of the module in the 6.4 print package (projects `Kibble_Module_case_1.0_PETG.bambu.3mf` and `Kibble_Module_case_1.0_TPU.bambu.3mf`, plates MOD-1, MOD-2, MOD-TPU-1): 5 h 01 min, 108 g of PETG. The tub needs two small support columns under the upper corners of the button recess, set up in the project.
-
-## [hw-v6.3.0] - 2026-11-11
-
-Hardware 6.3.0: design v6.3, the closed pod made simpler, with a control panel and without the cable channel. Status: designed (checked in CAD; not printed, assembled or tested yet). It needs firmware for the one-button control panel that does not exist yet ([issue #2](https://github.com/ricricucit/kibble-dispenser/issues/2)); the bench prototype keeps its two buttons and its firmware.
-
-### Added
-
-- 2026-11-11: Design v6.3 in `hardware/v6.3/`: `cad/` with `build_v63.py`, `build_v63_checks.py`, `build_v63_report.py` and `publish_v63.py`, plus copies of the scripts of v6.2, v6.1.1, v6.1, v6, v5, the v4b dosing core and drivetrain v4 that it builds on (relative paths; `build_v63.py` runs the earlier stages first, about 12 minutes from a clean checkout, and compares grams and pieces with the committed v6.2 print package); `v63.json` and `check_v63.png`; `assembly/` with the viewer meshes and `v63_viewer.json` in English, Italian and German; `template/` with the drilling template; `bom.json`; `README.md`.
-- 2026-11-11: Control panel on the room side of the cap: one IP67 12 mm short-body push-button in a Ø17 × 8 mm recess (a fingertip reaches it, a paw pad or a snout does not, checked with probes), two flush Ø5 light pipes with 3 mm LEDs (status, Wi-Fi), a down-facing speaker grille with an IP67 ePTFE acoustic membrane, three flush blind knock-outs for future switches with a drilling recipe, all fitted from the dry side.
-- 2026-11-11: Print package of v6.3 for a Bambu Lab A1 with AMS lite in `hardware/v6.3/plates/` (two Bambu Studio projects, 7 PETG plates and 2 TPU plates, a plain 3MF per plate, every part as an STL, previews, slicer statistics, `summary.json` with the bought-parts list, print guide, generator scripts): 1000 g of PETG (816 g black, 120 g orange, 64 g green) and 8 g of TPU, 39 h 30 min, 18 colour swaps (v6.2: 1047 g, 41 h 14 min, 33 swaps). Made from the CAD print files without changes; validated by slicing every plate with OrcaSlicer 2.5, not opened in Bambu Studio yet.
-
-### Changed
-
-- 2026-11-11: Cable channel removed: the supply cable leaves the flange at the back rim through a bell mouth and is held by a UV cable tie cinched in a window of the upper plate. One Ø76 hole and four wood screws in the shelf; the drilling template has no channel strip.
-- 2026-11-11: 28 printed pieces instead of 36: three PT K30 × 12 thread-forming screws with O-rings hold the cap instead of three thumb-turns with keys, O-rings and cups (cap service needs a T10 driver); three press-fit pins join the flange plates instead of three screws; five heat-set inserts become PT screws in pilot holes; the gate blade is one colour; the ring window is a teardrop and prints without support.
-- 2026-11-11: Second labyrinth drain in the cap for a corner of the wet region that had no drain in v6.2; full wall round the dowel seat of the gate pivot; the cap seam spigot joined to the cap wall with a 45° collar; the print orientations and the dowel hole of the v6.2 print package are now in the CAD.
-- 2026-11-11: `hardware/VERSION` is 6.3.0 (status designed, design folder `hardware/v6.3`); design v6.2 is archived. `product/product.json` points the planned kit to the v6.3 bought parts and kit split (still unreleased).
-
-## [hw-v6.2.0] - 2026-11-10
-
-Hardware 6.2.0: design v6.2, closed pod with a shut-off gate and a cable channel. Status: designed (checked in CAD; not printed, assembled or tested yet). It contains the design iterations 6.1.0 and 6.1.1, which were not released on their own.
-
-- 6.2.0: shut-off gate in a two-plate flange with an orange ring interlock (the release button is reachable only with the gate closed), cable tunnel in the flange and snap-in channel under the shelf with an IP67 M8 connector in the pod top, one set of 3 × M3 × 40 stack screws instead of two unreachable sets, one common comb lip, 1:1 drilling template.
-
-### Added
-
-- 2026-11-10: Design v6.2 in `hardware/v6.2/`: `cad/` with `build_v62.py`, `build_v62_checks.py` and `publish_v62.py`, plus copies of the scripts of v6.1.1, v6.1, v6, v5, the v4b dosing core and drivetrain v4 that it builds on (relative paths; `build_v62.py` runs the earlier stages first, about 10 minutes from a clean checkout), the check helpers `los.py` and `toolaccess.py` and the baselines `ref/*.json`; `v62.json` and `check_v62.png`; `assembly/` with the viewer meshes and `v62_viewer.json` in English, Italian and German; `template/` with the drilling template; `bom.json`; `README.md`. The sampled clearance checks of v6.1, v6.1.1 and v6.2 are now seeded, so `v62.json` is reproducible.
-- 2026-11-10: Print package of v6.2 for a Bambu Lab A1 with AMS lite in `hardware/v6.2/plates/` (two Bambu Studio projects, 7 PETG plates and 2 TPU plates, a plain 3MF per plate, every part as an STL, previews, slicer statistics, `summary.json` with the bought-parts list, print guide, generator scripts). It is the authoritative print set: it corrects the print orientation of four parts (channel base, channel cover, channel end cap, cable grommet) and prints the lower flange plate with a Ø4.0 × 2.7 hole for a stainless dowel pin Ø4 × 6 (ISO 2338) instead of the printed pivot pin. Validated by slicing every plate with OrcaSlicer 2.5; not opened in Bambu Studio yet.
-
-### Changed
-
-- 2026-11-10: `hardware/VERSION` is 6.2.0 (status designed, design folder `hardware/v6.2`). The firmware is unchanged; v6.2 adds the requirement that the disc never dispenses at power-on (the last rest position is stored and restored at boot), not implemented yet. `product/product.json` points the planned kit to the v6.2 bought parts and kit split (still unreleased).
-
-## [hw-v6.1.1] - 2026-11-09
-
-Not released: design iteration, contained in hw-v6.2.0.
-
-- 6.1.1: the pod becomes a closed second seal round the dry box: shell/cap seam O-ring, O-rings on the thumb-turns and the release button, captive thumb-turns with steel keys, TPU skirt lip under the flange and lip ring on the chute, one labyrinth drain.
-
-## [hw-v6.1.0] - 2026-11-09
-
-Not released: design iteration, contained in hw-v6.2.0.
-
-- 6.1.0: one smooth claw-proof pod shell round the whole unit, with a flat cap, flush thumb-turns and release button, the chute inside, a self-cleaning disc and a sealed box with a 70 × 50 board, M12 gland and membrane vent.
-
-## [hw-v6.0.0] - 2026-11-09
-
-Hardware 6.0.0: design v6, the one-twist unit. Status: designed (checked in CAD; not printed, assembled or tested yet).
-
-### Added
-
-- 2026-11-09: Print files of v6 for a Bambu Lab A1 with AMS lite in `hardware/v6/plates/` (a preview: v6.1 will replace them). Two Bambu Studio projects (PETG: 1 test plate and 4 part plates, AMS lite slots 1 to 3; TPU: test strip and all seals, external spool), a plain 3MF per plate, every part as an STL in print orientation with colour bodies, plate previews, `summary.json` (plates, parts, grams per filament, times, colour swaps), the OrcaSlicer statistics, the print guide as `README.md`, and the generator scripts in `tools/` (paths now relative to the repository; the Bambu system profiles are fetched on the first run and not committed). Checked by slicing every plate with OrcaSlicer 2.5; not opened in Bambu Studio yet. The TPU plate still holds the old plate lips and bayonet gasket, which are being redesigned.
-- 2026-11-09: Design v6, the one-twist unit, in `hardware/v6/` (designed and checked in CAD; not printed, assembled or tested yet).
-  - Everything under the shelf comes off with one quarter-turn of the bowl bayonet: dosing bowl `chiocciola_v6`, chute `scivolo_v6`, disc `disco_v6`, tower `colonna_v6` with the sealed shaft bushing, shaft `albero_v6` and hub `mozzo_v6` (coaxial, no gears), electronics box `scatola_v6` with the servo cradle in its roof, cover `fondello_v6` with a TPU lip seal and four printed quarter-turn buttons `nottolino_v6`; shelf flange `flangia_piano_v6` and funnel collar `colletto_v6`. Reuses the v4b gate and window plates, latch, bayonet gasket and lips, and the v5 shelf gasket.
-  - `cad/`: `build_v6.py` and `build_v6_checks.py`, with the scripts v6 imports (`build_dosing.py`, `build_v5.py`, `build_v5_checks.py`, `build_drivetrain.py` as drivetrain v4 library, `layout_v4.json`), paths made relative; `publish_v6.py` writes the repository files; `v6.json` (parts, hardware, assembly, sealing, checks, grams, print orientation) and `check_v6.png`. `python hardware/v6/cad/build_v6.py` regenerates everything in about 45 s and gives identical meshes; the sampled clearance checks are now seeded, so `v6.json` is reproducible.
-  - `stl/` (print-ready, plus one STL per colour), `3mf/` (print-ready, one object per colour), `assembly/` (assembled positions and placeholders of bought parts for the viewer, `v6_viewer.json` with names in English, Italian and German).
-  - `hardware/v6/README.md`: parts, print orientation, assembly order, sealing, checks, open points.
-- 2026-11-09: Bought parts of v6 ("Pezzi extra") in English, Italian and German: `hardware/v6/bom.json`, rendered by `site/bom.py` into the site page `v6/parts/` (language switch, default from the browser, `?lang=` override) and `docs/BOM.md`. Groups: fasteners and inserts, seals and grease, electronics module (pre-assembled in the kit, listed for DIY builders), optional DN50 pipe, tools. Quantities are checked against `v6.json`; no shop links.
-
-## [fw-v0.1.0+dev.20260324] - 2026-11-08
-
-Firmware 0.1.0+dev.20260324: the owner's feedr-outdoor 0.1.0 plus the uncommitted edits of 2026-03-24, imported as found. It is a snapshot of the development folder, not a readback of the board: the firmware actually flashed on the bench prototype may differ.
-
-### Added
-
-- 2026-11-08: MicroPython firmware, the baseline firmware for prototype 1, in `firmware/micropython/`.
-  - Imported byte-for-byte from a snapshot of the owner's development folder for "feedr-outdoor": version 0.1.0 plus the uncommitted edits of 2026-03-24 (see Changed). Not an on-device readback; that readback is still pending for `import/previous-chat/`.
-  - Modular `src/` (config, hardware, servo, speaker, buttons, dispenser, main), the original single-file prototype as `legacy/CatFeeder.py`, `PROJECT.md`, `CLAUDE.md`, `Makefile` (mpremote), `ruff.toml`, `requirements.txt`, `VERSION`.
-  - New `firmware/micropython/README.md`: provenance, behaviour, pin map as defined in the dev source (not yet electrically verified), 5 V bench power, quick start, calibration.
-  - CI lints the firmware with ruff (I001 and E402 ignored until the imported code is tidied in a separate commit). `REUSE.toml` covers `firmware/micropython/**` as MIT.
-
-### Changed
-
-- 2026-03-24 (firmware, uncommitted in feedr-outdoor, imported as found):
-  - Arcade "feeding fanfare" (chirps, rising C-major arpeggio, trill, final high note) replaces the meow sound.
-  - Speaker duty 512 (50 %, the loudest clean square wave).
-  - 2 s boot delay in `main.py`, so mpremote can connect before the loop starts.
-  - `make deploy` chains the mpremote copies in one serial session, so the board's `main.py` does not restart between files.
-
-## [feedr-outdoor 0.1.0] - 2026-03-24
-
-The owner's MicroPython firmware before it moved into this repository, copied from its own changelog. The single-file prototype is now `firmware/micropython/legacy/CatFeeder.py`.
-
-### Added
-
-- Single-file cat feeder prototype (`CatFeeder.py`)
-- Servo-driven dispensing gate with configurable angles
-- Meow-like synthesized sound on every dispense
-- Power on/off button with LED indicator
-- Manual dispense button with debounce
-- Makefile for ESP32 deployment via mpremote
-- PROJECT.md with full hardware and behavioral spec
+- Website (`site/`, English, Italian and German) at stable URLs: home, `3d/` (full-screen 3D model), `print/` (the step-by-step print guide), `parts/` (bought parts), `module/` (the electronics module), `assembly/` (assembly guide with the 3D model: "Install the kit" and "Build it yourself") and `manual/` (A6 booklet and A4 print version of the manual, and the drilling template). Every footer shows the hardware, module, firmware and product versions.
+- Docs: `docs/PROTOTYPE_BENCH.md` (bench measurements and open points), `docs/AS_BUILT_BASELINE.it.md`, the manuals in `docs/manual/`, process and bench photos in `docs/photos/`.
+- CI: mesh checks of the committed hardware, print package and module parts on every push; the CAD workflow regenerates the whole hardware when its scripts change; site build, BOM check, firmware lint, REUSE lint. `tools/release.py` tags and publishes the hardware, module, firmware and product lines.
+- Licences: MIT (software), CERN-OHL-P-2.0 (hardware), CC BY 4.0 (docs and images), following the REUSE specification.
