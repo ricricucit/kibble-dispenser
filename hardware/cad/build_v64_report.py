@@ -110,7 +110,7 @@ SPEC_LINES = [
     ('4 Seal faces', f'the module is sealed on its own (IP66 target): lid lip gasket on the tub land z {Z_LAND:.1f}; no seal between module and chassis. The servo bay is sealed by the cap lip on the bay rim (z {Z_W:.0f}), '
                      f'tower face O-ring 24x2, shaft O-rings 2 x 9x2, O-ring 3x1 under P2, M12 gland (servo lead), ePTFE vent patch. The pod is a closed second barrier with the drain, not sealed.'),
     ('5 Electrical interface J1', f'one M8 5-pin A-coded panel socket (female) in a turret on the lid at ({J1["xy"][0]}, {J1["xy"][1]}), mating face z {ZMT + J1["tur_h"]:.0f}; chassis harness = angled M8 5-pin plug, Y into the 12 V pigtail '
-                                  f'(pod-top M8, unchanged) and the servo lead (through the bay gland). Pins: 1 +12 V in, 2 servo PWM (3.3 V logic), 3 GND, 4 servo +6 V out, 5 spare. Harness slack >= 35 mm.'),
+                                  f'(pod-top M8) and the servo lead (through the bay gland). Pins: 1 +12 V in, 2 servo PWM (3.3 V logic), 3 GND, 4 servo +6 V out, 5 spare. Harness slack >= 35 mm.'),
     ('6 Keep-outs for any future module', f'stay inside the prism and below z {ZMT:.0f} (lip to {ZMT + LIP["h"]:.0f} only behind the shell wall; J1 turret Ø{J1["tur_d"]:.0f} to z {ZMT + J1["tur_h"]:.0f}); keep x >= {XM0}; keep the notches free for the posts and the '
                                           f'webs (above z {POST["web_z0"]}: y >= {NY0 + RIM_T:.0f}); P3 pad Ø{2 * P3_PAD["r"]:.0f} at {tuple(P_SCREWS[2])} reaches down to z {P3_PAD["z0"]:.0f}; zone above the lid (z {ZMT:.0f}..-10, x > {XM0 + 6:.0f}) is for the plug and the harness.'),
     ('7 Removal', f'unit hanging or taken down by the bayonet: 2 screws out (hex 2.5), lower the module ~30 mm, unscrew the M8 ring through the {ZSH - (ZMT - 30):.0f} mm window, slide the module out. No chassis part is opened. '
@@ -297,8 +297,8 @@ INTERFACE = {
                    'servo_bay': 'cap lip on the bay rim, face O-ring 24x2, shaft O-rings, O-ring 3x1 under P2, M12 gland, ePTFE vent patch'},
     'electrical_J1': {'connector': 'M8 5-pin A-coded panel socket (female) on the module lid, in a turret', 'xy': list(J1['xy']), 'mating_face_z': ZMT + J1['tur_h'], 'lid_hole_d': J1['hole'],
                       'pins': {'1': '+12 V in (from the pod-top M8)', '2': 'servo PWM (3.3 V logic, 50 Hz)', '3': 'GND (12 V return and servo return)', '4': 'servo +6 V out (from the module regulator)', '5': 'spare'},
-                      'chassis_harness': 'angled M8 5-pin plug (cable exit towards +y) -> tail with service loop -> tie on the bay lug -> Y splice: (a) 12 V branch to the M8 IP67 connector in the pod top '
-                                         '(unchanged), (b) round servo branch through the M12 gland into the bay, JR female inside',
+                      'chassis_harness': 'angled M8 5-pin plug (cable exit towards +y) -> tail with service loop -> tie on the bay lug -> Y splice: (a) 12 V branch to the M8 IP67 connector in the pod top, '
+                                         '(b) round servo branch through the M12 gland into the bay, JR female inside',
                       'harness': HARNESS_SPEC,
                       'current': 'M8 5-pin contacts are 3 A class: enough for a standard servo (stall ~2.5 A at 6 V); use the 4-pin 4 A version + PWM on a separate M8 if a stronger servo is ever fitted',
                       'access': PLUG_ACCESS},
