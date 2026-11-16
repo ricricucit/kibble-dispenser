@@ -1,0 +1,114 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 28770.638,
+  "prepare_time": 380.544,
+  "travel_time": 2884.2,
+  "travel_distance": 449441.88,
+  "layer_count": 332,
+  "volume": 157550.028,
+  "weight": 200.0885,
+  "filament_cost": 6.0,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 65501.69,
+    "volume": 157550.028,
+    "weight": 200.0885,
+    "cost": 6.0,
+    "model": {
+     "volume": 157550.028,
+     "weight": 200.0885
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 10765.343,
+    "volume": 72648.796,
+    "weight": 92.264
+   },
+   "Outer wall": {
+    "time": 4105.446,
+    "volume": 27137.205,
+    "weight": 34.4642
+   },
+   "Overhang wall": {
+    "time": 15.514,
+    "volume": 52.704,
+    "weight": 0.0669
+   },
+   "Internal solid infill": {
+    "time": 7009.55,
+    "volume": 42683.352,
+    "weight": 54.2079
+   },
+   "Top surface": {
+    "time": 465.585,
+    "volume": 2081.966,
+    "weight": 2.6441
+   },
+   "Bottom surface": {
+    "time": 299.071,
+    "volume": 1403.762,
+    "weight": 1.7828
+   },
+   "Ironing": {
+    "time": 598.285,
+    "volume": 51.182,
+    "weight": 0.065
+   },
+   "Bridge": {
+    "time": 20.322,
+    "volume": 56.936,
+    "weight": 0.0723
+   },
+   "Gap infill": {
+    "time": 1337.259,
+    "volume": 9104.024,
+    "weight": 11.5621
+   },
+   "Brim": {
+    "time": 570.36,
+    "volume": 2277.796,
+    "weight": 2.8928
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "scatola_v64",
+   "instance": 0,
+   "volume": 68568.474,
+   "weight": 87.082,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "fondello_v64",
+   "instance": 0,
+   "volume": 86651.462,
+   "weight": 110.0474,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

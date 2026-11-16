@@ -1,0 +1,2402 @@
+{
+ "version": "v6.4",
+ "release": "6.4.0",
+ "module_version": "case 1.0",
+ "base": "6.3.0 (v63.json): everything not listed here is unchanged",
+ "split": "product = (1) mechanics + electronics-case holder [6.x], (2) detachable electronics module [case 1.x]: the mechanics can be printed now",
+ "frame": "as 6.3: Z-up mm, shaft axis x=y=0, Z=0 = bowl base underside, LOCKED bayonet pose",
+ "decisions": {
+  "servo": "stays in the chassis (coaxial cradle, structural). OWN SEALED BAY: scatola_v64 is the 6.3 box cut down to the cradle width; sealed by the cap lip on its rim, the tower face O-ring, the shaft O-rings, an O-ring under P2, the M12 gland and an ePTFE vent patch. Flood fill: one closed volume (119 cm3 free) separate from the module, the pod and outside",
+  "module_removal": "achieved: from BELOW, unit hanging or taken down, WITHOUT opening the chassis: 2 screws (hex 2.5) + 1 M8 plug. Not tool-free: a tool-free latch would also open for a fox",
+  "panel_side": "the panel moves with the electronics from the room side (button at 77 deg, under the release button) to the side away from the bowl: the button now faces 16 deg, i.e. 60 deg clockwise from the release button seen from above. The room side is blocked by the servo body (the servo cannot be turned: P2 would fall under it)",
+  "envelope": "not feasible in this pod: the bay wall is at x 15.25 and the skin 59-65 from the axis, so the depth is 35-43 on the centre line and falls to 25-33 at y +-34; width 68 between the guides (99 across the front lobes), height 61",
+  "second_board": "slot B is real but shares the depth: with the ESP32 stack at 25 mm the board in slot A fills the depth in front of it, so a second FULL board only fits when the stack in A is <= 6.0 mm (regulator board in A, ESP board on low sockets in B: [np.float64(12.8), np.float64(19.2)] mm in front of B). The 6 V / 5 V regulators and the capacitor fit beside / under the ESP stack and in the lobes (demo layout)",
+  "pod_seam_oring": "dropped: the opening crosses the cap / shell seam, and nothing in the pod needs the pod to be sealed any more (bay and module are sealed on their own); the pod stays closed (gaps <= 0.4 mm) with its drain"
+ },
+ "review_2026_11_15": {
+  "source": "docs/reviews/2026-11-15-v6.4-print-review/REVIEW.md (0 blocker, 3 major, 19 minor)",
+  "M1 scatola posts in mid-air": "FIXED in CAD: posts and webs run up to the roof plane (the bed); nothing of the module is in that column",
+  "M2 guscio tabs": "PARTLY: 45 deg corbels added from the wall in to r 62.6 (the bowl is at r 62.0 there), rib ends got a 45 deg lead-in; the inner 12 mm of each tab still needs tree supports (build plate only, 45 deg): a corbel there would be inside the bowl, and turning the shell over would make the 105 mm opening edge a bridge",
+  "M3 bottom edge of tub and cap": "FIXED in CAD: 45 deg chamfer under the R15 bottom radius on both parts (bottom flat grows by 6.3 mm, chamfer 5.1 mm high); no supports",
+  "m1 vertical stop": "FIXED: socket floor at z -89.0 = post end; top seam opened to 0.5 mm",
+  "m2 board to lid": "FIXED: slot floor z -91.5 (1.3 mm above a 50.0 board)",
+  "m3 lid screws": "FIXED: PT K30x10 (6.8 mm in the boss), now 5 screws",
+  "m4 rim corbel stairs": "FIXED: rim, notch-wall thickening and bay rim flange are 0.1 mm-step 45 deg faces (finer than a layer)",
+  "m5 slot B jaw": "FIXED: 1.75 mm",
+  "m6 lid groove outer wall": "FIXED: 1.2 mm",
+  "m7 turret ceiling": "FIXED: 45 deg run-in + 0.2 mm sacrificial skin, no supports",
+  "m8 J1 nut access": "FIXED: bore \u00d816.5 (turret \u00d821); bought part assumed: M8 5-pin A-coded female panel receptacle, front mount, nut 10-13 mm AF, TO VERIFY on the part",
+  "m9 bottom seam edges": "FIXED: 0.4 x 45 deg on the module bottom back edge, its two vertical back corners and the cap floor edge",
+  "m10 feather edges": "FIXED: cut edges of cap and shell blunted (0.9 mm), module lip shortened 3 mm each end",
+  "m11 drain holes": "FIXED: 2 x \u00d81.5 instead of 4 x \u00d80.8; the three 0.8 mm labyrinth slits stay as the insect barrier",
+  "m12 post sockets": "FIXED: \u00d810.0",
+  "m13 colletto_v6 pads": "NOT TOUCHED: 6.3.0 part already being printed; the two pads print as they are",
+  "m14 lock screw heads": "FIXED: counterbore 1.5 mm deeper",
+  "m15 TPU lid gasket": "print note (Arachne, 15 mm/s)",
+  "m16 horizontal holes": "print note",
+  "m17 thin walls": "print note",
+  "m18 P3 O-ring": "FIXED: no O-ring and no countersink at P3; 3x1 list = P2 1 + cap 4",
+  "m19 wording": "FIXED: cap-shell seam 0.6 stated; grams at solid mass for the IP66 parts; print files cleaned and re-checked after vertex merge; shell orientation wording",
+  "lid gasket run without screws": "PARTLY: 5th screw in the north lobe, ribs on the lid top along the back and notch edges, lip tips now point outward. No screw fits on the back edge (the board plane is 5 mm from it), so ~105 mm of gasket still relies on the ribbed lid: water test before trusting IP66",
+  "slicer_check_6_4_0 (a) tub lid-screw bosses": {
+   "status": "FIXED: each boss grows out of the nearest wall on a 45 deg corbel (no free cone tips)",
+   "bosses": [
+    {
+     "screw_xy": [
+      38.0,
+      43.5
+     ],
+     "wall_gap_mm": 0.75,
+     "toward": [
+      -1.0,
+      0.0
+     ],
+     "corbel_bottom_z": -58.4
+    },
+    {
+     "screw_xy": [
+      38.0,
+      -43.5
+     ],
+     "wall_gap_mm": 0.75,
+     "toward": [
+      -1.0,
+      0.0
+     ],
+     "corbel_bottom_z": -58.4
+    },
+    {
+     "screw_xy": [
+      46.0,
+      36.5
+     ],
+     "wall_gap_mm": 2.47,
+     "toward": [
+      0.82,
+      0.57
+     ],
+     "corbel_bottom_z": -60.12
+    },
+    {
+     "screw_xy": [
+      46.0,
+      -36.5
+     ],
+     "wall_gap_mm": 2.47,
+     "toward": [
+      0.82,
+      -0.57
+     ],
+     "corbel_bottom_z": -60.12
+    },
+    {
+     "screw_xy": [
+      54.5,
+      0.0
+     ],
+     "wall_gap_mm": 5.15,
+     "toward": [
+      1.0,
+      -0.02
+     ],
+     "corbel_bottom_z": -62.8
+    }
+   ]
+  },
+  "slicer_check_6_4_0 (b) zero-volume fins": "FIXED: closed zero-volume slivers are dropped from every exported mesh (assembled and _print) before the watertight check",
+  "slicer_check_6_4_0 (c) cap groove ceiling": "PARTLY: the 2.1 mm ledge is the seat of the unchanged TPU chute lip (anchor r 24.95..26.5). The 0.6 mm bore-side strip the lip does not touch is now a 45 deg chamfer; the 1.5 mm flat ring that retains the lip stays (prints as a short overhang, no support): a full chamfer would let the lip ride out of its groove when the cap is pulled off",
+  "assembly_issues_6_4_0": {
+   "module plug reach": "FIXED: tail 190 mm with a service loop parked on the lid; the module can be lowered 120 mm (80 needed) and unplugged below the pod",
+   "servo lead through the gland": "FIXED: round 3-core branch through the M12 gland, JR female crimped inside the bay; the flat servo lead never passes the gland",
+   "drilling template 6.4": "template_v64/ (panel arrow up, FRONT arrow 60 deg away, turn-the-sheet instruction)"
+  },
+  "assembly advice": "hold the module when it leaves the posts (last 18 mm of travel are guided); fold the harness loop above the lid before pushing up (1.0 mm lid to P3 pad)"
+ },
+ "interface": {
+  "status": "FIXED on the holder side from 6.4: a new module version must fit it; the chassis is not touched when the electronics change",
+  "frame": "Z-up mm, shaft axis x=y=0, Z=0 = bowl base underside",
+  "opening": {
+   "prism_plan": "x >= 17.05, |y| <= 52.35",
+   "cap_z": [
+    -104.0,
+    -72.6
+   ],
+   "shell_z": [
+    -72.0,
+    -36.5
+   ],
+   "gap_mm": 0.35,
+   "top_seam_mm": 0.5,
+   "outer_face": "the pod skin inside the prism (flush); the band of the control panel (z -98..-74.6) is a module feature, not part of the interface",
+   "return_ribs": {
+    "t": 2.0,
+    "depth": 6.0
+   },
+   "opening_width_mm": 104.7,
+   "opening_height_mm": 67.5
+  },
+  "module_envelope": {
+   "back_face_x": 17.4,
+   "half_width_y": 52.0,
+   "top_z": -37.0,
+   "bottom_z": -104.0,
+   "top_lip": {
+    "h": 4.0,
+    "t": 2.0,
+    "gap": 0.4,
+    "where": "behind the shell wall, z -37..-33"
+   },
+   "corner_notches": {
+    "x": [
+     17.4,
+     29.6
+    ],
+    "abs_y": [
+     38.0,
+     52.0
+    ],
+    "open_above_z": -89.0,
+    "rim_thickening_allowed_to_abs_y": 40.0
+   }
+  },
+  "locating_locking": {
+   "posts": {
+    "xy": [
+     [
+      24.0,
+      45.5
+     ],
+     [
+      24.0,
+      -45.5
+     ]
+    ],
+    "d": 9.0,
+    "z": [
+     -89.0,
+     -30.0
+    ],
+    "web_above_z": -70.5,
+    "insert": "M3 heat-set (\u00d84.0 x 6.5 hole) in the lower end"
+   },
+   "module_sockets": {
+    "d": 10.0,
+    "z": [
+     -89.0,
+     -71.5
+    ]
+   },
+   "vertical_stop": "post ends (z -89.0) on the socket floors; top seam 0.5 mm",
+   "screws": {
+    "type": "M3x16 ISO 4762 A2",
+    "qty": 2,
+    "from": "below",
+    "head_seat_z": -99.1,
+    "counterbore_d": 6.5,
+    "tool": "hex 2.5",
+    "torque": "0.5 N m, by hand"
+   },
+   "insertion": "straight up, 67 mm travel",
+   "removal_sweep_mm3": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     1.0,
+     0.0
+    ],
+    [
+     2.0,
+     0.0
+    ],
+    [
+     4.0,
+     0.0
+    ],
+    [
+     8.0,
+     0.0
+    ],
+    [
+     15.0,
+     0.0
+    ],
+    [
+     30.0,
+     0.0
+    ],
+    [
+     45.0,
+     0.0
+    ],
+    [
+     60.0,
+     0.0
+    ],
+    [
+     75.0,
+     0.0
+    ],
+    [
+     100.0,
+     0.0
+    ]
+   ]
+  },
+  "seal_faces": {
+   "module": "self-contained: lid lip gasket on the tub land; panel parts, J1 and lid screws sealed in the module",
+   "module_to_chassis": "none (0.35 mm seams, top lip, return ribs)",
+   "servo_bay": "cap lip on the bay rim, face O-ring 24x2, shaft O-rings, O-ring 3x1 under P2, M12 gland, ePTFE vent patch"
+  },
+  "electrical_J1": {
+   "connector": "M8 5-pin A-coded panel socket (female) on the module lid, in a turret",
+   "xy": [
+    45.0,
+    -24.0
+   ],
+   "mating_face_z": -25.0,
+   "lid_hole_d": 8.2,
+   "pins": {
+    "1": "+12 V in (from the pod-top M8)",
+    "2": "servo PWM (3.3 V logic, 50 Hz)",
+    "3": "GND (12 V return and servo return)",
+    "4": "servo +6 V out (from the module regulator)",
+    "5": "spare"
+   },
+   "chassis_harness": "angled M8 5-pin plug (cable exit towards +y) -> tail with service loop -> tie on the bay lug -> Y splice: (a) 12 V branch to the M8 IP67 connector in the pod top (unchanged), (b) round servo branch through the M12 gland into the bay, JR female inside",
+   "harness": {
+    "tail": {
+     "part": "M8 5-pin A-coded MALE cordset, angled, PUR \u00d84.5 (ready-made 0.5 m, cut)",
+     "length_mm": 190.0,
+     "measured": "from the plug body (cable exit) to the centre of the Y splice",
+     "parked": "service loop on the module lid: 184.5 mm of path, over the module south rim, north along the back fence, U-turn R 11.5 (>= 2.5 x D, static), back south and up into the plug",
+     "lowered": "reaches the plug with the module lowered up to 120 mm (5 mm spare); 80 mm needs 145.5 mm",
+     "anchor": "cable tie 2.5 x 100 round the lug bar on the bay (south of cap boss D) at (16.35, -57.5, -35.75)",
+     "guide": "snapped into the C-hook on the south post top at (32.5, -48.5) (slit 3.8 mm): from there it always drops inside the opening, never into the pod pocket south of it",
+     "min_bend_radius_mm": 11.5
+    },
+    "splice_y": {
+     "where": [
+      7.0,
+      -64.0,
+      -50.0
+     ],
+     "size": "\u00d88 x 20 adhesive-lined heat shrink over solder joints",
+     "pins": "tail 1 -> 12 V +, tail 3 -> 12 V GND and servo GND, tail 2 -> servo signal, tail 4 -> servo +6 V, tail 5 not connected"
+    },
+    "branch_12v": {
+     "part": "2-core PUR (or the pigtail of an M8 4-pin A-coded male field connector) to the pod-top M8 IP67 pair",
+     "length_mm": 90,
+     "route": "splice -> up along the shell inside -> M8 unit half at (0, -69.2, 6)"
+    },
+    "branch_servo": {
+     "part": "round 3-core PUR 3 x 0.25 mm2, \u00d84.0",
+     "length_mm": 100,
+     "route": "splice -> M12 gland -> 12 mm inside the bay -> JR 3-pin female",
+     "spare": "40 mm so the JR pair can be pulled out under the bay when the cap is off"
+    },
+    "checks": {
+     "tail_parked_path_mm": 184.5,
+     "tail_length_spec_mm": 190.0,
+     "lowered_path_mm_by_D": {
+      "80": 145.5,
+      "85": 149.6,
+      "90": 153.8,
+      "95": 158.2,
+      "100": 162.7,
+      "105": 167.3,
+      "110": 172.0,
+      "115": 176.7,
+      "120": 181.4,
+      "125": 186.2,
+      "130": 191.0,
+      "135": 195.8,
+      "140": 200.7,
+      "145": 205.5,
+      "150": 210.4,
+      "155": 215.3,
+      "160": 220.2
+     },
+     "max_lowering_with_5mm_spare_mm": 120,
+     "lowered_80_vs_chassis_mm3": 0.0,
+     "lowered_80_vs_module_mm3": 0.0,
+     "drape_during_travel (D, vs chassis mm3, vs module mm3)": [
+      [
+       0.0,
+       0.0,
+       0.0
+      ],
+      [
+       5.0,
+       0.0,
+       0.0
+      ],
+      [
+       10.0,
+       0.0,
+       0.0
+      ],
+      [
+       20.0,
+       0.0,
+       0.0
+      ],
+      [
+       30.0,
+       0.0,
+       0.0
+      ],
+      [
+       45.0,
+       0.0,
+       0.0
+      ],
+      [
+       60.0,
+       0.0,
+       0.0
+      ],
+      [
+       80.0,
+       0.0,
+       0.0
+      ]
+     ],
+     "parked_clearances_mm": {
+      "tail_to_P3_pad": [
+       5.77,
+       [
+        29.4,
+        13.7,
+        -34.5
+       ]
+      ],
+      "tail_to_shell_and_opening_edges": [
+       2.92,
+       [
+        33.3,
+        -50.3,
+        -35.6
+       ]
+      ],
+      "tail_to_posts_and_webs": [
+       0.15,
+       [
+        14.2,
+        -57.9,
+        -35.7
+       ]
+      ],
+      "tail_to_bowl_tabs_and_screws": [
+       7.89,
+       [
+        46.7,
+        -0.3,
+        -13.2
+       ]
+      ],
+      "tail_to_lid_screw_heads": [
+       0.84,
+       [
+        34.2,
+        -44.0,
+        -34.4
+       ]
+      ],
+      "splice_to_shell": [
+       1.07,
+       [
+        7.9,
+        -67.9,
+        -59.7
+       ]
+      ]
+     }
+    }
+   },
+   "current": "M8 5-pin contacts are 3 A class: enough for a standard servo (stall ~2.5 A at 6 V); use the 4-pin 4 A version + PWM on a separate M8 if a stronger servo is ever fitted",
+   "access": {
+    "module_lowered_mm": 80.0,
+    "tail_allows_mm": 120,
+    "J1_face_z_at_80": -105.0,
+    "pod_bottom_z": -104.0,
+    "note": "take the 2 lock screws out, let the module down: at 80 mm its top is 13 mm below the pod bottom and the plug ring is free in the hand; unscrew the ring and set the module on the bench. Refit: plug, lay the loop on the lid between the back fence and the turret, push up"
+   }
+  },
+  "servo_lead_pass_through": {
+   "where": "M12x1.5 gland (IP68, cable range 3-6.5 mm) in the bay south wall at x -3.0, z -48.0 (the 6.3 gland position)",
+   "solution": "the servo lead does NOT pass the gland. A ROUND 3-core cable (the harness servo branch, PUR 3 x 0.25 mm2, \u00d84.0) goes through the gland, which seals on it as designed; inside the bay it is terminated with a JR/Futaba 3-pin female (crimped after passing the gland) and the servo plugs into it in the dry south room of the bay (mated pair parked vertically at x -5..2.6, y -31..-27.4). The servo and its flat lead stay untouched and replaceable; no new printed part",
+   "crimp_connector": "JR/Futaba-style 3-pin servo housing, female, 2.54 mm pitch + 3 female crimp terminals for 22-26 AWG (servo-lead type); pin order: signal (orange/white) - +6 V (red) - GND (brown/black); crimp with an open-barrel crimper (e.g. Engineer PA-09)",
+   "order": "pass the stripped round cable through the dome nut, seal insert and gland body from outside, crimp and insert the 3 terminals, tighten the dome nut (2.5 N m), plug the servo; then fit the cap"
+  },
+  "keep_out": {
+   "above_the_lid": "z -37.0..-10, x > 23.4: J1 turret, angled plug and harness loop",
+   "P3_pad": {
+    "xy": [
+     17.6,
+     14.0
+    ],
+    "r": 6.0,
+    "down_to_z": -36.0
+   },
+   "posts_and_webs": "the corner notches",
+   "behind_the_back_face": "x < 17.4: cap upstand and bay wall"
+  },
+  "mass_budget": "module <= 1 kg",
+  "drawing": [
+   "interface_v64/interfaccia_modulo_v64.pdf",
+   "interface_v64/interfaccia_modulo_v64.svg"
+  ]
+ },
+ "module": {
+  "name": "modulo elettronica",
+  "version": "case 1.0",
+  "printed_parts": {
+   "modulo_vasca_v64": {
+    "grams_print_est": 89.6,
+    "material": "PETG"
+   },
+   "modulo_coperchio_v64": {
+    "grams_print_est": 16.1,
+    "material": "PETG"
+   },
+   "modulo_guarnizione_v64": {
+    "grams_print_est": 1.2,
+    "material": "TPU 95A"
+   },
+   "modulo_anello_speaker_v64": {
+    "grams_print_est": 0.6,
+    "material": "PETG"
+   }
+  },
+  "concept": "one sealed case; its outer wall is the missing piece of the pod skin and carries the control panel; lid on top with a TPU lip gasket and 5 PT K30x10 screws (O-ring 3x1 under each head); the inside is generic: two board slots in the guide walls, free lobes, a floor collar for the speaker ring",
+  "ip_target": "IP66 on its own (flood fill: one closed volume, separate from the pod and outside)",
+  "walls_mm": {
+   "skin": 2.5,
+   "panel_band": 3.0,
+   "back": 2.0,
+   "sides": 2.5,
+   "floor": 2.5,
+   "lid": 3.2
+  },
+  "internal_envelope": {
+   "inner_height_floor_to_land_mm": 60.8,
+   "inner_height_under_the_rim_mm": 48.2,
+   "inner_width_between_guides_mm": 68.0,
+   "board_slot_width_mm": 70.6,
+   "inner_width_front_mm": 99.0,
+   "depth_back_wall_to_skin_mm": {
+    "z -50": {
+     "y 0": 44.0,
+     "y 20": 41.2,
+     "y 30": 37.4,
+     "y 34": 35.4
+    },
+    "z -60": {
+     "y 0": 42.1,
+     "y 20": 39.2,
+     "y 30": 35.4,
+     "y 34": 33.4
+    },
+    "z -72": {
+     "y 0": 39.6,
+     "y 20": 36.7,
+     "y 30": 32.8,
+     "y 34": 30.7
+    },
+    "z -87": {
+     "y 0": 34.1,
+     "y 20": 31.0,
+     "y 30": 26.9,
+     "y 34": 24.6
+    },
+    "z -98": {
+     "y 0": 30.0,
+     "y 20": 26.8,
+     "y 30": 22.4,
+     "y 34": 20.0
+    }
+   },
+   "free_volume_cm3": 150.0,
+   "boxes_that_fit (y width x z height x x depth)": {
+    "68 x 50 x d (board zone, z -96..-46)": 21.3,
+    "68 x 40 x d (z -86..-46)": 25.0,
+    "60 x 45 x d (z -95..-50)": 23.9,
+    "40 x 50 x d (z -96..-46)": 27.9,
+    "61 x 28 x d (ESP zone z -78..-50)": 30.1
+   },
+   "target_80x60x45": "not feasible in this pod: the bay wall is at x 15.25 and the skin 59-65 from the axis, so the depth is 35-43 on the centre line and falls to 25-33 at y +-34; width 68 between the guides (99 across the front lobes), height 61",
+   "slots": {
+    "A_board_back_x": 22.4,
+    "B_board_back_x": 30.0,
+    "pitch_mm": 7.600000000000001,
+    "behind_A_mm": 3.0,
+    "stack_in_front_of_A_mm (centre 61 x 28, z -78..-50)": 25.5,
+    "between_A_and_B_mm": 6.0,
+    "in_front_of_B_mm (z -86..-46, 68 wide / 40 wide)": [
+     12.8,
+     19.2
+    ],
+    "use": "A alone takes the ESP32 perfboard with its 25 mm stack; A + B together only if the board in A carries parts <= the gap between A and B (regulators) and the board in B parts <= the depth in front of B"
+   }
+  },
+  "board_slots": {
+   "boards": "50 x 70 mm perfboard standing, 70 across (y), 50 tall (z), slides in from the top; slots 1.9 wide, 1.3 deep in the guide walls, board bottom edge at z -91.5",
+   "A": "board back face at x 22.4: 3.0 mm behind for the pins",
+   "B": "board back face at x 30.0",
+   "see": "internal_envelope.slots"
+  },
+  "demo_layout (shown in the viewer, not part of the case)": {
+   "board A": "5x7 perfboard in slot A",
+   "ESP32-WROVER on socket strips": "stack 61 x 28 x 25 at z -74.5..-46.5 (estimate from photos)",
+   "regulator 6 V 25x20": "lying under the ESP zone, south",
+   "regulator 5 V": "on board A, north bottom",
+   "capacitor \u00d810 x 20": "standing in the north lobe",
+   "speaker": "\u00d823 in the floor ring"
+  },
+  "control_panel": {
+   "where": "on the module outer face (band z -98.0..-74.6, straight-ruled as 6.3); azimuths from the shaft axis: led1 31 deg, led2 31 deg, btn 16 deg, ko1 -3 deg, ko2 -19 deg, ko3 -35 deg",
+   "vs_6_3": "the panel moves with the electronics from the room side (button at 77 deg, under the release button) to the side away from the bowl: the button now faces 16 deg, i.e. 60 deg clockwise from the release button seen from above. The room side is blocked by the servo body (the servo cannot be turned: P2 would fall under it)",
+   "button": {
+    "recess": "\u00d817.0 x 8.0 to the switch face (as 6.3)",
+    "probes": {
+     "btn": {
+      "paw pad sphere \u00d830": {
+       "deepest_mm": 2.61,
+       "actuator_top_mm": 7.7,
+       "reaches_actuator": false
+      },
+      "paw pad sphere \u00d840": {
+       "deepest_mm": 1.79,
+       "actuator_top_mm": 7.7,
+       "reaches_actuator": false
+      },
+      "snout sphere \u00d825": {
+       "deepest_mm": 3.35,
+       "actuator_top_mm": 7.7,
+       "reaches_actuator": false
+      },
+      "fingertip \u00d816": {
+       "deepest_mm": 7.73,
+       "actuator_top_mm": 7.7,
+       "reaches_actuator": true
+      },
+      "fingertip \u00d812": {
+       "deepest_mm": 7.72,
+       "actuator_top_mm": 7.7,
+       "reaches_actuator": true
+      }
+     }
+    },
+    "ok": true,
+    "min_margin_paw_snout_mm": 4.35
+   },
+   "leds": {
+    "flush_max_mm": {
+     "led1": 0.06,
+     "led2": 0.06
+    },
+    "type": "2 x \u00d85 light pipe + O-ring 5x1, square to the face"
+   },
+   "knock_outs": {
+    "style": "flush, 0.3 mm engraved \u00d812 ring + dot, skin 2.0 (as 6.3.0)",
+    "skin_measured": {
+     "ko1": {
+      "plain_min_mm": 1.93,
+      "plain_max_mm": 1.97,
+      "under_engraving_min_mm": 1.64
+     },
+     "ko2": {
+      "plain_min_mm": 1.94,
+      "plain_max_mm": 1.97,
+      "under_engraving_min_mm": 1.64
+     },
+     "ko3": {
+      "plain_min_mm": 1.95,
+      "plain_max_mm": 1.98,
+      "under_engraving_min_mm": 1.65
+     }
+    },
+    "future_switch": {
+     "ko1": {
+      "free_depth_behind_the_seat_mm_empty_case": 31.8,
+      "collisions_mm3": {
+       "body|regulators (demo position)": 313.9735
+      },
+      "fits_the_printed_case": true,
+      "fits_with_the_demo_electronics": false
+     },
+     "ko2": {
+      "free_depth_behind_the_seat_mm_empty_case": 28.9,
+      "collisions_mm3": {
+       "nut_swing|regulators (demo position)": 11.6395,
+       "body|regulators (demo position)": 1052.8423
+      },
+      "fits_the_printed_case": true,
+      "fits_with_the_demo_electronics": false
+     },
+     "ko3": {
+      "free_depth_behind_the_seat_mm_empty_case": 2.9,
+      "collisions_mm3": {
+       "nut_swing|modulo_vasca_v64 (except the drilled hole)": 3.8246,
+       "nut_swing|regulators (demo position)": 1.8999,
+       "body|modulo_vasca_v64 (except the drilled hole)": 182.0996,
+       "body|regulators (demo position)": 259.0471
+      },
+      "fits_the_printed_case": false,
+      "fits_with_the_demo_electronics": false
+     }
+    },
+    "KO1": "reserved as a possible CAMERA window (\u00d812 clear window bonded from inside; 32 mm free behind)",
+    "KO2": "free for a second switch",
+    "KO3": "shallow: 2.9 mm behind the seat (next to the guide wall): LED / sensor / window only"
+   },
+   "speaker": {
+    "seat": "floor collar \u00d826.4 at (33.0, -10.0); printed ring insert (modulo_anello_speaker_v64) sets the diameter: bore = speaker \u00d8 + 0.4, the part shown is for \u00d823",
+    "range": "\u00d820..24 on the floor seat (the flat floor is only 21 mm deep before the bottom radius). \u00d826-28: print the tall ring variant (seat 5 mm higher); it then needs a 30 x 4 mm notch in the bottom edge of the board in slot A",
+    "grille": "7 x \u00d81.5 through the 2.5 mm floor, facing straight down, IP67 acoustic membrane \u00d815 inside (as 6.3)"
+   },
+   "usb_c": "blind position on the lid top at (39.0, 0.0) (engraved \u00d813 ring + dot): reachable with the module lowered or out; drill for a sealed panel USB-C when needed"
+  },
+  "hardware": {
+   "screws": {
+    "M3x16 ISO 4762 lock (stay with the module)": 2,
+    "PT K30x10 lid": 5
+   },
+   "inserts": {},
+   "o_rings": {
+    "3x1 (lid screws)": 5,
+    "5x1 (light pipes)": 2
+   },
+   "other": {
+    "M8 5-pin A-coded panel socket": 1,
+    "IP67 12 mm push-button": 1,
+    "light pipe \u00d85": 2,
+    "acoustic membrane \u00d815": 1
+   },
+   "screws_total": 7,
+   "inserts_total": 0,
+   "o_rings_total": 7
+  },
+  "print": {
+   "modulo_vasca_v64": "standing as assembled (flat bottom on the bed), IP66 settings (5 walls, 100 % infill, 245-250 C, fan <= 40 %), NO supports: the bottom edge now starts with a 45 deg chamfer, rim and bosses are true 45 deg faces. Horizontal holes (light pipes \u00d85.1, button \u00d817) sag at the top: ream the light-pipe holes. Check the 2 mm back wall for bow",
+   "modulo_coperchio_v64": "underside on the bed, turret up, NO supports: the turret ceiling runs in at 45 deg to a \u00d813 flat closed by a 0.2 mm skin over the J1 hole (bridge 13 mm): drill \u00d88.2 afterwards (or the thread size of the bought socket)",
+   "modulo_guarnizione_v64": "TPU, base on the bed, lip up; Arachne walls, 15 mm/s (the 0.8 mm lip prints as one line)",
+   "modulo_anello_speaker_v64": "flat"
+  }
+ },
+ "parts": {
+  "safe_to_print_now (byte-identical to 6.3.0)": {
+   "chiocciola_v63": {
+    "file": "chiocciola_v63.stl",
+    "sha256_16": "763357111f5ee1fc",
+    "print_file": "chiocciola_v63_print.stl",
+    "print_sha256_16": "b0d08ec2852470cd",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "colonna_v63": {
+    "file": "colonna_v63.stl",
+    "sha256_16": "e7e48c224d41bdd1",
+    "print_file": "colonna_v63_print.stl",
+    "print_sha256_16": "87262cc6b6d1fd98",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "flangia_piano_v63": {
+    "file": "flangia_piano_v63.stl",
+    "sha256_16": "92538e2454d56203",
+    "print_file": "flangia_piano_v63_print.stl",
+    "print_sha256_16": "02f316c163d233b1",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "flangia_alta_v63": {
+    "file": "flangia_alta_v63.stl",
+    "sha256_16": "82bc1d18a5a965b9",
+    "print_file": "flangia_alta_v63_print.stl",
+    "print_sha256_16": "921c7dad6945f152",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "saracinesca_v63": {
+    "file": "saracinesca_v63.stl",
+    "sha256_16": "60ba1d527c5c0f2f",
+    "print_file": "saracinesca_v63_print.stl",
+    "print_sha256_16": "941e139f3383034f",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "anello_saracinesca_v63": {
+    "file": "anello_saracinesca_v63.stl",
+    "sha256_16": "6013fef17e60a1f4",
+    "print_file": "anello_saracinesca_v63_print.stl",
+    "print_sha256_16": "01d33e281aa5337a",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "passacavo_v63": {
+    "file": "passacavo_v63.stl",
+    "sha256_16": "664bac89bd90e636",
+    "print_file": "passacavo_v63_print.stl",
+    "print_sha256_16": "f606179e435d90b0",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "linguetta_sicura_v63": {
+    "file": "linguetta_sicura_v63.stl",
+    "sha256_16": "7b1b4f2872f41d9b",
+    "print_file": "linguetta_sicura_v63_print.stl",
+    "print_sha256_16": "da244707183e8291",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "disco_v61": {
+    "file": "disco_v61.stl",
+    "sha256_16": "9b215cadf3e94bd7",
+    "print_file": "disco_v61_print.stl",
+    "print_sha256_16": "d5417b44bdb59ee6",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "piastra_gate_v62": {
+    "file": "piastra_gate_v62.stl",
+    "sha256_16": "341fe6c875502a98",
+    "print_file": "piastra_gate_v62_print.stl",
+    "print_sha256_16": "266a04650a07527b",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "piastra_finestra_v62": {
+    "file": "piastra_finestra_v62.stl",
+    "sha256_16": "c758e5c1823dce7f",
+    "print_file": "piastra_finestra_v62_print.stl",
+    "print_sha256_16": "f00df0272acbd813",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "scivolo_v611": {
+    "file": "scivolo_v611.stl",
+    "sha256_16": "c8b97d0932064e49",
+    "print_file": "scivolo_v611_print.stl",
+    "print_sha256_16": "44f424dcb7295e56",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "colletto_v6": {
+    "file": "colletto_v6.stl",
+    "sha256_16": "a646e10fdfd25e78",
+    "print_file": "colletto_v6_print.stl",
+    "print_sha256_16": "fafb3123edb645aa",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "pulsante_v611": {
+    "file": "pulsante_v611.stl",
+    "sha256_16": "1845b093e139392f",
+    "print_file": "pulsante_v611_print.stl",
+    "print_sha256_16": "5d8dd1ff883fe9b6",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "albero_v6": {
+    "file": "albero_v6.stl",
+    "sha256_16": "a6755f2d81065b0a",
+    "print_file": "albero_v6_print.stl",
+    "print_sha256_16": "f9479d531b59bea4",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "mozzo_v6": {
+    "file": "mozzo_v6.stl",
+    "sha256_16": "5af59f612c2887cf",
+    "print_file": "mozzo_v6_print.stl",
+    "print_sha256_16": "4b16a190565775c9",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "labbro_pettine_v62": {
+    "file": "labbro_pettine_v62.stl",
+    "sha256_16": "2f0cb85b46207b22",
+    "print_file": "labbro_pettine_v62_print.stl",
+    "print_sha256_16": "8d495035b8056946",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "guarnizione_baionetta_v61": {
+    "file": "guarnizione_baionetta_v61.stl",
+    "sha256_16": "4106b10923cc771c",
+    "print_file": "guarnizione_baionetta_v61_print.stl",
+    "print_sha256_16": "5aacaf2f33357083",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "guarnizione_piano_v5": {
+    "file": "guarnizione_piano_v5.stl",
+    "sha256_16": "6c921bdb861fdefd",
+    "print_file": "guarnizione_piano_v5_print.stl",
+    "print_sha256_16": "e9ee6c405c7cc438",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "labbro_ombra_v611": {
+    "file": "labbro_ombra_v611.stl",
+    "sha256_16": "45316acf375d10c2",
+    "print_file": "labbro_ombra_v611_print.stl",
+    "print_sha256_16": "a21e98016a941160",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   },
+   "labbro_scivolo_v611": {
+    "file": "labbro_scivolo_v611.stl",
+    "sha256_16": "353df7b831efb484",
+    "print_file": "labbro_scivolo_v611_print.stl",
+    "print_sha256_16": "839d77a7b53b8a96",
+    "byte_identical_to_6_3_0": true,
+    "how": "v6.4 uses the 6.3.0 file itself (not rebuilt, not re-exported)"
+   }
+  },
+  "safe_list_matches_the_6_3_0_release": true,
+  "changed_chassis_parts": {
+   "scatola_v64": "servo bay + holder posts (was the electronics box)",
+   "fondello_v64": "cap with the module opening; no panel, no pocket, 4 screws",
+   "guscio_v64": "shell with the module opening (z -72..-36.65) and return ribs; otherwise the 6.1.1 shell",
+   "guarnizione_fondello_v64": "TPU lip for the smaller bay outline"
+  },
+  "changed_vs_6_3_meshes": {
+   "scatola_v64": {
+    "replaces": "scatola_v63",
+    "v63": {
+     "faces": 10494,
+     "volume_cm3": 70.256,
+     "bounds": [
+      [
+       -25.2,
+       -43.0,
+       -96.5
+      ],
+      [
+       41.0,
+       42.0,
+       -30.0
+      ]
+     ]
+    },
+    "v64": {
+     "faces": 17816,
+     "volume_cm3": 71.446,
+     "bounds": [
+      [
+       -25.2,
+       -58.5,
+       -96.5
+      ],
+      [
+       37.65,
+       51.0,
+       -30.0
+      ]
+     ]
+    },
+    "identical": false
+   },
+   "fondello_v64": {
+    "replaces": "fondello_v63",
+    "v63": {
+     "faces": 191938,
+     "volume_cm3": 114.7,
+     "bounds": [
+      [
+       -82.0,
+       -71.72,
+       -104.0
+      ],
+      [
+       61.44,
+       71.72,
+       -67.4
+      ]
+     ]
+    },
+    "v64": {
+     "faces": 117886,
+     "volume_cm3": 91.4,
+     "bounds": [
+      [
+       -82.0,
+       -71.72,
+       -104.0
+      ],
+      [
+       38.07,
+       71.72,
+       -67.4
+      ]
+     ]
+    },
+    "identical": false
+   },
+   "guscio_v64": {
+    "replaces": "guscio_v611",
+    "v63": {
+     "faces": 159326,
+     "volume_cm3": 143.966,
+     "bounds": [
+      [
+       -82.0,
+       -82.0,
+       -72.0
+      ],
+      [
+       81.99,
+       82.0,
+       64.0
+      ]
+     ]
+    },
+    "v64": {
+     "faces": 152064,
+     "volume_cm3": 140.543,
+     "bounds": [
+      [
+       -82.0,
+       -82.0,
+       -72.0
+      ],
+      [
+       81.99,
+       82.0,
+       64.0
+      ]
+     ]
+    },
+    "identical": false
+   },
+   "guarnizione_fondello_v64": {
+    "replaces": "guarnizione_fondello_v61",
+    "v63": {
+     "faces": 1496,
+     "volume_cm3": 1.03,
+     "bounds": [
+      [
+       -15.85,
+       -41.6,
+       -73.65
+      ],
+      [
+       40.6,
+       41.6,
+       -70.8
+      ]
+     ]
+    },
+    "v64": {
+     "faces": 1496,
+     "volume_cm3": 0.838,
+     "bounds": [
+      [
+       -15.85,
+       -41.6,
+       -73.65
+      ],
+      [
+       15.85,
+       41.6,
+       -70.8
+      ]
+     ]
+    },
+    "identical": false
+   }
+  },
+  "new_module_parts": [
+   "modulo_vasca_v64",
+   "modulo_coperchio_v64",
+   "modulo_guarnizione_v64",
+   "modulo_anello_speaker_v64"
+  ],
+  "also_safe": "the chassis parts above are final too unless the interface changes: print them now, the module later"
+ },
+ "build_order": [
+  "1-4 as 6.3 (latch, tower module, chute, shell)",
+  "5 servo bay onto the tower: 3 x M3x40 from below (P3 now outside the bay)",
+  "5b harness: servo branch through the gland, JR female crimped on and plugged to the servo; 12 V branch to the pod-top M8; tail tied to the bay lug (cable tie 2.5 x 100)",
+  "6 cap: push on, 4 x PT K30x12 + O-ring 3x1 from below (T10); the M8 plug hangs out of the opening on its 180 mm tail",
+  "7 rim seal, comb lips, plates, disc from the top",
+  "8 module: plug J1 with the module below the pod, lay the tail loop on the lid (between the back fence and the turret, U-turn to the north), slide up, 2 x M3x16 from below"
+ ],
+ "checks": {
+  "watertight_built": {
+   "scatola_v64": true,
+   "fondello_v64": true,
+   "guscio_v64": true,
+   "guarnizione_fondello_v64": true,
+   "modulo_vasca_v64": true,
+   "modulo_coperchio_v64": true,
+   "modulo_guarnizione_v64": true,
+   "modulo_anello_speaker_v64": true
+  },
+  "watertight_exported_stl_reload": {
+   "scatola_v64": true,
+   "fondello_v64": true,
+   "guscio_v64": true,
+   "guarnizione_fondello_v64": true,
+   "modulo_vasca_v64": true,
+   "modulo_coperchio_v64": true,
+   "modulo_guarnizione_v64": true,
+   "modulo_anello_speaker_v64": true
+  },
+  "hard_interference_mm3_max": 0.0,
+  "hard_pairs_checked": 1457,
+  "hard_interference_nonzero": {},
+  "designed_contacts_mm3": {
+   "scatola_v64|guarnizione_fondello_v64": {
+    "overlap_mm3": 203.5888,
+    "role": "servo bay seal: cap lip on the bay rim face"
+   },
+   "scatola_v64|m3x40_stack": {
+    "overlap_mm3": 0.0,
+    "role": "stack screws through the roof"
+   },
+   "scatola_v64|gland_m12": {
+    "overlap_mm3": 0.5572,
+    "role": "gland thread in the bay wall"
+   },
+   "scatola_v64|vent_patch_eptfe": {
+    "overlap_mm3": 0.0,
+    "role": "adhesive vent patch on the bay wall"
+   },
+   "scatola_v64|oring_face_24x2": {
+    "overlap_mm3": 0.0,
+    "role": "face O-ring on the bay plateau"
+   },
+   "scatola_v64|oring_3x1": {
+    "overlap_mm3": 4.5067,
+    "role": "O-ring 3x1 under the stack screw heads"
+   },
+   "scatola_v64|m3x8_servo": {
+    "overlap_mm3": 0.0,
+    "role": "servo screws in the insert bores"
+   },
+   "scatola_v64|inserts_servo": {
+    "overlap_mm3": 0.0,
+    "role": "heat-set inserts"
+   },
+   "scatola_v64|inserts_holder": {
+    "overlap_mm3": 0.0,
+    "role": "heat-set inserts"
+   },
+   "scatola_v64|pt_k30x12_cap": {
+    "overlap_mm3": 65.2411,
+    "role": "thread-forming engagement in the bay bosses"
+   },
+   "scatola_v64|m3x16_module_lock": {
+    "overlap_mm3": 0.0,
+    "role": "lock screw tip in the insert bore"
+   },
+   "scatola_v64|cable_tie_harness": {
+    "overlap_mm3": 0.0,
+    "role": "tie through the lug slot"
+   },
+   "fondello_v64|guarnizione_fondello_v64": {
+    "overlap_mm3": 24.9194,
+    "role": "cap lip in its groove"
+   },
+   "fondello_v64|labbro_scivolo_v611": {
+    "overlap_mm3": 16.2955,
+    "role": "chute lip anchor"
+   },
+   "fondello_v64|oring_3x1_cap": {
+    "overlap_mm3": 18.0267,
+    "role": "O-ring 3x1 in the cap counterbore"
+   },
+   "guscio_v64|pt_k30x12_shell_tabs": {
+    "overlap_mm3": 0.0,
+    "role": "shell tab screws"
+   },
+   "guscio_v64|labbro_ombra_v611": {
+    "overlap_mm3": 258.8089,
+    "role": "shadow-gap skirt lip on the shell"
+   },
+   "albero_v6|oring_shaft_9x2": {
+    "overlap_mm3": 1.3049,
+    "role": "shaft O-rings in their grooves"
+   },
+   "mozzo_v6|servo": {
+    "overlap_mm3": 0.0,
+    "role": "hub on the spline"
+   },
+   "mozzo_v6|m3x8_hub": {
+    "overlap_mm3": 0.0,
+    "role": "hub screw"
+   },
+   "m3x40_stack|oring_3x1": {
+    "overlap_mm3": 0.1797,
+    "role": "O-ring 3x1 on the shank"
+   },
+   "colonna_v63|oring_shaft_9x2": {
+    "overlap_mm3": 22.9451,
+    "role": "shaft O-rings in the bushing"
+   },
+   "colonna_v63|oring_face_24x2": {
+    "overlap_mm3": 49.5927,
+    "role": "face O-ring in the tower groove"
+   },
+   "servo|servo_lead_in_bay": {
+    "overlap_mm3": 0.0,
+    "role": "servo lead"
+   },
+   "servo|m3x8_servo": {
+    "overlap_mm3": 0.0,
+    "role": "servo screws through the tabs"
+   },
+   "servo|m3x8_hub": {
+    "overlap_mm3": 0.0187,
+    "role": "hub screw in the servo spline"
+   },
+   "gland_m12|harness_servo": {
+    "overlap_mm3": 294.0579,
+    "role": "servo lead through the gland"
+   },
+   "gland_m12|servo_lead_in_bay": {
+    "overlap_mm3": 0.0,
+    "role": "servo lead through the gland"
+   },
+   "oring_3x1_cap|pt_k30x12_cap": {
+    "overlap_mm3": 0.7189,
+    "role": "O-ring 3x1 under the cap screw head"
+   },
+   "plug_m8_5p_angled|harness_tail": {
+    "overlap_mm3": 20.8603,
+    "role": "tail into the plug"
+   },
+   "plug_m8_5p_angled|harness_12v": {
+    "overlap_mm3": 0.0,
+    "role": "cable into the plug"
+   },
+   "plug_m8_5p_angled|harness_servo": {
+    "overlap_mm3": 0.0,
+    "role": "cable into the plug"
+   },
+   "plug_m8_5p_angled|socket_m8_5p": {
+    "overlap_mm3": 189.7838,
+    "role": "J1 mated"
+   },
+   "harness_tail|harness_splice_y": {
+    "overlap_mm3": 23.691,
+    "role": "tail out of the Y splice"
+   },
+   "harness_tail|harness_12v": {
+    "overlap_mm3": 15.518,
+    "role": "both leave the Y splice"
+   },
+   "harness_tail|cable_tie_harness": {
+    "overlap_mm3": 13.399,
+    "role": "tie round the tail"
+   },
+   "harness_splice_y|harness_12v": {
+    "overlap_mm3": 12.5183,
+    "role": "12 V branch out of the Y splice"
+   },
+   "harness_splice_y|harness_servo": {
+    "overlap_mm3": 54.0464,
+    "role": "servo branch out of the Y splice"
+   },
+   "harness_12v|harness_servo": {
+    "overlap_mm3": 0.0,
+    "role": "Y split"
+   },
+   "harness_12v|connector_m8_ip67": {
+    "overlap_mm3": 20.7802,
+    "role": "pigtail into the pod-top M8"
+   },
+   "harness_servo|jr_3p_junction": {
+    "overlap_mm3": 5.4635,
+    "role": "servo branch into the JR female"
+   },
+   "jr_3p_junction|servo_lead_in_bay": {
+    "overlap_mm3": 0.0,
+    "role": "servo lead into the JR pair"
+   },
+   "m3x8_servo|inserts_servo": {
+    "overlap_mm3": 134.1718,
+    "role": "servo screws in the inserts"
+   },
+   "inserts_holder|m3x16_module_lock": {
+    "overlap_mm3": 79.6646,
+    "role": "lock screws in the inserts"
+   },
+   "modulo_vasca_v64|modulo_guarnizione_v64": {
+    "overlap_mm3": 245.5904,
+    "role": "module seal: lid lip on the tub land"
+   },
+   "modulo_vasca_v64|switch_12mm_ip67": {
+    "overlap_mm3": 11.0627,
+    "role": "panel switch: front gasket on the recess floor + thread in the hole"
+   },
+   "modulo_vasca_v64|lightpipes_5mm": {
+    "overlap_mm3": 0.0,
+    "role": "light pipe flange on the boss face"
+   },
+   "modulo_vasca_v64|oring_5x1_lightpipe": {
+    "overlap_mm3": 2.7199,
+    "role": "light-pipe O-ring in its counterbore"
+   },
+   "modulo_vasca_v64|membrane_acoustic_ip67": {
+    "overlap_mm3": 1.0694,
+    "role": "adhesive acoustic membrane on the floor"
+   },
+   "modulo_vasca_v64|pt_k30x10_lid": {
+    "overlap_mm3": 68.8862,
+    "role": "thread-forming engagement in the tub bosses"
+   },
+   "modulo_coperchio_v64|modulo_guarnizione_v64": {
+    "overlap_mm3": 14.1894,
+    "role": "lid lip in its groove"
+   },
+   "modulo_coperchio_v64|socket_m8_5p": {
+    "overlap_mm3": 9.9887,
+    "role": "J1 panel socket in the lid (thread in the hole, nut + O-ring)"
+   },
+   "modulo_coperchio_v64|oring_3x1_lid": {
+    "overlap_mm3": 22.5383,
+    "role": "O-ring 3x1 in the lid countersink"
+   },
+   "modulo_coperchio_v64|pt_k30x10_lid": {
+    "overlap_mm3": 6.1533,
+    "role": "lid screw head in the O-ring countersink"
+   },
+   "modulo_anello_speaker_v64|speaker_23mm": {
+    "overlap_mm3": 0.0,
+    "role": "speaker in its ring"
+   },
+   "lightpipes_5mm|oring_5x1_lightpipe": {
+    "overlap_mm3": 1.4936,
+    "role": "light-pipe O-ring under the flange"
+   },
+   "lightpipes_5mm|leds_3mm": {
+    "overlap_mm3": 0.0,
+    "role": "LED behind the light pipe"
+   },
+   "board_70x50_A|esp32_wrover_stack": {
+    "overlap_mm3": 0.0,
+    "role": "on the board"
+   },
+   "board_70x50_A|reg_6v": {
+    "overlap_mm3": 0.0,
+    "role": "on the board"
+   },
+   "board_70x50_A|reg_5v": {
+    "overlap_mm3": 0.0,
+    "role": "on the board"
+   },
+   "oring_3x1_lid|pt_k30x10_lid": {
+    "overlap_mm3": 0.8986,
+    "role": "O-ring 3x1 under the lid screw head"
+   }
+  },
+  "module_removal_sweep_mm3": [
+   [
+    0.0,
+    0.0
+   ],
+   [
+    1.0,
+    0.0
+   ],
+   [
+    2.0,
+    0.0
+   ],
+   [
+    4.0,
+    0.0
+   ],
+   [
+    8.0,
+    0.0
+   ],
+   [
+    15.0,
+    0.0
+   ],
+   [
+    30.0,
+    0.0
+   ],
+   [
+    45.0,
+    0.0
+   ],
+   [
+    60.0,
+    0.0
+   ],
+   [
+    75.0,
+    0.0
+   ],
+   [
+    100.0,
+    0.0
+   ]
+  ],
+  "module_removal_sweep_max_mm3": 0.0,
+  "seal_continuity": {
+   "guarnizione_fondello_v64 | scatola_v64 (servo bay rim)": {
+    "sectors": 36,
+    "min_overlap_mm3": 2.3809,
+    "all_in_contact": true
+   },
+   "guarnizione_fondello_v64 | fondello_v64 (groove)": {
+    "sectors": 36,
+    "min_overlap_mm3": 0.2991,
+    "all_in_contact": true
+   },
+   "modulo_guarnizione_v64 | modulo_vasca_v64 (land)": {
+    "sectors": 48,
+    "min_overlap_mm3": 2.4735,
+    "all_in_contact": true
+   },
+   "modulo_guarnizione_v64 | modulo_coperchio_v64 (groove)": {
+    "sectors": 48,
+    "min_overlap_mm3": 0.1422,
+    "all_in_contact": true
+   },
+   "oring_3x1 P2 (-1.5, -25.5) | scatola_v64": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1878,
+    "all_in_contact": true
+   },
+   "oring_3x1 lid screw 1 | lid countersink": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1878,
+    "all_in_contact": true
+   },
+   "oring_3x1 lid screw 2 | lid countersink": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1878,
+    "all_in_contact": true
+   },
+   "oring_3x1 lid screw 3 | lid countersink": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1878,
+    "all_in_contact": true
+   },
+   "oring_3x1 lid screw 4 | lid countersink": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1878,
+    "all_in_contact": true
+   },
+   "oring_3x1 lid screw 5 | lid countersink": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.1878,
+    "all_in_contact": true
+   },
+   "oring_5x1 led1 | tub counterbore": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.0566,
+    "all_in_contact": true
+   },
+   "oring_5x1 led1 | light pipe flange": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.0311,
+    "all_in_contact": true
+   },
+   "oring_5x1 led2 | tub counterbore": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.0566,
+    "all_in_contact": true
+   },
+   "oring_5x1 led2 | light pipe flange": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.0311,
+    "all_in_contact": true
+   },
+   "switch front gasket | recess floor": {
+    "sectors": 24,
+    "min_overlap_mm3": 0.4382,
+    "all_in_contact": true
+   }
+  },
+  "seals_ok": true,
+  "dry_volume_flood_fill": {
+   "voxel_mm": 0.4,
+   "z_range": [
+    -104.8,
+    -30.3
+   ],
+   "seed_labels": {
+    "servo bay: beside the servo (south room)": 7,
+    "servo bay: under the servo, in the cap": 7,
+    "servo bay: servo void": 7,
+    "module: board zone": 20,
+    "module: north lobe": 20,
+    "module: floor under the speaker ring": 20,
+    "module: behind the button": 20,
+    "pod (wet side): north of the bay": 1,
+    "pod (wet side): at the drain": 1,
+    "pod (wet side): post socket gap": 1,
+    "exterior: outside the pod": 1,
+    "exterior: outlet bore": 1,
+    "exterior: button recess": 1
+   },
+   "servo_bay_is_one_volume": true,
+   "module_is_one_volume": true,
+   "servo_bay_separate_from_module_pod_exterior": true,
+   "module_separate_from_bay_pod_exterior": true,
+   "servo_bay_free_volume_cm3": 118.6,
+   "module_free_volume_cm3": 150.0,
+   "pod_drains_to_exterior": true,
+   "method": "all 8 new printed parts, chute + chute lip, light pipes, cap and lock screws as solids; gland, vent patch, acoustic membrane, J1, lid screws, the switch in its hole and light-pipe O-rings drawn as closed (their contact is in the continuity check); 0.4 mm voxels from the pod bottom to just under the bay roof top (top layer closed); free voxels labelled with 6-connectivity; seeds in the bay, the module, the pod and outside",
+   "slices_retried": 0
+  },
+  "dry_ok": true,
+  "tool_access": {
+   "step 5 bay+tower -> bowl M3x40 P1 (-18.25, 24.5) (cap and module not in)": {
+    "verdict": "OK",
+    "key_length_min_mm": 58.5,
+    "first_obstacle": null
+   },
+   "step 5 bay+tower -> bowl M3x40 P2 (-1.50, -25.5) (cap and module not in)": {
+    "verdict": "OK",
+    "key_length_min_mm": 36.6,
+    "first_obstacle": null
+   },
+   "step 5 bay+tower -> bowl M3x40 P3 (17.60, 14.0) (cap and module not in)": {
+    "verdict": "OK",
+    "key_length_min_mm": 52.6,
+    "first_obstacle": null
+   },
+   "step 6 cap -> bay PT K30x12 A (-21.2, 33.0) from below (T10)": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "step 6 cap -> bay PT K30x12 B (-21.2, -33.0) from below (T10)": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "step 6 cap -> bay PT K30x12 C (11.0, 47.0) from below (T10)": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "step 6 cap -> bay PT K30x12 D (11.0, -47.0) from below (T10)": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "module lock M3x16 (24.0, +45.5) from below (hex 2.5), unit hanging or taken down": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "module lock M3x16 (24.0, -45.5) from below (hex 2.5), unit hanging or taken down": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "module lid PT K30x10 #1 (38.0, 43.5) from above, module on the bench (T10)": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "module lid PT K30x10 #2 (38.0, -43.5) from above, module on the bench (T10)": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "module lid PT K30x10 #3 (46.0, 36.5) from above, module on the bench (T10)": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "module lid PT K30x10 #4 (46.0, -36.5) from above, module on the bench (T10)": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.6,
+    "first_obstacle": null
+   },
+   "module lid PT K30x10 #5 (54.5, 0.0) from above, module on the bench (T10)": {
+    "verdict": "OK",
+    "key_length_min_mm": 15.0,
+    "first_obstacle": null
+   },
+   "factory servo -> cradle M3x8 #1": {
+    "verdict": "OK",
+    "key_length_min_mm": 22.5,
+    "first_obstacle": null
+   },
+   "factory servo -> cradle M3x8 #2": {
+    "verdict": "OK",
+    "key_length_min_mm": 22.5,
+    "first_obstacle": null
+   },
+   "factory servo -> cradle M3x8 #3": {
+    "verdict": "OK",
+    "key_length_min_mm": 31.0,
+    "first_obstacle": null
+   },
+   "factory servo -> cradle M3x8 #4": {
+    "verdict": "OK",
+    "key_length_min_mm": 31.0,
+    "first_obstacle": null
+   }
+  },
+  "tool_access_ok": true,
+  "clearances_mm": {
+   "module_to_bay_and_cap": [
+    0.0,
+    [
+     23.0,
+     -49.7,
+     -89.0
+    ]
+   ],
+   "module_to_shell_opening_edges": [
+    0.35,
+    [
+     37.9,
+     52.0,
+     -50.2
+    ]
+   ],
+   "module_to_cap_opening_edges": [
+    0.35,
+    [
+     29.5,
+     52.0,
+     -85.8
+    ]
+   ],
+   "lid_top_to_P3_pad": [
+    1.0,
+    [
+     19.2,
+     15.7,
+     -37.0
+    ]
+   ],
+   "lid_screw_heads_to_chassis": [
+    2.6,
+    [
+     37.2,
+     -46.3,
+     -34.6
+    ]
+   ],
+   "J1_plug_to_bowl_tower_shell": [
+    3.24,
+    [
+     49.5,
+     -4.1,
+     -10.0
+    ]
+   ],
+   "posts_to_module_sockets": [
+    0.0,
+    [
+     25.1,
+     49.2,
+     -89.0
+    ]
+   ],
+   "switch_body_to_board_A": [
+    2.64,
+    [
+     26.6,
+     17.4,
+     -87.9
+    ]
+   ],
+   "esp_stack_to_tub": [
+    0.37,
+    [
+     42.5,
+     15.7,
+     -74.5
+    ]
+   ],
+   "esp_stack_to_switch_leds": [
+    2.54,
+    [
+     39.8,
+     14.9,
+     -74.5
+    ]
+   ],
+   "speaker_to_switch": [
+    7.04,
+    [
+     30.6,
+     1.2,
+     -94.0
+    ]
+   ],
+   "J1_socket_body_to_esp_stack": [
+    7.5,
+    [
+     48.2,
+     -20.3,
+     -39.0
+    ]
+   ],
+   "servo_to_bay_walls": [
+    2.0,
+    [
+     -0.1,
+     37.0,
+     -60.5
+    ]
+   ],
+   "cap_boss_C_D_to_gland": [
+    1.42,
+    [
+     4.6,
+     -43.2,
+     -48.0
+    ]
+   ],
+   "P3_head_to_module_lid": [
+    1.6,
+    [
+     17.9,
+     14.4,
+     -35.4
+    ]
+   ],
+   "chute_to_cap_boss_A": [
+    10.86,
+    [
+     -27.7,
+     19.2,
+     -32.6
+    ]
+   ]
+  },
+  "panel_probes": {
+   "btn": {
+    "paw pad sphere \u00d830": {
+     "deepest_mm": 2.61,
+     "actuator_top_mm": 7.7,
+     "reaches_actuator": false
+    },
+    "paw pad sphere \u00d840": {
+     "deepest_mm": 1.79,
+     "actuator_top_mm": 7.7,
+     "reaches_actuator": false
+    },
+    "snout sphere \u00d825": {
+     "deepest_mm": 3.35,
+     "actuator_top_mm": 7.7,
+     "reaches_actuator": false
+    },
+    "fingertip \u00d816": {
+     "deepest_mm": 7.73,
+     "actuator_top_mm": 7.7,
+     "reaches_actuator": true
+    },
+    "fingertip \u00d812": {
+     "deepest_mm": 7.72,
+     "actuator_top_mm": 7.7,
+     "reaches_actuator": true
+    }
+   }
+  },
+  "panel_ok": true,
+  "knock_out_skin_mm": {
+   "ko1": {
+    "plain_min_mm": 1.93,
+    "plain_max_mm": 1.97,
+    "under_engraving_min_mm": 1.64
+   },
+   "ko2": {
+    "plain_min_mm": 1.94,
+    "plain_max_mm": 1.97,
+    "under_engraving_min_mm": 1.64
+   },
+   "ko3": {
+    "plain_min_mm": 1.95,
+    "plain_max_mm": 1.98,
+    "under_engraving_min_mm": 1.65
+   }
+  },
+  "led_flush_mm": {
+   "led1": 0.06,
+   "led2": 0.06
+  },
+  "pod_seams": {
+   "vertical_stop": "post ends on the socket floors at z -89.0: the lock screws clamp there; top seam 0.5 mm nominal",
+   "side_seams": {
+    "gap_mm": 0.35,
+    "path_mm": 8.0,
+    "where": "|y| = 52.35, cap and shell, return rib 2.0 x 6.0 behind the cut edge"
+   },
+   "top_seam": {
+    "gap_mm": 0.5,
+    "behind": "module lip 4.0 mm tall, 0.4 mm inside the shell wall: no line of sight, an outward pull at the top is taken by the shell"
+   },
+   "bottom_seam": {
+    "gap_mm": 0.35,
+    "where": "x = 17.05 across the flat bottom, cap floor edge with a dam",
+    "note": "vertical slot, faces down: water cannot rise, it is also a drain"
+   },
+   "cap_to_shell_seam_mm": 0.6,
+   "largest_gap_a_claw_meets_mm": 0.6,
+   "largest_gap_note": "the 0.6 mm cap-to-shell seam (shell edge z -72.0, cap shoulder z -72.6) is inherited from 6.1.1; the module seams are 0.35 (sides, bottom) and 0.5 (top, backed by the lip)",
+   "edges": "cut edges of cap and shell blunted (face square to the skin 0.9 mm back from the edge), module lip stops 3 mm before its ends, 0.4 x 45 deg chamfers on the bottom seam edges",
+   "pod": "closed second barrier, not sealed: the module and the servo bay are each sealed on their own; the 132x2 seam O-ring is dropped"
+  },
+  "print_downfacing_flatter_45_mm2": {
+   "scatola_v64": 297.9,
+   "fondello_v64": 402.4,
+   "guscio_v64": 821.7,
+   "guarnizione_fondello_v64": 0.0,
+   "modulo_vasca_v64": 1385.9,
+   "modulo_coperchio_v64": 655.0,
+   "modulo_guarnizione_v64": 211.1,
+   "modulo_anello_speaker_v64": 0.0
+  },
+  "inherited_from_6_3_0 (parts and outer envelope unchanged)": {
+   "why": "bowl, flange plates, gate blade and ring, disc, plates, chute, latch, button are the 6.3.0 files; the shell keeps its outer skin, tabs, button boss and top edge, and the module fills the opening flush",
+   "gate_open_passage": {
+    "v611_area_mm2": 2238.2,
+    "v63_gate_open_area_mm2": 2221.0,
+    "area_ratio_vs_v611": 0.9923,
+    "inscribed_d_mm": 43.96,
+    "pivot_dowel_takes_mm2": 0.0,
+    "note": "6.3.0: the opening apex is pulled back to r 4.6 round the dowel seat (-17.3 mm2, inside the narrow tip no kibble passes); the largest inscribed circle is unchanged"
+   },
+   "gate_hold": {
+    "assumptions": "full 200 L drum (\u00d8585 x 850 mm kibble), bulk density 0.45, wall friction 0.3 (kibble on HDPE), Janssen K 0.4; design pressure = max(2 x Janssen at the bottom, Janssen asymptote, hydrostatic without wall friction)",
+    "p_janssen_bottom_kPa": 2.7,
+    "p_janssen_asymptote_kPa": 5.38,
+    "p_hydrostatic_kPa": 3.75,
+    "p_design_kPa": 5.4,
+    "force_on_opening_N": 12.1,
+    "blade_model": "PETG plate 3.0 mm, simply supported over the largest inscribed circle of the opening (\u00d844.0); the blade rests on the lower plate all round the pie (and on the landing floor past the far edge at full stroke)",
+    "blade_bending_MPa": 0.37,
+    "blade_SF": 122.0,
+    "blade_deflection_mm": 0.015,
+    "creep": "long-term stress < 1 MPa: no creep concern",
+    "kibble_below_blade_g": 4.2,
+    "closing": "single-bevel knife leading edge (0.6 edge, 25 deg) lifts pieces into the column; over-travel 12.4 deg past the far edge into a landing whose far end has a 1.6 mm drain slot (crumbs fall out, no crumb cake); torque at the ring ~0.1-0.5 N m",
+    "closing_torque_Nm_est": 0.232
+   },
+   "interlock": {
+    "strict": true,
+    "button_first_reachable_deg": 105.0,
+    "opening_fully_covered_from_deg": 101.0,
+    "probes": [
+     "thumb \u00d816 centred",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 offset 4 mm",
+     "fingertip \u00d810 centred",
+     "fingertip \u00d810 offset 6 mm up"
+    ]
+   },
+   "bayonet": {
+    "max_mm3": 0.0
+   },
+   "gate_sweep_max_mm3": 0.0,
+   "line_of_sight": {
+    "shadow_gap_behind_ring": {
+     "rays": 2520,
+     "reach_pod": 0,
+     "first_part_seen": [
+      [
+       "anello",
+       2266
+      ],
+      [
+       "flangia_piano_v63",
+       240
+      ],
+      [
+       "guscio_v611",
+       14
+      ]
+     ]
+    },
+    "cable_tunnel_exit": {
+     "rays": 405,
+     "reach_pod": 0,
+     "first_part_seen": [
+      [
+       "cable",
+       230
+      ],
+      [
+       "flangia_alta_v63",
+       133
+      ],
+      [
+       "flangia_piano_v63",
+       38
+      ]
+     ]
+    }
+   },
+   "tool_access": {
+    "step 3 chute -> bowl PT K30x10 (-42, +30.6)": {
+     "verdict": "OK long key",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 75.9,
+     "first_obstacle": null
+    },
+    "step 3 chute -> bowl PT K30x10 (-42, -30.6)": {
+     "verdict": "OK long key",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 75.9,
+     "first_obstacle": null
+    },
+    "step 4 shell -> bowl PT K30x12 @0 deg (box not yet in)": {
+     "verdict": "OK long key",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 63.6,
+     "first_obstacle": null
+    },
+    "step 4 shell -> bowl PT K30x12 @120 deg (box not yet in)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 16.3,
+     "first_obstacle": null
+    },
+    "step 4 shell -> bowl PT K30x12 @-120 deg (box not yet in)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 16.3,
+     "first_obstacle": null
+    },
+    "factory hub -> servo M3x8 (through the plateau hole, before the tower)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 15.0,
+     "first_obstacle": null
+    },
+    "flange -> shelf wood 5x35 @80 deg (PZ2, from below, unit not hung)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 37.1,
+     "first_obstacle": null
+    },
+    "flange -> shelf wood 5x35 @150 deg (PZ2, from below, unit not hung)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 37.1,
+     "first_obstacle": null
+    },
+    "flange -> shelf wood 5x35 @225 deg (PZ2, from below, unit not hung)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 37.1,
+     "first_obstacle": null
+    },
+    "flange -> shelf wood 5x35 @295 deg (PZ2, from below, unit not hung)": {
+     "verdict": "OK",
+     "straight_key_reaches_head": true,
+     "key_length_min_mm": 37.1,
+     "first_obstacle": null
+    }
+   },
+   "drainage": "drain 1 and floor screed as 6.3; drain 2 (the +X sump) is gone with the sump: the module stands there"
+  }
+ },
+ "load_case": {
+  "case": "as 6.3: 250 N down at the flat bottom + 100 N sideways + own weight; applied once to the cap and once to the module (worst: all on one)",
+  "module_lock_M3x16": {
+   "per_screw_N": 126.1,
+   "insert_pullout_N": 600.0,
+   "SF_insert": 4.8,
+   "post_tension_MPa": 2.47,
+   "SF_post_across_layers_20MPa": 8.1,
+   "side_100N": "taken by the two closed sockets round the posts (\u00d89.0 in \u00d89.7) and the top lip behind the shell; post bending at the web root 12.9 MPa",
+   "module_weight_N": 2.23
+  },
+  "module_pulled_outward_at_the_top_100N": {
+   "lip_shear_area_mm2": 208.0,
+   "shear_MPa": 0.48,
+   "SF": 52.0
+  },
+  "cap_screws_PT_K30x12": {
+   "positions": {
+    "A": [
+     -21.2,
+     33.0
+    ],
+    "B": [
+     -21.2,
+     -33.0
+    ],
+    "C": [
+     11.0,
+     47.0
+    ],
+    "D": [
+     11.0,
+     -47.0
+    ]
+   },
+   "vertical_shares_N": [
+    94.9,
+    94.9,
+    30.1,
+    30.1
+   ],
+   "preload_per_screw_N": 72.5,
+   "worst_screw_N": 167.4,
+   "pullout_est_N": 628,
+   "SF_pullout": 3.8,
+   "v63": "3 screws, worst 311.8 N, SF 2.0",
+   "note": "4 screws round the bay; the load centre (-13.5, 0) is now inside the screw polygon"
+  },
+  "stack_screws_M3x40": {
+   "positions": [
+    [
+     -18.25,
+     24.5
+    ],
+    [
+     -1.5,
+     -25.5
+    ],
+    [
+     17.6,
+     14.0
+    ]
+   ],
+   "vertical_shares_N": [
+    167.7,
+    144.7,
+    -29.8
+   ],
+   "worst_screw_N": 167.7,
+   "SF_insert_pullout": 3.6,
+   "SF_screw_proof": 13.1,
+   "upper_bound_if_side_load_went_through_the_box_N": 468.3,
+   "upper_bound_SF_insert": 1.3,
+   "v62": "167.1 N, SF 3.6 (P3 moved 0.775 mm)",
+   "note": "unchanged positions; the module adds its weight and the 250 N case through the posts into the bay"
+  },
+  "fox_bite_panel": {
+   "knock_out_skin_mm": 2.0,
+   "skin_under_engraving_mm": 1.7,
+   "punching_shear_MPa_plain": 13.3,
+   "SF_plain": 1.88,
+   "SF_on_the_engraving": 1.6,
+   "v63_first_issue": "SF 0.75 (0.8 mm skin at the bottom of a \u00d817 x 9.5 recess)",
+   "note": "knock-outs are now flush: a canine tip meets a 2.0 mm wall (1.7 on the engraved line) at the surface instead of a 0.8 mm skin at the bottom of a cup; nothing to hook a claw into (0.3 mm engraving only)"
+  },
+  "panel_button": {
+   "press_N": 10.0,
+   "mount_wall_mm": 3.0,
+   "note": "the 3 mm mount wall is backed by the \u00d823 boss and radial ribs of the pocket"
+  },
+  "inherited_unchanged_parts": {
+   "shell_tabs_PT_K30x12": {
+    "engagement_mm": 6.0,
+    "pullout_est_N": 471,
+    "worst_N_v61": 100.0,
+    "SF_pullout": 4.7
+   },
+   "chute_PT_K30x10": {
+    "engagement_mm": 6.0,
+    "pullout_est_N": 471,
+    "note": "the chute carries only its own weight and the kibble friction"
+   },
+   "tower_pillars": {
+    "stress_MPa": 10.4,
+    "SF_compression_50MPa": 4.8
+   },
+   "flange_wood_screws": {
+    "moment_at_shelf_Nm": 18.2,
+    "worst_screw_N": 157,
+    "SF_pullout": 5.7,
+    "head_pull_through_shear_MPa": 2.6,
+    "SF_head": 9.5,
+    "v611": "132 N, SF 6.8 (moment arm +8 mm, screws re-angled 80/150/225/295)"
+   },
+   "bayonet_lugs_hooks": {
+    "unchanged": "lower flange plate keeps the v6.1 hooks and skirt; lugs unchanged",
+    "bayonet_lugs_SF": 2.4,
+    "flange_hooks_SF": 2.1
+   },
+   "gate_blade_column": {
+    "p_design_kPa": 5.4,
+    "bending_MPa": 0.37,
+    "SF": 122.0
+   },
+   "gate_ring_fox": {
+    "pull_or_bite_N": 250.0,
+    "snap_barb_shear_MPa": 0.83,
+    "SF_barb": 24.0,
+    "bite_through_3mm_ring_MPa": 8.8,
+    "SF_bite": 2.8,
+    "peg_shear_MPa_at_50N_user_overload": 7.1,
+    "SF_peg": 3.5,
+    "note": "ring unchanged except the window shape"
+   },
+   "fox_bite_outlet_rim": {
+    "assumed_N": 250,
+    "canine_tip_mm": 3.0,
+    "v62_web_mm": 2.76,
+    "v63_web_mm": 10.01,
+    "v63_punching_shear_MPa": 3.3,
+    "v63_SF": 7.5,
+    "note": "the \u00d824 thumb-turn dishes are gone; the nearest cut to the outlet chamfer is the B counterbore \u00d87"
+   }
+  }
+ },
+ "grams": {
+  "method": "CAD estimate as v6.2: 1.2 mm shell over the whole surface + 15 % infill of the rest, PETG 1.27 / TPU 1.21 (same formula both versions); slicer figures for v6.2 in print_v62/summary.json; 6.4: bay, cap, tub and lid are printed solid (IP66 settings), so they are counted at 96 % of the solid mass. Reviewer slicer figures for the first 6.4 issue: tub 87 g, bay 84 g, cap 110 g, shell 153 g",
+  "v63": {
+   "PETG_g": 1024.1,
+   "TPU_g": 7.9,
+   "pieces": 28,
+   "PETG_pieces": 18,
+   "TPU_pieces": 10,
+   "parts": 25
+  },
+  "chassis_v64": {
+   "PETG_g": 1015.4,
+   "TPU_g": 7.7,
+   "pieces": 28,
+   "PETG_pieces": 18,
+   "TPU_pieces": 10
+  },
+  "module_case_1_0": {
+   "PETG_g": 106.3,
+   "TPU_g": 1.2,
+   "pieces": 4,
+   "PETG_pieces": 3,
+   "TPU_pieces": 1
+  },
+  "per_part_chassis": {
+   "guscio_v64": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 178.5,
+    "v63_each": 182.8
+   },
+   "fondello_v64": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 111.5,
+    "v63_each": 136.9
+   },
+   "chiocciola_v63": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 163.0
+   },
+   "flangia_piano_v63": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 110.4
+   },
+   "flangia_alta_v63": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 98.3
+   },
+   "disco_v61": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 52.6
+   },
+   "piastra_gate_v62": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 24.0
+   },
+   "piastra_finestra_v62": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 26.8
+   },
+   "saracinesca_v63": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 17.4
+   },
+   "anello_saracinesca_v63": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 70.8
+   },
+   "scivolo_v611": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 31.9
+   },
+   "colletto_v6": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 13.3
+   },
+   "linguetta_sicura_v63": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 1.7
+   },
+   "pulsante_v611": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 1.5
+   },
+   "colonna_v63": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 18.0
+   },
+   "albero_v6": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 4.5
+   },
+   "mozzo_v6": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 4.1
+   },
+   "scatola_v64": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 87.1,
+    "v63_each": 66.1
+   },
+   "labbro_pettine_v62": {
+    "qty": 4,
+    "material": "TPU",
+    "grams_print_est_each": 0.2
+   },
+   "guarnizione_baionetta_v61": {
+    "qty": 1,
+    "material": "TPU",
+    "grams_print_est_each": 1.3
+   },
+   "guarnizione_fondello_v64": {
+    "qty": 1,
+    "material": "TPU",
+    "grams_print_est_each": 1.0,
+    "v63_each": 1.2
+   },
+   "guarnizione_piano_v5": {
+    "qty": 1,
+    "material": "TPU",
+    "grams_print_est_each": 1.2
+   },
+   "labbro_ombra_v611": {
+    "qty": 1,
+    "material": "TPU",
+    "grams_print_est_each": 2.3
+   },
+   "labbro_scivolo_v611": {
+    "qty": 1,
+    "material": "TPU",
+    "grams_print_est_each": 1.0
+   },
+   "passacavo_v63": {
+    "qty": 1,
+    "material": "TPU",
+    "grams_print_est_each": 0.1
+   }
+  },
+  "per_part_module": {
+   "modulo_vasca_v64": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 89.6
+   },
+   "modulo_coperchio_v64": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 16.1
+   },
+   "modulo_guarnizione_v64": {
+    "qty": 1,
+    "material": "TPU",
+    "grams_print_est_each": 1.2
+   },
+   "modulo_anello_speaker_v64": {
+    "qty": 1,
+    "material": "PETG",
+    "grams_print_est_each": 0.6
+   }
+  },
+  "total_v64": {
+   "PETG_g": 1121.7,
+   "TPU_g": 8.9,
+   "pieces": 32
+  }
+ },
+ "hardware": {
+  "chassis": {
+   "screws": {
+    "wood 5x35 pan": 4,
+    "PT K30x10 chute": 2,
+    "PT K30x12 shell tabs": 3,
+    "PT K30x12 cap": 4,
+    "M3x40 stack": 3,
+    "M3x8 servo + hub": 5
+   },
+   "inserts": {
+    "bowl (stack)": 3,
+    "servo cradle": 4,
+    "holder posts (module lock)": 2
+   },
+   "o_rings": {
+    "9x2": 2,
+    "24x2": 1,
+    "14x1.5": 1,
+    "3x1 (P2 1, cap 4)": 5
+   },
+   "other": {
+    "dowel 4x6": 1,
+    "cable tie 3.6 x 140 UV": 1,
+    "gland M12x1.5 IP68, cable range 3-6.5 (servo branch)": 1,
+    "adhesive ePTFE vent patch \u00d812": 1,
+    "cable tie 2.5 x 100 (harness anchor on the bay lug)": 1,
+    "chassis harness (see interface.electrical_J1.harness)": 1
+   },
+   "screws_total": 21,
+   "inserts_total": 9,
+   "o_rings_total": 9
+  },
+  "module": {
+   "screws": {
+    "M3x16 ISO 4762 lock (stay with the module)": 2,
+    "PT K30x10 lid": 5
+   },
+   "inserts": {},
+   "o_rings": {
+    "3x1 (lid screws)": 5,
+    "5x1 (light pipes)": 2
+   },
+   "other": {
+    "M8 5-pin A-coded panel socket": 1,
+    "IP67 12 mm push-button": 1,
+    "light pipe \u00d85": 2,
+    "acoustic membrane \u00d815": 1
+   },
+   "screws_total": 7,
+   "inserts_total": 0,
+   "o_rings_total": 7
+  },
+  "v63_totals": {
+   "screws": 20,
+   "inserts": 7,
+   "o_rings": 12
+  }
+ },
+ "print": {
+  "scatola_v64": "roof on the bed, NO supports: posts, webs and bosses now start on the bed, the rim flange has a 45 deg run-out; IP66 settings. Check the gland pad for flatness",
+  "fondello_v64": "flat bottom on the bed, NO supports (45 deg chamfer under the bottom radius); IP66 settings; elephant-foot compensation 0.15; the 2 drain holes are \u00d81.5 (check they are open)",
+  "guscio_v64": "top edge (z +64) on the bed, opening upward; SUPPORTS NEEDED for the 3 bowl tabs only: tree supports, on build plate only, threshold 45 deg. The new 45 deg corbels carry the outer 10 mm of each tab; the inner 12 mm (r 50..62.6) sit where the bowl is and cannot have a corbel. Block supports elsewhere (button boss prints without); brim 6 mm",
+  "guarnizione_fondello_v64": "TPU, base on the bed, lip up (6.1 lip settings)",
+  "modulo_vasca_v64": "standing as assembled (flat bottom on the bed), IP66 settings (5 walls, 100 % infill, 245-250 C, fan <= 40 %), NO supports: the bottom edge now starts with a 45 deg chamfer, rim and bosses are true 45 deg faces. Horizontal holes (light pipes \u00d85.1, button \u00d817) sag at the top: ream the light-pipe holes. Check the 2 mm back wall for bow",
+  "modulo_coperchio_v64": "underside on the bed, turret up, NO supports: the turret ceiling runs in at 45 deg to a \u00d813 flat closed by a 0.2 mm skin over the J1 hole (bridge 13 mm): drill \u00d88.2 afterwards (or the thread size of the bought socket)",
+  "modulo_guarnizione_v64": "TPU, base on the bed, lip up; Arachne walls, 15 mm/s (the 0.8 mm lip prints as one line)",
+  "modulo_anello_speaker_v64": "flat"
+ },
+ "open_risks": [
+  "panel no longer on the room side (see decisions.panel_side): if that matters more than the module depth, the alternative is a module without the panel plus a panel left in the cap",
+  "second full board only with a low ESP stack; the 80 x 60 x 45 target is not reachable in this pod",
+  "J1: M8 5-pin is a 3 A connector; fine for a standard servo, not for a high-torque one",
+  "lid: 5 screws; the back edge and the two notch edges (~105 mm) have no screw and rely on the ribbed 3.2 mm lid and the soft outward lip. Water test before trusting IP66",
+  "guscio_v64 needs tree supports under the inner part of the 3 bowl tabs",
+  "J1 socket and its nut size are assumed, verify on the bought part before printing the lid",
+  "PT screws in the lid bosses: ~5-10 openings; for a development module melt M3 inserts into the 5 bosses (\u00d87.5) instead",
+  "speakers \u00d826-28 need the tall ring and a board notch",
+  "KO3 is shallow (guide wall behind it)",
+  "pod seams are 0.35 mm gaps without a seal: dust and insects are stopped by the ribs only; everything behind them is sealed or drains",
+  "the module weighs on two M3 inserts in printed posts (SF 4.8 at 250 N); do not hang anything from the module"
+ ],
+ "shelf_template": {
+  "svg": "template_v64/dima_foratura_v64.svg",
+  "pdf": "template_v64/dima_foratura_v64.pdf",
+  "a4_pt": [
+   595.28,
+   841.89
+  ],
+  "orientation": "view from below, printed side facing the person below, drawing turned so the CONTROL PANEL arrow (16 deg) points to the top of the sheet; FRONT (release button, 76.5 deg) is drawn 60 deg away from it",
+  "text_lines": [
+   "VIEW FROM BELOW: tape it under the shelf with the PRINTED SIDE FACING YOU",
+   "TURN THE SHEET so the blue CONTROL PANEL arrow points to where you stand (the room)"
+  ],
+  "contents": [
+   "flange outline \u00d8180 + ring",
+   "hole-saw \u00d876 centre with pilot mark",
+   "4 wood-screw positions S1..S4",
+   "keep-clear circle r 100 (hand on the gate ring)",
+   "CONTROL PANEL arrow (blue) and FRONT / release-button arrow (orange)",
+   "cable exit arrow (back)",
+   "outlet position",
+   "50 mm scale bar"
+  ],
+  "flange_geometry": "unchanged from 6.3 (same holes and outline as template_v63)"
+ },
+ "files": {
+  "scatola_v64": [
+   "scatola_v64.stl",
+   "scatola_v64.3mf",
+   "scatola_v64_print.stl",
+   "scatola_v64_print.3mf"
+  ],
+  "fondello_v64": [
+   "fondello_v64.stl",
+   "fondello_v64.3mf",
+   "fondello_v64_print.stl",
+   "fondello_v64_print.3mf"
+  ],
+  "guscio_v64": [
+   "guscio_v64.stl",
+   "guscio_v64.3mf",
+   "guscio_v64_print.stl",
+   "guscio_v64_print.3mf"
+  ],
+  "guarnizione_fondello_v64": [
+   "guarnizione_fondello_v64.stl",
+   "guarnizione_fondello_v64.3mf",
+   "guarnizione_fondello_v64_print.stl",
+   "guarnizione_fondello_v64_print.3mf"
+  ],
+  "modulo_vasca_v64": [
+   "modulo_vasca_v64.stl",
+   "modulo_vasca_v64.3mf",
+   "modulo_vasca_v64_print.stl",
+   "modulo_vasca_v64_print.3mf"
+  ],
+  "modulo_coperchio_v64": [
+   "modulo_coperchio_v64.stl",
+   "modulo_coperchio_v64.3mf",
+   "modulo_coperchio_v64_print.stl",
+   "modulo_coperchio_v64_print.3mf"
+  ],
+  "modulo_guarnizione_v64": [
+   "modulo_guarnizione_v64.stl",
+   "modulo_guarnizione_v64.3mf",
+   "modulo_guarnizione_v64_print.stl",
+   "modulo_guarnizione_v64_print.3mf"
+  ],
+  "modulo_anello_speaker_v64": [
+   "modulo_anello_speaker_v64.stl",
+   "modulo_anello_speaker_v64.3mf",
+   "modulo_anello_speaker_v64_print.stl",
+   "modulo_anello_speaker_v64_print.3mf"
+  ],
+  "assembled_position_copies": "v64_asm/*.stl",
+  "check": "check_v64.png",
+  "viewer": "v64_viewer.json",
+  "interface_drawing": "interface_v64/",
+  "drilling_template": "template_v64/"
+ }
+}

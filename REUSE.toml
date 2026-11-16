@@ -10,6 +10,7 @@ path = [
   "hardware/v6/cad/*.py",
   "hardware/v6.2/cad/*.py",
   "hardware/v6.3/cad/*.py",
+  "hardware/v6.4/cad/*.py",
   ".github/**",
   "site/**",
   "tools/**",
@@ -42,6 +43,14 @@ path = [
   "hardware/v6.3/cad/ref/**",
   "hardware/v6.3/template/**",
   "hardware/v6.3/bom.json",
+  "hardware/v6.4/assembly/**",
+  "hardware/v6.4/cad/*.json",
+  "hardware/v6.4/cad/ref/**",
+  "hardware/v6.4/template/**",
+  "hardware/v6.4/bom.json",
+  "hardware/module/VERSION",
+  "hardware/module/case-1.0/parts/**",
+  "hardware/module/case-1.0/interface/**",
   "hardware/VERSION",
 ]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
@@ -59,6 +68,10 @@ path = [
   "hardware/v6.2/cad/*.png",
   "hardware/v6.3/README.md",
   "hardware/v6.3/cad/*.png",
+  "hardware/v6.4/README.md",
+  "hardware/v6.4/cad/*.png",
+  "hardware/module/README.md",
+  "hardware/module/case-1.0/README.md",
   "firmware/README.md",
   "import/**/*.md",
   "site/earlier/index.html",
@@ -153,20 +166,46 @@ path = ["hardware/v6.3/plates/README.md", "hardware/v6.3/plates/preview/**"]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CC-BY-4.0"
 
-# Assembly wizards (site/assembly/ for the current design, site/v6.2/assembly/ archived; copied as built): the code
-# stays MIT (site/**); the step texts and data are documentation, the meshes and the drilling template are hardware
+# Print package of hardware 6.4 (chassis 6.4 and module case 1.0): Bambu Studio projects, plate 3MFs, STL files, slicer data
 [[annotations]]
-path = ["site/assembly/js/data.js", "site/v6.2/assembly/js/data.js"]
+path = "hardware/v6.4/plates/**"
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CERN-OHL-P-2.0"
+
+# ... its generator scripts (software)
+[[annotations]]
+path = "hardware/v6.4/plates/tools/**"
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "MIT"
+
+# ... and its print guide and plate preview images (documentation)
+[[annotations]]
+path = ["hardware/v6.4/plates/PRINT_GUIDE.md", "hardware/v6.4/plates/preview/**"]
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+# The scripts of the print review of 6.4 (docs/reviews/; the report and its evidence are documentation)
+[[annotations]]
+path = "docs/reviews/**/*.py"
+SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
+SPDX-License-Identifier = "MIT"
+
+# Assembly wizards (site/assembly/ for the current design, site/v6.3/assembly/ and site/v6.2/assembly/ archived; copied
+# as built): the code stays MIT (site/**); the step texts and data are documentation, the meshes and the drilling
+# template are hardware
+[[annotations]]
+path = ["site/assembly/js/data.js", "site/v6.3/assembly/js/data.js", "site/v6.2/assembly/js/data.js"]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CC-BY-4.0"
 
 [[annotations]]
-path = ["site/assembly/models/**", "site/assembly/template/**", "site/v6.2/assembly/models/**", "site/v6.2/assembly/template/**"]
+path = ["site/assembly/models/**", "site/assembly/template/**", "site/v6.3/assembly/models/**", "site/v6.3/assembly/template/**",
+        "site/v6.2/assembly/models/**", "site/v6.2/assembly/template/**"]
 SPDX-FileCopyrightText = "2026 Enrico Icardi and contributors"
 SPDX-License-Identifier = "CERN-OHL-P-2.0"
 
 # three.js r128 bundled again by the wizards (same file as site/vendor/three-r128/)
 [[annotations]]
-path = ["site/assembly/vendor/three-r128/**", "site/v6.2/assembly/vendor/three-r128/**"]
+path = ["site/assembly/vendor/three-r128/**", "site/v6.3/assembly/vendor/three-r128/**", "site/v6.2/assembly/vendor/three-r128/**"]
 SPDX-FileCopyrightText = "2010-2021 three.js authors"
 SPDX-License-Identifier = "MIT"

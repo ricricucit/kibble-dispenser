@@ -1,0 +1,119 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 15001.539,
+  "prepare_time": 380.525,
+  "travel_time": 2455.007,
+  "travel_distance": 331996.16,
+  "layer_count": 413,
+  "volume": 71823.493,
+  "weight": 91.2158,
+  "filament_cost": 2.74,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 29860.74,
+    "volume": 71823.493,
+    "weight": 91.2158,
+    "cost": 2.74,
+    "model": {
+     "volume": 71409.266,
+     "weight": 90.6898
+    },
+    "support": {
+     "volume": 414.227,
+     "weight": 0.5261
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 5761.599,
+    "volume": 36521.336,
+    "weight": 46.3821
+   },
+   "Outer wall": {
+    "time": 2301.331,
+    "volume": 14117.0,
+    "weight": 17.9286
+   },
+   "Overhang wall": {
+    "time": 15.395,
+    "volume": 43.986,
+    "weight": 0.0559
+   },
+   "Internal solid infill": {
+    "time": 2676.008,
+    "volume": 15614.001,
+    "weight": 19.8298
+   },
+   "Top surface": {
+    "time": 177.558,
+    "volume": 753.837,
+    "weight": 0.9574
+   },
+   "Bottom surface": {
+    "time": 86.611,
+    "volume": 345.754,
+    "weight": 0.4391
+   },
+   "Bridge": {
+    "time": 9.35,
+    "volume": 25.276,
+    "weight": 0.0321
+   },
+   "Gap infill": {
+    "time": 576.571,
+    "volume": 2898.514,
+    "weight": 3.6811
+   },
+   "Brim": {
+    "time": 256.164,
+    "volume": 1037.26,
+    "weight": 1.3173
+   },
+   "Support": {
+    "time": 66.965,
+    "volume": 377.398,
+    "weight": 0.4793
+   },
+   "Support interface": {
+    "time": 10.334,
+    "volume": 36.829,
+    "weight": 0.0468
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "modulo_vasca_v64",
+   "instance": 0,
+   "volume": 69921.275,
+   "weight": 88.8,
+   "support_volume": 414.227,
+   "support_weight": 0.5261
+  },
+  {
+   "name": "modulo_anello_speaker_v64",
+   "instance": 0,
+   "volume": 398.435,
+   "weight": 0.506,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

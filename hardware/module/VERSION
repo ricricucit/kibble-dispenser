@@ -1,0 +1,12 @@
+# Electronics module line ("case"), released as the tag case-v<version> (see VERSIONS.md).
+# The module is the detachable, sealed electronics case that slides into the chassis from below. Its outside fits the
+# holder interface of hardware 6.4 (fixed from 6.4 on); its inside is generic and evolves on its own.
+# SemVer: MAJOR = it no longer fits the holder interface; MINOR = compatible change of the case (new board slot, new
+# panel layout); PATCH = a fix that does not change the fit. "case 1.0" is version 1.0.0.
+# status: designed, printed, tested or field-proven, as for the hardware line.
+version = "1.0.0"
+name = "case 1.0"
+status = "designed"
+folder = "hardware/module/case-1.0"
+plates = "hardware/v6.4/plates"
+fits = "hardware 6.4 (holder interface fixed from 6.4 on)"

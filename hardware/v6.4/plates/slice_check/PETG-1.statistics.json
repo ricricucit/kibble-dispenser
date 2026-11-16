@@ -1,0 +1,116 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 21009.489,
+  "prepare_time": 380.634,
+  "travel_time": 3057.897,
+  "travel_distance": 552831.69,
+  "layer_count": 680,
+  "volume": 127367.352,
+  "weight": 161.7565,
+  "filament_cost": 4.85,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 52953.19,
+    "volume": 127367.352,
+    "weight": 161.7565,
+    "cost": 4.85,
+    "model": {
+     "volume": 122804.445,
+     "weight": 155.9616
+    },
+    "support": {
+     "volume": 4562.907,
+     "weight": 5.7949
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 7191.867,
+    "volume": 55151.001,
+    "weight": 70.0418
+   },
+   "Outer wall": {
+    "time": 6173.426,
+    "volume": 46298.162,
+    "weight": 58.7987
+   },
+   "Overhang wall": {
+    "time": 26.04,
+    "volume": 81.661,
+    "weight": 0.1037
+   },
+   "Sparse infill": {
+    "time": 155.862,
+    "volume": 919.912,
+    "weight": 1.1683
+   },
+   "Internal solid infill": {
+    "time": 103.621,
+    "volume": 606.666,
+    "weight": 0.7705
+   },
+   "Top surface": {
+    "time": 39.236,
+    "volume": 163.447,
+    "weight": 0.2076
+   },
+   "Bridge": {
+    "time": 15.843,
+    "volume": 45.016,
+    "weight": 0.0572
+   },
+   "Internal Bridge": {
+    "time": 21.964,
+    "volume": 140.004,
+    "weight": 0.1778
+   },
+   "Gap infill": {
+    "time": 2417.001,
+    "volume": 18793.993,
+    "weight": 23.8684
+   },
+   "Brim": {
+    "time": 128.007,
+    "volume": 552.28,
+    "weight": 0.7014
+   },
+   "Support": {
+    "time": 1055.348,
+    "volume": 4396.166,
+    "weight": 5.5831
+   },
+   "Support interface": {
+    "time": 41.382,
+    "volume": 166.741,
+    "weight": 0.2118
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "guscio_v64",
+   "instance": 0,
+   "volume": 122199.869,
+   "weight": 155.1938,
+   "support_volume": 4562.907,
+   "support_weight": 5.7949
+  }
+ ]
+}

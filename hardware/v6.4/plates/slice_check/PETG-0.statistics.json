@@ -1,0 +1,125 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 1888.799,
+  "prepare_time": 380.688,
+  "travel_time": 565.245,
+  "travel_distance": 38176.79,
+  "layer_count": 60,
+  "volume": 5439.922,
+  "weight": 6.9087,
+  "filament_cost": 0.21,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 2261.66,
+    "volume": 5439.922,
+    "weight": 6.9087,
+    "cost": 0.21,
+    "model": {
+     "volume": 5439.922,
+     "weight": 6.9087
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 576.644,
+    "volume": 2749.84,
+    "weight": 3.4923
+   },
+   "Outer wall": {
+    "time": 308.071,
+    "volume": 1243.348,
+    "weight": 1.5791
+   },
+   "Overhang wall": {
+    "time": 3.268,
+    "volume": 10.128,
+    "weight": 0.0129
+   },
+   "Sparse infill": {
+    "time": 51.073,
+    "volume": 283.354,
+    "weight": 0.3599
+   },
+   "Internal solid infill": {
+    "time": 106.019,
+    "volume": 568.427,
+    "weight": 0.7219
+   },
+   "Top surface": {
+    "time": 40.46,
+    "volume": 172.417,
+    "weight": 0.219
+   },
+   "Bottom surface": {
+    "time": 23.029,
+    "volume": 64.098,
+    "weight": 0.0814
+   },
+   "Internal Bridge": {
+    "time": 14.574,
+    "volume": 85.208,
+    "weight": 0.1082
+   },
+   "Gap infill": {
+    "time": 63.213,
+    "volume": 210.806,
+    "weight": 0.2677
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "test_scanalato",
+   "instance": 0,
+   "volume": 2021.826,
+   "weight": 2.5677,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "test_groove_rim",
+   "instance": 0,
+   "volume": 1167.666,
+   "weight": 1.4829,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "test_groove_cap",
+   "instance": 0,
+   "volume": 913.46,
+   "weight": 1.1601,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "test_groove_skirt",
+   "instance": 0,
+   "volume": 1284.674,
+   "weight": 1.6315,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

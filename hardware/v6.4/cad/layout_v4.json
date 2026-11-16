@@ -1,0 +1,120 @@
+{
+ "_frame": "Z-up, millimetri. Z=0 = faccia superiore del coperchio. X lungo il lato lungo della scatola, Y lungo il lato corto.",
+ "box": {
+  "L": 262,
+  "W": 182,
+  "H": 96,
+  "wall": 3.0,
+  "lid_plate_t": 3.0,
+  "corner_r": "leggero",
+  "outer_x": [
+   -131,
+   131
+  ],
+  "outer_y": [
+   -91,
+   91
+  ],
+  "outer_z": [
+   -96,
+   0
+  ],
+  "flanges": "sui lati corti, al fondo della base: spessore 7 mm, sporgenza 20 mm, 2 fori vite ciascuna",
+  "flange_protrusion": 20
+ },
+ "shaft_axis_xy": [
+  -99.0,
+  0.0
+ ],
+ "servo": {
+  "body_xyz": [
+   40,
+   20,
+   40.5
+  ],
+  "center_xy": [
+   -89.0,
+   0.0
+  ],
+  "body_bottom_z": -60.5,
+  "body_top_z": -20.0,
+  "tab_underside_z": -34.5,
+  "tab_len_x": 54,
+  "spline_tip_z": -14.0,
+  "spline": "25T, punta \u00d85.9, filetto centrale M3",
+  "shaft_offset_x_from_center": -10,
+  "tab_to_spline_tip": 20.5,
+  "mounting": "appeso al coperchio tramite culla integrata nel passante (niente mount a parete)"
+ },
+ "camera": {
+  "floor_z": [
+   0,
+   3
+  ],
+  "floor_hole_d": 22.5,
+  "inner_r": 53.5,
+  "outer_r": 56.5,
+  "rim_top_z": 42,
+  "ears_r": 62,
+  "ears_n": 6
+ },
+ "disc_v3": {
+  "bottom_z": 32,
+  "top_z": 36,
+  "d": 103,
+  "boss_d": 16,
+  "boss_z": [
+   24,
+   32
+  ],
+  "open_dir_deg": 180,
+  "hole_r": 26
+ },
+ "bushing": {
+  "flange_z": [
+   -7.5,
+   -3.5
+  ],
+  "flange_d": 53.0,
+  "collar_d": 21.5,
+  "collar_top_z": 5.0,
+  "bore_d": 12.4,
+  "cradle": "integrata (passante_culla)"
+ },
+ "hub": {
+  "z": [
+   -18.5,
+   -8.0
+  ],
+  "d": 22.0
+ },
+ "shaft": {
+  "d": 12,
+  "round_z": [
+   -8.0,
+   24.0
+  ],
+  "hex_af": 8
+ },
+ "chute": {
+  "inlet_center": [
+   -167.5,
+   0.0,
+   13.4
+  ],
+  "heading": "-Y",
+  "inner_bottom_z": 3,
+  "mouth_dir_deg": 180
+ },
+ "ripiano": {
+  "seat_z": 42
+ },
+ "placement_note": "asse al centro del lato corto (y=0), 29 mm dalla parete interna corta; uscita croccantini verso -X oltre il lato corto",
+ "design_rules": {
+  "ip65": "minimo numero di aperture; nessun obl\u00f2; verticale sotto il foro del piano libera da elettronica",
+  "fasteners": "esterni: viti a quarto di giro stampate (PETG arancione), imperdibili, con clic; moduli: baionetta a quarto di giro; interno: solo M3x60 del disco",
+  "gaskets": "OGNI giunzione verso l esterno ha guarnizione in TPU giallo, pezzo separato con scanalatura dedicata: piano-flangia, flangia-chiocciola, chiocciola-scatola, fondello scatola, bidone-piano, labbro sbocco scivolo, labbri finestra/uscita, anelli ritegno viti; O-ring albero in NBR comprato",
+  "colours": "nero=struttura, arancione=si agisce qui, verde=percorso cibo, giallo TPU=morbido/tenuta/avviso; corpi separati nel 3MF, scritte 0.6 mm nei primi/ultimi strati",
+  "tool_free": "montaggio, smontaggio e ispezione senza attrezzi, con una mano, dal basso; pezzi a verso obbligato"
+ }
+}

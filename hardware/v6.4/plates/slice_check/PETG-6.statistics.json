@@ -1,0 +1,173 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 14968.258,
+  "prepare_time": 380.709,
+  "travel_time": 1178.939,
+  "travel_distance": 143387.2,
+  "layer_count": 222,
+  "volume": 96471.568,
+  "weight": 122.5189,
+  "filament_cost": 3.68,
+  "filament_changes": 3,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 716.33,
+    "volume": 1722.965,
+    "weight": 2.1882,
+    "cost": 0.07,
+    "model": {
+     "volume": 1294.188,
+     "weight": 1.6436
+    },
+    "support": {
+     "volume": 6.729,
+     "weight": 0.0085
+    },
+    "prime_tower": {
+     "volume": 175.892,
+     "weight": 0.2234
+    },
+    "flush": {
+     "volume": 246.157,
+     "weight": 0.3126
+    }
+   },
+   {
+    "id": 2,
+    "length": 39391.89,
+    "volume": 94748.602,
+    "weight": 120.3307,
+    "cost": 3.61,
+    "model": {
+     "volume": 93612.801,
+     "weight": 118.8883
+    },
+    "support": {
+     "volume": 109.683,
+     "weight": 0.1393
+    },
+    "prime_tower": {
+     "volume": 163.51,
+     "weight": 0.2077
+    },
+    "flush": {
+     "volume": 862.607,
+     "weight": 1.0955
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 5146.981,
+    "volume": 39871.496,
+    "weight": 50.6368
+   },
+   "Outer wall": {
+    "time": 2776.479,
+    "volume": 20200.37,
+    "weight": 25.6545
+   },
+   "Overhang wall": {
+    "time": 3.877,
+    "volume": 12.674,
+    "weight": 0.0161
+   },
+   "Sparse infill": {
+    "time": 1725.401,
+    "volume": 12506.134,
+    "weight": 15.8828
+   },
+   "Internal solid infill": {
+    "time": 1004.625,
+    "volume": 6776.369,
+    "weight": 8.606
+   },
+   "Top surface": {
+    "time": 287.675,
+    "volume": 1449.878,
+    "weight": 1.8413
+   },
+   "Bottom surface": {
+    "time": 235.831,
+    "volume": 1003.489,
+    "weight": 1.2744
+   },
+   "Bridge": {
+    "time": 13.668,
+    "volume": 39.553,
+    "weight": 0.0502
+   },
+   "Internal Bridge": {
+    "time": 213.733,
+    "volume": 1552.774,
+    "weight": 1.972
+   },
+   "Gap infill": {
+    "time": 1307.436,
+    "volume": 9764.153,
+    "weight": 12.4005
+   },
+   "Brim": {
+    "time": 390.292,
+    "volume": 1677.798,
+    "weight": 2.1308
+   },
+   "Support": {
+    "time": 18.394,
+    "volume": 80.865,
+    "weight": 0.1027
+   },
+   "Support interface": {
+    "time": 7.064,
+    "volume": 35.547,
+    "weight": 0.0451
+   },
+   "Prime tower": {
+    "time": 74.525,
+    "volume": 339.402,
+    "weight": 0.431
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "anello_saracinesca_v63",
+   "instance": 0,
+   "volume": 55423.701,
+   "weight": 70.3881,
+   "support_volume": 6.688,
+   "support_weight": 0.0085
+  },
+  {
+   "name": "disco_v61",
+   "instance": 0,
+   "volume": 35060.241,
+   "weight": 44.5265,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "linguetta_sicura_v63",
+   "instance": 0,
+   "volume": 1282.183,
+   "weight": 1.6284,
+   "support_volume": 109.724,
+   "support_weight": 0.1393
+  },
+  {
+   "name": "pulsante_v611",
+   "instance": 0,
+   "volume": 1410.77,
+   "weight": 1.7917,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

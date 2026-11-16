@@ -1,0 +1,524 @@
+{
+ "scatola_v64_print.stl": {
+  "file": "scatola_v64_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 67.46,
+  "bodies": 1,
+  "ext": [
+   53.7,
+   102.0,
+   66.5
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 2608.8,
+  "overhang_gt45_mm2": 495.3,
+  "overhang_gt55_mm2": 487.4,
+  "flat_down_mm2": 464.6,
+  "slender": 1.3
+ },
+ "fondello_v64_print.stl": {
+  "file": "fondello_v64_print.stl",
+  "watertight": false,
+  "winding": true,
+  "volume_cm3": 90.13,
+  "bodies": 5,
+  "ext": [
+   120.74,
+   143.44,
+   36.6
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 5803.1,
+  "overhang_gt45_mm2": 3364.0,
+  "overhang_gt55_mm2": 2577.9,
+  "flat_down_mm2": 672.6,
+  "slender": 0.48
+ },
+ "guscio_v64_print.stl": {
+  "file": "guscio_v64_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 136.33,
+  "bodies": 1,
+  "ext": [
+   163.99,
+   163.99,
+   136.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 716.8,
+  "overhang_gt45_mm2": 1384.9,
+  "overhang_gt55_mm2": 1347.7,
+  "flat_down_mm2": 1252.6,
+  "slender": 5.08
+ },
+ "guarnizione_fondello_v64_print.stl": {
+  "file": "guarnizione_fondello_v64_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 0.84,
+  "bodies": 1,
+  "ext": [
+   31.7,
+   83.2,
+   2.85
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 476.7,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.13
+ },
+ "modulo_vasca_v64_print.stl": {
+  "file": "modulo_vasca_v64_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 71.28,
+  "bodies": 1,
+  "ext": [
+   50.92,
+   104.0,
+   71.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 1467.7,
+  "overhang_gt45_mm2": 3067.1,
+  "overhang_gt55_mm2": 2328.6,
+  "flat_down_mm2": 964.2,
+  "slender": 1.85
+ },
+ "modulo_coperchio_v64_print.stl": {
+  "file": "modulo_coperchio_v64_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 12.55,
+  "bodies": 1,
+  "ext": [
+   45.47,
+   104.0,
+   15.2
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 2967.3,
+  "overhang_gt45_mm2": 639.8,
+  "overhang_gt55_mm2": 639.8,
+  "flat_down_mm2": 639.8,
+  "slender": 0.28
+ },
+ "modulo_guarnizione_v64_print.stl": {
+  "file": "modulo_guarnizione_v64_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 0.97,
+  "bodies": 1,
+  "ext": [
+   43.87,
+   102.4,
+   2.85
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 550.1,
+  "overhang_gt45_mm2": 202.7,
+  "overhang_gt55_mm2": 202.7,
+  "flat_down_mm2": 202.7,
+  "slender": 0.12
+ },
+ "modulo_anello_speaker_v64_print.stl": {
+  "file": "modulo_anello_speaker_v64_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 0.45,
+  "bodies": 1,
+  "ext": [
+   26.0,
+   26.0,
+   3.5
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 216.6,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.24
+ },
+ "chiocciola_v63_print.stl": {
+  "file": "chiocciola_v63_print.stl",
+  "watertight": false,
+  "winding": true,
+  "volume_cm3": 368.6,
+  "bodies": 3,
+  "ext": [
+   128.0,
+   124.83,
+   68.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 9887.9,
+  "overhang_gt45_mm2": 569.8,
+  "overhang_gt55_mm2": 565.1,
+  "flat_down_mm2": 490.6,
+  "slender": 0.68
+ },
+ "colonna_v63_print.stl": {
+  "file": "colonna_v63_print.stl",
+  "watertight": false,
+  "winding": true,
+  "volume_cm3": 19.52,
+  "bodies": 2,
+  "ext": [
+   44.85,
+   59.0,
+   35.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 676.3,
+  "overhang_gt45_mm2": 289.4,
+  "overhang_gt55_mm2": 215.0,
+  "flat_down_mm2": 215.0,
+  "slender": 1.35
+ },
+ "flangia_piano_v63_print.stl": {
+  "file": "flangia_piano_v63_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 101.53,
+  "bodies": 1,
+  "ext": [
+   180.0,
+   180.0,
+   18.1
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 22386.3,
+  "overhang_gt45_mm2": 850.6,
+  "overhang_gt55_mm2": 849.4,
+  "flat_down_mm2": 846.1,
+  "slender": 0.12
+ },
+ "flangia_alta_v63_print.stl": {
+  "file": "flangia_alta_v63_print.stl",
+  "watertight": false,
+  "winding": true,
+  "volume_cm3": 145.2,
+  "bodies": 2,
+  "ext": [
+   180.0,
+   180.0,
+   10.8
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 21631.0,
+  "overhang_gt45_mm2": 756.3,
+  "overhang_gt55_mm2": 749.2,
+  "flat_down_mm2": 739.1,
+  "slender": 0.07
+ },
+ "saracinesca_v63_print.stl": {
+  "file": "saracinesca_v63_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 15.08,
+  "bodies": 1,
+  "ext": [
+   112.54,
+   80.99,
+   3.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 5155.7,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.04
+ },
+ "anello_saracinesca_v63_print.stl": {
+  "file": "anello_saracinesca_v63_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 61.0,
+  "bodies": 1,
+  "ext": [
+   176.0,
+   176.0,
+   44.5
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 326.1,
+  "overhang_gt45_mm2": 359.0,
+  "overhang_gt55_mm2": 336.4,
+  "flat_down_mm2": 18.6,
+  "slender": 2.46
+ },
+ "passacavo_v63_print.stl": {
+  "file": "passacavo_v63_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 0.11,
+  "bodies": 1,
+  "ext": [
+   10.8,
+   10.8,
+   3.6
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 74.6,
+  "overhang_gt45_mm2": 9.2,
+  "overhang_gt55_mm2": 9.1,
+  "flat_down_mm2": 0.0,
+  "slender": 0.42
+ },
+ "linguetta_sicura_v63_print.stl": {
+  "file": "linguetta_sicura_v63_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 1.35,
+  "bodies": 1,
+  "ext": [
+   56.5,
+   12.0,
+   4.8
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 480.0,
+  "overhang_gt45_mm2": 132.0,
+  "overhang_gt55_mm2": 132.0,
+  "flat_down_mm2": 132.0,
+  "slender": 0.22
+ },
+ "disco_v61_print.stl": {
+  "file": "disco_v61_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 104.83,
+  "bodies": 1,
+  "ext": [
+   103.0,
+   103.0,
+   44.5
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 6147.4,
+  "overhang_gt45_mm2": 133.1,
+  "overhang_gt55_mm2": 86.6,
+  "flat_down_mm2": 86.6,
+  "slender": 0.57
+ },
+ "piastra_gate_v62_print.stl": {
+  "file": "piastra_gate_v62_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 20.32,
+  "bodies": 1,
+  "ext": [
+   106.5,
+   106.38,
+   3.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 6831.2,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.04
+ },
+ "piastra_finestra_v62_print.stl": {
+  "file": "piastra_finestra_v62_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 22.89,
+  "bodies": 1,
+  "ext": [
+   110.9,
+   110.79,
+   3.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 7737.9,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.03
+ },
+ "scivolo_v611_print.stl": {
+  "file": "scivolo_v611_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 25.15,
+  "bodies": 1,
+  "ext": [
+   51.87,
+   70.2,
+   81.3
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 727.4,
+  "overhang_gt45_mm2": 29.0,
+  "overhang_gt55_mm2": 0.2,
+  "flat_down_mm2": 0.2,
+  "slender": 3.01
+ },
+ "colletto_v6_print.stl": {
+  "file": "colletto_v6_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 13.82,
+  "bodies": 3,
+  "ext": [
+   73.0,
+   73.0,
+   16.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 448.1,
+  "overhang_gt45_mm2": 25.1,
+  "overhang_gt55_mm2": 25.1,
+  "flat_down_mm2": 25.1,
+  "slender": 0.76
+ },
+ "pulsante_v611_print.stl": {
+  "file": "pulsante_v611_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 1.52,
+  "bodies": 1,
+  "ext": [
+   18.0,
+   18.0,
+   16.14
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 132.7,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 1.4
+ },
+ "albero_v6_print.stl": {
+  "file": "albero_v6_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 6.08,
+  "bodies": 1,
+  "ext": [
+   12.0,
+   12.0,
+   63.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 42.4,
+  "overhang_gt45_mm2": 57.6,
+  "overhang_gt55_mm2": 57.6,
+  "flat_down_mm2": 57.6,
+  "slender": 9.67
+ },
+ "mozzo_v6_print.stl": {
+  "file": "mozzo_v6_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 5.5,
+  "bodies": 1,
+  "ext": [
+   22.0,
+   22.0,
+   20.5
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 342.6,
+  "overhang_gt45_mm2": 20.2,
+  "overhang_gt55_mm2": 20.2,
+  "flat_down_mm2": 20.2,
+  "slender": 1.11
+ },
+ "labbro_pettine_v62_print.stl": {
+  "file": "labbro_pettine_v62_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 0.13,
+  "bodies": 1,
+  "ext": [
+   27.4,
+   3.65,
+   2.83
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 86.3,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.3
+ },
+ "guarnizione_baionetta_v61_print.stl": {
+  "file": "guarnizione_baionetta_v61_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 1.07,
+  "bodies": 1,
+  "ext": [
+   119.7,
+   119.7,
+   2.73
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 1064.8,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.08
+ },
+ "guarnizione_piano_v5_print.stl": {
+  "file": "guarnizione_piano_v5_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 1.03,
+  "bodies": 1,
+  "ext": [
+   84.0,
+   84.0,
+   2.0
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 515.0,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.09
+ },
+ "labbro_ombra_v611_print.stl": {
+  "file": "labbro_ombra_v611_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 1.89,
+  "bodies": 1,
+  "ext": [
+   167.1,
+   167.1,
+   5.33
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 574.8,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.22
+ },
+ "labbro_scivolo_v611_print.stl": {
+  "file": "labbro_scivolo_v611_print.stl",
+  "watertight": true,
+  "winding": true,
+  "volume_cm3": 0.79,
+  "bodies": 1,
+  "ext": [
+   53.0,
+   53.0,
+   4.87
+  ],
+  "zmin": 0.0,
+  "bed_contact_mm2": 250.8,
+  "overhang_gt45_mm2": 0.0,
+  "overhang_gt55_mm2": 0.0,
+  "flat_down_mm2": 0.0,
+  "slender": 0.31
+ }
+}

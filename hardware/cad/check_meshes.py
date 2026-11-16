@@ -5,8 +5,8 @@ Check that every mesh under a hardware folder is a closed solid with a positive 
 Usage:  python hardware/cad/check_meshes.py [HARDWARE_DIR] [--skip GLOB ...]
 HARDWARE_DIR defaults to the folder above this script (prototype 1); pass hardware/v6 or hardware/v6.2 for those
 designs. --skip leaves out meshes whose path relative to HARDWARE_DIR matches a glob (listed in the output).
-It scans stl/*.stl, 3mf/*.3mf, assembly/*.stl and cad/build/*.stl (the build folder exists after
-running the generator scripts).
+It scans stl/*.stl, 3mf/*.3mf, assembly/*.stl, parts/*.stl and parts/*.3mf (the module folders, hardware/module/<case>)
+and cad/build/*.stl (the build folder exists after running the generator scripts).
 
 A mesh passes when it is watertight (every edge shared by exactly two faces), or when it is closed
 but two bodies in it touch along an edge (every edge shared by an even number of faces, for example
@@ -29,8 +29,8 @@ for a in it:
     else:
         args.append(a)
 root = Path(args[0]) if args else Path(__file__).resolve().parent.parent
-files = sorted([*root.glob('stl/*.stl'), *root.glob('3mf/*.3mf'), *root.glob('assembly/*.stl'),
-                *root.glob('cad/build/*.stl')])
+files = sorted([*root.glob('stl/*.stl'), *root.glob('3mf/*.3mf'), *root.glob('assembly/*.stl'), *root.glob('parts/*.stl'),
+                *root.glob('parts/*.3mf'), *root.glob('cad/build/*.stl')])
 skipped = [f for f in files if any(fnmatch.fnmatch(str(f.relative_to(root)), g) for g in skip)]
 for f in skipped:
     print(f'skip {f.relative_to(root)}')

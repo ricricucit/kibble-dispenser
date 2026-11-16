@@ -98,6 +98,26 @@ jobs:
           python hardware/cad/check_meshes.py hardware/v6.3
           python hardware/cad/check_meshes.py hardware/v6.3/plates
 
+  meshes-v64:
+    name: Check the committed meshes of hardware 6.4 and the module case 1.0
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install trimesh
+        run: pip install trimesh numpy scipy networkx lxml
+
+      # The full regeneration of 6.4 (about 15 to 25 minutes) runs in cad-v64.yml when hardware/v6.4/cad changes.
+      - name: Check the viewer meshes, the module parts and every STL of the 6.4 print package
+        run: |
+          python hardware/cad/check_meshes.py hardware/v6.4
+          python hardware/cad/check_meshes.py hardware/v6.4/plates
+          python hardware/cad/check_meshes.py hardware/module/case-1.0
+
   site:
     name: Build the website
     runs-on: ubuntu-latest
@@ -114,7 +134,7 @@ jobs:
       - name: Build the site from the repository
         run: python site/build.py
 
-      - name: docs/BOM.md, BOM-v6.2.md and BOM-v6.md match the bom.json files and their design data
+      - name: docs/BOM.md and the archived BOM files match the bom.json files and their design data
         run: python site/bom.py --check
 
   firmware:

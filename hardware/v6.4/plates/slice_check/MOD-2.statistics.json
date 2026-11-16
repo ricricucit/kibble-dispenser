@@ -1,0 +1,101 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 3116.61,
+  "prepare_time": 380.569,
+  "travel_time": 623.416,
+  "travel_distance": 50963.11,
+  "layer_count": 76,
+  "volume": 13411.179,
+  "weight": 17.0322,
+  "filament_cost": 0.51,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 5575.72,
+    "volume": 13411.179,
+    "weight": 17.0322,
+    "cost": 0.51,
+    "model": {
+     "volume": 13411.179,
+     "weight": 17.0322
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 643.856,
+    "volume": 3270.999,
+    "weight": 4.1542
+   },
+   "Outer wall": {
+    "time": 291.975,
+    "volume": 1432.331,
+    "weight": 1.8191
+   },
+   "Overhang wall": {
+    "time": 6.046,
+    "volume": 20.531,
+    "weight": 0.0261
+   },
+   "Internal solid infill": {
+    "time": 950.953,
+    "volume": 6589.121,
+    "weight": 8.3682
+   },
+   "Top surface": {
+    "time": 139.394,
+    "volume": 753.508,
+    "weight": 0.957
+   },
+   "Bottom surface": {
+    "time": 77.603,
+    "volume": 366.537,
+    "weight": 0.4655
+   },
+   "Bridge": {
+    "time": 69.052,
+    "volume": 214.419,
+    "weight": 0.2723
+   },
+   "Gap infill": {
+    "time": 44.814,
+    "volume": 163.144,
+    "weight": 0.2072
+   },
+   "Brim": {
+    "time": 136.423,
+    "volume": 548.293,
+    "weight": 0.6963
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "modulo_coperchio_v64",
+   "instance": 0,
+   "volume": 12810.59,
+   "weight": 16.2694,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

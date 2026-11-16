@@ -1,0 +1,89 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 1598.321,
+  "prepare_time": 397.601,
+  "travel_time": 371.207,
+  "travel_distance": 14494.79,
+  "layer_count": 14,
+  "volume": 1734.433,
+  "weight": 2.1507,
+  "filament_cost": 0.04,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 721.09,
+    "volume": 1734.433,
+    "weight": 2.1507,
+    "cost": 0.04,
+    "model": {
+     "volume": 1734.433,
+     "weight": 2.1507
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 302.238,
+    "volume": 466.403,
+    "weight": 0.5783
+   },
+   "Outer wall": {
+    "time": 741.086,
+    "volume": 978.377,
+    "weight": 1.2132
+   },
+   "Internal solid infill": {
+    "time": 35.626,
+    "volume": 113.128,
+    "weight": 0.1403
+   },
+   "Top surface": {
+    "time": 5.508,
+    "volume": 11.288,
+    "weight": 0.014
+   },
+   "Gap infill": {
+    "time": 37.049,
+    "volume": 112.94,
+    "weight": 0.14
+   },
+   "Custom": {
+    "time": 19.069,
+    "volume": 52.296,
+    "weight": 0.0648
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "guarnizione_fondello_v64",
+   "instance": 0,
+   "volume": 789.523,
+   "weight": 0.979,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  },
+  {
+   "name": "modulo_guarnizione_v64",
+   "instance": 0,
+   "volume": 892.614,
+   "weight": 1.1068,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

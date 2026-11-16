@@ -1,0 +1,20 @@
+{
+ "modulo_vasca_v64_bosses": {
+  "first_6_4_issue": "without supports OrcaSlicer reported 'floating regions': the 5 lid-screw bosses started as free cone tips at print z 51.6; that package used 5 support enforcers (3.2 g)",
+  "final_6_4_0": "bosses grow from the wall on 45 deg corbels; the 5 boss enforcers are removed; the tub cut above print z 23 slices with support off without warning"
+ },
+ "fondello_v64_ledge": "round well of the cap (assembly axis x -40, y 0): the 0.6 mm bore-side strip is now a 45 deg chamfer; the 1.5 mm flat ring that retains the chute lip stays and prints as a short overhang at print z 29.3 (225 mm2 instead of 300 mm2); no slicer warning",
+ "scatola_v64_lug_and_hook": "the harness tie lug and the C-hook on the south post start on the bed (roof down): no region in mid-air, no support, no warning",
+ "modulo_coperchio_v64": "back fence added for the harness loop; the J1 skin is still sliced as one bridge layer at print z 12.4; no support, no warning",
+ "zero_volume_fins": "none left in the 6.4.0 print files (all 8 load as one watertight body)",
+ "elefant_foot_compensation_object_override": "verified on a test slice: the per-object value changes the first-layer outline (0.075 -> 0.30 moved the outer radius of the speaker ring by 0.225 mm)",
+ "guscio_v64_supports": "G-code check (first 6.4 issue, shell file unchanged in shape): support only in three clusters at the tab angles, radius 49..75 mm from the shell axis, print z 0.2..63.8",
+ "test_coupons": "test_groove_cap (961.6 mm3) and test_cap_lip (77.7 mm3) cut from the 6.4.0 parts have the same volume and size as the 6.3 coupons",
+ "modulo_vasca_v64_button_recess": {
+  "finding": "with support off the full final tub still gets \"floating regions\"; band bisection (support off): cut at z<=12 and z<=20 no warning, z<=24 warning; part above z 23 or 24.5 no warning",
+  "cause": "the two upper corners of the d17 button recess where its rim meets the leaning outer skin start as free slivers at print z 21.5 (assembly (57.1, 12.2, -82.5) and (53.1, 26.3, -82.4)) and join the skin about 2.5 mm higher",
+  "used": "2 support enforcers (4 x 4 x 3.2 mm) placed automatically on the floating starts found by a layer check in print z 15..30; normal(manual), not build plate only: two thin columns from the bed outside the panel face, 0.5 g",
+  "note": "OrcaSlicer runs its floating-region check only with support off, so the absence of the warning in the project (support on) is backed by the band slices and the layer check, not by the project slice itself",
+  "cad_fix_suggested": "45 deg or teardrop top on the button recess rim"
+ }
+}

@@ -1,0 +1,111 @@
+{
+ "generator": "OrcaSlicer 2.5.0",
+ "summary": {
+  "time": 10900.584,
+  "prepare_time": 380.733,
+  "travel_time": 720.57,
+  "travel_distance": 88904.8,
+  "layer_count": 54,
+  "volume": 70465.506,
+  "weight": 89.4912,
+  "filament_cost": 2.68,
+  "filament_changes": 0,
+  "filaments": [
+   {
+    "id": 1,
+    "length": 29296.15,
+    "volume": 70465.506,
+    "weight": 89.4912,
+    "cost": 2.68,
+    "model": {
+     "volume": 70465.506,
+     "weight": 89.4912
+    },
+    "support": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "prime_tower": {
+     "volume": 0.0,
+     "weight": 0.0
+    },
+    "flush": {
+     "volume": 0.0,
+     "weight": 0.0
+    }
+   }
+  ],
+  "features": {
+   "Inner wall": {
+    "time": 858.923,
+    "volume": 5965.649,
+    "weight": 7.5764
+   },
+   "Outer wall": {
+    "time": 568.854,
+    "volume": 3264.797,
+    "weight": 4.1463
+   },
+   "Overhang wall": {
+    "time": 0.259,
+    "volume": 0.56,
+    "weight": 0.0007
+   },
+   "Sparse infill": {
+    "time": 3227.544,
+    "volume": 24402.175,
+    "weight": 30.9908
+   },
+   "Internal solid infill": {
+    "time": 2783.25,
+    "volume": 20794.43,
+    "weight": 26.4089
+   },
+   "Top surface": {
+    "time": 600.479,
+    "volume": 4316.347,
+    "weight": 5.4818
+   },
+   "Bottom surface": {
+    "time": 644.16,
+    "volume": 3747.396,
+    "weight": 4.7592
+   },
+   "Bridge": {
+    "time": 165.146,
+    "volume": 272.198,
+    "weight": 0.3457
+   },
+   "Internal Bridge": {
+    "time": 781.438,
+    "volume": 5945.0,
+    "weight": 7.5502
+   },
+   "Gap infill": {
+    "time": 7.077,
+    "volume": 17.267,
+    "weight": 0.0219
+   },
+   "Brim": {
+    "time": 395.805,
+    "volume": 1687.388,
+    "weight": 2.143
+   },
+   "Custom": {
+    "time": 7.654,
+    "volume": 52.296,
+    "weight": 0.0664
+   }
+  }
+ },
+ "objects": [
+  {
+   "name": "flangia_alta_v63",
+   "instance": 0,
+   "volume": 68725.822,
+   "weight": 87.2818,
+   "support_volume": 0.0,
+   "support_weight": 0.0
+  }
+ ]
+}

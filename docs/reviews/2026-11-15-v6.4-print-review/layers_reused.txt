@@ -1,0 +1,64 @@
+== guscio_v64_print.stl 8 unsupported regions; islands 0
+    {'z': 64.0, 'area': 378.0, 'span': 14.0, 'length': 27.8, 'w': 8.08, 'island': False, 'anch': 0.15, 'cx': -24.4, 'cy': -55.2}
+    {'z': 64.0, 'area': 378.0, 'span': 14.0, 'length': 27.8, 'w': 8.08, 'island': False, 'anch': 0.15, 'cx': -24.4, 'cy': 55.6}
+    {'z': 64.0, 'area': 298.5, 'span': 14.0, 'length': 22.1, 'w': 7.26, 'island': False, 'anch': 0.17, 'cx': 68.8, 'cy': 0.2}
+    {'z': 130.0, 'area': 37.4, 'span': 15.1, 'length': 87.0, 'w': 0.4, 'island': False, 'anch': 0.52, 'cx': 13.7, 'cy': -64.6}
+    {'z': 130.0, 'area': 37.4, 'span': 15.1, 'length': 87.0, 'w': 0.4, 'island': False, 'anch': 0.52, 'cx': 13.7, 'cy': 64.9}
+    {'z': 100.6, 'area': 18.1, 'span': 2.0, 'length': 11.5, 'w': 1.49, 'island': False, 'anch': 0.12, 'cx': 46.0, 'cy': -53.2}
+    {'z': 100.6, 'area': 18.1, 'span': 2.0, 'length': 11.5, 'w': 1.49, 'island': False, 'anch': 0.12, 'cx': 46.0, 'cy': 53.5}
+    {'z': 7.0, 'area': 15.8, 'span': 2.9, 'length': 5.5, 'w': 1.89, 'island': False, 'anch': 0.17, 'cx': 25.6, 'cy': -74.5}
+== chiocciola_v63_print.stl 11 unsupported regions; islands 0
+    {'z': 55.4, 'area': 117.7, 'span': 5.6, 'length': 32.0, 'w': 3.35, 'island': False, 'anch': 0.43, 'cx': -62.7, 'cy': 1.6}
+    {'z': 55.4, 'area': 75.8, 'span': 4.5, 'length': 20.7, 'w': 3.16, 'island': False, 'anch': 0.41, 'cx': 30.8, 'cy': -56.9}
+    {'z': 55.4, 'area': 75.8, 'span': 4.5, 'length': 20.7, 'w': 3.16, 'island': False, 'anch': 0.41, 'cx': 34.6, 'cy': 53.6}
+    {'z': 22.8, 'area': 26.6, 'span': 2.6, 'length': 14.0, 'w': 1.79, 'island': False, 'anch': 0.53, 'cx': -7.3, 'cy': 16.9}
+    {'z': 57.0, 'area': 25.0, 'span': 3.2, 'length': 7.8, 'w': 2.29, 'island': False, 'anch': 0.64, 'cx': 14.9, 'cy': 58.1}
+    {'z': 8.4, 'area': 9.6, 'span': 3.5, 'length': 3.5, 'w': 1.75, 'island': False, 'anch': 1.0, 'cx': 18.4, 'cy': 13.5}
+    {'z': 8.4, 'area': 9.6, 'span': 3.5, 'length': 3.5, 'w': 1.75, 'island': False, 'anch': 1.0, 'cx': -0.7, 'cy': -26.0}
+    {'z': 8.4, 'area': 9.6, 'span': 3.5, 'length': 3.5, 'w': 1.75, 'island': False, 'anch': 1.0, 'cx': -17.5, 'cy': 24.0}
+    {'z': 0.4, 'area': 7.8, 'span': 5.1, 'length': 5.1, 'w': 0.55, 'island': False, 'anch': 0.56, 'cx': 18.4, 'cy': 13.5}
+    {'z': 0.4, 'area': 7.8, 'span': 5.1, 'length': 5.1, 'w': 0.55, 'island': False, 'anch': 0.56, 'cx': -0.7, 'cy': -26.0}
+    {'z': 0.4, 'area': 7.8, 'span': 5.1, 'length': 5.1, 'w': 0.55, 'island': False, 'anch': 0.56, 'cx': -17.5, 'cy': 24.0}
+== colonna_v63_print.stl 1 unsupported regions; islands 0
+    {'z': 1.4, 'area': 174.8, 'span': 27.5, 'length': 27.5, 'w': 2.2, 'island': False, 'anch': 1.0, 'cx': 1.0, 'cy': -2.2}
+== flangia_piano_v63_print.stl 9 unsupported regions; islands 0
+    {'z': 2.2, 'area': 163.6, 'span': 173.9, 'length': 173.9, 'w': 0.3, 'island': False, 'anch': 0.5, 'cx': 2.4, 'cy': -0.2}
+    {'z': 14.6, 'area': 126.0, 'span': 5.9, 'length': 34.3, 'w': 3.37, 'island': False, 'anch': 0.46, 'cx': -61.2, 'cy': 2.0}
+    {'z': 1.2, 'area': 95.8, 'span': 41.8, 'length': 146.0, 'w': 0.54, 'island': False, 'anch': 0.5, 'cx': 72.0, 'cy': -9.4}
+    {'z': 14.6, 'area': 88.2, 'span': 4.8, 'length': 24.1, 'w': 3.23, 'island': False, 'anch': 0.44, 'cx': 32.9, 'cy': -56.5}
+    {'z': 14.6, 'area': 88.2, 'span': 4.8, 'length': 24.1, 'w': 3.23, 'island': False, 'anch': 0.44, 'cx': 35.8, 'cy': 54.3}
+    {'z': 2.6, 'area': 9.6, 'span': 3.5, 'length': 3.5, 'w': 1.75, 'island': False, 'anch': 1.0, 'cx': 2.4, 'cy': -0.2}
+    {'z': 3.0, 'area': 4.9, 'span': 2.5, 'length': 2.5, 'w': 1.24, 'island': False, 'anch': 1.0, 'cx': 21.9, 'cy': 53.3}
+    {'z': 3.0, 'area': 4.9, 'span': 2.5, 'length': 2.5, 'w': 1.24, 'island': False, 'anch': 1.0, 'cx': -12.4, 'cy': 54.8}
+    {'z': 3.0, 'area': 4.9, 'span': 2.5, 'length': 2.5, 'w': 1.24, 'island': False, 'anch': 1.0, 'cx': -44.3, 'cy': 32.4}
+== flangia_alta_v63_print.stl 3 unsupported regions; islands 0
+    {'z': 1.4, 'area': 592.2, 'span': 84.3, 'length': 84.3, 'w': 2.3, 'island': False, 'anch': 1.0, 'cx': 28.1, 'cy': 0.0}
+    {'z': 3.0, 'area': 6.6, 'span': 2.9, 'length': 2.9, 'w': 1.44, 'island': False, 'anch': 1.0, 'cx': 2.1, 'cy': -15.0}
+    {'z': 3.0, 'area': 6.6, 'span': 2.9, 'length': 2.9, 'w': 1.44, 'island': False, 'anch': 1.0, 'cx': 2.1, 'cy': 15.0}
+== saracinesca_v63_print.stl 0 unsupported regions; islands 0
+== anello_saracinesca_v63_print.stl 2 unsupported regions; islands 0
+    {'z': 39.6, 'area': 45.4, 'span': 173.7, 'length': 173.7, 'w': 0.08, 'island': False, 'anch': 0.5, 'cx': -2.0, 'cy': -0.4}
+    {'z': 33.2, 'area': 17.3, 'span': 2.0, 'length': 8.9, 'w': 1.58, 'island': False, 'anch': 0.19, 'cx': -86.7, 'cy': -14.6}
+== passacavo_v63_print.stl 0 unsupported regions; islands 0
+== linguetta_sicura_v63_print.stl 1 unsupported regions; islands 0
+    {'z': 1.6, 'area': 130.0, 'span': 8.0, 'length': 16.2, 'w': 5.36, 'island': False, 'anch': 0.17, 'cx': -22.0, 'cy': 0.0}
+== disco_v61_print.stl 1 unsupported regions; islands 0
+    {'z': 3.0, 'area': 78.2, 'span': 9.5, 'length': 11.0, 'w': 4.75, 'island': False, 'anch': 1.0, 'cx': -0.0, 'cy': 0.0}
+== piastra_gate_v62_print.stl 0 unsupported regions; islands 0
+== piastra_finestra_v62_print.stl 0 unsupported regions; islands 0
+== scivolo_v611_print.stl 0 unsupported regions; islands 0
+== colletto_v6_print.stl 2 unsupported regions; islands 2
+    {'z': 15.6, 'area': 6.1, 'span': 2.8, 'length': 2.8, 'w': 1.39, 'island': True, 'anch': 0.0, 'cx': 1.0, 'cy': -15.0}
+    {'z': 15.6, 'area': 6.1, 'span': 2.8, 'length': 2.8, 'w': 1.39, 'island': True, 'anch': 0.0, 'cx': 1.0, 'cy': 15.0}
+   ISLAND {'z': 15.6, 'area': 6.1, 'span': 2.8, 'length': 2.8, 'w': 1.39, 'island': True, 'anch': 0.0, 'cx': 1.0, 'cy': -15.0}
+   ISLAND {'z': 15.6, 'area': 6.1, 'span': 2.8, 'length': 2.8, 'w': 1.39, 'island': True, 'anch': 0.0, 'cx': 1.0, 'cy': 15.0}
+== pulsante_v611_print.stl 0 unsupported regions; islands 0
+== albero_v6_print.stl 1 unsupported regions; islands 0
+    {'z': 8.0, 'area': 49.2, 'span': 12.0, 'length': 12.0, 'w': 1.44, 'island': False, 'anch': 0.45, 'cx': -0.0, 'cy': -0.1}
+== mozzo_v6_print.stl 1 unsupported regions; islands 0
+    {'z': 4.4, 'area': 11.8, 'span': 5.4, 'length': 5.4, 'w': 0.78, 'island': False, 'anch': 0.65, 'cx': -0.0, 'cy': -0.0}
+== labbro_pettine_v62_print.stl 0 unsupported regions; islands 0
+== guarnizione_baionetta_v61_print.stl 0 unsupported regions; islands 0
+== guarnizione_piano_v5_print.stl 0 unsupported regions; islands 0
+== labbro_ombra_v611_print.stl 0 unsupported regions; islands 0
+== labbro_scivolo_v611_print.stl 0 unsupported regions; islands 0
