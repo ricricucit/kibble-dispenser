@@ -11,7 +11,9 @@ Tag and publish the version lines of the project (see VERSIONS.md).
     product   product/product.json   tag product-v<version>  lock file plus the pinned hardware and firmware zips
 
 For each line whose tag does not exist yet, the script creates an annotated tag and a GitHub Release with
-its assets; the notes come from the CHANGELOG.md section "## [<tag>]". A new tag points at the commit being
+its assets. The notes describe the current state of the line: until the public launch they come from the
+CHANGELOG.md section "## [pre-launch]" (its first paragraph and the "### <line>" part for the line; no links to
+earlier versions); a section "## [<tag>]", when there is one, takes precedence. A new tag points at the commit being
 released (HEAD: on CI, the head of the push that brought the new version to main). The notes and the tag
 message also name the last commit that changed the line's files, when that is an earlier one. Tags on older
 commits are not possible from the workflow: GitHub refuses to let its token create a ref on a commit whose
@@ -93,6 +95,19 @@ def changelog_section(tag):
     return m.group(1).strip() if m else ''
 
 
+LINE_HEADINGS = {'hardware': 'Hardware', 'module': 'Electronics module', 'firmware': 'Firmware', 'product': 'Product'}
+
+
+def current_state(line):
+    """The pre-launch section of CHANGELOG.md for one line: its first paragraph plus the "### <line> ..." part."""
+    sec = changelog_section('pre-launch')
+    if not sec:
+        return ''
+    intro = sec.split('\n### ', 1)[0].strip()
+    m = re.search(r'^### ' + re.escape(LINE_HEADINGS[line]) + r'[^\n]*\n(.*?)(?=^### |\Z)', sec, flags=re.M | re.S)
+    return f'{intro}\n\n{m.group(0).strip()}' if m else intro
+
+
 def safe_name(s):
     return re.sub(r'[^A-Za-z0-9._-]', '_', s)
 
@@ -117,9 +132,6 @@ def hardware_line():
         sys.exit(f'hardware/VERSION: bad version {version!r} or status {status!r}')
     if not (ROOT / design).is_dir():
         sys.exit(f'hardware/VERSION: design folder {design} not found')
-    major, minor = version.split('.')[:2]
-    if not design.endswith((f'v{major}', f'v{major}.{minor}')):
-        print(f'note: hardware {version} with design folder {design}')
     content = last_commit(['hardware'], ['hardware/VERSION'])
     target = git('rev-parse', 'HEAD')
 
@@ -156,7 +168,7 @@ def hardware_line():
 
     rel = dict(line='hardware', tag=f'hw-v{version}', version=version, status=status, target=target, content=content, paths='hardware/ (VERSION aside)',
                 title=f'Hardware {version} · {status}', prerelease=status in ('designed', 'printed'),
-                intro=(f'Hardware line, design `{design}`. Status: **{status}**'
+                intro=(f'Hardware line, files in `{design}/`. Status: **{status}**'
                        + (' (designed and checked in CAD, not yet printed or tested).' if status == 'designed' else '.')),
                 assets=assets)
     return rel
@@ -293,7 +305,8 @@ def provenance(rel):
 
 
 def notes_for(rel):
-    body = changelog_section(rel['tag']) or f'No CHANGELOG section for {rel["tag"]} yet; see {REPO}/blob/main/CHANGELOG.md.'
+    body = (changelog_section(rel['tag']) or current_state(rel['line'])
+            or f'No CHANGELOG section for {rel["tag"]} yet; see {REPO}/blob/main/CHANGELOG.md.')
     return (f'{rel["intro"]}\n\n{provenance(rel)} Version lines and compatibility: '
             f'{REPO}/blob/main/VERSIONS.md\n\n{body}\n')
 
