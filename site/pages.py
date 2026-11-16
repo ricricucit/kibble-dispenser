@@ -18,6 +18,7 @@ part counts from hardware/v6.3/plates/summary.json. Every text is written once p
 """
 import html
 import json
+import sys
 import re
 import shutil
 import tomllib
@@ -28,20 +29,22 @@ import versions
 
 SITE = Path(__file__).resolve().parent
 ROOT = SITE.parent
-CURRENT = 'v6.3'
-PLATES = ROOT / 'hardware/v6.3/plates'          # current design
+CURRENT = 'v6.4'
+PLATES = ROOT / 'hardware/v6.4/plates'          # current design (hardware 6.4: chassis 6.4 + module case 1.0)
 REPO = 'https://github.com/ricricucit/kibble-dispenser'
 LANGS = ('en', 'it', 'de')
 LANG_NAMES = {'en': 'English', 'it': 'Italiano', 'de': 'Deutsch'}
 MANUALS = ROOT / 'docs/manual'
-TEMPLATE_PDF = ROOT / 'hardware/v6.3/template/dima_foratura_v63.pdf'
+TEMPLATE_PDF = ROOT / 'hardware/v6.4/template/dima_foratura_v64.pdf'
 TEMPLATE_NAME = 'kibble-dispenser-drilling-template.pdf'
 
 # Print-files pages: the current design at the stable URL print/, earlier designs at versioned URLs.
 NAV_HOME = {'en': 'Project home', 'it': 'Pagina del progetto', 'de': 'Projektseite'}
+# The current print page (print/) is the step-by-step guide of site/printguide.py; these are the archived print pages.
 PRINT_PAGES = [
-    dict(label='v6.3', plates=ROOT / 'hardware/v6.3/plates', toml='print.toml', dir='print', root='../', gh='hardware/v6.3/plates',
-         nav=[('../', 'home'), ('../3d/', 'model'), ('../parts/', 'parts'), ('../assembly/', 'assembly')], parts='../parts/'),
+    dict(label='v6.3', plates=ROOT / 'hardware/v6.3/plates', toml='print_v63.toml', dir='v6.3/print', root='../../', gh='hardware/v6.3/plates',
+         nav=[('../../', 'home'), ('../3d/', 'model'), ('../parts/', 'parts'), ('../assembly/', 'assembly')], parts='../parts/',
+         release='hw-v6.3.0'),
     dict(label='v6.2', plates=ROOT / 'hardware/v6.2/plates', toml='print_v62.toml', dir='v6.2/print', root='../../', gh='hardware/v6.2/plates',
          nav=[('../../', 'home'), ('../3d/', 'model'), ('../parts/', 'parts'), ('../assembly/', 'assembly')], parts='../parts/',
          release='hw-v6.2.0'),
@@ -50,6 +53,8 @@ PRINT_PAGES = [
 ]
 # Archive pages of earlier designs (index page, plus a manual page for v6.2 that links the release assets)
 ARCHIVES = [
+    dict(label='v6.3', dir='v6.3', toml_key='archive_v63', release='hw-v6.3.0', hw='6.3.0', folder='hardware/v6.3',
+         pages=['3d/', 'print/', 'parts/', 'assembly/', 'manual/']),
     dict(label='v6.2', dir='v6.2', toml_key='archive_v62', release='hw-v6.2.0', hw='6.2.0', folder='hardware/v6.2',
          pages=['3d/', 'print/', 'parts/', 'assembly/', 'manual/']),
     dict(label='v6', dir='v6', toml_key='archive', release='hw-v6.0.0', hw='6.0.0', folder='hardware/v6', pages=['3d/', 'print/', 'parts/']),
@@ -220,8 +225,8 @@ def svg_text(x, y, texts, cls='lbl', anchor='start'):
 
 
 def idea_svg(d):
-    """Side view of v6.3: container on a shelf, the flange with the orange ring and the closed pod underneath with the
-    control panel, the green food path to the bowl, the cable leaving at the back of the flange."""
+    """Side view of hardware 6.4: container on a shelf, the flange with the orange ring and the closed pod underneath with
+    the electronics module (dashed) and its control panel, the green food path to the bowl, the cable leaving at the back."""
     return f'''<svg class="idea-svg" viewBox="0 0 360 350" role="img" aria-labelledby="idea-svg-t">
   <title id="idea-svg-t">{esc(d['drum']['en'])}, {esc(d['shelf']['en'])}, {esc(d['unit']['en'])}, {esc(d['food']['en'])}, {esc(d['cable']['en'])}</title>
   <defs>
@@ -253,6 +258,7 @@ def idea_svg(d):
   <path d="M74 170h76v92q0 12-12 12H86q-12 0-12-12z" class="petg"/>
   <rect x="70" y="172" width="84" height="12" rx="2" class="touch"/>
   <rect x="90" y="272" width="14" height="3" class="tpu"/>
+  <path d="M120 218h30v44q0 12-12 12h-18z" class="modline"/>
   <rect x="140" y="232" width="6" height="22" rx="2" class="panel"/>
   <circle cx="143" cy="237" r="1.3" class="led"/><circle cx="143" cy="242" r="1.3" class="led"/><circle cx="143" cy="249" r="2" class="touch"/>
   <path d="M156 236H182" class="dimline"/>
@@ -294,6 +300,10 @@ ICONS = {
     'panel': '<rect x="12" y="4" width="24" height="40" rx="6" class="i-petg"/><circle cx="24" cy="12" r="2.6" class="i-led"/>'
              '<circle cx="24" cy="20" r="2.6" class="i-led2"/><circle cx="24" cy="31" r="5" class="i-hole"/><circle cx="24" cy="31" r="3.2" class="i-touch"/>'
              '<path d="M19 40h2M23 40h2M27 40h2" class="i-line"/>',
+    # detachable module sliding out of the pod from below, with the panel on its outer face
+    'module': '<path d="M8 6h32v20q0 5-5 5H13q-5 0-5-5z" class="i-petg"/><rect x="24" y="16" width="14" height="22" rx="3" class="i-petg"/>'
+              '<circle cx="34" cy="22" r="1.8" class="i-led"/><circle cx="34" cy="27" r="1.8" class="i-led2"/><circle cx="34" cy="33" r="2.4" class="i-touch"/>'
+              '<path d="M18 36v9" class="i-line" marker-end="url(#iar)"/>',
     'care': '<circle cx="24" cy="24" r="15" class="i-touch"/><path d="M24 24 15 15a12.7 12.7 0 0 1 18 0z" class="i-hole"/>'
             '<path d="M11 39 37 9" class="i-line"/><path d="M33 8l5 1-1 5" class="i-line"/>',
 }
@@ -371,7 +381,7 @@ def home(out, summary, counts, grams):
       </div>
     </section>'''
 
-    sw, sh = img_size(SITE / 'img/v63-section.webp', (580, 610))
+    sw, sh = img_size(SITE / 'img/v64-section.webp', (580, 610))
     steps = ''.join(f'<li>{icon(s["key"])}<div><h3>{L(s["title"])}</h3><p>{L(s["body"])}</p></div></li>' for s in how['steps'])
     how_html = f'''    <section class="sec" id="how" aria-labelledby="how-title">
       <div class="sec-head">
@@ -381,12 +391,13 @@ def home(out, summary, counts, grams):
       </div>
       <div class="how-grid">
         <figure class="sheet section-fig">
-          <img src="img/v63-section.webp" width="{sw}" height="{sh}" loading="lazy" decoding="async" {alt_attrs(how['img_section'])}>
+          <img src="img/v64-section.webp" width="{sw}" height="{sh}" loading="lazy" decoding="async" {alt_attrs(how['img_section'])}>
           <figcaption>{L(how['cap_section'])}</figcaption>
         </figure>
         <ol class="how-steps">{steps}</ol>
       </div>
-      <p class="sec-cta"><a class="btn btn-act" href="3d/" data-keep-lang>{L(hero['cta_3d'])}</a></p>
+      <p class="sec-cta cta-row"><a class="btn btn-act" href="3d/" data-keep-lang>{L(hero['cta_3d'])}</a>
+        <a class="btn" href="module/" data-keep-lang>{L(how['cta_module'])}</a></p>
     </section>'''
 
     total = sum(grams.values())
@@ -992,9 +1003,15 @@ def build(out):
     summary, counts, grams = load_data()
     home(out, summary, counts, grams)
     written = [out / 'index.html']
+    import modulepage
+    import printguide
+    me = sys.modules[__name__]
+    written.append(printguide.build(out, me))
+    written.append(modulepage.build(out, me))
     for cfg in PRINT_PAGES:
         written.append(print_page(out, cfg))
     written.append(manual_page(out))
+    written.append(manual_page(out, 'v6.3', release='hw-v6.3.0'))
     written.append(manual_page(out, 'v6.2', release='hw-v6.2.0'))
     for cfg in ARCHIVES:
         written.append(archive_index(out, cfg))

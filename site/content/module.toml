@@ -1,0 +1,109 @@
+# Page of the electronics module case 1.0 (module/), in English, Italian and German. Rendered by site/modulepage.py.
+# Dimensions, pins and harness lengths come from hardware/v6.4/cad/v64.json (interface, module); only the words are here.
+
+[meta.title]
+en = "Electronics module, case 1.0 · Kibble Dispenser"
+it = "Modulo elettronica, case 1.0 · Kibble Dispenser"
+de = "Elektronikmodul, case 1.0 · Kibble Dispenser"
+
+[meta.description]
+en = "The detachable electronics module of the Kibble Dispenser Outdoor hardware 6.4: a sealed case with its own version line (case 1.0), the fixed interface to the chassis, the connector pinout, the harness, the usable space inside and what fits. Designed, not yet printed or tested."
+
+[head]
+kicker = { en = "Kibble Dispenser Outdoor · electronics module", it = "Kibble Dispenser Outdoor · modulo elettronica", de = "Kibble Dispenser Outdoor · Elektronikmodul" }
+title = { en = "The electronics module, case 1.0", it = "Il modulo elettronica, case 1.0", de = "Das Elektronikmodul, case 1.0" }
+lead = { en = "From hardware 6.4 the electronics live in their own sealed case. It slides into the dispenser from below, its outer wall is the missing piece of the pod and carries the control panel, and it comes out with two screws and one plug, without opening the chassis. The servo stays in the chassis.", it = "Dall'hardware 6.4 l'elettronica sta in una sua scatola stagna. Entra nel distributore da sotto, la sua parete esterna è il pezzo mancante del guscio e porta il pannello comandi, ed esce con due viti e una spina, senza aprire il telaio. Il servo resta nel telaio.", de = "Ab Hardware 6.4 sitzt die Elektronik in einem eigenen dichten Gehäuse. Es wird von unten in den Spender geschoben, seine Außenwand ist das fehlende Stück der Hülle und trägt das Bedienfeld, und es kommt mit zwei Schrauben und einem Stecker heraus, ohne das Gehäuse des Spenders zu öffnen. Der Servo bleibt im Spender." }
+
+[banner]
+title = { en = "Case 1.0: designed, not yet printed or tested", it = "Case 1.0: disegnato, non ancora stampato né provato", de = "Case 1.0: konstruiert, noch nicht gedruckt oder getestet" }
+body = { en = "The module has its own version line: case 1.0 is version 1.0.0, tag case-v1.0.0, and it fits hardware 6.4. The holder side of the interface is fixed from 6.4 on, so a new case can change the inside without touching the chassis. The firmware for the one-button panel is still to come (issue #2); a camera comes later (issue #3).", it = "Il modulo ha una sua linea di versioni: case 1.0 è la versione 1.0.0, tag case-v1.0.0, e si monta sull'hardware 6.4. Il lato del supporto dell'interfaccia è fisso dalla 6.4 in poi, quindi una scatola nuova può cambiare l'interno senza toccare il telaio. Il firmware per il pannello a un pulsante deve ancora arrivare (issue #2); una telecamera verrà più avanti (issue #3).", de = "Das Modul hat eine eigene Versionslinie: case 1.0 ist Version 1.0.0, Tag case-v1.0.0, und passt zu Hardware 6.4. Die Halterseite der Schnittstelle ist ab 6.4 fest, ein neues Gehäuse kann also das Innere ändern, ohne das Spendergehäuse anzufassen. Die Firmware für das Ein-Tasten-Bedienfeld kommt noch (Issue #2); eine Kamera kommt später (Issue #3)." }
+
+[toc]
+fit = { en = "How it fits", it = "Come si monta", de = "Wie es sitzt" }
+interface = { en = "Interface", it = "Interfaccia", de = "Schnittstelle" }
+j1 = { en = "Connector J1", it = "Connettore J1", de = "Stecker J1" }
+harness = { en = "Harness", it = "Cablaggio", de = "Kabelbaum" }
+inside = { en = "Inside", it = "Interno", de = "Innenraum" }
+files = { en = "Files", it = "File", de = "Dateien" }
+
+[fit]
+title = { en = "How it fits", it = "Come si monta", de = "Wie es sitzt" }
+items = [
+  { en = "It slides straight up into the opening of the shell and the cap ({travel} mm of travel). Two closed sockets in its back corners take the two posts of the servo bay; the post ends are the vertical stop.", it = "Sale dritto nell'apertura del guscio e del fondello ({travel} mm di corsa). Due sedi chiuse negli angoli posteriori accolgono le due colonnine del vano servo; le estremità delle colonnine fanno da arresto verticale.", de = "Es wird gerade nach oben in die Öffnung von Hülle und Boden geschoben ({travel} mm Weg). Zwei geschlossene Buchsen in den hinteren Ecken nehmen die zwei Säulen des Servofachs auf; die Säulenenden sind der Höhenanschlag." },
+  { en = "Two M3 × 16 screws from below (hex 2.5, {torque}) lock it into the inserts of the posts. They stay with the module.", it = "Due viti M3 × 16 da sotto (esagono 2,5, {torque}) lo bloccano negli inserti delle colonnine. Restano con il modulo.", de = "Zwei M3 × 16-Schrauben von unten (Innensechskant 2,5, {torque}) sichern es in den Einsätzen der Säulen. Sie bleiben am Modul." },
+  { en = "Its outer wall is part of the pod skin and carries the control panel: one recessed push-button, two light pipes, three knock-outs and the speaker grille facing down. Hang the dispenser with the panel facing you.", it = "La sua parete esterna fa parte del guscio e porta il pannello comandi: un pulsante incassato, due guide di luce, tre predisposizioni e la griglia dell'altoparlante rivolta verso il basso. Appendete il distributore con il pannello rivolto verso di voi.", de = "Seine Außenwand ist Teil der Hülle und trägt das Bedienfeld: ein versenkter Taster, zwei Lichtleiter, drei Ausbrüche und das nach unten zeigende Lautsprechergitter. Hängt den Spender mit dem Bedienfeld zu euch hin auf." },
+  { en = "Service: take the two screws out and let the module down. At {lowered} mm its top is below the pod and the plug of J1 is free in the hand: unscrew the ring and put the module on the bench. The harness allows up to {max} mm.", it = "Manutenzione: togliete le due viti e lasciate scendere il modulo. A {lowered} mm la sua parte alta è sotto il guscio e la spina di J1 è libera in mano: svitate la ghiera e appoggiate il modulo sul banco. Il cablaggio permette fino a {max} mm.", de = "Wartung: die zwei Schrauben heraus und das Modul absenken. Bei {lowered} mm ist seine Oberseite unter der Hülle und der Stecker von J1 frei in der Hand: Ring abschrauben und das Modul auf den Tisch legen. Der Kabelbaum erlaubt bis zu {max} mm." },
+  { en = "Sealing: the module is sealed on its own (target IP66): lid gasket, sealed panel parts, J1 and lid screws with O-rings. The seams to the chassis are open 0.35 mm gaps behind return ribs.", it = "Tenuta: il modulo è stagno da solo (obiettivo IP66): guarnizione del coperchio, pezzi del pannello a tenuta, J1 e viti del coperchio con O-ring. Le fessure verso il telaio sono aperte, 0,35 mm, dietro nervature di ritorno.", de = "Dichtung: das Modul ist für sich dicht (Ziel IP66): Deckeldichtung, abgedichtete Bedienfeldteile, J1 und Deckelschrauben mit O-Ringen. Die Fugen zum Spendergehäuse sind offene 0,35-mm-Spalte hinter Rücklaufrippen." },
+]
+
+[interface]
+title = { en = "The interface (fixed from hardware 6.4)", it = "L'interfaccia (fissa dall'hardware 6.4)", de = "Die Schnittstelle (fest ab Hardware 6.4)" }
+lead = { en = "Everything a new module has to respect. Frame as in the CAD: Z up, shaft axis at x = y = 0, Z = 0 at the underside of the bowl base, mm.", it = "Tutto quello che un modulo nuovo deve rispettare. Riferimento come nel CAD: Z in alto, asse dell'albero in x = y = 0, Z = 0 sotto il fondo della vasca, mm.", de = "Alles, was ein neues Modul einhalten muss. Bezug wie im CAD: Z nach oben, Wellenachse bei x = y = 0, Z = 0 an der Unterseite des Schalenbodens, mm." }
+img_alt = { en = "Dimensioned drawing of the interface between the chassis and the electronics module", it = "Disegno quotato dell'interfaccia tra telaio e modulo elettronica", de = "Bemaßte Zeichnung der Schnittstelle zwischen Spendergehäuse und Elektronikmodul" }
+drawing = { en = "Interface drawing", it = "Disegno dell'interfaccia", de = "Schnittstellenzeichnung" }
+
+[interface.dims]
+opening = { en = "Opening in shell and cap", it = "Apertura in guscio e fondello", de = "Öffnung in Hülle und Boden" }
+envelope = { en = "Module envelope", it = "Ingombro del modulo", de = "Hüllmaß des Moduls" }
+gap = { en = "Clearance", it = "Gioco", de = "Spiel" }
+posts = { en = "Holder posts", it = "Colonnine del supporto", de = "Haltersäulen" }
+sockets = { en = "Module sockets", it = "Sedi nel modulo", de = "Buchsen im Modul" }
+screws = { en = "Lock screws", it = "Viti di blocco", de = "Sicherungsschrauben" }
+lip = { en = "Top lip", it = "Labbro superiore", de = "Oberer Rand" }
+keepout = { en = "Keep-out above the lid", it = "Spazio libero sopra il coperchio", de = "Freiraum über dem Deckel" }
+
+[j1]
+title = { en = "Connector J1", it = "Connettore J1", de = "Stecker J1" }
+lead = { en = "One plug carries everything between chassis and module: an M8 5-pin A-coded panel socket (female) in a turret on the module lid. Pinout as specified for case 1.0:", it = "Una sola spina porta tutto tra telaio e modulo: una presa M8 5 poli codifica A da pannello (femmina) in una torretta sul coperchio del modulo. Piedinatura come specificata per il case 1.0:", de = "Ein Stecker trägt alles zwischen Spendergehäuse und Modul: eine M8-Einbaubuchse 5-polig, A-kodiert (Buchse) in einem Turm auf dem Moduldeckel. Belegung wie für case 1.0 festgelegt:" }
+pin = { en = "Pin", it = "Pin", de = "Pin" }
+current = { en = "M8 5-pin contacts are rated about 3 A: enough for a standard servo (stall about 2.5 A at 6 V). A stronger servo would need the 4-pin 4 A version plus the PWM on a separate M8.", it = "I contatti M8 5 poli reggono circa 3 A: bastano per un servo standard (circa 2,5 A da bloccato a 6 V). Un servo più forte richiederebbe la versione 4 poli da 4 A più il PWM su un M8 separato.", de = "M8-Kontakte 5-polig sind für etwa 3 A ausgelegt: genug für einen Standardservo (blockiert etwa 2,5 A bei 6 V). Ein stärkerer Servo bräuchte die 4-polige 4-A-Version und das PWM auf einem eigenen M8." }
+verify = { en = "Check the thread and nut of the socket you buy before printing the lid (an 8.2 mm hole and a nut up to 13 mm across flats are assumed).", it = "Controllate filetto e dado della presa che comprate prima di stampare il coperchio (si ipotizzano un foro da 8,2 mm e un dado fino a 13 mm).", de = "Prüft Gewinde und Mutter der gekauften Buchse vor dem Druck des Deckels (angenommen sind ein 8,2-mm-Loch und eine Mutter bis 13 mm SW)." }
+
+[j1.pins]
+"1" = { en = "+12 V in (from the M8 connector in the pod top)", it = "+12 V in ingresso (dal connettore M8 in cima al guscio)", de = "+12 V Eingang (vom M8-Stecker oben in der Hülle)" }
+"2" = { en = "Servo PWM (3.3 V logic, 50 Hz)", it = "PWM del servo (logica 3,3 V, 50 Hz)", de = "Servo-PWM (3,3-V-Logik, 50 Hz)" }
+"3" = { en = "GND (12 V return and servo return)", it = "GND (ritorno 12 V e ritorno servo)", de = "GND (12-V-Rückleiter und Servo-Rückleiter)" }
+"4" = { en = "Servo +6 V out (from the regulator in the module)", it = "+6 V al servo in uscita (dal regolatore nel modulo)", de = "Servo +6 V Ausgang (vom Regler im Modul)" }
+"5" = { en = "Spare", it = "Libero", de = "Frei" }
+
+[harness]
+title = { en = "The chassis harness", it = "Il cablaggio del telaio", de = "Der Kabelbaum des Spendergehäuses" }
+lead = { en = "A short harness in the chassis joins the supply, the servo and the module. The servo and its own lead stay untouched and replaceable.", it = "Un breve cablaggio nel telaio unisce alimentazione, servo e modulo. Il servo e il suo cavetto restano intatti e sostituibili.", de = "Ein kurzer Kabelbaum im Spendergehäuse verbindet Versorgung, Servo und Modul. Der Servo und sein eigenes Kabel bleiben unberührt und austauschbar." }
+tail = { en = "Tail to J1: an angled M8 5-pin male cordset, PUR Ø4.5, cut to {tail} mm; parked as a service loop on the module lid ({parked} mm of path). It lets the module down up to {max} mm; {lowered} mm needs {need} mm.", it = "Coda verso J1: un cavo M8 5 poli maschio a 90°, PUR Ø4,5, tagliato a {tail} mm; riposa in un'asola di servizio sul coperchio del modulo ({parked} mm di percorso). Lascia scendere il modulo fino a {max} mm; {lowered} mm ne chiedono {need}.", de = "Ende zu J1: ein gewinkelter M8-Kabelstecker 5-polig, PUR Ø4,5, auf {tail} mm gekürzt; als Serviceschlaufe auf dem Moduldeckel abgelegt ({parked} mm Weg). Er lässt das Modul bis {max} mm herunter; {lowered} mm brauchen {need} mm." }
+v12 = { en = "12 V branch: {len} mm of 2-core PUR to the M8 IP67 connector in the pod top (unchanged from 6.3).", it = "Ramo 12 V: {len} mm di cavo PUR a 2 poli fino al connettore M8 IP67 in cima al guscio (come nella 6.3).", de = "12-V-Zweig: {len} mm 2-adriges PUR zum M8-IP67-Stecker oben in der Hülle (wie 6.3)." }
+servo = { en = "Servo branch: {len} mm of round PUR 3 × 0.25 mm² through the M12 gland into the servo bay, ending in a crimped JR 3-pin female; the servo plugs into it.", it = "Ramo servo: {len} mm di cavo tondo PUR 3 × 0,25 mm² attraverso il pressacavo M12 nel vano servo, con un connettore JR 3 poli femmina crimpato in fondo; il servo ci si innesta.", de = "Servozweig: {len} mm rundes PUR 3 × 0,25 mm² durch die M12-Verschraubung ins Servofach, mit gecrimpter JR-Buchse 3-polig am Ende; der Servo steckt darin." }
+splice = { en = "Y splice: soldered, under adhesive-lined heat shrink Ø8 × 20. Tail pin 1 → 12 V +, 3 → GND of both, 2 → servo signal, 4 → servo +6 V, 5 not connected.", it = "Giunzione a Y: saldata, sotto guaina termorestringente con adesivo Ø8 × 20. Pin della coda 1 → 12 V +, 3 → GND di entrambi, 2 → segnale servo, 4 → servo +6 V, 5 non collegato.", de = "Y-Spleiß: gelötet, unter Schrumpfschlauch mit Kleber Ø8 × 20. Pin des Endes 1 → 12 V +, 3 → GND beider, 2 → Servosignal, 4 → Servo +6 V, 5 nicht belegt." }
+
+[inside]
+title = { en = "Inside the case", it = "Dentro la scatola", de = "Im Gehäuse" }
+lead = { en = "The inside is generic and is a separate project that will evolve: the board wiring is documented separately and is provisional. What the case 1.0 offers:", it = "L'interno è generico ed è un progetto a parte che evolverà: il cablaggio della scheda è documentato a parte ed è provvisorio. Cosa offre il case 1.0:", de = "Das Innere ist allgemein gehalten und ein eigenes Projekt, das sich weiterentwickelt: die Verdrahtung der Platine ist separat dokumentiert und vorläufig. Was das case 1.0 bietet:" }
+height = { en = "Height", it = "Altezza", de = "Höhe" }
+height_v = { en = "{floor} mm from the floor to the lid land, {rim} mm under the rim", it = "{floor} mm dal fondo all'appoggio del coperchio, {rim} mm sotto il bordo", de = "{floor} mm vom Boden bis zur Deckelauflage, {rim} mm unter dem Rand" }
+width = { en = "Width", it = "Larghezza", de = "Breite" }
+width_v = { en = "{guides} mm between the board guides ({slot} mm in the slots), {front} mm across the front lobes", it = "{guides} mm tra le guide delle schede ({slot} mm negli slot), {front} mm tra i lobi anteriori", de = "{guides} mm zwischen den Platinenführungen ({slot} mm in den Schlitzen), {front} mm über die vorderen Ausbuchtungen" }
+depth = { en = "Depth", it = "Profondità", de = "Tiefe" }
+depth_v = { en = "{d0} mm on the centre line at the top, down to {d1} mm at the bottom corners (the outer wall follows the pod)", it = "{d0} mm sulla mezzeria in alto, fino a {d1} mm agli angoli in basso (la parete esterna segue il guscio)", de = "{d0} mm auf der Mittellinie oben, bis {d1} mm in den unteren Ecken (die Außenwand folgt der Hülle)" }
+volume = { en = "Free volume", it = "Volume libero", de = "Freies Volumen" }
+fits_title = { en = "What fits", it = "Cosa ci sta", de = "Was hineinpasst" }
+fits = [
+  { en = "The green 5 × 7 cm double-sided perfboard of the bench prototype, standing in board slot A, with the ESP32-WROVER on socket strips (stack about 61 × 28 × 25 mm) and no extension board.", it = "La millefori verde doppia faccia 5 × 7 cm del prototipo da banco, in piedi nello slot A, con l'ESP32-WROVER su strip (ingombro circa 61 × 28 × 25 mm) e senza scheda di estensione.", de = "Die grüne doppelseitige Lochrasterplatine 5 × 7 cm des Bench-Prototyps, stehend in Platinenschlitz A, mit dem ESP32-WROVER auf Buchsenleisten (Aufbau etwa 61 × 28 × 25 mm) und ohne Erweiterungsplatine." },
+  { en = "A second board in slot B only when the stack on the board in slot A is at most {gap} mm (for example a regulator board in A and the ESP32 board on low sockets in B, with {b0} to {b1} mm in front of B). The 6 V and 5 V regulators and the capacitor fit beside the ESP32 zone.", it = "Una seconda scheda nello slot B solo se l'ingombro sulla scheda dello slot A non supera {gap} mm (per esempio una scheda regolatori in A e la scheda ESP32 su zoccoli bassi in B, con {b0}–{b1} mm davanti a B). I regolatori 6 V e 5 V e il condensatore stanno accanto alla zona dell'ESP32.", de = "Eine zweite Platine in Schlitz B nur, wenn der Aufbau auf der Platine in Schlitz A höchstens {gap} mm hoch ist (zum Beispiel eine Reglerplatine in A und die ESP32-Platine auf niedrigen Sockeln in B, mit {b0} bis {b1} mm vor B). Die 6-V- und 5-V-Regler und der Kondensator passen neben die ESP32-Zone." },
+  { en = "A speaker of Ø20 to Ø24 mm in a printed ring on the floor collar (the ring of case 1.0 is for Ø23), behind the grille and an IP67 acoustic membrane.", it = "Un altoparlante da Ø20 a Ø24 mm in un anello stampato sul collare del fondo (l'anello del case 1.0 è per Ø23), dietro la griglia e una membrana acustica IP67.", de = "Ein Lautsprecher Ø20 bis Ø24 mm in einem gedruckten Ring auf dem Bodenkragen (der Ring von case 1.0 ist für Ø23), hinter dem Gitter und einer IP67-Akustikmembran." },
+  { en = "A blind USB-C position engraved on the lid, to drill for a sealed panel USB-C when needed.", it = "Una posizione cieca per USB-C incisa sul coperchio, da forare per una USB-C da pannello a tenuta quando serve.", de = "Eine blinde USB-C-Position auf dem Deckel graviert, bei Bedarf für eine dichte Einbau-USB-C zu bohren." },
+]
+not_fit = { en = "Not possible in this pod: an 80 × 60 × 45 mm box. The servo bay wall and the pod skin leave 35 to 43 mm of depth on the centre line.", it = "Non possibile in questo guscio: una scatola 80 × 60 × 45 mm. La parete del vano servo e il guscio lasciano 35–43 mm di profondità sulla mezzeria.", de = "In dieser Hülle nicht möglich: eine Box 80 × 60 × 45 mm. Wand des Servofachs und Hülle lassen 35 bis 43 mm Tiefe auf der Mittellinie." }
+bench = { en = "The bench prototype and its wiring", it = "Il prototipo da banco e il suo cablaggio", de = "Der Bench-Prototyp und seine Verdrahtung" }
+
+[files]
+title = { en = "Files", it = "File", de = "Dateien" }
+print = { en = "Print the module: plates MOD-1, MOD-2 (and MOD-TPU-1 for the gasket when you print the module alone)", it = "Stampare il modulo: piatti MOD-1, MOD-2 (e MOD-TPU-1 per la guarnizione quando stampate il modulo da solo)", de = "Modul drucken: Platten MOD-1, MOD-2 (und MOD-TPU-1 für die Dichtung, wenn ihr das Modul allein druckt)" }
+pdf = { en = "Interface drawing (PDF)", it = "Disegno dell'interfaccia (PDF)", de = "Schnittstellenzeichnung (PDF)" }
+folder = { en = "Module folder on GitHub (CAD parts, README with the interface spec)", it = "Cartella del modulo su GitHub (pezzi CAD, README con le specifiche dell'interfaccia)", de = "Modulordner auf GitHub (CAD-Teile, README mit der Schnittstellenbeschreibung)" }
+model = { en = "See it in the 3D model (group “Electronics module”)", it = "Vedetelo nel modello 3D (gruppo “Modulo elettronica”)", de = "Im 3D-Modell ansehen (Gruppe „Elektronikmodul“)" }
+assembly = { en = "Assembly guide: module chapter", it = "Guida al montaggio: capitolo del modulo", de = "Montageanleitung: Kapitel Modul" }
+licence = { en = "Text CC BY 4.0, design files CERN-OHL-P-2.0.", it = "Testo CC BY 4.0, file di progetto CERN-OHL-P-2.0.", de = "Text CC BY 4.0, Konstruktionsdateien CERN-OHL-P-2.0." }
+
+[nav]
+print = { en = "Print guide", it = "Guida di stampa", de = "Druckanleitung" }
+parts = { en = "Bought parts", it = "Pezzi da comprare", de = "Zukaufteile" }
+model = { en = "3D model", it = "Modello 3D", de = "3D-Modell" }

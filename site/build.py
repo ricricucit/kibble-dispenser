@@ -5,12 +5,14 @@ Build the static site so it always reflects the repository.
 Run from anywhere:  python site/build.py [OUTPUT_DIR]
 OUTPUT_DIR defaults to site/_build (not committed). The script:
   - copies site/ (css, js, img, vendored three.js, the earlier-versions page) into the output folder
-  - stable URLs for the current design (v6.3): home page <out>/index.html, 3d/, print/, parts/, assembly/ (the
-    assembly wizard, copied as built from site/assembly/) and manual/; earlier designs keep versioned pages (v6.2/...,
-    v6/...; the v6.2 wizard is site/v6.2/assembly/)
-  - home page, print-files pages (print/ from hardware/v6.3/plates/, v6.2/print/ and v6/print/ from their plates),
-    manual pages (docs/manual/ and hardware/v6.3/template/; v6.2/manual/ links its release) and the archive pages
-    v6.2/ and v6/, in English, Italian and German: site/pages.py with the texts in site/content/
+  - stable URLs for the current design (hardware 6.4: chassis 6.4 and electronics module case 1.0): home page
+    <out>/index.html, 3d/, print/ (the step-by-step print guide), parts/, module/, assembly/ (the assembly wizard,
+    copied as built from site/assembly/) and manual/; earlier designs keep versioned pages (v6.3/..., v6.2/..., v6/...;
+    their wizards are site/v6.3/assembly/ and site/v6.2/assembly/)
+  - home page, print guide (site/printguide.py, from hardware/v6.4/plates/), module page (site/modulepage.py),
+    archived print pages (v6.3/print/, v6.2/print/, v6/print/), manual pages (docs/manual/ and hardware/v6.4/template/;
+    v6.3/manual/ and v6.2/manual/ link their releases) and the archive pages v6.3/, v6.2/ and v6/, in English, Italian
+    and German: site/pages.py with the texts in site/content/
   - earlier versions (prototype 1, drivetrain v3) at <out>/earlier/: copies hardware/assembly/* (meshes
     and assembly.json) into <out>/earlier/assembly/ and fills the printed-parts list and the photo strip
     of earlier/index.html from assembly.json and the captions in docs/photos/README.md
@@ -18,8 +20,9 @@ OUTPUT_DIR defaults to site/_build (not committed). The script:
     previews in <out>/photos/thumb/ when Pillow is installed (the originals otherwise)
   - every footer shows the hardware, firmware and product versions (site/versions.py) and the build commit
   - full-screen 3D pages with site/viewer/make_viewer.py (decimated meshes as separate STL files, three.js r128 from
-    site/vendor/three-r128/): <out>/3d/ from hardware/v6.3/assembly/, <out>/v6.2/3d/ and <out>/v6/3d/ from theirs;
-    bought-parts pages <out>/parts/ (hardware/v6.3/bom.json), <out>/v6.2/parts/ and <out>/v6/parts/ with site/bom.py
+    site/vendor/three-r128/): <out>/3d/ from hardware/v6.4/assembly/, <out>/v6.3/3d/, <out>/v6.2/3d/ and <out>/v6/3d/
+    from theirs; bought-parts pages <out>/parts/ (hardware/v6.4/bom.json, chassis and module), <out>/v6.3/parts/,
+    <out>/v6.2/parts/ and <out>/v6/parts/ with site/bom.py
 The 3D pages need numpy, and fast_simplification to decimate the meshes (without it the full
 meshes are used): pip install numpy fast_simplification. Everything else is standard library.
 """
@@ -130,14 +133,23 @@ def parts_html(data):
 
 LINKS_CURRENT = [
     {'href': '../', 'label': {'en': 'Project home', 'it': 'Pagina del progetto', 'de': 'Projektseite'}},
-    {'href': '../print/', 'label': {'en': 'Print files', 'it': 'File di stampa', 'de': 'Druckdateien'}},
+    {'href': '../print/', 'label': {'en': 'Print guide', 'it': 'Guida di stampa', 'de': 'Druckanleitung'}},
     {'href': '../parts/', 'label': {'en': 'Bought parts', 'it': 'Pezzi extra', 'de': 'Zukaufteile'}},
+    {'href': '../module/', 'label': {'en': 'Electronics module', 'it': 'Modulo elettronica', 'de': 'Elektronikmodul'}},
     {'href': '../assembly/', 'label': {'en': 'Assembly guide', 'it': 'Guida al montaggio', 'de': 'Montageanleitung'}},
     {'href': '../manual/', 'label': {'en': 'Manual', 'it': 'Manuale', 'de': 'Handbuch'}},
+    {'href': f'{REPO}/tree/main/hardware/v6.4', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
+]
+LINKS_V63 = [
+    {'href': '../../3d/', 'label': {'en': 'Current hardware 6.4', 'it': 'Hardware attuale 6.4', 'de': 'Aktuelle Hardware 6.4'}},
+    {'href': '../', 'label': {'en': 'Design v6.3 (archive)', 'it': 'Progetto v6.3 (archivio)', 'de': 'Entwurf v6.3 (Archiv)'}},
+    {'href': '../print/', 'label': {'en': 'Print files v6.3', 'it': 'File di stampa v6.3', 'de': 'Druckdateien v6.3'}},
+    {'href': '../parts/', 'label': {'en': 'Bought parts v6.3', 'it': 'Pezzi extra v6.3', 'de': 'Zukaufteile v6.3'}},
+    {'href': '../assembly/', 'label': {'en': 'Assembly guide v6.3', 'it': 'Guida al montaggio v6.3', 'de': 'Montageanleitung v6.3'}},
     {'href': f'{REPO}/tree/main/hardware/v6.3', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
 ]
 LINKS_V62 = [
-    {'href': '../../3d/', 'label': {'en': 'Current design v6.3', 'it': 'Progetto attuale v6.3', 'de': 'Aktueller Entwurf v6.3'}},
+    {'href': '../../3d/', 'label': {'en': 'Current hardware 6.4', 'it': 'Hardware attuale 6.4', 'de': 'Aktuelle Hardware 6.4'}},
     {'href': '../', 'label': {'en': 'Design v6.2 (archive)', 'it': 'Progetto v6.2 (archivio)', 'de': 'Entwurf v6.2 (Archiv)'}},
     {'href': '../print/', 'label': {'en': 'Print files v6.2', 'it': 'File di stampa v6.2', 'de': 'Druckdateien v6.2'}},
     {'href': '../parts/', 'label': {'en': 'Bought parts v6.2', 'it': 'Pezzi extra v6.2', 'de': 'Zukaufteile v6.2'}},
@@ -145,19 +157,22 @@ LINKS_V62 = [
     {'href': f'{REPO}/tree/main/hardware/v6.2', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
 ]
 LINKS_V6 = [
-    {'href': '../../3d/', 'label': {'en': 'Current design v6.3', 'it': 'Progetto attuale v6.3', 'de': 'Aktueller Entwurf v6.3'}},
+    {'href': '../../3d/', 'label': {'en': 'Current hardware 6.4', 'it': 'Hardware attuale 6.4', 'de': 'Aktuelle Hardware 6.4'}},
     {'href': '../', 'label': {'en': 'Design v6 (archive)', 'it': 'Progetto v6 (archivio)', 'de': 'Entwurf v6 (Archiv)'}},
     {'href': '../print/', 'label': {'en': 'Print files v6', 'it': 'File di stampa v6', 'de': 'Druckdateien v6'}},
     {'href': '../parts/', 'label': {'en': 'Bought parts v6', 'it': 'Pezzi extra v6', 'de': 'Zukaufteile v6'}},
     {'href': f'{REPO}/tree/main/hardware/v6', 'label': {'en': 'Files on GitHub', 'it': 'File su GitHub', 'de': 'Dateien auf GitHub'}},
 ]
-ARCHIVED_V62 = {'en': 'Design v6.2 (archive) · replaced by v6.3', 'it': 'Progetto v6.2 (archivio) · sostituito dalla v6.3',
-                'de': 'Entwurf v6.2 (Archiv) · ersetzt durch v6.3'}
-ARCHIVED_V6 = {'en': 'Design v6 (archive) · replaced by v6.2 and v6.3', 'it': 'Progetto v6 (archivio) · sostituito dalla v6.2 e dalla v6.3',
-               'de': 'Entwurf v6 (Archiv) · ersetzt durch v6.2 und v6.3'}
+ARCHIVED_V63 = {'en': 'Design v6.3 (archive) · replaced by hardware 6.4', 'it': 'Progetto v6.3 (archivio) · sostituito dall\'hardware 6.4',
+                'de': 'Entwurf v6.3 (Archiv) · ersetzt durch Hardware 6.4'}
+ARCHIVED_V62 = {'en': 'Design v6.2 (archive) · replaced by v6.3 and 6.4', 'it': 'Progetto v6.2 (archivio) · sostituito dalla v6.3 e dalla 6.4',
+                'de': 'Entwurf v6.2 (Archiv) · ersetzt durch v6.3 und 6.4'}
+ARCHIVED_V6 = {'en': 'Design v6 (archive) · replaced by v6.2, v6.3 and 6.4', 'it': 'Progetto v6 (archivio) · sostituito dalla v6.2, v6.3 e 6.4',
+               'de': 'Entwurf v6 (Archiv) · ersetzt durch v6.2, v6.3 und 6.4'}
 # 3D pages: (manifest, output folder, path to the site root, links, face cap per part, mesh budget MB, extra page data)
 VIEWERS = [
-    ('hardware/v6.3/assembly/v63_viewer.json', '3d', '../', LINKS_CURRENT, 30000, 24.0, {}),
+    ('hardware/v6.4/assembly/v64_viewer.json', '3d', '../', LINKS_CURRENT, 30000, 24.0, {}),
+    ('hardware/v6.3/assembly/v63_viewer.json', 'v6.3/3d', '../../', LINKS_V63, 10000, 9.0, {'subtitle': ARCHIVED_V63}),
     ('hardware/v6.2/assembly/v62_viewer.json', 'v6.2/3d', '../../', LINKS_V62, 10000, 9.0, {'subtitle': ARCHIVED_V62}),
     ('hardware/v6/assembly/v6_viewer.json', 'v6/3d', '../../', LINKS_V6, 10000, 9.0, {'subtitle': ARCHIVED_V6}),
 ]
@@ -191,7 +206,8 @@ def design_pages():
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
-    skip = {'build.py', 'bom.py', 'pages.py', 'versions.py', 'content', 'viewer', '_build', '__pycache__', OUT.name}
+    skip = {'build.py', 'bom.py', 'pages.py', 'printguide.py', 'modulepage.py', 'versions.py', 'content', 'viewer', '_build',
+            '__pycache__', OUT.name}
     shutil.copytree(SITE, OUT, ignore=lambda d, names: [n for n in names if n in skip or n.endswith('.pyc')])
     # earlier versions: prototype 1 assembly with its live 3D model
     earlier = OUT / 'earlier'

@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 """
-Bought parts ("Pezzi extra") in English, Italian and German, for the current design (v6.3) and the archived v6.2 and v6.
+Bought parts ("Pezzi extra") in English, Italian and German, for the current design (hardware 6.4: chassis 6.4 and
+electronics module case 1.0) and the archived v6.3, v6.2 and v6.
 
 Sources, one per design (DESIGNS below):
-  v6.3  hardware/v6.3/bom.json (texts and quantities), checked against the bought-parts list of the print package,
-        hardware/v6.3/plates/summary.json (bought_parts, collected from v63.json and the earlier design data)
+  v6.4  hardware/v6.4/bom.json (texts and quantities, grouped by product: chassis and module), checked per product against
+        the bought-parts list of the print package, hardware/v6.4/plates/summary.json (bought_parts)
+  v6.3  hardware/v6.3/bom.json, checked against hardware/v6.3/plates/summary.json (archived)
   v6.2  hardware/v6.2/bom.json, checked against hardware/v6.2/plates/summary.json (archived)
   v6    hardware/v6/bom.json, checked against the hardware list of hardware/v6/cad/v6.json (archived)
 Every line of the source list must appear in some item's "match", and an item's quantity must equal the sum of the
 source lines it matches. Items without "match" (electronics, tools) are not in the design data.
 
-    python site/bom.py           rewrite docs/BOM.md (v6.3), docs/BOM-v6.2.md and docs/BOM-v6.md
+    python site/bom.py           rewrite docs/BOM.md (6.4), docs/BOM-v6.3.md, docs/BOM-v6.2.md and docs/BOM-v6.md
     python site/bom.py --check   exit 1 if one of them is out of date (CI runs this)
 
-site/build.py imports load() and render_page() to write the site pages parts/ (v6.3), v6.2/parts/ and v6/parts/.
+site/build.py imports load() and render_page() to write the site pages parts/ (6.4), v6.3/parts/, v6.2/parts/ and v6/parts/.
 Only the Python standard library is required.
 """
 import html
@@ -38,8 +40,11 @@ def _bought(design):
 
 
 DESIGNS = {
-    'v6.3': dict(label='v6.3', bom='hardware/v6.3/bom.json', source=_bought('v6.3'), source_name='plates/summary.json (bought_parts)',
+    'v6.4': dict(label='v6.4', bom='hardware/v6.4/bom.json', source=_bought('v6.4'), source_name='plates/summary.json (bought_parts)',
                  md='docs/BOM.md', page='parts/', root='../', model='../3d/', print='../print/', archived=False,
+                 printed_md='../hardware/v6.4/plates/PRINT_GUIDE.md', folder='hardware/v6.4'),
+    'v6.3': dict(label='v6.3', bom='hardware/v6.3/bom.json', source=_bought('v6.3'), source_name='plates/summary.json (bought_parts)',
+                 md='docs/BOM-v6.3.md', page='v6.3/parts/', root='../../', model='../3d/', print='../print/', archived=True,
                  printed_md='../hardware/v6.3/plates/README.md', folder='hardware/v6.3'),
     'v6.2': dict(label='v6.2', bom='hardware/v6.2/bom.json', source=_bought('v6.2'), source_name='plates/summary.json (bought_parts)',
                  md='docs/BOM-v6.2.md', page='v6.2/parts/', root='../../', model='../3d/', print='../print/', archived=True,
@@ -48,7 +53,7 @@ DESIGNS = {
                md='docs/BOM-v6.md', page='v6/parts/', root='../../', model='../3d/', print='../print/', archived=True,
                printed_md='../hardware/v6/README.md', folder='hardware/v6'),
 }
-CURRENT = 'v6.3'
+CURRENT = 'v6.4'
 
 
 def ui(cfg):
@@ -85,23 +90,26 @@ def load(design=CURRENT):
     """Read the design's bom.json and check it against its source list."""
     cfg = DESIGNS[design]
     bom = json.loads((ROOT / cfg['bom']).read_text(encoding='utf-8'))
+    by_product = 'products' in bom                 # 6.4: two products, each line of the source list belongs to one
     qty_of = {}
     for h in cfg['source']():
-        qty_of[h['item']] = qty_of.get(h['item'], 0) + int(h['qty'])
+        k = (h['product'], h['item']) if by_product else h['item']
+        qty_of[k] = qty_of.get(k, 0) + int(h['qty'])
     matched, errors = set(), []
     for g in bom['groups']:
+        key = (lambda m, g=g: (g.get('product'), m)) if by_product else (lambda m: m)
         for it in g['items']:
             for lang in LANGS:
                 if not it['item'].get(lang) or not it.get('use', {}).get(lang):
                     errors.append(f"{g['id']}: '{it['item'].get('en')}' has no {lang} text")
             if 'match' not in it:
                 continue
-            unknown = [m for m in it['match'] if m not in qty_of]
+            unknown = [m for m in it['match'] if key(m) not in qty_of]
             if unknown:
                 errors.append(f"{g['id']}: {unknown} not in {cfg['source_name']}")
                 continue
-            matched.update(it['match'])
-            want = sum(qty_of[m] for m in it['match'])
+            matched.update(key(m) for m in it['match'])
+            want = sum(qty_of[key(m)] for m in it['match'])
             if it['qty'] != want:
                 errors.append(f"{g['id']}: '{it['item']['en']}' qty {it['qty']}, {cfg['source_name']} says {want}")
     missing = [k for k in qty_of if k not in matched]
@@ -134,8 +142,14 @@ def render_markdown(bom):
     for lang in LANGS:
         out += [f'## {LANG_NAMES[lang]}', '', f"**{U['status'][lang]}**", '',
                 f"{U['lead'][lang]} {U['source'][lang]}", '']
+        prods = {p['id']: p for p in bom.get('products', [])}
+        seen = set()
         for g in bom['groups']:
-            out += [f"### {g['title'][lang]}", '']
+            pr = g.get('product')
+            if pr and pr not in seen:
+                seen.add(pr)
+                out += [f"### {prods[pr]['title'][lang]}", '', prods[pr]['note'][lang], '']
+            out += [f"{'####' if pr else '###'} {g['title'][lang]}", '']
             if g.get('note'):
                 out += [g['note'][lang], '']
             for it in g['items']:
@@ -160,7 +174,14 @@ def render_page(bom, versions_html=''):
     blocks = []
     for lang in LANGS:
         bands = []
+        prods = {p['id']: p for p in bom.get('products', [])}
+        seen = set()
         for g in bom['groups']:
+            pr = g.get('product')
+            if pr and pr not in seen:              # product heading (6.4: chassis, electronics module)
+                seen.add(pr)
+                bands.append(f'<section class="band prod" id="{e(pr)}-{lang}"><div class="band-head"><h2>{e(prods[pr]["title"][lang])}</h2>'
+                             f'<p>{e(prods[pr]["note"][lang])}</p></div></section>')
             rows = []
             for it in g['items']:
                 q = qty_text(it)
@@ -239,7 +260,7 @@ def main():
     if check:
         if stale:
             sys.exit(f'out of date: {", ".join(stale)}: run python site/bom.py')
-        print('docs/BOM.md, docs/BOM-v6.2.md and docs/BOM-v6.md are up to date')
+        print('docs/BOM.md, docs/BOM-v6.3.md, docs/BOM-v6.2.md and docs/BOM-v6.md are up to date')
 
 
 if __name__ == '__main__':

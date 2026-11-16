@@ -1,4 +1,4 @@
-/* Kibble Dispenser Outdoor v6.3 - assembly wizard (three.js r128, no other libraries).
+/* Kibble Dispenser Outdoor 6.4 - assembly wizard (three.js r128, no other libraries).
    Data: window.WIZ_DATA = {steps: <steps.json>, parts: [...], geomsB64 | modelBase, version, mode, templateHref}.
    Two reading orders (steps.json meta.flows): "kit" (install the ready-made unit) and "diy" (build it yourself);
    the reader's position S.i counts inside the chosen flow, STEPS indexes stay global (stills, 3D state).
@@ -134,9 +134,13 @@
     if (Array.isArray(body) && body.length) {
       const ol = el('ol', 'body'); body.forEach((b) => { const li = el('li'); const sp = el('span'); sp.append(rich(b)); li.append(sp); ol.append(li); }); art.append(ol);
     }
+    if (s.link === 'print' && ST.meta.print_guide && !STILL) {      // the printing instructions are a separate guide
+      const p = el('p', 'doclink'); const a = el('a'); a.href = ST.meta.print_guide; a.target = '_blank'; a.rel = 'noopener';
+      a.append(svgIcon(ICON_DOC), el('span', null, ui('print_link'))); p.append(a); art.append(p);
+    }
     if (s.link === 'template' && D.templateHref) {
       const p = el('p', 'doclink'); const a = el('a'); a.href = D.templateHref; a.target = '_blank'; a.rel = 'noopener';
-      if (/^data:/.test(D.templateHref)) a.setAttribute('download', 'drilling-template-v62.pdf');
+      if (/^data:/.test(D.templateHref)) a.setAttribute('download', 'drilling-template.pdf');
       a.append(svgIcon(ICON_DOC), el('span', null, ui('template_link'))); p.append(a); art.append(p);
     }
     if (s.warn) { const w = el('p', 'warn'); w.setAttribute('role', 'note'); w.append(svgIcon(ICON_WARN)); const sp = el('span'); sp.append(rich(tr(s.warn))); w.append(sp); art.append(w); }
@@ -565,9 +569,13 @@
       templateReady = new Promise((res) => { img.onload = () => { ctx.drawImage(img, 0, 0, cvs.width, cvs.height); tex.needsUpdate = true; res(); }; img.onerror = () => res(); });
       img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
       const mat = new THREE.MeshBasicMaterial({ map: tex, side: THREE.DoubleSide }); mat.toneMapped = false;
+      // world = R(rot) * (svg - centre): the plane is turned face-down (rotation.y = pi) and then about z by rot - 180 deg
       const m = new THREE.Mesh(new THREE.PlaneGeometry(W0, H0), mat); m.rotation.y = Math.PI;
-      const c = SC.template_centre_svg || [105, 150]; m.position.set(-(W0 / 2 - c[0]), -(H0 / 2 - c[1]), SC.template_z != null ? SC.template_z : SH.underside_z - 0.4);
-      m.userData.outline = 'edges'; m.renderOrder = 2; g.add(m); return g;
+      const c = SC.template_centre_svg || [105, 150], rot = (SC.template_rot_deg != null ? SC.template_rot_deg : 180) * DEG;
+      const lx = W0 / 2 - c[0], ly = H0 / 2 - c[1];
+      const holder = new THREE.Group(); holder.rotation.z = rot - Math.PI; holder.position.z = SC.template_z != null ? SC.template_z : SH.underside_z - 0.4;
+      m.position.set(-lx, -ly, 0); holder.add(m);
+      m.userData.outline = 'edges'; m.renderOrder = 2; g.add(holder); return g;
     }
     function smallScrewsObj() { // the 4 countersunk 3.5 x 16 screws of the channel, laid side by side
       const g = new THREE.Group(); const mat = pm('#a8adb3', { metalness: 0.6, roughness: 0.38 });
@@ -600,9 +608,10 @@
     }
     function cableWorldPts(spec, list, off) {
       const ref = spec.ref && IT[spec.ref] ? IT[spec.ref].g.matrix : null; const out = [];
+      const ref2 = spec.ref2 && IT[spec.ref2] ? IT[spec.ref2].g.matrix : null;     // second frame: 'v' points (e.g. the chassis while the module moves)
       (list || []).forEach((p) => {
         const fr = p.length > 3 ? p[3] : spec.frame || 'u'; const v = new V3(p[0], p[1], p[2]);
-        if (fr === 'u' && ref) v.applyMatrix4(ref); else if (off) v.add(off);
+        if (fr === 'u' && ref) v.applyMatrix4(ref); else if (fr === 'v' && ref2) v.applyMatrix4(ref2); else if (off) v.add(off);
         out.push(v);
       });
       return out;
@@ -613,7 +622,7 @@
     }
     function updateCable(I) {
       const spec = CAB[I.def.cable]; if (!spec) return;
-      const ref = spec.ref && IT[spec.ref] ? IT[spec.ref].g.matrix.elements : [];
+      const ref = (spec.ref && IT[spec.ref] ? Array.from(IT[spec.ref].g.matrix.elements) : []).concat(spec.ref2 && IT[spec.ref2] ? Array.from(IT[spec.ref2].g.matrix.elements) : []);
       const o = I.st && I.st.off ? I.st.off : [0, 0, 0]; const off = new V3(o[0], o[1], o[2]);
       const sig = Array.prototype.map.call(ref, (x) => x.toFixed(2)).join(',') + '|' + o.map((x) => x.toFixed(2)).join(',');
       if (I.cabSig === sig && I.g.children.length) return;
@@ -1110,7 +1119,7 @@
       if (!S.auto && !reduce) { S.t = 0; S.playing = true; }
       applyAll(S.t);
       buildArrows(cur, S.t);
-      const bench = ['bench', 'kit', 'hardware', 'box', 'shellbench', 'plates', 'clean', 'info', 'flangebench', 'panel'].includes(cur.s.context);
+      const bench = ['bench', 'kit', 'hardware', 'box', 'shellbench', 'plates', 'clean', 'info', 'flangebench', 'panel', 'modbench', 'modfit'].includes(cur.s.context);
       benchG.visible = bench && !STILL;
       S.userCam = false; camHome(!S.everEntered); S.everEntered = true;
       makeLabels(i, STILL && !cur.s.still_callouts);
@@ -1128,7 +1137,7 @@
         I.g.visible = vis;
         if (vis || I.isCable) applyItem(I, t);
       });
-      Object.values(IT).forEach((I) => { if (I.isCable && I.g.visible) { const ref = CAB[I.def.cable] && CAB[I.def.cable].ref; if (ref && IT[ref]) { applyItem(IT[ref], t); } updateCable(I); } });
+      Object.values(IT).forEach((I) => { if (I.isCable && I.g.visible) { const c = CAB[I.def.cable] || {}; [c.ref, c.ref2].forEach((r) => { if (r && IT[r]) applyItem(IT[r], t); }); updateCable(I); } });
       placeKibble(t);
       overlay.children.forEach((m) => { if (m.userData.until != null || m.userData.after != null) m.visible = (m.userData.until == null || t < m.userData.until) && (m.userData.after == null || t >= m.userData.after); });
       labs.forEach((o) => { o.hide = (o.until != null && t >= o.until) || (o.after != null && t < o.after); });

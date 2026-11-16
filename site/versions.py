@@ -1,6 +1,7 @@
 """
 Versions shown in the site footers, read at build time from the sources of truth (see VERSIONS.md):
-hardware/VERSION, firmware/VERSION and product/product.json, plus the commit the site is built from
+hardware/VERSION, hardware/module/VERSION (the electronics module case), firmware/VERSION and product/product.json, plus
+the commit the site is built from
 (GITHUB_SHA on CI, git otherwise). Standard library only.
 """
 import html
@@ -22,6 +23,7 @@ STATUS = {
 }
 UNRELEASED = {'en': 'Product: not released yet', 'it': 'Prodotto: non ancora rilasciato', 'de': 'Produkt: noch nicht veröffentlicht'}
 PRODUCT = {'en': 'Product', 'it': 'Prodotto', 'de': 'Produkt'}
+CASE = {'en': 'Module case', 'it': 'Modulo case', 'de': 'Modul case'}
 
 
 def _git(*args):
@@ -35,17 +37,20 @@ def load():
     hw = tomllib.loads((ROOT / 'hardware/VERSION').read_text(encoding='utf-8'))
     fw = tomllib.loads((ROOT / 'firmware/VERSION').read_text(encoding='utf-8'))
     product = json.loads((ROOT / 'product/product.json').read_text(encoding='utf-8'))
+    mod_file = ROOT / 'hardware/module/VERSION'
+    mod = tomllib.loads(mod_file.read_text(encoding='utf-8')) if mod_file.exists() else None
     sha = os.environ.get('GITHUB_SHA') or _git('rev-parse', 'HEAD')
     date = _git('log', '-1', '--format=%cs', sha) if sha else ''
-    return {'hw': hw['version'], 'status': hw['status'], 'fw': fw['version'],
+    return {'hw': hw['version'], 'status': hw['status'], 'fw': fw['version'], 'case': mod['version'] if mod else None,
             'product': product.get('version') or 'unreleased', 'sha': sha, 'date': date}
 
 
 def text(v, lang):
-    """'Hardware v6.0.0 (designed) · Firmware v0.1.0+dev.20260324 · Product: not released yet'"""
+    """'Hardware v6.4.0 (designed) · Module case v1.0.0 · Firmware v0.1.0+dev.20260324 · Product: not released yet'"""
     status = STATUS.get(v['status'], {}).get(lang, v['status'])
     product = UNRELEASED[lang] if v['product'] == 'unreleased' else f'{PRODUCT[lang]} v{v["product"]}'
-    return f'Hardware v{v["hw"]} ({status}) · Firmware v{v["fw"]} · {product}'
+    case = f' · {CASE[lang]} v{v["case"]}' if v.get('case') else ''
+    return f'Hardware v{v["hw"]} ({status}){case} · Firmware v{v["fw"]} · {product}'
 
 
 def build_text(v):

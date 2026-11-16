@@ -8,7 +8,7 @@ it = "File di stampa (archivio) · Kibble Dispenser v6.2"
 de = "Druckdateien (Archiv) · Kibble Dispenser v6.2"
 
 [meta.description]
-en = "Archived print plates of the Kibble Dispenser Outdoor v6.2 for a Bambu Lab A1 with AMS lite. The current design is v6.3."
+en = "Archived print plates of the Kibble Dispenser Outdoor v6.2 for a Bambu Lab A1 with AMS lite. The current design is hardware 6.4."
 
 [nav]
 model = { en = "3D model", it = "Modello 3D", de = "3D-Modell" }
@@ -30,19 +30,19 @@ de = "Fertige Platten für einen Bambu Lab A1 mit AMS lite: zwei Bambu-Studio-Pr
 href = "../../print/"
 
 [banner.title]
-en = "Archived: design v6.2. Print v6.3 instead"
-it = "Archivio: progetto v6.2. Stampate invece la v6.3"
-de = "Archiv: Entwurf v6.2. Druckt stattdessen v6.3"
+en = "Archived: design v6.2. Print 6.4 instead"
+it = "Archivio: progetto v6.2. Stampate invece la 6.4"
+de = "Archiv: Entwurf v6.2. Druckt stattdessen 6.4"
 
 [banner.body]
-en = "This is the print package of design v6.2 (hardware 6.2.0), kept for the record; its downloads come from GitHub. Design v6.3 replaces it: a control panel in the cap, no cable channel, fewer parts, and print files that need no corrections."
-it = "Questo è il pacchetto di stampa del progetto v6.2 (hardware 6.2.0), conservato per archivio; i download arrivano da GitHub. Il progetto v6.3 lo sostituisce: pannello comandi nel fondello, niente canalina, meno pezzi e file di stampa che non chiedono correzioni."
-de = "Das ist das Druckpaket von Entwurf v6.2 (Hardware 6.2.0), zum Nachschlagen aufbewahrt; die Downloads kommen von GitHub. Entwurf v6.3 ersetzt es: Bedienfeld im Boden, kein Kabelkanal, weniger Teile und Druckdateien ohne Korrekturen."
+en = "This is the print package of design v6.2 (hardware 6.2.0), kept for the record; its downloads come from GitHub. Designs v6.3 and 6.4 replace it: no cable channel, fewer parts, print files that need no corrections, and a detachable electronics module."
+it = "Questo è il pacchetto di stampa del progetto v6.2 (hardware 6.2.0), conservato per archivio; i download arrivano da GitHub. I progetti v6.3 e 6.4 lo sostituiscono: niente canalina, meno pezzi, file di stampa che non chiedono correzioni e un modulo elettronica estraibile."
+de = "Das ist das Druckpaket von Entwurf v6.2 (Hardware 6.2.0), zum Nachschlagen aufbewahrt; die Downloads kommen von GitHub. Die Entwürfe v6.3 und 6.4 ersetzen es: kein Kabelkanal, weniger Teile, Druckdateien ohne Korrekturen und ein abnehmbares Elektronikmodul."
 
 [banner.link]
-en = "Print files of v6.3"
-it = "File di stampa della v6.3"
-de = "Druckdateien von v6.3"
+en = "Current print guide"
+it = "Guida di stampa attuale"
+de = "Aktuelle Druckanleitung"
 
 [facts]
 plates = { en = "plates", it = "piatti", de = "Platten" }

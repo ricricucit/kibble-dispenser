@@ -8,7 +8,7 @@ it = "File di stampa (archivio) · Kibble Dispenser v6"
 de = "Druckdateien (Archiv) · Kibble Dispenser v6"
 
 [meta.description]
-en = "Archived print plates of the Kibble Dispenser Outdoor v6 for a Bambu Lab A1 with AMS lite. The current design is v6.3."
+en = "Archived print plates of the Kibble Dispenser Outdoor v6 for a Bambu Lab A1 with AMS lite. The current design is hardware 6.4."
 
 [nav]
 model = { en = "3D model", it = "Modello 3D", de = "3D-Modell" }
@@ -34,9 +34,9 @@ it = "Archivio: progetto v6. Stampate invece il progetto attuale"
 de = "Archiv: Entwurf v6. Druckt stattdessen den aktuellen Entwurf"
 
 [banner.body]
-en = "This is the print package of design v6 (hardware 6.0.0), kept for the record; its downloads come from GitHub. Designs v6.2 and v6.3 replaced it: closed pod, shut-off gate, control panel and new print files."
-it = "Questo è il pacchetto di stampa del progetto v6 (hardware 6.0.0), conservato per archivio; i download arrivano da GitHub. I progetti v6.2 e v6.3 lo hanno sostituito: guscio chiuso, saracinesca, pannello comandi e nuovi file di stampa."
-de = "Das ist das Druckpaket von Entwurf v6 (Hardware 6.0.0), zum Nachschlagen aufbewahrt; die Downloads kommen von GitHub. Die Entwürfe v6.2 und v6.3 haben es ersetzt: geschlossene Hülle, Absperrschieber, Bedienfeld und neue Druckdateien."
+en = "This is the print package of design v6 (hardware 6.0.0), kept for the record; its downloads come from GitHub. Designs v6.2, v6.3 and 6.4 replaced it: closed pod, shut-off gate, detachable electronics module and new print files."
+it = "Questo è il pacchetto di stampa del progetto v6 (hardware 6.0.0), conservato per archivio; i download arrivano da GitHub. I progetti v6.2, v6.3 e 6.4 lo hanno sostituito: guscio chiuso, saracinesca, modulo elettronica estraibile e nuovi file di stampa."
+de = "Das ist das Druckpaket von Entwurf v6 (Hardware 6.0.0), zum Nachschlagen aufbewahrt; die Downloads kommen von GitHub. Die Entwürfe v6.2, v6.3 und 6.4 haben es ersetzt: geschlossene Hülle, Absperrschieber, abnehmbares Elektronikmodul und neue Druckdateien."
 
 [banner.link]
 en = "Current print files"
